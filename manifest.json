@@ -1,0 +1,2814 @@
+{
+  "course_id": "226",
+  "base_url": "https://sit-online.instructure.com",
+  "pulled_at": "20260605_021439",
+  "pages": {
+    "course-introduction__course-introduction.html": {
+      "title": "Course Introduction",
+      "canvas_url": "course-introduction",
+      "page_id": 4086,
+      "html_file": "pages/course-introduction__course-introduction.html",
+      "last_canvas_update": "2026-05-27T15:34:26Z"
+    },
+    "module-1-introduction__m01-introduction.html": {
+      "title": "Module 1 Introduction",
+      "canvas_url": "m01-introduction",
+      "page_id": 4087,
+      "html_file": "pages/module-1-introduction__m01-introduction.html",
+      "last_canvas_update": "2026-05-27T15:34:27Z"
+    },
+    "lesson-1-practice-ai-or-not-ai__m01-l1-practice-ai-or-not-ai.html": {
+      "title": "Lesson 1 Practice: AI or Not AI?",
+      "canvas_url": "m01-l1-practice-ai-or-not-ai",
+      "page_id": 4089,
+      "html_file": "pages/lesson-1-practice-ai-or-not-ai__m01-l1-practice-ai-or-not-ai.html",
+      "last_canvas_update": "2026-05-27T15:34:28Z"
+    },
+    "summary__summary-2.html": {
+      "title": "Summary",
+      "canvas_url": "summary-2",
+      "page_id": 4093,
+      "html_file": "pages/summary__summary-2.html",
+      "last_canvas_update": "2026-05-27T12:22:40Z"
+    },
+    "course-introduction__course-introduction-2.html": {
+      "title": "Course_Introduction",
+      "canvas_url": "course-introduction-2",
+      "page_id": 4115,
+      "html_file": "pages/course-introduction__course-introduction-2.html",
+      "last_canvas_update": "2026-05-26T16:54:04Z"
+    },
+    "deck__deck.html": {
+      "title": "deck",
+      "canvas_url": "deck",
+      "page_id": 4116,
+      "html_file": "pages/deck__deck.html",
+      "last_canvas_update": "2026-06-05T01:02:49Z"
+    },
+    "m01-ai-hidden-in-plain-sight-module-overview__m01-ai-hidden-in-plain-sight-module-overview.html": {
+      "title": "M01: AI Hidden in Plain Sight \u2014 Module Overview",
+      "canvas_url": "m01-ai-hidden-in-plain-sight-module-overview",
+      "page_id": 4122,
+      "html_file": "pages/m01-ai-hidden-in-plain-sight-module-overview__m01-ai-hidden-in-plain-sight-module-overview.html",
+      "last_canvas_update": "2026-06-04T01:23:04Z"
+    },
+    "discussion__discussion.html": {
+      "title": "discussion",
+      "canvas_url": "discussion",
+      "page_id": 4123,
+      "html_file": "pages/discussion__discussion.html",
+      "last_canvas_update": "2026-05-06T15:17:42Z"
+    },
+    "lesson-1__lesson-1.html": {
+      "title": "lesson 1",
+      "canvas_url": "lesson-1",
+      "page_id": 4125,
+      "html_file": "pages/lesson-1__lesson-1.html",
+      "last_canvas_update": "2026-05-07T02:44:47Z"
+    },
+    "lesson-2-the-evolution-of-artificial-intelligence__lesson-2-the-evolution-of-artificial-intelligence.html": {
+      "title": "Lesson 2  The Evolution of Artificial Intelligence",
+      "canvas_url": "lesson-2-the-evolution-of-artificial-intelligence",
+      "page_id": 4126,
+      "html_file": "pages/lesson-2-the-evolution-of-artificial-intelligence__lesson-2-the-evolution-of-artificial-intelligence.html",
+      "last_canvas_update": "2026-05-27T11:34:44Z"
+    },
+    "micro-learning-1-1__micro-learning-1-dot-1.html": {
+      "title": "Micro Learning 1.1",
+      "canvas_url": "micro-learning-1-dot-1",
+      "page_id": 4129,
+      "html_file": "pages/micro-learning-1-1__micro-learning-1-dot-1.html",
+      "last_canvas_update": "2026-06-02T10:45:54Z"
+    },
+    "micro-learning-1-2__micro-learning-1-dot-2.html": {
+      "title": "Micro learning 1.2",
+      "canvas_url": "micro-learning-1-dot-2",
+      "page_id": 4130,
+      "html_file": "pages/micro-learning-1-2__micro-learning-1-dot-2.html",
+      "last_canvas_update": "2026-06-02T12:50:01Z"
+    },
+    "micro-learning-1-3__micro-learning-1-dot-3.html": {
+      "title": "Micro Learning 1.3",
+      "canvas_url": "micro-learning-1-dot-3",
+      "page_id": 4131,
+      "html_file": "pages/micro-learning-1-3__micro-learning-1-dot-3.html",
+      "last_canvas_update": "2026-06-02T12:57:47Z"
+    },
+    "lesson-1-what-is-artificial-intelligence__lesson-1-what-is-artificial-intelligence.html": {
+      "title": "Lesson 1 - What is artificial intelligence?",
+      "canvas_url": "lesson-1-what-is-artificial-intelligence",
+      "page_id": 4132,
+      "html_file": "pages/lesson-1-what-is-artificial-intelligence__lesson-1-what-is-artificial-intelligence.html",
+      "last_canvas_update": "2026-06-03T03:16:24Z"
+    },
+    "micro-learning-2-1__micro-learning-2-dot-1-2.html": {
+      "title": "Micro Learning 2.1",
+      "canvas_url": "micro-learning-2-dot-1-2",
+      "page_id": 4136,
+      "html_file": "pages/micro-learning-2-1__micro-learning-2-dot-1-2.html",
+      "last_canvas_update": "2026-06-02T13:00:46Z"
+    },
+    "micro-learning-2-2__micro-learning-2-dot-2.html": {
+      "title": "Micro Learning 2.2",
+      "canvas_url": "micro-learning-2-dot-2",
+      "page_id": 4137,
+      "html_file": "pages/micro-learning-2-2__micro-learning-2-dot-2.html",
+      "last_canvas_update": "2026-06-02T13:06:20Z"
+    },
+    "micro-learning-2-3__micro-learning-2-dot-3.html": {
+      "title": "Micro Learning 2.3",
+      "canvas_url": "micro-learning-2-dot-3",
+      "page_id": 4138,
+      "html_file": "pages/micro-learning-2-3__micro-learning-2-dot-3.html",
+      "last_canvas_update": "2026-06-02T13:12:28Z"
+    },
+    "lesson-3__lesson-3.html": {
+      "title": "lesson 3",
+      "canvas_url": "lesson-3",
+      "page_id": 4139,
+      "html_file": "pages/lesson-3__lesson-3.html",
+      "last_canvas_update": "2026-05-27T11:38:41Z"
+    },
+    "micro-learning-3-1__micro-learning-3-dot-1.html": {
+      "title": "micro learning 3.1",
+      "canvas_url": "micro-learning-3-dot-1",
+      "page_id": 4140,
+      "html_file": "pages/micro-learning-3-1__micro-learning-3-dot-1.html",
+      "last_canvas_update": "2026-06-02T13:15:31Z"
+    },
+    "micro-learning-3-2__micro-learning-3-dot-2.html": {
+      "title": "micro learning 3.2",
+      "canvas_url": "micro-learning-3-dot-2",
+      "page_id": 4141,
+      "html_file": "pages/micro-learning-3-2__micro-learning-3-dot-2.html",
+      "last_canvas_update": "2026-06-02T13:44:57Z"
+    },
+    "micro-learning-3-3__micro-learning-3-dot-3.html": {
+      "title": "micro learning 3.3",
+      "canvas_url": "micro-learning-3-dot-3",
+      "page_id": 4142,
+      "html_file": "pages/micro-learning-3-3__micro-learning-3-dot-3.html",
+      "last_canvas_update": "2026-06-02T13:21:15Z"
+    },
+    "lesson-4__lesson-4.html": {
+      "title": "Lesson 4",
+      "canvas_url": "lesson-4",
+      "page_id": 4143,
+      "html_file": "pages/lesson-4__lesson-4.html",
+      "last_canvas_update": "2026-05-27T12:06:24Z"
+    },
+    "micro-learning-4-1__micro-learning-4-dot-1.html": {
+      "title": "Micro Learning 4.1",
+      "canvas_url": "micro-learning-4-dot-1",
+      "page_id": 4144,
+      "html_file": "pages/micro-learning-4-1__micro-learning-4-dot-1.html",
+      "last_canvas_update": "2026-06-02T13:41:24Z"
+    },
+    "micro-learning-4-2__micro-learning-4-dot-2.html": {
+      "title": "Micro Learning 4.2",
+      "canvas_url": "micro-learning-4-dot-2",
+      "page_id": 4145,
+      "html_file": "pages/micro-learning-4-2__micro-learning-4-dot-2.html",
+      "last_canvas_update": "2026-06-02T13:25:53Z"
+    },
+    "micro-learning-4-3__micro-learning-4-dot-3.html": {
+      "title": "Micro Learning 4.3",
+      "canvas_url": "micro-learning-4-dot-3",
+      "page_id": 4146,
+      "html_file": "pages/micro-learning-4-3__micro-learning-4-dot-3.html",
+      "last_canvas_update": "2026-06-02T13:28:37Z"
+    },
+    "summary__summary.html": {
+      "title": "Summary",
+      "canvas_url": "summary",
+      "page_id": 4147,
+      "html_file": "pages/summary__summary.html",
+      "last_canvas_update": "2026-05-24T16:57:18Z"
+    },
+    "course-overview-v2__course-overview-v2.html": {
+      "title": "course overview v2",
+      "canvas_url": "course-overview-v2",
+      "page_id": 4148,
+      "html_file": "pages/course-overview-v2__course-overview-v2.html",
+      "last_canvas_update": "2026-05-09T21:28:37Z"
+    },
+    "welcome-to-the-course__welcome-to-the-course.html": {
+      "title": "Welcome to the course",
+      "canvas_url": "welcome-to-the-course",
+      "page_id": 4149,
+      "html_file": "pages/welcome-to-the-course__welcome-to-the-course.html",
+      "last_canvas_update": "2026-06-04T01:13:54Z"
+    },
+    "course-roadmap__course-roadmap.html": {
+      "title": "Course Roadmap",
+      "canvas_url": "course-roadmap",
+      "page_id": 4150,
+      "html_file": "pages/course-roadmap__course-roadmap.html",
+      "last_canvas_update": "2026-06-02T14:33:29Z"
+    },
+    "course-guide__course-guide.html": {
+      "title": "Course Guide",
+      "canvas_url": "course-guide",
+      "page_id": 4151,
+      "html_file": "pages/course-guide__course-guide.html",
+      "last_canvas_update": "2026-05-27T09:33:10Z"
+    },
+    "how-this-course-works__how-this-course-works.html": {
+      "title": "How this course works",
+      "canvas_url": "how-this-course-works",
+      "page_id": 4152,
+      "html_file": "pages/how-this-course-works__how-this-course-works.html",
+      "last_canvas_update": "2026-05-27T15:47:27Z"
+    },
+    "progress-and-portfolio__progress-and-portfolio.html": {
+      "title": "Progress and Portfolio",
+      "canvas_url": "progress-and-portfolio",
+      "page_id": 4153,
+      "html_file": "pages/progress-and-portfolio__progress-and-portfolio.html",
+      "last_canvas_update": "2026-05-24T16:57:19Z"
+    },
+    "faqs__faqs.html": {
+      "title": "FAQs",
+      "canvas_url": "faqs",
+      "page_id": 4154,
+      "html_file": "pages/faqs__faqs.html",
+      "last_canvas_update": "2026-05-27T15:53:34Z"
+    },
+    "checklist__checklist.html": {
+      "title": "Checklist",
+      "canvas_url": "checklist",
+      "page_id": 4164,
+      "html_file": "pages/checklist__checklist.html",
+      "last_canvas_update": "2026-05-27T09:58:02Z"
+    },
+    "classify__classify.html": {
+      "title": "Classify ",
+      "canvas_url": "classify",
+      "page_id": 4166,
+      "html_file": "pages/classify__classify.html",
+      "last_canvas_update": "2026-06-01T17:20:26Z"
+    },
+    "ml11__ml11.html": {
+      "title": "ml11",
+      "canvas_url": "ml11",
+      "page_id": 4238,
+      "html_file": "pages/ml11__ml11.html",
+      "last_canvas_update": "2026-06-03T03:11:08Z"
+    },
+    "m01-l1-micro1-whos-driving-html__m01-l1-micro1-whos-driving-dot-html.html": {
+      "title": "M01 L1 Micro1 Whos Driving.Html",
+      "canvas_url": "m01-l1-micro1-whos-driving-dot-html",
+      "page_id": 4239,
+      "html_file": "pages/m01-l1-micro1-whos-driving-html__m01-l1-micro1-whos-driving-dot-html.html",
+      "last_canvas_update": "2026-06-01T18:06:42Z"
+    },
+    "m4-opening-discussion__m04-discussion.html": {
+      "title": "M4 Opening Discussion",
+      "canvas_url": "m04-discussion",
+      "page_id": 4240,
+      "html_file": "pages/m4-opening-discussion__m04-discussion.html",
+      "last_canvas_update": "2026-06-02T16:48:19Z"
+    },
+    "m4-lesson-1-micro-1-1__m04-lesson-1-micro-1-1.html": {
+      "title": "M4 Lesson 1 - Micro 1.1",
+      "canvas_url": "m04-lesson-1-micro-1-1",
+      "page_id": 4241,
+      "html_file": "pages/m4-lesson-1-micro-1-1__m04-lesson-1-micro-1-1.html",
+      "last_canvas_update": "2026-06-02T16:48:20Z"
+    },
+    "m4-lesson-1-micro-1-2__m04-lesson-1-micro-1-2.html": {
+      "title": "M4 Lesson 1 - Micro 1.2",
+      "canvas_url": "m04-lesson-1-micro-1-2",
+      "page_id": 4242,
+      "html_file": "pages/m4-lesson-1-micro-1-2__m04-lesson-1-micro-1-2.html",
+      "last_canvas_update": "2026-06-02T16:48:20Z"
+    },
+    "m4-lesson-1-micro-1-3__m04-lesson-1-micro-1-3.html": {
+      "title": "M4 Lesson 1 - Micro 1.3",
+      "canvas_url": "m04-lesson-1-micro-1-3",
+      "page_id": 4243,
+      "html_file": "pages/m4-lesson-1-micro-1-3__m04-lesson-1-micro-1-3.html",
+      "last_canvas_update": "2026-06-02T16:48:20Z"
+    },
+    "m4-lesson-1__m04-lesson-1.html": {
+      "title": "M4 Lesson 1",
+      "canvas_url": "m04-lesson-1",
+      "page_id": 4244,
+      "html_file": "pages/m4-lesson-1__m04-lesson-1.html",
+      "last_canvas_update": "2026-06-02T16:48:20Z"
+    },
+    "m4-lesson-2-micro-2-1__m04-lesson-2-micro-2-1.html": {
+      "title": "M4 Lesson 2 - Micro 2.1",
+      "canvas_url": "m04-lesson-2-micro-2-1",
+      "page_id": 4245,
+      "html_file": "pages/m4-lesson-2-micro-2-1__m04-lesson-2-micro-2-1.html",
+      "last_canvas_update": "2026-06-02T16:48:20Z"
+    },
+    "m4-lesson-2-micro-2-2__m04-lesson-2-micro-2-2.html": {
+      "title": "M4 Lesson 2 - Micro 2.2",
+      "canvas_url": "m04-lesson-2-micro-2-2",
+      "page_id": 4246,
+      "html_file": "pages/m4-lesson-2-micro-2-2__m04-lesson-2-micro-2-2.html",
+      "last_canvas_update": "2026-06-02T16:48:20Z"
+    },
+    "m4-lesson-2-micro-2-3__m04-lesson-2-micro-2-3.html": {
+      "title": "M4 Lesson 2 - Micro 2.3",
+      "canvas_url": "m04-lesson-2-micro-2-3",
+      "page_id": 4247,
+      "html_file": "pages/m4-lesson-2-micro-2-3__m04-lesson-2-micro-2-3.html",
+      "last_canvas_update": "2026-06-02T16:48:21Z"
+    },
+    "m4-lesson-2__m04-lesson-2.html": {
+      "title": "M4 Lesson 2",
+      "canvas_url": "m04-lesson-2",
+      "page_id": 4248,
+      "html_file": "pages/m4-lesson-2__m04-lesson-2.html",
+      "last_canvas_update": "2026-06-02T16:48:21Z"
+    },
+    "m4-lesson-3-micro-3-1__m04-lesson-3-micro-3-1.html": {
+      "title": "M4 Lesson 3 - Micro 3.1",
+      "canvas_url": "m04-lesson-3-micro-3-1",
+      "page_id": 4249,
+      "html_file": "pages/m4-lesson-3-micro-3-1__m04-lesson-3-micro-3-1.html",
+      "last_canvas_update": "2026-06-02T16:48:21Z"
+    },
+    "m4-lesson-3-micro-3-2__m04-lesson-3-micro-3-2.html": {
+      "title": "M4 Lesson 3 - Micro 3.2",
+      "canvas_url": "m04-lesson-3-micro-3-2",
+      "page_id": 4250,
+      "html_file": "pages/m4-lesson-3-micro-3-2__m04-lesson-3-micro-3-2.html",
+      "last_canvas_update": "2026-06-02T16:48:21Z"
+    },
+    "m4-lesson-3-micro-3-3__m04-lesson-3-micro-3-3.html": {
+      "title": "M4 Lesson 3 - Micro 3.3",
+      "canvas_url": "m04-lesson-3-micro-3-3",
+      "page_id": 4251,
+      "html_file": "pages/m4-lesson-3-micro-3-3__m04-lesson-3-micro-3-3.html",
+      "last_canvas_update": "2026-06-02T16:48:21Z"
+    },
+    "m4-lesson-3__m04-lesson-3.html": {
+      "title": "M4 Lesson 3",
+      "canvas_url": "m04-lesson-3",
+      "page_id": 4252,
+      "html_file": "pages/m4-lesson-3__m04-lesson-3.html",
+      "last_canvas_update": "2026-06-02T16:48:22Z"
+    },
+    "m4-lesson-4-micro-4-1__m04-lesson-4-micro-4-1.html": {
+      "title": "M4 Lesson 4 - Micro 4.1",
+      "canvas_url": "m04-lesson-4-micro-4-1",
+      "page_id": 4253,
+      "html_file": "pages/m4-lesson-4-micro-4-1__m04-lesson-4-micro-4-1.html",
+      "last_canvas_update": "2026-06-02T16:48:22Z"
+    },
+    "m4-lesson-4-micro-4-2__m04-lesson-4-micro-4-2.html": {
+      "title": "M4 Lesson 4 - Micro 4.2",
+      "canvas_url": "m04-lesson-4-micro-4-2",
+      "page_id": 4254,
+      "html_file": "pages/m4-lesson-4-micro-4-2__m04-lesson-4-micro-4-2.html",
+      "last_canvas_update": "2026-06-02T16:48:22Z"
+    },
+    "m4-lesson-4-micro-4-3__m04-lesson-4-micro-4-3.html": {
+      "title": "M4 Lesson 4 - Micro 4.3",
+      "canvas_url": "m04-lesson-4-micro-4-3",
+      "page_id": 4255,
+      "html_file": "pages/m4-lesson-4-micro-4-3__m04-lesson-4-micro-4-3.html",
+      "last_canvas_update": "2026-06-02T16:48:22Z"
+    },
+    "m4-lesson-4__m04-lesson-4.html": {
+      "title": "M4 Lesson 4",
+      "canvas_url": "m04-lesson-4",
+      "page_id": 4256,
+      "html_file": "pages/m4-lesson-4__m04-lesson-4.html",
+      "last_canvas_update": "2026-06-02T16:48:22Z"
+    },
+    "m4-overview__m04-overview.html": {
+      "title": "M4 Overview",
+      "canvas_url": "m04-overview",
+      "page_id": 4257,
+      "html_file": "pages/m4-overview__m04-overview.html",
+      "last_canvas_update": "2026-06-02T16:48:22Z"
+    },
+    "m4-progress-checklist__m04-progress-checklist.html": {
+      "title": "M4 Progress Checklist",
+      "canvas_url": "m04-progress-checklist",
+      "page_id": 4258,
+      "html_file": "pages/m4-progress-checklist__m04-progress-checklist.html",
+      "last_canvas_update": "2026-06-02T16:48:22Z"
+    },
+    "m3-opening-discussion__m03-discussion.html": {
+      "title": "M3 Opening Discussion",
+      "canvas_url": "m03-discussion",
+      "page_id": 4259,
+      "html_file": "pages/m3-opening-discussion__m03-discussion.html",
+      "last_canvas_update": "2026-06-02T16:52:55Z"
+    },
+    "m3-lesson-1-micro-1-1__m03-lesson-1-micro-1-1.html": {
+      "title": "M3 Lesson 1 - Micro 1.1",
+      "canvas_url": "m03-lesson-1-micro-1-1",
+      "page_id": 4260,
+      "html_file": "pages/m3-lesson-1-micro-1-1__m03-lesson-1-micro-1-1.html",
+      "last_canvas_update": "2026-06-02T16:52:55Z"
+    },
+    "m3-lesson-1-micro-1-2__m03-lesson-1-micro-1-2.html": {
+      "title": "M3 Lesson 1 - Micro 1.2",
+      "canvas_url": "m03-lesson-1-micro-1-2",
+      "page_id": 4261,
+      "html_file": "pages/m3-lesson-1-micro-1-2__m03-lesson-1-micro-1-2.html",
+      "last_canvas_update": "2026-06-02T16:52:55Z"
+    },
+    "m3-lesson-1-micro-1-3__m03-lesson-1-micro-1-3.html": {
+      "title": "M3 Lesson 1 - Micro 1.3",
+      "canvas_url": "m03-lesson-1-micro-1-3",
+      "page_id": 4262,
+      "html_file": "pages/m3-lesson-1-micro-1-3__m03-lesson-1-micro-1-3.html",
+      "last_canvas_update": "2026-06-02T16:52:55Z"
+    },
+    "m3-lesson-1__m03-lesson-1.html": {
+      "title": "M3 Lesson 1",
+      "canvas_url": "m03-lesson-1",
+      "page_id": 4263,
+      "html_file": "pages/m3-lesson-1__m03-lesson-1.html",
+      "last_canvas_update": "2026-06-02T16:52:55Z"
+    },
+    "m3-lesson-2-micro-2-1__m03-lesson-2-micro-2-1.html": {
+      "title": "M3 Lesson 2 - Micro 2.1",
+      "canvas_url": "m03-lesson-2-micro-2-1",
+      "page_id": 4264,
+      "html_file": "pages/m3-lesson-2-micro-2-1__m03-lesson-2-micro-2-1.html",
+      "last_canvas_update": "2026-06-02T16:52:55Z"
+    },
+    "m3-lesson-2-micro-2-2__m03-lesson-2-micro-2-2.html": {
+      "title": "M3 Lesson 2 - Micro 2.2",
+      "canvas_url": "m03-lesson-2-micro-2-2",
+      "page_id": 4265,
+      "html_file": "pages/m3-lesson-2-micro-2-2__m03-lesson-2-micro-2-2.html",
+      "last_canvas_update": "2026-06-02T16:52:55Z"
+    },
+    "m3-lesson-2-micro-2-3__m03-lesson-2-micro-2-3.html": {
+      "title": "M3 Lesson 2 - Micro 2.3",
+      "canvas_url": "m03-lesson-2-micro-2-3",
+      "page_id": 4266,
+      "html_file": "pages/m3-lesson-2-micro-2-3__m03-lesson-2-micro-2-3.html",
+      "last_canvas_update": "2026-06-02T16:52:56Z"
+    },
+    "m3-lesson-2__m03-lesson-2.html": {
+      "title": "M3 Lesson 2",
+      "canvas_url": "m03-lesson-2",
+      "page_id": 4267,
+      "html_file": "pages/m3-lesson-2__m03-lesson-2.html",
+      "last_canvas_update": "2026-06-02T16:52:55Z"
+    },
+    "m3-lesson-3-micro-3-1__m03-lesson-3-micro-3-1.html": {
+      "title": "M3 Lesson 3 - Micro 3.1",
+      "canvas_url": "m03-lesson-3-micro-3-1",
+      "page_id": 4268,
+      "html_file": "pages/m3-lesson-3-micro-3-1__m03-lesson-3-micro-3-1.html",
+      "last_canvas_update": "2026-06-02T16:52:56Z"
+    },
+    "m3-lesson-3-micro-3-2__m03-lesson-3-micro-3-2.html": {
+      "title": "M3 Lesson 3 - Micro 3.2",
+      "canvas_url": "m03-lesson-3-micro-3-2",
+      "page_id": 4269,
+      "html_file": "pages/m3-lesson-3-micro-3-2__m03-lesson-3-micro-3-2.html",
+      "last_canvas_update": "2026-06-02T16:52:56Z"
+    },
+    "m3-lesson-3-micro-3-3__m03-lesson-3-micro-3-3.html": {
+      "title": "M3 Lesson 3 - Micro 3.3",
+      "canvas_url": "m03-lesson-3-micro-3-3",
+      "page_id": 4270,
+      "html_file": "pages/m3-lesson-3-micro-3-3__m03-lesson-3-micro-3-3.html",
+      "last_canvas_update": "2026-06-02T16:52:56Z"
+    },
+    "m3-lesson-3__m03-lesson-3.html": {
+      "title": "M3 Lesson 3",
+      "canvas_url": "m03-lesson-3",
+      "page_id": 4271,
+      "html_file": "pages/m3-lesson-3__m03-lesson-3.html",
+      "last_canvas_update": "2026-06-02T16:52:56Z"
+    },
+    "m3-lesson-4-micro-4-1__m03-lesson-4-micro-4-1.html": {
+      "title": "M3 Lesson 4 - Micro 4.1",
+      "canvas_url": "m03-lesson-4-micro-4-1",
+      "page_id": 4272,
+      "html_file": "pages/m3-lesson-4-micro-4-1__m03-lesson-4-micro-4-1.html",
+      "last_canvas_update": "2026-06-02T16:52:56Z"
+    },
+    "m3-lesson-4-micro-4-2__m03-lesson-4-micro-4-2.html": {
+      "title": "M3 Lesson 4 - Micro 4.2",
+      "canvas_url": "m03-lesson-4-micro-4-2",
+      "page_id": 4273,
+      "html_file": "pages/m3-lesson-4-micro-4-2__m03-lesson-4-micro-4-2.html",
+      "last_canvas_update": "2026-06-02T16:52:56Z"
+    },
+    "m3-lesson-4-micro-4-3__m03-lesson-4-micro-4-3.html": {
+      "title": "M3 Lesson 4 - Micro 4.3",
+      "canvas_url": "m03-lesson-4-micro-4-3",
+      "page_id": 4274,
+      "html_file": "pages/m3-lesson-4-micro-4-3__m03-lesson-4-micro-4-3.html",
+      "last_canvas_update": "2026-06-02T16:52:56Z"
+    },
+    "m3-lesson-4__m03-lesson-4.html": {
+      "title": "M3 Lesson 4",
+      "canvas_url": "m03-lesson-4",
+      "page_id": 4275,
+      "html_file": "pages/m3-lesson-4__m03-lesson-4.html",
+      "last_canvas_update": "2026-06-02T16:52:56Z"
+    },
+    "m3-overview__m03-overview.html": {
+      "title": "M3 Overview",
+      "canvas_url": "m03-overview",
+      "page_id": 4276,
+      "html_file": "pages/m3-overview__m03-overview.html",
+      "last_canvas_update": "2026-06-02T16:52:55Z"
+    },
+    "m3-progress-checklist__m03-progress-checklist.html": {
+      "title": "M3 Progress Checklist",
+      "canvas_url": "m03-progress-checklist",
+      "page_id": 4277,
+      "html_file": "pages/m3-progress-checklist__m03-progress-checklist.html",
+      "last_canvas_update": "2026-06-02T16:52:56Z"
+    },
+    "m4-opening-discussion__m04-discussion-2.html": {
+      "title": "M4 Opening Discussion",
+      "canvas_url": "m04-discussion-2",
+      "page_id": 4278,
+      "html_file": "pages/m4-opening-discussion__m04-discussion-2.html",
+      "last_canvas_update": "2026-06-02T16:52:53Z"
+    },
+    "m4-lesson-1-micro-1-1__m04-lesson-1-micro-1-1-2.html": {
+      "title": "M4 Lesson 1 - Micro 1.1",
+      "canvas_url": "m04-lesson-1-micro-1-1-2",
+      "page_id": 4279,
+      "html_file": "pages/m4-lesson-1-micro-1-1__m04-lesson-1-micro-1-1-2.html",
+      "last_canvas_update": "2026-06-02T16:52:54Z"
+    },
+    "m4-lesson-1-micro-1-2__m04-lesson-1-micro-1-2-2.html": {
+      "title": "M4 Lesson 1 - Micro 1.2",
+      "canvas_url": "m04-lesson-1-micro-1-2-2",
+      "page_id": 4280,
+      "html_file": "pages/m4-lesson-1-micro-1-2__m04-lesson-1-micro-1-2-2.html",
+      "last_canvas_update": "2026-06-02T16:52:54Z"
+    },
+    "m4-lesson-1-micro-1-3__m04-lesson-1-micro-1-3-2.html": {
+      "title": "M4 Lesson 1 - Micro 1.3",
+      "canvas_url": "m04-lesson-1-micro-1-3-2",
+      "page_id": 4281,
+      "html_file": "pages/m4-lesson-1-micro-1-3__m04-lesson-1-micro-1-3-2.html",
+      "last_canvas_update": "2026-06-02T16:52:54Z"
+    },
+    "m4-lesson-1__m04-lesson-1-2.html": {
+      "title": "M4 Lesson 1",
+      "canvas_url": "m04-lesson-1-2",
+      "page_id": 4282,
+      "html_file": "pages/m4-lesson-1__m04-lesson-1-2.html",
+      "last_canvas_update": "2026-06-02T16:52:53Z"
+    },
+    "m4-lesson-2-micro-2-1__m04-lesson-2-micro-2-1-2.html": {
+      "title": "M4 Lesson 2 - Micro 2.1",
+      "canvas_url": "m04-lesson-2-micro-2-1-2",
+      "page_id": 4283,
+      "html_file": "pages/m4-lesson-2-micro-2-1__m04-lesson-2-micro-2-1-2.html",
+      "last_canvas_update": "2026-06-02T16:52:54Z"
+    },
+    "m4-lesson-2-micro-2-2__m04-lesson-2-micro-2-2-2.html": {
+      "title": "M4 Lesson 2 - Micro 2.2",
+      "canvas_url": "m04-lesson-2-micro-2-2-2",
+      "page_id": 4284,
+      "html_file": "pages/m4-lesson-2-micro-2-2__m04-lesson-2-micro-2-2-2.html",
+      "last_canvas_update": "2026-06-02T16:52:54Z"
+    },
+    "m4-lesson-2-micro-2-3__m04-lesson-2-micro-2-3-2.html": {
+      "title": "M4 Lesson 2 - Micro 2.3",
+      "canvas_url": "m04-lesson-2-micro-2-3-2",
+      "page_id": 4285,
+      "html_file": "pages/m4-lesson-2-micro-2-3__m04-lesson-2-micro-2-3-2.html",
+      "last_canvas_update": "2026-06-02T16:52:54Z"
+    },
+    "m4-lesson-2__m04-lesson-2-2.html": {
+      "title": "M4 Lesson 2",
+      "canvas_url": "m04-lesson-2-2",
+      "page_id": 4286,
+      "html_file": "pages/m4-lesson-2__m04-lesson-2-2.html",
+      "last_canvas_update": "2026-06-02T16:52:54Z"
+    },
+    "m4-lesson-3-micro-3-1__m04-lesson-3-micro-3-1-2.html": {
+      "title": "M4 Lesson 3 - Micro 3.1",
+      "canvas_url": "m04-lesson-3-micro-3-1-2",
+      "page_id": 4287,
+      "html_file": "pages/m4-lesson-3-micro-3-1__m04-lesson-3-micro-3-1-2.html",
+      "last_canvas_update": "2026-06-02T16:52:55Z"
+    },
+    "m4-lesson-3-micro-3-2__m04-lesson-3-micro-3-2-2.html": {
+      "title": "M4 Lesson 3 - Micro 3.2",
+      "canvas_url": "m04-lesson-3-micro-3-2-2",
+      "page_id": 4288,
+      "html_file": "pages/m4-lesson-3-micro-3-2__m04-lesson-3-micro-3-2-2.html",
+      "last_canvas_update": "2026-06-02T16:52:55Z"
+    },
+    "m4-lesson-3-micro-3-3__m04-lesson-3-micro-3-3-2.html": {
+      "title": "M4 Lesson 3 - Micro 3.3",
+      "canvas_url": "m04-lesson-3-micro-3-3-2",
+      "page_id": 4289,
+      "html_file": "pages/m4-lesson-3-micro-3-3__m04-lesson-3-micro-3-3-2.html",
+      "last_canvas_update": "2026-06-02T16:52:55Z"
+    },
+    "m4-lesson-3__m04-lesson-3-2.html": {
+      "title": "M4 Lesson 3",
+      "canvas_url": "m04-lesson-3-2",
+      "page_id": 4290,
+      "html_file": "pages/m4-lesson-3__m04-lesson-3-2.html",
+      "last_canvas_update": "2026-06-02T16:52:54Z"
+    },
+    "m4-lesson-4-micro-4-1__m04-lesson-4-micro-4-1-2.html": {
+      "title": "M4 Lesson 4 - Micro 4.1",
+      "canvas_url": "m04-lesson-4-micro-4-1-2",
+      "page_id": 4291,
+      "html_file": "pages/m4-lesson-4-micro-4-1__m04-lesson-4-micro-4-1-2.html",
+      "last_canvas_update": "2026-06-02T16:52:55Z"
+    },
+    "m4-lesson-4-micro-4-2__m04-lesson-4-micro-4-2-2.html": {
+      "title": "M4 Lesson 4 - Micro 4.2",
+      "canvas_url": "m04-lesson-4-micro-4-2-2",
+      "page_id": 4292,
+      "html_file": "pages/m4-lesson-4-micro-4-2__m04-lesson-4-micro-4-2-2.html",
+      "last_canvas_update": "2026-06-02T16:52:55Z"
+    },
+    "m4-lesson-4-micro-4-3__m04-lesson-4-micro-4-3-2.html": {
+      "title": "M4 Lesson 4 - Micro 4.3",
+      "canvas_url": "m04-lesson-4-micro-4-3-2",
+      "page_id": 4293,
+      "html_file": "pages/m4-lesson-4-micro-4-3__m04-lesson-4-micro-4-3-2.html",
+      "last_canvas_update": "2026-06-02T16:52:56Z"
+    },
+    "m4-lesson-4__m04-lesson-4-2.html": {
+      "title": "M4 Lesson 4",
+      "canvas_url": "m04-lesson-4-2",
+      "page_id": 4294,
+      "html_file": "pages/m4-lesson-4__m04-lesson-4-2.html",
+      "last_canvas_update": "2026-06-02T16:52:55Z"
+    },
+    "m4-overview__m04-overview-2.html": {
+      "title": "M4 Overview",
+      "canvas_url": "m04-overview-2",
+      "page_id": 4295,
+      "html_file": "pages/m4-overview__m04-overview-2.html",
+      "last_canvas_update": "2026-06-02T16:52:53Z"
+    },
+    "m4-progress-checklist__m04-progress-checklist-2.html": {
+      "title": "M4 Progress Checklist",
+      "canvas_url": "m04-progress-checklist-2",
+      "page_id": 4296,
+      "html_file": "pages/m4-progress-checklist__m04-progress-checklist-2.html",
+      "last_canvas_update": "2026-06-02T16:52:56Z"
+    },
+    "m3-opening-discussion__m03-discussion-2.html": {
+      "title": "M3 Opening Discussion",
+      "canvas_url": "m03-discussion-2",
+      "page_id": 4297,
+      "html_file": "pages/m3-opening-discussion__m03-discussion-2.html",
+      "last_canvas_update": "2026-06-02T19:05:26Z"
+    },
+    "m3-lesson-1-micro-1-1__m03-lesson-1-micro-1-1-2.html": {
+      "title": "M3 Lesson 1 - Micro 1.1",
+      "canvas_url": "m03-lesson-1-micro-1-1-2",
+      "page_id": 4298,
+      "html_file": "pages/m3-lesson-1-micro-1-1__m03-lesson-1-micro-1-1-2.html",
+      "last_canvas_update": "2026-06-02T19:05:27Z"
+    },
+    "m3-lesson-1-micro-1-2__m03-lesson-1-micro-1-2-2.html": {
+      "title": "M3 Lesson 1 - Micro 1.2",
+      "canvas_url": "m03-lesson-1-micro-1-2-2",
+      "page_id": 4299,
+      "html_file": "pages/m3-lesson-1-micro-1-2__m03-lesson-1-micro-1-2-2.html",
+      "last_canvas_update": "2026-06-02T19:05:27Z"
+    },
+    "m3-lesson-1-micro-1-3__m03-lesson-1-micro-1-3-2.html": {
+      "title": "M3 Lesson 1 - Micro 1.3",
+      "canvas_url": "m03-lesson-1-micro-1-3-2",
+      "page_id": 4300,
+      "html_file": "pages/m3-lesson-1-micro-1-3__m03-lesson-1-micro-1-3-2.html",
+      "last_canvas_update": "2026-06-02T19:05:27Z"
+    },
+    "m3-lesson-1__m03-lesson-1-2.html": {
+      "title": "M3 Lesson 1",
+      "canvas_url": "m03-lesson-1-2",
+      "page_id": 4301,
+      "html_file": "pages/m3-lesson-1__m03-lesson-1-2.html",
+      "last_canvas_update": "2026-06-02T19:05:27Z"
+    },
+    "m3-lesson-2-micro-2-1__m03-lesson-2-micro-2-1-2.html": {
+      "title": "M3 Lesson 2 - Micro 2.1",
+      "canvas_url": "m03-lesson-2-micro-2-1-2",
+      "page_id": 4302,
+      "html_file": "pages/m3-lesson-2-micro-2-1__m03-lesson-2-micro-2-1-2.html",
+      "last_canvas_update": "2026-06-02T19:05:27Z"
+    },
+    "m3-lesson-2-micro-2-2__m03-lesson-2-micro-2-2-2.html": {
+      "title": "M3 Lesson 2 - Micro 2.2",
+      "canvas_url": "m03-lesson-2-micro-2-2-2",
+      "page_id": 4303,
+      "html_file": "pages/m3-lesson-2-micro-2-2__m03-lesson-2-micro-2-2-2.html",
+      "last_canvas_update": "2026-06-02T19:05:27Z"
+    },
+    "m3-lesson-2-micro-2-3__m03-lesson-2-micro-2-3-2.html": {
+      "title": "M3 Lesson 2 - Micro 2.3",
+      "canvas_url": "m03-lesson-2-micro-2-3-2",
+      "page_id": 4304,
+      "html_file": "pages/m3-lesson-2-micro-2-3__m03-lesson-2-micro-2-3-2.html",
+      "last_canvas_update": "2026-06-02T19:05:27Z"
+    },
+    "m3-lesson-2__m03-lesson-2-2.html": {
+      "title": "M3 Lesson 2",
+      "canvas_url": "m03-lesson-2-2",
+      "page_id": 4305,
+      "html_file": "pages/m3-lesson-2__m03-lesson-2-2.html",
+      "last_canvas_update": "2026-06-02T19:05:27Z"
+    },
+    "m3-lesson-3-micro-3-1__m03-lesson-3-micro-3-1-2.html": {
+      "title": "M3 Lesson 3 - Micro 3.1",
+      "canvas_url": "m03-lesson-3-micro-3-1-2",
+      "page_id": 4306,
+      "html_file": "pages/m3-lesson-3-micro-3-1__m03-lesson-3-micro-3-1-2.html",
+      "last_canvas_update": "2026-06-02T19:05:27Z"
+    },
+    "m3-lesson-3-micro-3-2__m03-lesson-3-micro-3-2-2.html": {
+      "title": "M3 Lesson 3 - Micro 3.2",
+      "canvas_url": "m03-lesson-3-micro-3-2-2",
+      "page_id": 4307,
+      "html_file": "pages/m3-lesson-3-micro-3-2__m03-lesson-3-micro-3-2-2.html",
+      "last_canvas_update": "2026-06-02T19:05:28Z"
+    },
+    "m3-lesson-3-micro-3-3__m03-lesson-3-micro-3-3-2.html": {
+      "title": "M3 Lesson 3 - Micro 3.3",
+      "canvas_url": "m03-lesson-3-micro-3-3-2",
+      "page_id": 4308,
+      "html_file": "pages/m3-lesson-3-micro-3-3__m03-lesson-3-micro-3-3-2.html",
+      "last_canvas_update": "2026-06-02T19:05:28Z"
+    },
+    "m3-lesson-3__m03-lesson-3-2.html": {
+      "title": "M3 Lesson 3",
+      "canvas_url": "m03-lesson-3-2",
+      "page_id": 4309,
+      "html_file": "pages/m3-lesson-3__m03-lesson-3-2.html",
+      "last_canvas_update": "2026-06-02T19:05:27Z"
+    },
+    "m3-lesson-4-micro-4-1__m03-lesson-4-micro-4-1-2.html": {
+      "title": "M3 Lesson 4 - Micro 4.1",
+      "canvas_url": "m03-lesson-4-micro-4-1-2",
+      "page_id": 4310,
+      "html_file": "pages/m3-lesson-4-micro-4-1__m03-lesson-4-micro-4-1-2.html",
+      "last_canvas_update": "2026-06-02T19:05:28Z"
+    },
+    "m3-lesson-4-micro-4-2__m03-lesson-4-micro-4-2-2.html": {
+      "title": "M3 Lesson 4 - Micro 4.2",
+      "canvas_url": "m03-lesson-4-micro-4-2-2",
+      "page_id": 4311,
+      "html_file": "pages/m3-lesson-4-micro-4-2__m03-lesson-4-micro-4-2-2.html",
+      "last_canvas_update": "2026-06-02T19:05:28Z"
+    },
+    "m3-lesson-4-micro-4-3__m03-lesson-4-micro-4-3-2.html": {
+      "title": "M3 Lesson 4 - Micro 4.3",
+      "canvas_url": "m03-lesson-4-micro-4-3-2",
+      "page_id": 4312,
+      "html_file": "pages/m3-lesson-4-micro-4-3__m03-lesson-4-micro-4-3-2.html",
+      "last_canvas_update": "2026-06-02T19:05:28Z"
+    },
+    "m3-lesson-4__m03-lesson-4-2.html": {
+      "title": "M3 Lesson 4",
+      "canvas_url": "m03-lesson-4-2",
+      "page_id": 4313,
+      "html_file": "pages/m3-lesson-4__m03-lesson-4-2.html",
+      "last_canvas_update": "2026-06-02T19:05:28Z"
+    },
+    "m3-overview__m03-overview-2.html": {
+      "title": "M3 Overview",
+      "canvas_url": "m03-overview-2",
+      "page_id": 4314,
+      "html_file": "pages/m3-overview__m03-overview-2.html",
+      "last_canvas_update": "2026-06-02T19:05:26Z"
+    },
+    "m3-progress-checklist__m03-progress-checklist-2.html": {
+      "title": "M3 Progress Checklist",
+      "canvas_url": "m03-progress-checklist-2",
+      "page_id": 4315,
+      "html_file": "pages/m3-progress-checklist__m03-progress-checklist-2.html",
+      "last_canvas_update": "2026-06-02T19:05:28Z"
+    },
+    "m3-progress-checklist__m03-checklist.html": {
+      "title": "M3 Progress Checklist",
+      "canvas_url": "m03-checklist",
+      "page_id": 4316,
+      "html_file": "pages/m3-progress-checklist__m03-checklist.html",
+      "last_canvas_update": "2026-06-02T20:06:08Z"
+    },
+    "m3-opening-discussion__m03-discussion-3.html": {
+      "title": "M3 Opening Discussion",
+      "canvas_url": "m03-discussion-3",
+      "page_id": 4317,
+      "html_file": "pages/m3-opening-discussion__m03-discussion-3.html",
+      "last_canvas_update": "2026-06-02T20:06:06Z"
+    },
+    "m3-lesson-1-micro-1-1__m03-l1-ml-1.html": {
+      "title": "M3 Lesson 1 - Micro 1.1",
+      "canvas_url": "m03-l1-ml-1",
+      "page_id": 4318,
+      "html_file": "pages/m3-lesson-1-micro-1-1__m03-l1-ml-1.html",
+      "last_canvas_update": "2026-06-02T20:06:06Z"
+    },
+    "m3-lesson-1-micro-1-2__m03-l1-ml-2.html": {
+      "title": "M3 Lesson 1 - Micro 1.2",
+      "canvas_url": "m03-l1-ml-2",
+      "page_id": 4319,
+      "html_file": "pages/m3-lesson-1-micro-1-2__m03-l1-ml-2.html",
+      "last_canvas_update": "2026-06-02T20:06:06Z"
+    },
+    "m3-lesson-1-micro-1-3__m03-l1-ml-3.html": {
+      "title": "M3 Lesson 1 - Micro 1.3",
+      "canvas_url": "m03-l1-ml-3",
+      "page_id": 4320,
+      "html_file": "pages/m3-lesson-1-micro-1-3__m03-l1-ml-3.html",
+      "last_canvas_update": "2026-06-02T20:06:06Z"
+    },
+    "m3-lesson-1__m03-l1.html": {
+      "title": "M3 Lesson 1",
+      "canvas_url": "m03-l1",
+      "page_id": 4321,
+      "html_file": "pages/m3-lesson-1__m03-l1.html",
+      "last_canvas_update": "2026-06-02T20:06:06Z"
+    },
+    "m3-lesson-2-micro-2-1__m03-l2-ml-1.html": {
+      "title": "M3 Lesson 2 - Micro 2.1",
+      "canvas_url": "m03-l2-ml-1",
+      "page_id": 4322,
+      "html_file": "pages/m3-lesson-2-micro-2-1__m03-l2-ml-1.html",
+      "last_canvas_update": "2026-06-02T20:06:07Z"
+    },
+    "m3-lesson-2-micro-2-2__m03-l2-ml-2.html": {
+      "title": "M3 Lesson 2 - Micro 2.2",
+      "canvas_url": "m03-l2-ml-2",
+      "page_id": 4323,
+      "html_file": "pages/m3-lesson-2-micro-2-2__m03-l2-ml-2.html",
+      "last_canvas_update": "2026-06-02T20:06:07Z"
+    },
+    "m3-lesson-2-micro-2-3__m03-l2-ml-3.html": {
+      "title": "M3 Lesson 2 - Micro 2.3",
+      "canvas_url": "m03-l2-ml-3",
+      "page_id": 4324,
+      "html_file": "pages/m3-lesson-2-micro-2-3__m03-l2-ml-3.html",
+      "last_canvas_update": "2026-06-02T20:06:07Z"
+    },
+    "m3-lesson-2__m03-l2.html": {
+      "title": "M3 Lesson 2",
+      "canvas_url": "m03-l2",
+      "page_id": 4325,
+      "html_file": "pages/m3-lesson-2__m03-l2.html",
+      "last_canvas_update": "2026-06-02T20:06:07Z"
+    },
+    "m3-lesson-3-micro-3-1__m03-l3-ml-1.html": {
+      "title": "M3 Lesson 3 - Micro 3.1",
+      "canvas_url": "m03-l3-ml-1",
+      "page_id": 4326,
+      "html_file": "pages/m3-lesson-3-micro-3-1__m03-l3-ml-1.html",
+      "last_canvas_update": "2026-06-02T20:06:07Z"
+    },
+    "m3-lesson-3-micro-3-2__m03-l3-ml-2.html": {
+      "title": "M3 Lesson 3 - Micro 3.2",
+      "canvas_url": "m03-l3-ml-2",
+      "page_id": 4327,
+      "html_file": "pages/m3-lesson-3-micro-3-2__m03-l3-ml-2.html",
+      "last_canvas_update": "2026-06-02T20:06:07Z"
+    },
+    "m3-lesson-3-micro-3-3__m03-l3-ml-3.html": {
+      "title": "M3 Lesson 3 - Micro 3.3",
+      "canvas_url": "m03-l3-ml-3",
+      "page_id": 4328,
+      "html_file": "pages/m3-lesson-3-micro-3-3__m03-l3-ml-3.html",
+      "last_canvas_update": "2026-06-02T20:06:08Z"
+    },
+    "m3-lesson-3__m03-l3.html": {
+      "title": "M3 Lesson 3",
+      "canvas_url": "m03-l3",
+      "page_id": 4329,
+      "html_file": "pages/m3-lesson-3__m03-l3.html",
+      "last_canvas_update": "2026-06-02T20:06:07Z"
+    },
+    "m3-lesson-4-micro-4-1__m03-l4-ml-1.html": {
+      "title": "M3 Lesson 4 - Micro 4.1",
+      "canvas_url": "m03-l4-ml-1",
+      "page_id": 4330,
+      "html_file": "pages/m3-lesson-4-micro-4-1__m03-l4-ml-1.html",
+      "last_canvas_update": "2026-06-02T20:06:08Z"
+    },
+    "m3-lesson-4-micro-4-2__m03-l4-ml-2.html": {
+      "title": "M3 Lesson 4 - Micro 4.2",
+      "canvas_url": "m03-l4-ml-2",
+      "page_id": 4331,
+      "html_file": "pages/m3-lesson-4-micro-4-2__m03-l4-ml-2.html",
+      "last_canvas_update": "2026-06-02T20:06:08Z"
+    },
+    "m3-lesson-4-micro-4-3__m03-l4-ml-3.html": {
+      "title": "M3 Lesson 4 - Micro 4.3",
+      "canvas_url": "m03-l4-ml-3",
+      "page_id": 4332,
+      "html_file": "pages/m3-lesson-4-micro-4-3__m03-l4-ml-3.html",
+      "last_canvas_update": "2026-06-02T20:06:08Z"
+    },
+    "m3-lesson-4__m03-l4.html": {
+      "title": "M3 Lesson 4",
+      "canvas_url": "m03-l4",
+      "page_id": 4333,
+      "html_file": "pages/m3-lesson-4__m03-l4.html",
+      "last_canvas_update": "2026-06-02T20:06:08Z"
+    },
+    "m3-overview__m03-overview-3.html": {
+      "title": "M3 Overview",
+      "canvas_url": "m03-overview-3",
+      "page_id": 4334,
+      "html_file": "pages/m3-overview__m03-overview-3.html",
+      "last_canvas_update": "2026-06-02T20:06:06Z"
+    },
+    "m3-progress-checklist__m03-checklist-2.html": {
+      "title": "M3 Progress Checklist",
+      "canvas_url": "m03-checklist-2",
+      "page_id": 4335,
+      "html_file": "pages/m3-progress-checklist__m03-checklist-2.html",
+      "last_canvas_update": "2026-06-02T20:14:28Z"
+    },
+    "m3-opening-discussion__m03-discussion-4.html": {
+      "title": "M3 Opening Discussion",
+      "canvas_url": "m03-discussion-4",
+      "page_id": 4336,
+      "html_file": "pages/m3-opening-discussion__m03-discussion-4.html",
+      "last_canvas_update": "2026-06-02T20:14:28Z"
+    },
+    "m3-lesson-1-micro-1-1__m03-l1-ml-1-2.html": {
+      "title": "M3 Lesson 1 - Micro 1.1",
+      "canvas_url": "m03-l1-ml-1-2",
+      "page_id": 4337,
+      "html_file": "pages/m3-lesson-1-micro-1-1__m03-l1-ml-1-2.html",
+      "last_canvas_update": "2026-06-02T20:14:29Z"
+    },
+    "m3-lesson-1-micro-1-2__m03-l1-ml-2-2.html": {
+      "title": "M3 Lesson 1 - Micro 1.2",
+      "canvas_url": "m03-l1-ml-2-2",
+      "page_id": 4338,
+      "html_file": "pages/m3-lesson-1-micro-1-2__m03-l1-ml-2-2.html",
+      "last_canvas_update": "2026-06-02T20:14:29Z"
+    },
+    "m3-lesson-1-micro-1-3__m03-l1-ml-3-2.html": {
+      "title": "M3 Lesson 1 - Micro 1.3",
+      "canvas_url": "m03-l1-ml-3-2",
+      "page_id": 4339,
+      "html_file": "pages/m3-lesson-1-micro-1-3__m03-l1-ml-3-2.html",
+      "last_canvas_update": "2026-06-02T20:14:29Z"
+    },
+    "m3-lesson-1__m03-l1-2.html": {
+      "title": "M3 Lesson 1",
+      "canvas_url": "m03-l1-2",
+      "page_id": 4340,
+      "html_file": "pages/m3-lesson-1__m03-l1-2.html",
+      "last_canvas_update": "2026-06-02T20:14:29Z"
+    },
+    "m3-lesson-2-micro-2-1__m03-l2-ml-1-2.html": {
+      "title": "M3 Lesson 2 - Micro 2.1",
+      "canvas_url": "m03-l2-ml-1-2",
+      "page_id": 4341,
+      "html_file": "pages/m3-lesson-2-micro-2-1__m03-l2-ml-1-2.html",
+      "last_canvas_update": "2026-06-02T20:14:30Z"
+    },
+    "m3-lesson-2-micro-2-2__m03-l2-ml-2-2.html": {
+      "title": "M3 Lesson 2 - Micro 2.2",
+      "canvas_url": "m03-l2-ml-2-2",
+      "page_id": 4342,
+      "html_file": "pages/m3-lesson-2-micro-2-2__m03-l2-ml-2-2.html",
+      "last_canvas_update": "2026-06-02T20:14:30Z"
+    },
+    "m3-lesson-2-micro-2-3__m03-l2-ml-3-2.html": {
+      "title": "M3 Lesson 2 - Micro 2.3",
+      "canvas_url": "m03-l2-ml-3-2",
+      "page_id": 4343,
+      "html_file": "pages/m3-lesson-2-micro-2-3__m03-l2-ml-3-2.html",
+      "last_canvas_update": "2026-06-02T20:14:30Z"
+    },
+    "m3-lesson-2__m03-l2-2.html": {
+      "title": "M3 Lesson 2",
+      "canvas_url": "m03-l2-2",
+      "page_id": 4344,
+      "html_file": "pages/m3-lesson-2__m03-l2-2.html",
+      "last_canvas_update": "2026-06-02T20:14:30Z"
+    },
+    "m3-lesson-3-micro-3-1__m03-l3-ml-1-2.html": {
+      "title": "M3 Lesson 3 - Micro 3.1",
+      "canvas_url": "m03-l3-ml-1-2",
+      "page_id": 4345,
+      "html_file": "pages/m3-lesson-3-micro-3-1__m03-l3-ml-1-2.html",
+      "last_canvas_update": "2026-06-02T20:14:30Z"
+    },
+    "m3-lesson-3-micro-3-2__m03-l3-ml-2-2.html": {
+      "title": "M3 Lesson 3 - Micro 3.2",
+      "canvas_url": "m03-l3-ml-2-2",
+      "page_id": 4346,
+      "html_file": "pages/m3-lesson-3-micro-3-2__m03-l3-ml-2-2.html",
+      "last_canvas_update": "2026-06-02T20:14:30Z"
+    },
+    "m3-lesson-3-micro-3-3__m03-l3-ml-3-2.html": {
+      "title": "M3 Lesson 3 - Micro 3.3",
+      "canvas_url": "m03-l3-ml-3-2",
+      "page_id": 4347,
+      "html_file": "pages/m3-lesson-3-micro-3-3__m03-l3-ml-3-2.html",
+      "last_canvas_update": "2026-06-02T20:14:31Z"
+    },
+    "m3-lesson-3__m03-l3-2.html": {
+      "title": "M3 Lesson 3",
+      "canvas_url": "m03-l3-2",
+      "page_id": 4348,
+      "html_file": "pages/m3-lesson-3__m03-l3-2.html",
+      "last_canvas_update": "2026-06-02T20:14:31Z"
+    },
+    "m3-lesson-4-micro-4-1__m03-l4-ml-1-2.html": {
+      "title": "M3 Lesson 4 - Micro 4.1",
+      "canvas_url": "m03-l4-ml-1-2",
+      "page_id": 4349,
+      "html_file": "pages/m3-lesson-4-micro-4-1__m03-l4-ml-1-2.html",
+      "last_canvas_update": "2026-06-02T20:14:31Z"
+    },
+    "m3-lesson-4-micro-4-2__m03-l4-ml-2-2.html": {
+      "title": "M3 Lesson 4 - Micro 4.2",
+      "canvas_url": "m03-l4-ml-2-2",
+      "page_id": 4350,
+      "html_file": "pages/m3-lesson-4-micro-4-2__m03-l4-ml-2-2.html",
+      "last_canvas_update": "2026-06-02T20:14:31Z"
+    },
+    "m3-lesson-4-micro-4-3__m03-l4-ml-3-2.html": {
+      "title": "M3 Lesson 4 - Micro 4.3",
+      "canvas_url": "m03-l4-ml-3-2",
+      "page_id": 4351,
+      "html_file": "pages/m3-lesson-4-micro-4-3__m03-l4-ml-3-2.html",
+      "last_canvas_update": "2026-06-02T20:14:32Z"
+    },
+    "m3-lesson-4__m03-l4-2.html": {
+      "title": "M3 Lesson 4",
+      "canvas_url": "m03-l4-2",
+      "page_id": 4352,
+      "html_file": "pages/m3-lesson-4__m03-l4-2.html",
+      "last_canvas_update": "2026-06-02T20:14:32Z"
+    },
+    "m3-overview__m03-overview-4.html": {
+      "title": "M3 Overview",
+      "canvas_url": "m03-overview-4",
+      "page_id": 4353,
+      "html_file": "pages/m3-overview__m03-overview-4.html",
+      "last_canvas_update": "2026-06-02T20:14:32Z"
+    },
+    "m4-progress-checklist__m04-checklist.html": {
+      "title": "M4 Progress Checklist",
+      "canvas_url": "m04-checklist",
+      "page_id": 4354,
+      "html_file": "pages/m4-progress-checklist__m04-checklist.html",
+      "last_canvas_update": "2026-06-02T20:38:14Z"
+    },
+    "m4-opening-discussion__m04-discussion-3.html": {
+      "title": "M4 Opening Discussion",
+      "canvas_url": "m04-discussion-3",
+      "page_id": 4355,
+      "html_file": "pages/m4-opening-discussion__m04-discussion-3.html",
+      "last_canvas_update": "2026-06-02T20:38:14Z"
+    },
+    "m4-lesson-1-micro-1-1__m04-l1-ml-1.html": {
+      "title": "M4 Lesson 1 - Micro 1.1",
+      "canvas_url": "m04-l1-ml-1",
+      "page_id": 4356,
+      "html_file": "pages/m4-lesson-1-micro-1-1__m04-l1-ml-1.html",
+      "last_canvas_update": "2026-06-02T20:38:15Z"
+    },
+    "m4-lesson-1-micro-1-2__m04-l1-ml-2.html": {
+      "title": "M4 Lesson 1 - Micro 1.2",
+      "canvas_url": "m04-l1-ml-2",
+      "page_id": 4357,
+      "html_file": "pages/m4-lesson-1-micro-1-2__m04-l1-ml-2.html",
+      "last_canvas_update": "2026-06-02T20:38:15Z"
+    },
+    "m4-lesson-1-micro-1-3__m04-l1-ml-3.html": {
+      "title": "M4 Lesson 1 - Micro 1.3",
+      "canvas_url": "m04-l1-ml-3",
+      "page_id": 4358,
+      "html_file": "pages/m4-lesson-1-micro-1-3__m04-l1-ml-3.html",
+      "last_canvas_update": "2026-06-02T20:38:15Z"
+    },
+    "m4-lesson-1__m04-l1.html": {
+      "title": "M4 Lesson 1",
+      "canvas_url": "m04-l1",
+      "page_id": 4359,
+      "html_file": "pages/m4-lesson-1__m04-l1.html",
+      "last_canvas_update": "2026-06-02T20:38:15Z"
+    },
+    "m4-lesson-2-micro-2-1__m04-l2-ml-1.html": {
+      "title": "M4 Lesson 2 - Micro 2.1",
+      "canvas_url": "m04-l2-ml-1",
+      "page_id": 4360,
+      "html_file": "pages/m4-lesson-2-micro-2-1__m04-l2-ml-1.html",
+      "last_canvas_update": "2026-06-02T20:38:15Z"
+    },
+    "m4-lesson-2-micro-2-2__m04-l2-ml-2.html": {
+      "title": "M4 Lesson 2 - Micro 2.2",
+      "canvas_url": "m04-l2-ml-2",
+      "page_id": 4361,
+      "html_file": "pages/m4-lesson-2-micro-2-2__m04-l2-ml-2.html",
+      "last_canvas_update": "2026-06-02T20:38:16Z"
+    },
+    "m4-lesson-2-micro-2-3__m04-l2-ml-3.html": {
+      "title": "M4 Lesson 2 - Micro 2.3",
+      "canvas_url": "m04-l2-ml-3",
+      "page_id": 4362,
+      "html_file": "pages/m4-lesson-2-micro-2-3__m04-l2-ml-3.html",
+      "last_canvas_update": "2026-06-02T20:38:16Z"
+    },
+    "m4-lesson-2__m04-l2.html": {
+      "title": "M4 Lesson 2",
+      "canvas_url": "m04-l2",
+      "page_id": 4363,
+      "html_file": "pages/m4-lesson-2__m04-l2.html",
+      "last_canvas_update": "2026-06-02T20:38:16Z"
+    },
+    "m4-lesson-3-micro-3-1__m04-l3-ml-1.html": {
+      "title": "M4 Lesson 3 - Micro 3.1",
+      "canvas_url": "m04-l3-ml-1",
+      "page_id": 4364,
+      "html_file": "pages/m4-lesson-3-micro-3-1__m04-l3-ml-1.html",
+      "last_canvas_update": "2026-06-02T20:38:16Z"
+    },
+    "m4-lesson-3-micro-3-2__m04-l3-ml-2.html": {
+      "title": "M4 Lesson 3 - Micro 3.2",
+      "canvas_url": "m04-l3-ml-2",
+      "page_id": 4365,
+      "html_file": "pages/m4-lesson-3-micro-3-2__m04-l3-ml-2.html",
+      "last_canvas_update": "2026-06-02T20:38:16Z"
+    },
+    "m4-lesson-3-micro-3-3__m04-l3-ml-3.html": {
+      "title": "M4 Lesson 3 - Micro 3.3",
+      "canvas_url": "m04-l3-ml-3",
+      "page_id": 4366,
+      "html_file": "pages/m4-lesson-3-micro-3-3__m04-l3-ml-3.html",
+      "last_canvas_update": "2026-06-02T20:38:17Z"
+    },
+    "m4-lesson-3__m04-l3.html": {
+      "title": "M4 Lesson 3",
+      "canvas_url": "m04-l3",
+      "page_id": 4367,
+      "html_file": "pages/m4-lesson-3__m04-l3.html",
+      "last_canvas_update": "2026-06-02T20:38:17Z"
+    },
+    "m4-lesson-4-micro-4-1__m04-l4-ml-1.html": {
+      "title": "M4 Lesson 4 - Micro 4.1",
+      "canvas_url": "m04-l4-ml-1",
+      "page_id": 4368,
+      "html_file": "pages/m4-lesson-4-micro-4-1__m04-l4-ml-1.html",
+      "last_canvas_update": "2026-06-02T20:38:17Z"
+    },
+    "m4-lesson-4-micro-4-2__m04-l4-ml-2.html": {
+      "title": "M4 Lesson 4 - Micro 4.2",
+      "canvas_url": "m04-l4-ml-2",
+      "page_id": 4369,
+      "html_file": "pages/m4-lesson-4-micro-4-2__m04-l4-ml-2.html",
+      "last_canvas_update": "2026-06-02T20:38:17Z"
+    },
+    "m4-lesson-4-micro-4-3__m04-l4-ml-3.html": {
+      "title": "M4 Lesson 4 - Micro 4.3",
+      "canvas_url": "m04-l4-ml-3",
+      "page_id": 4370,
+      "html_file": "pages/m4-lesson-4-micro-4-3__m04-l4-ml-3.html",
+      "last_canvas_update": "2026-06-02T20:38:17Z"
+    },
+    "m4-lesson-4__m04-l4.html": {
+      "title": "M4 Lesson 4",
+      "canvas_url": "m04-l4",
+      "page_id": 4371,
+      "html_file": "pages/m4-lesson-4__m04-l4.html",
+      "last_canvas_update": "2026-06-02T20:38:18Z"
+    },
+    "m4-overview__m04-overview-3.html": {
+      "title": "M4 Overview",
+      "canvas_url": "m04-overview-3",
+      "page_id": 4372,
+      "html_file": "pages/m4-overview__m04-overview-3.html",
+      "last_canvas_update": "2026-06-02T20:38:18Z"
+    },
+    "m3-progress-checklist__m03-checklist-3.html": {
+      "title": "M3 Progress Checklist",
+      "canvas_url": "m03-checklist-3",
+      "page_id": 4373,
+      "html_file": "pages/m3-progress-checklist__m03-checklist-3.html",
+      "last_canvas_update": "2026-06-02T20:38:28Z"
+    },
+    "m3-opening-discussion__m03-discussion-5.html": {
+      "title": "M3 Opening Discussion",
+      "canvas_url": "m03-discussion-5",
+      "page_id": 4374,
+      "html_file": "pages/m3-opening-discussion__m03-discussion-5.html",
+      "last_canvas_update": "2026-06-02T20:38:29Z"
+    },
+    "m3-lesson-1-micro-1-1__m03-l1-ml-1-3.html": {
+      "title": "M3 Lesson 1 - Micro 1.1",
+      "canvas_url": "m03-l1-ml-1-3",
+      "page_id": 4375,
+      "html_file": "pages/m3-lesson-1-micro-1-1__m03-l1-ml-1-3.html",
+      "last_canvas_update": "2026-06-02T20:38:29Z"
+    },
+    "m3-lesson-1-micro-1-2__m03-l1-ml-2-3.html": {
+      "title": "M3 Lesson 1 - Micro 1.2",
+      "canvas_url": "m03-l1-ml-2-3",
+      "page_id": 4376,
+      "html_file": "pages/m3-lesson-1-micro-1-2__m03-l1-ml-2-3.html",
+      "last_canvas_update": "2026-06-02T20:38:29Z"
+    },
+    "m3-lesson-1-micro-1-3__m03-l1-ml-3-3.html": {
+      "title": "M3 Lesson 1 - Micro 1.3",
+      "canvas_url": "m03-l1-ml-3-3",
+      "page_id": 4377,
+      "html_file": "pages/m3-lesson-1-micro-1-3__m03-l1-ml-3-3.html",
+      "last_canvas_update": "2026-06-02T20:38:29Z"
+    },
+    "m3-lesson-1__m03-l1-3.html": {
+      "title": "M3 Lesson 1",
+      "canvas_url": "m03-l1-3",
+      "page_id": 4378,
+      "html_file": "pages/m3-lesson-1__m03-l1-3.html",
+      "last_canvas_update": "2026-06-02T20:38:30Z"
+    },
+    "m3-lesson-2-micro-2-1__m03-l2-ml-1-3.html": {
+      "title": "M3 Lesson 2 - Micro 2.1",
+      "canvas_url": "m03-l2-ml-1-3",
+      "page_id": 4379,
+      "html_file": "pages/m3-lesson-2-micro-2-1__m03-l2-ml-1-3.html",
+      "last_canvas_update": "2026-06-02T20:38:30Z"
+    },
+    "m3-lesson-2-micro-2-2__m03-l2-ml-2-3.html": {
+      "title": "M3 Lesson 2 - Micro 2.2",
+      "canvas_url": "m03-l2-ml-2-3",
+      "page_id": 4380,
+      "html_file": "pages/m3-lesson-2-micro-2-2__m03-l2-ml-2-3.html",
+      "last_canvas_update": "2026-06-02T20:38:30Z"
+    },
+    "m3-lesson-2-micro-2-3__m03-l2-ml-3-3.html": {
+      "title": "M3 Lesson 2 - Micro 2.3",
+      "canvas_url": "m03-l2-ml-3-3",
+      "page_id": 4381,
+      "html_file": "pages/m3-lesson-2-micro-2-3__m03-l2-ml-3-3.html",
+      "last_canvas_update": "2026-06-02T20:38:30Z"
+    },
+    "m3-lesson-2__m03-l2-3.html": {
+      "title": "M3 Lesson 2",
+      "canvas_url": "m03-l2-3",
+      "page_id": 4382,
+      "html_file": "pages/m3-lesson-2__m03-l2-3.html",
+      "last_canvas_update": "2026-06-02T20:38:30Z"
+    },
+    "m3-lesson-3-micro-3-1__m03-l3-ml-1-3.html": {
+      "title": "M3 Lesson 3 - Micro 3.1",
+      "canvas_url": "m03-l3-ml-1-3",
+      "page_id": 4383,
+      "html_file": "pages/m3-lesson-3-micro-3-1__m03-l3-ml-1-3.html",
+      "last_canvas_update": "2026-06-02T20:38:30Z"
+    },
+    "m3-lesson-3-micro-3-2__m03-l3-ml-2-3.html": {
+      "title": "M3 Lesson 3 - Micro 3.2",
+      "canvas_url": "m03-l3-ml-2-3",
+      "page_id": 4384,
+      "html_file": "pages/m3-lesson-3-micro-3-2__m03-l3-ml-2-3.html",
+      "last_canvas_update": "2026-06-02T20:38:30Z"
+    },
+    "m3-lesson-3-micro-3-3__m03-l3-ml-3-3.html": {
+      "title": "M3 Lesson 3 - Micro 3.3",
+      "canvas_url": "m03-l3-ml-3-3",
+      "page_id": 4385,
+      "html_file": "pages/m3-lesson-3-micro-3-3__m03-l3-ml-3-3.html",
+      "last_canvas_update": "2026-06-02T20:38:31Z"
+    },
+    "m3-lesson-3__m03-l3-3.html": {
+      "title": "M3 Lesson 3",
+      "canvas_url": "m03-l3-3",
+      "page_id": 4386,
+      "html_file": "pages/m3-lesson-3__m03-l3-3.html",
+      "last_canvas_update": "2026-06-02T20:38:31Z"
+    },
+    "m3-lesson-4-micro-4-1__m03-l4-ml-1-3.html": {
+      "title": "M3 Lesson 4 - Micro 4.1",
+      "canvas_url": "m03-l4-ml-1-3",
+      "page_id": 4387,
+      "html_file": "pages/m3-lesson-4-micro-4-1__m03-l4-ml-1-3.html",
+      "last_canvas_update": "2026-06-02T20:38:31Z"
+    },
+    "m3-lesson-4-micro-4-2__m03-l4-ml-2-3.html": {
+      "title": "M3 Lesson 4 - Micro 4.2",
+      "canvas_url": "m03-l4-ml-2-3",
+      "page_id": 4388,
+      "html_file": "pages/m3-lesson-4-micro-4-2__m03-l4-ml-2-3.html",
+      "last_canvas_update": "2026-06-02T20:38:31Z"
+    },
+    "m3-lesson-4-micro-4-3__m03-l4-ml-3-3.html": {
+      "title": "M3 Lesson 4 - Micro 4.3",
+      "canvas_url": "m03-l4-ml-3-3",
+      "page_id": 4389,
+      "html_file": "pages/m3-lesson-4-micro-4-3__m03-l4-ml-3-3.html",
+      "last_canvas_update": "2026-06-02T20:38:31Z"
+    },
+    "m3-lesson-4__m03-l4-3.html": {
+      "title": "M3 Lesson 4",
+      "canvas_url": "m03-l4-3",
+      "page_id": 4390,
+      "html_file": "pages/m3-lesson-4__m03-l4-3.html",
+      "last_canvas_update": "2026-06-02T20:38:31Z"
+    },
+    "m3-overview__m03-overview-5.html": {
+      "title": "M3 Overview",
+      "canvas_url": "m03-overview-5",
+      "page_id": 4391,
+      "html_file": "pages/m3-overview__m03-overview-5.html",
+      "last_canvas_update": "2026-06-02T20:38:32Z"
+    },
+    "m3-progress-checklist__m03-checklist-4.html": {
+      "title": "M3 Progress Checklist",
+      "canvas_url": "m03-checklist-4",
+      "page_id": 4392,
+      "html_file": "pages/m3-progress-checklist__m03-checklist-4.html",
+      "last_canvas_update": "2026-06-02T20:46:19Z"
+    },
+    "m3-opening-discussion__m03-discussion-6.html": {
+      "title": "M3 Opening Discussion",
+      "canvas_url": "m03-discussion-6",
+      "page_id": 4393,
+      "html_file": "pages/m3-opening-discussion__m03-discussion-6.html",
+      "last_canvas_update": "2026-06-02T20:46:20Z"
+    },
+    "m3-lesson-1-micro-1-1__m03-l1-ml-1-4.html": {
+      "title": "M3 Lesson 1 - Micro 1.1",
+      "canvas_url": "m03-l1-ml-1-4",
+      "page_id": 4394,
+      "html_file": "pages/m3-lesson-1-micro-1-1__m03-l1-ml-1-4.html",
+      "last_canvas_update": "2026-06-02T20:46:20Z"
+    },
+    "m3-lesson-1-micro-1-2__m03-l1-ml-2-4.html": {
+      "title": "M3 Lesson 1 - Micro 1.2",
+      "canvas_url": "m03-l1-ml-2-4",
+      "page_id": 4395,
+      "html_file": "pages/m3-lesson-1-micro-1-2__m03-l1-ml-2-4.html",
+      "last_canvas_update": "2026-06-02T20:46:20Z"
+    },
+    "m3-lesson-1-micro-1-3__m03-l1-ml-3-4.html": {
+      "title": "M3 Lesson 1 - Micro 1.3",
+      "canvas_url": "m03-l1-ml-3-4",
+      "page_id": 4396,
+      "html_file": "pages/m3-lesson-1-micro-1-3__m03-l1-ml-3-4.html",
+      "last_canvas_update": "2026-06-02T20:46:20Z"
+    },
+    "m3-lesson-1__m03-l1-4.html": {
+      "title": "M3 Lesson 1",
+      "canvas_url": "m03-l1-4",
+      "page_id": 4397,
+      "html_file": "pages/m3-lesson-1__m03-l1-4.html",
+      "last_canvas_update": "2026-06-02T20:46:20Z"
+    },
+    "m3-lesson-2-micro-2-1__m03-l2-ml-1-4.html": {
+      "title": "M3 Lesson 2 - Micro 2.1",
+      "canvas_url": "m03-l2-ml-1-4",
+      "page_id": 4398,
+      "html_file": "pages/m3-lesson-2-micro-2-1__m03-l2-ml-1-4.html",
+      "last_canvas_update": "2026-06-02T20:46:21Z"
+    },
+    "m3-lesson-2-micro-2-2__m03-l2-ml-2-4.html": {
+      "title": "M3 Lesson 2 - Micro 2.2",
+      "canvas_url": "m03-l2-ml-2-4",
+      "page_id": 4399,
+      "html_file": "pages/m3-lesson-2-micro-2-2__m03-l2-ml-2-4.html",
+      "last_canvas_update": "2026-06-02T20:46:21Z"
+    },
+    "m3-lesson-2-micro-2-3__m03-l2-ml-3-4.html": {
+      "title": "M3 Lesson 2 - Micro 2.3",
+      "canvas_url": "m03-l2-ml-3-4",
+      "page_id": 4400,
+      "html_file": "pages/m3-lesson-2-micro-2-3__m03-l2-ml-3-4.html",
+      "last_canvas_update": "2026-06-02T20:46:21Z"
+    },
+    "m3-lesson-2__m03-l2-4.html": {
+      "title": "M3 Lesson 2",
+      "canvas_url": "m03-l2-4",
+      "page_id": 4401,
+      "html_file": "pages/m3-lesson-2__m03-l2-4.html",
+      "last_canvas_update": "2026-06-02T20:46:21Z"
+    },
+    "m3-lesson-3-micro-3-1__m03-l3-ml-1-4.html": {
+      "title": "M3 Lesson 3 - Micro 3.1",
+      "canvas_url": "m03-l3-ml-1-4",
+      "page_id": 4402,
+      "html_file": "pages/m3-lesson-3-micro-3-1__m03-l3-ml-1-4.html",
+      "last_canvas_update": "2026-06-02T20:46:22Z"
+    },
+    "m3-lesson-3-micro-3-2__m03-l3-ml-2-4.html": {
+      "title": "M3 Lesson 3 - Micro 3.2",
+      "canvas_url": "m03-l3-ml-2-4",
+      "page_id": 4403,
+      "html_file": "pages/m3-lesson-3-micro-3-2__m03-l3-ml-2-4.html",
+      "last_canvas_update": "2026-06-02T20:46:22Z"
+    },
+    "m3-lesson-3-micro-3-3__m03-l3-ml-3-4.html": {
+      "title": "M3 Lesson 3 - Micro 3.3",
+      "canvas_url": "m03-l3-ml-3-4",
+      "page_id": 4404,
+      "html_file": "pages/m3-lesson-3-micro-3-3__m03-l3-ml-3-4.html",
+      "last_canvas_update": "2026-06-02T20:46:22Z"
+    },
+    "m3-lesson-3__m03-l3-4.html": {
+      "title": "M3 Lesson 3",
+      "canvas_url": "m03-l3-4",
+      "page_id": 4405,
+      "html_file": "pages/m3-lesson-3__m03-l3-4.html",
+      "last_canvas_update": "2026-06-02T20:46:23Z"
+    },
+    "m3-lesson-4-micro-4-1__m03-l4-ml-1-4.html": {
+      "title": "M3 Lesson 4 - Micro 4.1",
+      "canvas_url": "m03-l4-ml-1-4",
+      "page_id": 4406,
+      "html_file": "pages/m3-lesson-4-micro-4-1__m03-l4-ml-1-4.html",
+      "last_canvas_update": "2026-06-02T20:46:23Z"
+    },
+    "m3-lesson-4-micro-4-2__m03-l4-ml-2-4.html": {
+      "title": "M3 Lesson 4 - Micro 4.2",
+      "canvas_url": "m03-l4-ml-2-4",
+      "page_id": 4407,
+      "html_file": "pages/m3-lesson-4-micro-4-2__m03-l4-ml-2-4.html",
+      "last_canvas_update": "2026-06-02T20:46:23Z"
+    },
+    "m3-lesson-4-micro-4-3__m03-l4-ml-3-4.html": {
+      "title": "M3 Lesson 4 - Micro 4.3",
+      "canvas_url": "m03-l4-ml-3-4",
+      "page_id": 4408,
+      "html_file": "pages/m3-lesson-4-micro-4-3__m03-l4-ml-3-4.html",
+      "last_canvas_update": "2026-06-02T20:46:24Z"
+    },
+    "m3-lesson-4__m03-l4-4.html": {
+      "title": "M3 Lesson 4",
+      "canvas_url": "m03-l4-4",
+      "page_id": 4409,
+      "html_file": "pages/m3-lesson-4__m03-l4-4.html",
+      "last_canvas_update": "2026-06-02T20:46:24Z"
+    },
+    "m3-overview__m03-overview-6.html": {
+      "title": "M3 Overview",
+      "canvas_url": "m03-overview-6",
+      "page_id": 4410,
+      "html_file": "pages/m3-overview__m03-overview-6.html",
+      "last_canvas_update": "2026-06-02T20:46:24Z"
+    },
+    "m4-progress-checklist__m04-checklist-2.html": {
+      "title": "M4 Progress Checklist",
+      "canvas_url": "m04-checklist-2",
+      "page_id": 4411,
+      "html_file": "pages/m4-progress-checklist__m04-checklist-2.html",
+      "last_canvas_update": "2026-06-02T20:46:37Z"
+    },
+    "m4-opening-discussion__m04-discussion-4.html": {
+      "title": "M4 Opening Discussion",
+      "canvas_url": "m04-discussion-4",
+      "page_id": 4412,
+      "html_file": "pages/m4-opening-discussion__m04-discussion-4.html",
+      "last_canvas_update": "2026-06-02T20:46:37Z"
+    },
+    "m4-lesson-1-micro-1-1__m04-l1-ml-1-2.html": {
+      "title": "M4 Lesson 1 - Micro 1.1",
+      "canvas_url": "m04-l1-ml-1-2",
+      "page_id": 4413,
+      "html_file": "pages/m4-lesson-1-micro-1-1__m04-l1-ml-1-2.html",
+      "last_canvas_update": "2026-06-02T20:46:38Z"
+    },
+    "m4-lesson-1-micro-1-2__m04-l1-ml-2-2.html": {
+      "title": "M4 Lesson 1 - Micro 1.2",
+      "canvas_url": "m04-l1-ml-2-2",
+      "page_id": 4414,
+      "html_file": "pages/m4-lesson-1-micro-1-2__m04-l1-ml-2-2.html",
+      "last_canvas_update": "2026-06-02T20:46:38Z"
+    },
+    "m4-lesson-1-micro-1-3__m04-l1-ml-3-2.html": {
+      "title": "M4 Lesson 1 - Micro 1.3",
+      "canvas_url": "m04-l1-ml-3-2",
+      "page_id": 4415,
+      "html_file": "pages/m4-lesson-1-micro-1-3__m04-l1-ml-3-2.html",
+      "last_canvas_update": "2026-06-02T20:46:38Z"
+    },
+    "m4-lesson-1__m04-l1-2.html": {
+      "title": "M4 Lesson 1",
+      "canvas_url": "m04-l1-2",
+      "page_id": 4416,
+      "html_file": "pages/m4-lesson-1__m04-l1-2.html",
+      "last_canvas_update": "2026-06-02T20:46:38Z"
+    },
+    "m4-lesson-2-micro-2-1__m04-l2-ml-1-2.html": {
+      "title": "M4 Lesson 2 - Micro 2.1",
+      "canvas_url": "m04-l2-ml-1-2",
+      "page_id": 4417,
+      "html_file": "pages/m4-lesson-2-micro-2-1__m04-l2-ml-1-2.html",
+      "last_canvas_update": "2026-06-02T20:46:38Z"
+    },
+    "m4-lesson-2-micro-2-2__m04-l2-ml-2-2.html": {
+      "title": "M4 Lesson 2 - Micro 2.2",
+      "canvas_url": "m04-l2-ml-2-2",
+      "page_id": 4418,
+      "html_file": "pages/m4-lesson-2-micro-2-2__m04-l2-ml-2-2.html",
+      "last_canvas_update": "2026-06-02T20:46:39Z"
+    },
+    "m4-lesson-2-micro-2-3__m04-l2-ml-3-2.html": {
+      "title": "M4 Lesson 2 - Micro 2.3",
+      "canvas_url": "m04-l2-ml-3-2",
+      "page_id": 4419,
+      "html_file": "pages/m4-lesson-2-micro-2-3__m04-l2-ml-3-2.html",
+      "last_canvas_update": "2026-06-02T20:46:39Z"
+    },
+    "m4-lesson-2__m04-l2-2.html": {
+      "title": "M4 Lesson 2",
+      "canvas_url": "m04-l2-2",
+      "page_id": 4420,
+      "html_file": "pages/m4-lesson-2__m04-l2-2.html",
+      "last_canvas_update": "2026-06-02T20:46:39Z"
+    },
+    "m4-lesson-3-micro-3-1__m04-l3-ml-1-2.html": {
+      "title": "M4 Lesson 3 - Micro 3.1",
+      "canvas_url": "m04-l3-ml-1-2",
+      "page_id": 4421,
+      "html_file": "pages/m4-lesson-3-micro-3-1__m04-l3-ml-1-2.html",
+      "last_canvas_update": "2026-06-02T20:46:39Z"
+    },
+    "m4-lesson-3-micro-3-2__m04-l3-ml-2-2.html": {
+      "title": "M4 Lesson 3 - Micro 3.2",
+      "canvas_url": "m04-l3-ml-2-2",
+      "page_id": 4422,
+      "html_file": "pages/m4-lesson-3-micro-3-2__m04-l3-ml-2-2.html",
+      "last_canvas_update": "2026-06-02T20:46:39Z"
+    },
+    "m4-lesson-3-micro-3-3__m04-l3-ml-3-2.html": {
+      "title": "M4 Lesson 3 - Micro 3.3",
+      "canvas_url": "m04-l3-ml-3-2",
+      "page_id": 4423,
+      "html_file": "pages/m4-lesson-3-micro-3-3__m04-l3-ml-3-2.html",
+      "last_canvas_update": "2026-06-02T20:46:40Z"
+    },
+    "m4-lesson-3__m04-l3-2.html": {
+      "title": "M4 Lesson 3",
+      "canvas_url": "m04-l3-2",
+      "page_id": 4424,
+      "html_file": "pages/m4-lesson-3__m04-l3-2.html",
+      "last_canvas_update": "2026-06-02T20:46:40Z"
+    },
+    "m4-lesson-4-micro-4-1__m04-l4-ml-1-2.html": {
+      "title": "M4 Lesson 4 - Micro 4.1",
+      "canvas_url": "m04-l4-ml-1-2",
+      "page_id": 4425,
+      "html_file": "pages/m4-lesson-4-micro-4-1__m04-l4-ml-1-2.html",
+      "last_canvas_update": "2026-06-02T20:46:40Z"
+    },
+    "m4-lesson-4-micro-4-2__m04-l4-ml-2-2.html": {
+      "title": "M4 Lesson 4 - Micro 4.2",
+      "canvas_url": "m04-l4-ml-2-2",
+      "page_id": 4426,
+      "html_file": "pages/m4-lesson-4-micro-4-2__m04-l4-ml-2-2.html",
+      "last_canvas_update": "2026-06-02T20:46:40Z"
+    },
+    "m4-lesson-4-micro-4-3__m04-l4-ml-3-2.html": {
+      "title": "M4 Lesson 4 - Micro 4.3",
+      "canvas_url": "m04-l4-ml-3-2",
+      "page_id": 4427,
+      "html_file": "pages/m4-lesson-4-micro-4-3__m04-l4-ml-3-2.html",
+      "last_canvas_update": "2026-06-02T20:46:41Z"
+    },
+    "m4-lesson-4__m04-l4-2.html": {
+      "title": "M4 Lesson 4",
+      "canvas_url": "m04-l4-2",
+      "page_id": 4428,
+      "html_file": "pages/m4-lesson-4__m04-l4-2.html",
+      "last_canvas_update": "2026-06-02T20:46:41Z"
+    },
+    "m4-overview__m04-overview-4.html": {
+      "title": "M4 Overview",
+      "canvas_url": "m04-overview-4",
+      "page_id": 4429,
+      "html_file": "pages/m4-overview__m04-overview-4.html",
+      "last_canvas_update": "2026-06-02T20:46:41Z"
+    },
+    "m3-progress-checklist__m03-checklist-5.html": {
+      "title": "M3 Progress Checklist",
+      "canvas_url": "m03-checklist-5",
+      "page_id": 4430,
+      "html_file": "pages/m3-progress-checklist__m03-checklist-5.html",
+      "last_canvas_update": "2026-06-02T20:53:26Z"
+    },
+    "m3-opening-discussion__m03-discussion-7.html": {
+      "title": "M3 Opening Discussion",
+      "canvas_url": "m03-discussion-7",
+      "page_id": 4431,
+      "html_file": "pages/m3-opening-discussion__m03-discussion-7.html",
+      "last_canvas_update": "2026-06-02T20:53:26Z"
+    },
+    "m3-lesson-1-micro-1-1__m03-l1-ml-1-5.html": {
+      "title": "M3 Lesson 1 - Micro 1.1",
+      "canvas_url": "m03-l1-ml-1-5",
+      "page_id": 4432,
+      "html_file": "pages/m3-lesson-1-micro-1-1__m03-l1-ml-1-5.html",
+      "last_canvas_update": "2026-06-02T20:53:26Z"
+    },
+    "m3-lesson-1-micro-1-2__m03-l1-ml-2-5.html": {
+      "title": "M3 Lesson 1 - Micro 1.2",
+      "canvas_url": "m03-l1-ml-2-5",
+      "page_id": 4433,
+      "html_file": "pages/m3-lesson-1-micro-1-2__m03-l1-ml-2-5.html",
+      "last_canvas_update": "2026-06-02T20:53:27Z"
+    },
+    "m3-lesson-1-micro-1-3__m03-l1-ml-3-5.html": {
+      "title": "M3 Lesson 1 - Micro 1.3",
+      "canvas_url": "m03-l1-ml-3-5",
+      "page_id": 4434,
+      "html_file": "pages/m3-lesson-1-micro-1-3__m03-l1-ml-3-5.html",
+      "last_canvas_update": "2026-06-02T20:53:27Z"
+    },
+    "m3-lesson-1__m03-l1-5.html": {
+      "title": "M3 Lesson 1",
+      "canvas_url": "m03-l1-5",
+      "page_id": 4435,
+      "html_file": "pages/m3-lesson-1__m03-l1-5.html",
+      "last_canvas_update": "2026-06-02T20:53:27Z"
+    },
+    "m3-lesson-2-micro-2-1__m03-l2-ml-1-5.html": {
+      "title": "M3 Lesson 2 - Micro 2.1",
+      "canvas_url": "m03-l2-ml-1-5",
+      "page_id": 4436,
+      "html_file": "pages/m3-lesson-2-micro-2-1__m03-l2-ml-1-5.html",
+      "last_canvas_update": "2026-06-02T20:53:28Z"
+    },
+    "m3-lesson-2-micro-2-2__m03-l2-ml-2-5.html": {
+      "title": "M3 Lesson 2 - Micro 2.2",
+      "canvas_url": "m03-l2-ml-2-5",
+      "page_id": 4437,
+      "html_file": "pages/m3-lesson-2-micro-2-2__m03-l2-ml-2-5.html",
+      "last_canvas_update": "2026-06-02T20:53:28Z"
+    },
+    "m3-lesson-2-micro-2-3__m03-l2-ml-3-5.html": {
+      "title": "M3 Lesson 2 - Micro 2.3",
+      "canvas_url": "m03-l2-ml-3-5",
+      "page_id": 4438,
+      "html_file": "pages/m3-lesson-2-micro-2-3__m03-l2-ml-3-5.html",
+      "last_canvas_update": "2026-06-02T20:53:28Z"
+    },
+    "m3-lesson-2__m03-l2-5.html": {
+      "title": "M3 Lesson 2",
+      "canvas_url": "m03-l2-5",
+      "page_id": 4439,
+      "html_file": "pages/m3-lesson-2__m03-l2-5.html",
+      "last_canvas_update": "2026-06-02T20:53:28Z"
+    },
+    "m3-lesson-3-micro-3-1__m03-l3-ml-1-5.html": {
+      "title": "M3 Lesson 3 - Micro 3.1",
+      "canvas_url": "m03-l3-ml-1-5",
+      "page_id": 4440,
+      "html_file": "pages/m3-lesson-3-micro-3-1__m03-l3-ml-1-5.html",
+      "last_canvas_update": "2026-06-02T20:53:28Z"
+    },
+    "m3-lesson-3-micro-3-2__m03-l3-ml-2-5.html": {
+      "title": "M3 Lesson 3 - Micro 3.2",
+      "canvas_url": "m03-l3-ml-2-5",
+      "page_id": 4441,
+      "html_file": "pages/m3-lesson-3-micro-3-2__m03-l3-ml-2-5.html",
+      "last_canvas_update": "2026-06-02T20:53:29Z"
+    },
+    "m3-lesson-3-micro-3-3__m03-l3-ml-3-5.html": {
+      "title": "M3 Lesson 3 - Micro 3.3",
+      "canvas_url": "m03-l3-ml-3-5",
+      "page_id": 4442,
+      "html_file": "pages/m3-lesson-3-micro-3-3__m03-l3-ml-3-5.html",
+      "last_canvas_update": "2026-06-02T20:53:29Z"
+    },
+    "m3-lesson-3__m03-l3-5.html": {
+      "title": "M3 Lesson 3",
+      "canvas_url": "m03-l3-5",
+      "page_id": 4443,
+      "html_file": "pages/m3-lesson-3__m03-l3-5.html",
+      "last_canvas_update": "2026-06-02T21:10:32Z"
+    },
+    "m3-lesson-4-micro-4-1__m03-l4-ml-1-5.html": {
+      "title": "M3 Lesson 4 - Micro 4.1",
+      "canvas_url": "m03-l4-ml-1-5",
+      "page_id": 4444,
+      "html_file": "pages/m3-lesson-4-micro-4-1__m03-l4-ml-1-5.html",
+      "last_canvas_update": "2026-06-02T20:53:29Z"
+    },
+    "m3-lesson-4-micro-4-2__m03-l4-ml-2-5.html": {
+      "title": "M3 Lesson 4 - Micro 4.2",
+      "canvas_url": "m03-l4-ml-2-5",
+      "page_id": 4445,
+      "html_file": "pages/m3-lesson-4-micro-4-2__m03-l4-ml-2-5.html",
+      "last_canvas_update": "2026-06-02T20:53:29Z"
+    },
+    "m3-lesson-4-micro-4-3__m03-l4-ml-3-5.html": {
+      "title": "M3 Lesson 4 - Micro 4.3",
+      "canvas_url": "m03-l4-ml-3-5",
+      "page_id": 4446,
+      "html_file": "pages/m3-lesson-4-micro-4-3__m03-l4-ml-3-5.html",
+      "last_canvas_update": "2026-06-02T20:53:29Z"
+    },
+    "m3-lesson-4__m03-l4-5.html": {
+      "title": "M3 Lesson 4",
+      "canvas_url": "m03-l4-5",
+      "page_id": 4447,
+      "html_file": "pages/m3-lesson-4__m03-l4-5.html",
+      "last_canvas_update": "2026-06-02T20:53:29Z"
+    },
+    "m3-overview__m03-overview-7.html": {
+      "title": "M3 Overview",
+      "canvas_url": "m03-overview-7",
+      "page_id": 4448,
+      "html_file": "pages/m3-overview__m03-overview-7.html",
+      "last_canvas_update": "2026-06-02T20:53:30Z"
+    },
+    "m4-progress-checklist__m04-checklist-3.html": {
+      "title": "M4 Progress Checklist",
+      "canvas_url": "m04-checklist-3",
+      "page_id": 4449,
+      "html_file": "pages/m4-progress-checklist__m04-checklist-3.html",
+      "last_canvas_update": "2026-06-02T20:53:45Z"
+    },
+    "m4-opening-discussion__m04-discussion-5.html": {
+      "title": "M4 Opening Discussion",
+      "canvas_url": "m04-discussion-5",
+      "page_id": 4450,
+      "html_file": "pages/m4-opening-discussion__m04-discussion-5.html",
+      "last_canvas_update": "2026-06-02T20:53:45Z"
+    },
+    "m4-lesson-1-micro-1-1__m04-l1-ml-1-3.html": {
+      "title": "M4 Lesson 1 - Micro 1.1",
+      "canvas_url": "m04-l1-ml-1-3",
+      "page_id": 4451,
+      "html_file": "pages/m4-lesson-1-micro-1-1__m04-l1-ml-1-3.html",
+      "last_canvas_update": "2026-06-02T20:53:45Z"
+    },
+    "m4-lesson-1-micro-1-2__m04-l1-ml-2-3.html": {
+      "title": "M4 Lesson 1 - Micro 1.2",
+      "canvas_url": "m04-l1-ml-2-3",
+      "page_id": 4452,
+      "html_file": "pages/m4-lesson-1-micro-1-2__m04-l1-ml-2-3.html",
+      "last_canvas_update": "2026-06-02T20:53:46Z"
+    },
+    "m4-lesson-1-micro-1-3__m04-l1-ml-3-3.html": {
+      "title": "M4 Lesson 1 - Micro 1.3",
+      "canvas_url": "m04-l1-ml-3-3",
+      "page_id": 4453,
+      "html_file": "pages/m4-lesson-1-micro-1-3__m04-l1-ml-3-3.html",
+      "last_canvas_update": "2026-06-02T20:53:46Z"
+    },
+    "m4-lesson-1__m04-l1-3.html": {
+      "title": "M4 Lesson 1",
+      "canvas_url": "m04-l1-3",
+      "page_id": 4454,
+      "html_file": "pages/m4-lesson-1__m04-l1-3.html",
+      "last_canvas_update": "2026-06-02T20:53:46Z"
+    },
+    "m4-lesson-2-micro-2-1__m04-l2-ml-1-3.html": {
+      "title": "M4 Lesson 2 - Micro 2.1",
+      "canvas_url": "m04-l2-ml-1-3",
+      "page_id": 4455,
+      "html_file": "pages/m4-lesson-2-micro-2-1__m04-l2-ml-1-3.html",
+      "last_canvas_update": "2026-06-02T20:53:46Z"
+    },
+    "m4-lesson-2-micro-2-2__m04-l2-ml-2-3.html": {
+      "title": "M4 Lesson 2 - Micro 2.2",
+      "canvas_url": "m04-l2-ml-2-3",
+      "page_id": 4456,
+      "html_file": "pages/m4-lesson-2-micro-2-2__m04-l2-ml-2-3.html",
+      "last_canvas_update": "2026-06-02T20:53:46Z"
+    },
+    "m4-lesson-2-micro-2-3__m04-l2-ml-3-3.html": {
+      "title": "M4 Lesson 2 - Micro 2.3",
+      "canvas_url": "m04-l2-ml-3-3",
+      "page_id": 4457,
+      "html_file": "pages/m4-lesson-2-micro-2-3__m04-l2-ml-3-3.html",
+      "last_canvas_update": "2026-06-02T20:53:46Z"
+    },
+    "m4-lesson-2__m04-l2-3.html": {
+      "title": "M4 Lesson 2",
+      "canvas_url": "m04-l2-3",
+      "page_id": 4458,
+      "html_file": "pages/m4-lesson-2__m04-l2-3.html",
+      "last_canvas_update": "2026-06-02T20:53:47Z"
+    },
+    "m4-lesson-3-micro-3-1__m04-l3-ml-1-3.html": {
+      "title": "M4 Lesson 3 - Micro 3.1",
+      "canvas_url": "m04-l3-ml-1-3",
+      "page_id": 4459,
+      "html_file": "pages/m4-lesson-3-micro-3-1__m04-l3-ml-1-3.html",
+      "last_canvas_update": "2026-06-02T20:53:47Z"
+    },
+    "m4-lesson-3-micro-3-2__m04-l3-ml-2-3.html": {
+      "title": "M4 Lesson 3 - Micro 3.2",
+      "canvas_url": "m04-l3-ml-2-3",
+      "page_id": 4460,
+      "html_file": "pages/m4-lesson-3-micro-3-2__m04-l3-ml-2-3.html",
+      "last_canvas_update": "2026-06-02T20:53:47Z"
+    },
+    "m4-lesson-3-micro-3-3__m04-l3-ml-3-3.html": {
+      "title": "M4 Lesson 3 - Micro 3.3",
+      "canvas_url": "m04-l3-ml-3-3",
+      "page_id": 4461,
+      "html_file": "pages/m4-lesson-3-micro-3-3__m04-l3-ml-3-3.html",
+      "last_canvas_update": "2026-06-02T20:53:47Z"
+    },
+    "m4-lesson-3__m04-l3-3.html": {
+      "title": "M4 Lesson 3",
+      "canvas_url": "m04-l3-3",
+      "page_id": 4462,
+      "html_file": "pages/m4-lesson-3__m04-l3-3.html",
+      "last_canvas_update": "2026-06-02T20:53:47Z"
+    },
+    "m4-lesson-4-micro-4-1__m04-l4-ml-1-3.html": {
+      "title": "M4 Lesson 4 - Micro 4.1",
+      "canvas_url": "m04-l4-ml-1-3",
+      "page_id": 4463,
+      "html_file": "pages/m4-lesson-4-micro-4-1__m04-l4-ml-1-3.html",
+      "last_canvas_update": "2026-06-02T20:53:48Z"
+    },
+    "m4-lesson-4-micro-4-2__m04-l4-ml-2-3.html": {
+      "title": "M4 Lesson 4 - Micro 4.2",
+      "canvas_url": "m04-l4-ml-2-3",
+      "page_id": 4464,
+      "html_file": "pages/m4-lesson-4-micro-4-2__m04-l4-ml-2-3.html",
+      "last_canvas_update": "2026-06-02T20:53:48Z"
+    },
+    "m4-lesson-4-micro-4-3__m04-l4-ml-3-3.html": {
+      "title": "M4 Lesson 4 - Micro 4.3",
+      "canvas_url": "m04-l4-ml-3-3",
+      "page_id": 4465,
+      "html_file": "pages/m4-lesson-4-micro-4-3__m04-l4-ml-3-3.html",
+      "last_canvas_update": "2026-06-02T20:53:48Z"
+    },
+    "m4-lesson-4__m04-l4-3.html": {
+      "title": "M4 Lesson 4",
+      "canvas_url": "m04-l4-3",
+      "page_id": 4466,
+      "html_file": "pages/m4-lesson-4__m04-l4-3.html",
+      "last_canvas_update": "2026-06-02T20:53:48Z"
+    },
+    "m4-overview__m04-overview-5.html": {
+      "title": "M4 Overview",
+      "canvas_url": "m04-overview-5",
+      "page_id": 4467,
+      "html_file": "pages/m4-overview__m04-overview-5.html",
+      "last_canvas_update": "2026-06-02T20:53:48Z"
+    },
+    "m2-progress-checklist__m02-checklist.html": {
+      "title": "M2 Progress Checklist",
+      "canvas_url": "m02-checklist",
+      "page_id": 4468,
+      "html_file": "pages/m2-progress-checklist__m02-checklist.html",
+      "last_canvas_update": "2026-06-02T22:22:33Z"
+    },
+    "m2-opening-discussion__m02-discussion.html": {
+      "title": "M2 Opening Discussion",
+      "canvas_url": "m02-discussion",
+      "page_id": 4469,
+      "html_file": "pages/m2-opening-discussion__m02-discussion.html",
+      "last_canvas_update": "2026-06-02T22:22:33Z"
+    },
+    "m2-lesson-1-micro-1-1__m02-l1-ml-1.html": {
+      "title": "M2 Lesson 1 - Micro 1.1",
+      "canvas_url": "m02-l1-ml-1",
+      "page_id": 4470,
+      "html_file": "pages/m2-lesson-1-micro-1-1__m02-l1-ml-1.html",
+      "last_canvas_update": "2026-06-02T22:22:33Z"
+    },
+    "m2-lesson-1-micro-1-2__m02-l1-ml-2.html": {
+      "title": "M2 Lesson 1 - Micro 1.2",
+      "canvas_url": "m02-l1-ml-2",
+      "page_id": 4471,
+      "html_file": "pages/m2-lesson-1-micro-1-2__m02-l1-ml-2.html",
+      "last_canvas_update": "2026-06-02T22:22:33Z"
+    },
+    "m2-lesson-1-micro-1-3__m02-l1-ml-3.html": {
+      "title": "M2 Lesson 1 - Micro 1.3",
+      "canvas_url": "m02-l1-ml-3",
+      "page_id": 4472,
+      "html_file": "pages/m2-lesson-1-micro-1-3__m02-l1-ml-3.html",
+      "last_canvas_update": "2026-06-02T22:22:33Z"
+    },
+    "m2-lesson-1__m02-l1.html": {
+      "title": "M2 Lesson 1",
+      "canvas_url": "m02-l1",
+      "page_id": 4473,
+      "html_file": "pages/m2-lesson-1__m02-l1.html",
+      "last_canvas_update": "2026-06-02T22:22:34Z"
+    },
+    "m2-lesson-2-micro-2-1__m02-l2-ml-1.html": {
+      "title": "M2 Lesson 2 - Micro 2.1",
+      "canvas_url": "m02-l2-ml-1",
+      "page_id": 4474,
+      "html_file": "pages/m2-lesson-2-micro-2-1__m02-l2-ml-1.html",
+      "last_canvas_update": "2026-06-02T22:22:34Z"
+    },
+    "m2-lesson-2-micro-2-2__m02-l2-ml-2.html": {
+      "title": "M2 Lesson 2 - Micro 2.2",
+      "canvas_url": "m02-l2-ml-2",
+      "page_id": 4475,
+      "html_file": "pages/m2-lesson-2-micro-2-2__m02-l2-ml-2.html",
+      "last_canvas_update": "2026-06-02T22:22:34Z"
+    },
+    "m2-lesson-2-micro-2-3__m02-l2-ml-3.html": {
+      "title": "M2 Lesson 2 - Micro 2.3",
+      "canvas_url": "m02-l2-ml-3",
+      "page_id": 4476,
+      "html_file": "pages/m2-lesson-2-micro-2-3__m02-l2-ml-3.html",
+      "last_canvas_update": "2026-06-02T22:22:34Z"
+    },
+    "m2-lesson-2__m02-l2.html": {
+      "title": "M2 Lesson 2",
+      "canvas_url": "m02-l2",
+      "page_id": 4477,
+      "html_file": "pages/m2-lesson-2__m02-l2.html",
+      "last_canvas_update": "2026-06-02T22:22:34Z"
+    },
+    "m2-lesson-3-micro-3-1__m02-l3-ml-1.html": {
+      "title": "M2 Lesson 3 - Micro 3.1",
+      "canvas_url": "m02-l3-ml-1",
+      "page_id": 4478,
+      "html_file": "pages/m2-lesson-3-micro-3-1__m02-l3-ml-1.html",
+      "last_canvas_update": "2026-06-02T22:22:34Z"
+    },
+    "m2-lesson-3-micro-3-2__m02-l3-ml-2.html": {
+      "title": "M2 Lesson 3 - Micro 3.2",
+      "canvas_url": "m02-l3-ml-2",
+      "page_id": 4479,
+      "html_file": "pages/m2-lesson-3-micro-3-2__m02-l3-ml-2.html",
+      "last_canvas_update": "2026-06-02T22:22:34Z"
+    },
+    "m2-lesson-3-micro-3-3__m02-l3-ml-3.html": {
+      "title": "M2 Lesson 3 - Micro 3.3",
+      "canvas_url": "m02-l3-ml-3",
+      "page_id": 4480,
+      "html_file": "pages/m2-lesson-3-micro-3-3__m02-l3-ml-3.html",
+      "last_canvas_update": "2026-06-02T22:22:35Z"
+    },
+    "m2-lesson-3__m02-l3.html": {
+      "title": "M2 Lesson 3",
+      "canvas_url": "m02-l3",
+      "page_id": 4481,
+      "html_file": "pages/m2-lesson-3__m02-l3.html",
+      "last_canvas_update": "2026-06-02T22:22:35Z"
+    },
+    "m2-lesson-4-micro-4-1__m02-l4-ml-1.html": {
+      "title": "M2 Lesson 4 - Micro 4.1",
+      "canvas_url": "m02-l4-ml-1",
+      "page_id": 4482,
+      "html_file": "pages/m2-lesson-4-micro-4-1__m02-l4-ml-1.html",
+      "last_canvas_update": "2026-06-02T22:22:35Z"
+    },
+    "m2-lesson-4-micro-4-2__m02-l4-ml-2.html": {
+      "title": "M2 Lesson 4 - Micro 4.2",
+      "canvas_url": "m02-l4-ml-2",
+      "page_id": 4483,
+      "html_file": "pages/m2-lesson-4-micro-4-2__m02-l4-ml-2.html",
+      "last_canvas_update": "2026-06-02T22:22:35Z"
+    },
+    "m2-lesson-4-micro-4-3__m02-l4-ml-3.html": {
+      "title": "M2 Lesson 4 - Micro 4.3",
+      "canvas_url": "m02-l4-ml-3",
+      "page_id": 4484,
+      "html_file": "pages/m2-lesson-4-micro-4-3__m02-l4-ml-3.html",
+      "last_canvas_update": "2026-06-02T22:22:35Z"
+    },
+    "m2-lesson-4__m02-l4.html": {
+      "title": "M2 Lesson 4",
+      "canvas_url": "m02-l4",
+      "page_id": 4485,
+      "html_file": "pages/m2-lesson-4__m02-l4.html",
+      "last_canvas_update": "2026-06-02T22:22:36Z"
+    },
+    "m2-overview__m02-overview.html": {
+      "title": "M2 Overview",
+      "canvas_url": "m02-overview",
+      "page_id": 4486,
+      "html_file": "pages/m2-overview__m02-overview.html",
+      "last_canvas_update": "2026-06-02T22:22:36Z"
+    },
+    "m2-progress-checklist__m02-checklist-2.html": {
+      "title": "M2 Progress Checklist",
+      "canvas_url": "m02-checklist-2",
+      "page_id": 4487,
+      "html_file": "pages/m2-progress-checklist__m02-checklist-2.html",
+      "last_canvas_update": "2026-06-03T00:33:50Z"
+    },
+    "m2-opening-discussion__m02-discussion-2.html": {
+      "title": "M2 Opening Discussion",
+      "canvas_url": "m02-discussion-2",
+      "page_id": 4488,
+      "html_file": "pages/m2-opening-discussion__m02-discussion-2.html",
+      "last_canvas_update": "2026-06-03T00:33:51Z"
+    },
+    "m2-lesson-1-micro-1-1__m02-l1-ml-1-2.html": {
+      "title": "M2 Lesson 1 - Micro 1.1",
+      "canvas_url": "m02-l1-ml-1-2",
+      "page_id": 4489,
+      "html_file": "pages/m2-lesson-1-micro-1-1__m02-l1-ml-1-2.html",
+      "last_canvas_update": "2026-06-03T00:33:51Z"
+    },
+    "m2-lesson-1-micro-1-2__m02-l1-ml-2-2.html": {
+      "title": "M2 Lesson 1 - Micro 1.2",
+      "canvas_url": "m02-l1-ml-2-2",
+      "page_id": 4490,
+      "html_file": "pages/m2-lesson-1-micro-1-2__m02-l1-ml-2-2.html",
+      "last_canvas_update": "2026-06-03T00:33:51Z"
+    },
+    "m2-lesson-1-micro-1-3__m02-l1-ml-3-2.html": {
+      "title": "M2 Lesson 1 - Micro 1.3",
+      "canvas_url": "m02-l1-ml-3-2",
+      "page_id": 4491,
+      "html_file": "pages/m2-lesson-1-micro-1-3__m02-l1-ml-3-2.html",
+      "last_canvas_update": "2026-06-03T00:33:52Z"
+    },
+    "m2-lesson-1__m02-l1-2.html": {
+      "title": "M2 Lesson 1",
+      "canvas_url": "m02-l1-2",
+      "page_id": 4492,
+      "html_file": "pages/m2-lesson-1__m02-l1-2.html",
+      "last_canvas_update": "2026-06-03T00:33:52Z"
+    },
+    "m2-lesson-2-micro-2-1__m02-l2-ml-1-2.html": {
+      "title": "M2 Lesson 2 - Micro 2.1",
+      "canvas_url": "m02-l2-ml-1-2",
+      "page_id": 4493,
+      "html_file": "pages/m2-lesson-2-micro-2-1__m02-l2-ml-1-2.html",
+      "last_canvas_update": "2026-06-03T00:33:52Z"
+    },
+    "m2-lesson-2-micro-2-2__m02-l2-ml-2-2.html": {
+      "title": "M2 Lesson 2 - Micro 2.2",
+      "canvas_url": "m02-l2-ml-2-2",
+      "page_id": 4494,
+      "html_file": "pages/m2-lesson-2-micro-2-2__m02-l2-ml-2-2.html",
+      "last_canvas_update": "2026-06-03T00:33:52Z"
+    },
+    "m2-lesson-2-micro-2-3__m02-l2-ml-3-2.html": {
+      "title": "M2 Lesson 2 - Micro 2.3",
+      "canvas_url": "m02-l2-ml-3-2",
+      "page_id": 4495,
+      "html_file": "pages/m2-lesson-2-micro-2-3__m02-l2-ml-3-2.html",
+      "last_canvas_update": "2026-06-03T00:33:52Z"
+    },
+    "m2-lesson-2__m02-l2-2.html": {
+      "title": "M2 Lesson 2",
+      "canvas_url": "m02-l2-2",
+      "page_id": 4496,
+      "html_file": "pages/m2-lesson-2__m02-l2-2.html",
+      "last_canvas_update": "2026-06-03T00:33:52Z"
+    },
+    "m2-lesson-3-micro-3-1__m02-l3-ml-1-2.html": {
+      "title": "M2 Lesson 3 - Micro 3.1",
+      "canvas_url": "m02-l3-ml-1-2",
+      "page_id": 4497,
+      "html_file": "pages/m2-lesson-3-micro-3-1__m02-l3-ml-1-2.html",
+      "last_canvas_update": "2026-06-03T00:33:53Z"
+    },
+    "m2-lesson-3-micro-3-2__m02-l3-ml-2-2.html": {
+      "title": "M2 Lesson 3 - Micro 3.2",
+      "canvas_url": "m02-l3-ml-2-2",
+      "page_id": 4498,
+      "html_file": "pages/m2-lesson-3-micro-3-2__m02-l3-ml-2-2.html",
+      "last_canvas_update": "2026-06-03T00:33:53Z"
+    },
+    "m2-lesson-3-micro-3-3__m02-l3-ml-3-2.html": {
+      "title": "M2 Lesson 3 - Micro 3.3",
+      "canvas_url": "m02-l3-ml-3-2",
+      "page_id": 4499,
+      "html_file": "pages/m2-lesson-3-micro-3-3__m02-l3-ml-3-2.html",
+      "last_canvas_update": "2026-06-03T00:33:53Z"
+    },
+    "m2-lesson-3__m02-l3-2.html": {
+      "title": "M2 Lesson 3",
+      "canvas_url": "m02-l3-2",
+      "page_id": 4500,
+      "html_file": "pages/m2-lesson-3__m02-l3-2.html",
+      "last_canvas_update": "2026-06-03T00:33:53Z"
+    },
+    "m2-lesson-4-micro-4-1__m02-l4-ml-1-2.html": {
+      "title": "M2 Lesson 4 - Micro 4.1",
+      "canvas_url": "m02-l4-ml-1-2",
+      "page_id": 4501,
+      "html_file": "pages/m2-lesson-4-micro-4-1__m02-l4-ml-1-2.html",
+      "last_canvas_update": "2026-06-03T00:33:53Z"
+    },
+    "m2-lesson-4-micro-4-2__m02-l4-ml-2-2.html": {
+      "title": "M2 Lesson 4 - Micro 4.2",
+      "canvas_url": "m02-l4-ml-2-2",
+      "page_id": 4502,
+      "html_file": "pages/m2-lesson-4-micro-4-2__m02-l4-ml-2-2.html",
+      "last_canvas_update": "2026-06-03T00:33:53Z"
+    },
+    "m2-lesson-4-micro-4-3__m02-l4-ml-3-2.html": {
+      "title": "M2 Lesson 4 - Micro 4.3",
+      "canvas_url": "m02-l4-ml-3-2",
+      "page_id": 4503,
+      "html_file": "pages/m2-lesson-4-micro-4-3__m02-l4-ml-3-2.html",
+      "last_canvas_update": "2026-06-03T00:33:54Z"
+    },
+    "m2-lesson-4__m02-l4-2.html": {
+      "title": "M2 Lesson 4",
+      "canvas_url": "m02-l4-2",
+      "page_id": 4504,
+      "html_file": "pages/m2-lesson-4__m02-l4-2.html",
+      "last_canvas_update": "2026-06-03T00:33:54Z"
+    },
+    "m2-overview__m02-overview-2.html": {
+      "title": "M2 Overview",
+      "canvas_url": "m02-overview-2",
+      "page_id": 4505,
+      "html_file": "pages/m2-overview__m02-overview-2.html",
+      "last_canvas_update": "2026-06-03T00:33:54Z"
+    },
+    "m2-progress-checklist__m02-checklist-3.html": {
+      "title": "M2 Progress Checklist",
+      "canvas_url": "m02-checklist-3",
+      "page_id": 4506,
+      "html_file": "pages/m2-progress-checklist__m02-checklist-3.html",
+      "last_canvas_update": "2026-06-03T00:42:24Z"
+    },
+    "m2-opening-discussion__m02-discussion-3.html": {
+      "title": "M2 Opening Discussion",
+      "canvas_url": "m02-discussion-3",
+      "page_id": 4507,
+      "html_file": "pages/m2-opening-discussion__m02-discussion-3.html",
+      "last_canvas_update": "2026-06-03T16:10:16Z"
+    },
+    "m2-lesson-1-micro-1-1__m02-l1-ml-1-3.html": {
+      "title": "M2 Lesson 1 - Micro 1.1",
+      "canvas_url": "m02-l1-ml-1-3",
+      "page_id": 4508,
+      "html_file": "pages/m2-lesson-1-micro-1-1__m02-l1-ml-1-3.html",
+      "last_canvas_update": "2026-06-03T05:55:07Z"
+    },
+    "m2-lesson-1-micro-1-2__m02-l1-ml-2-3.html": {
+      "title": "M2 Lesson 1 - Micro 1.2",
+      "canvas_url": "m02-l1-ml-2-3",
+      "page_id": 4509,
+      "html_file": "pages/m2-lesson-1-micro-1-2__m02-l1-ml-2-3.html",
+      "last_canvas_update": "2026-06-03T05:55:25Z"
+    },
+    "m2-lesson-1-micro-1-3__m02-l1-ml-3-3.html": {
+      "title": "M2 Lesson 1 - Micro 1.3",
+      "canvas_url": "m02-l1-ml-3-3",
+      "page_id": 4510,
+      "html_file": "pages/m2-lesson-1-micro-1-3__m02-l1-ml-3-3.html",
+      "last_canvas_update": "2026-06-03T00:42:25Z"
+    },
+    "m2-lesson-1__m02-l1-3.html": {
+      "title": "M2 Lesson 1",
+      "canvas_url": "m02-l1-3",
+      "page_id": 4511,
+      "html_file": "pages/m2-lesson-1__m02-l1-3.html",
+      "last_canvas_update": "2026-06-03T00:42:25Z"
+    },
+    "m2-lesson-2-micro-2-1__m02-l2-ml-1-3.html": {
+      "title": "M2 Lesson 2 - Micro 2.1",
+      "canvas_url": "m02-l2-ml-1-3",
+      "page_id": 4512,
+      "html_file": "pages/m2-lesson-2-micro-2-1__m02-l2-ml-1-3.html",
+      "last_canvas_update": "2026-06-03T00:42:25Z"
+    },
+    "m2-lesson-2-micro-2-2__m02-l2-ml-2-3.html": {
+      "title": "M2 Lesson 2 - Micro 2.2",
+      "canvas_url": "m02-l2-ml-2-3",
+      "page_id": 4513,
+      "html_file": "pages/m2-lesson-2-micro-2-2__m02-l2-ml-2-3.html",
+      "last_canvas_update": "2026-06-03T00:42:26Z"
+    },
+    "m2-lesson-2-micro-2-3__m02-l2-ml-3-3.html": {
+      "title": "M2 Lesson 2 - Micro 2.3",
+      "canvas_url": "m02-l2-ml-3-3",
+      "page_id": 4514,
+      "html_file": "pages/m2-lesson-2-micro-2-3__m02-l2-ml-3-3.html",
+      "last_canvas_update": "2026-06-03T00:42:26Z"
+    },
+    "m2-lesson-2__m02-l2-3.html": {
+      "title": "M2 Lesson 2",
+      "canvas_url": "m02-l2-3",
+      "page_id": 4515,
+      "html_file": "pages/m2-lesson-2__m02-l2-3.html",
+      "last_canvas_update": "2026-06-03T00:42:26Z"
+    },
+    "m2-lesson-3-micro-3-1__m02-l3-ml-1-3.html": {
+      "title": "M2 Lesson 3 - Micro 3.1",
+      "canvas_url": "m02-l3-ml-1-3",
+      "page_id": 4516,
+      "html_file": "pages/m2-lesson-3-micro-3-1__m02-l3-ml-1-3.html",
+      "last_canvas_update": "2026-06-03T00:42:26Z"
+    },
+    "m2-lesson-3-micro-3-2__m02-l3-ml-2-3.html": {
+      "title": "M2 Lesson 3 - Micro 3.2",
+      "canvas_url": "m02-l3-ml-2-3",
+      "page_id": 4517,
+      "html_file": "pages/m2-lesson-3-micro-3-2__m02-l3-ml-2-3.html",
+      "last_canvas_update": "2026-06-03T00:42:26Z"
+    },
+    "m2-lesson-3-micro-3-3__m02-l3-ml-3-3.html": {
+      "title": "M2 Lesson 3 - Micro 3.3",
+      "canvas_url": "m02-l3-ml-3-3",
+      "page_id": 4518,
+      "html_file": "pages/m2-lesson-3-micro-3-3__m02-l3-ml-3-3.html",
+      "last_canvas_update": "2026-06-03T00:42:27Z"
+    },
+    "m2-lesson-3__m02-l3-3.html": {
+      "title": "M2 Lesson 3",
+      "canvas_url": "m02-l3-3",
+      "page_id": 4519,
+      "html_file": "pages/m2-lesson-3__m02-l3-3.html",
+      "last_canvas_update": "2026-06-03T00:42:27Z"
+    },
+    "m2-lesson-4-micro-4-1__m02-l4-ml-1-3.html": {
+      "title": "M2 Lesson 4 - Micro 4.1",
+      "canvas_url": "m02-l4-ml-1-3",
+      "page_id": 4520,
+      "html_file": "pages/m2-lesson-4-micro-4-1__m02-l4-ml-1-3.html",
+      "last_canvas_update": "2026-06-03T00:42:27Z"
+    },
+    "m2-lesson-4-micro-4-2__m02-l4-ml-2-3.html": {
+      "title": "M2 Lesson 4 - Micro 4.2",
+      "canvas_url": "m02-l4-ml-2-3",
+      "page_id": 4521,
+      "html_file": "pages/m2-lesson-4-micro-4-2__m02-l4-ml-2-3.html",
+      "last_canvas_update": "2026-06-03T00:42:27Z"
+    },
+    "m2-lesson-4-micro-4-3__m02-l4-ml-3-3.html": {
+      "title": "M2 Lesson 4 - Micro 4.3",
+      "canvas_url": "m02-l4-ml-3-3",
+      "page_id": 4522,
+      "html_file": "pages/m2-lesson-4-micro-4-3__m02-l4-ml-3-3.html",
+      "last_canvas_update": "2026-06-03T00:42:27Z"
+    },
+    "m2-lesson-4__m02-l4-3.html": {
+      "title": "M2 Lesson 4",
+      "canvas_url": "m02-l4-3",
+      "page_id": 4523,
+      "html_file": "pages/m2-lesson-4__m02-l4-3.html",
+      "last_canvas_update": "2026-06-03T00:42:28Z"
+    },
+    "m2-overview__m02-overview-3.html": {
+      "title": "M2 Overview",
+      "canvas_url": "m02-overview-3",
+      "page_id": 4524,
+      "html_file": "pages/m2-overview__m02-overview-3.html",
+      "last_canvas_update": "2026-06-03T05:47:54Z"
+    },
+    "m3-progress-checklist__m03-checklist-6.html": {
+      "title": "M3 Progress Checklist",
+      "canvas_url": "m03-checklist-6",
+      "page_id": 4525,
+      "html_file": "pages/m3-progress-checklist__m03-checklist-6.html",
+      "last_canvas_update": "2026-06-03T00:49:08Z"
+    },
+    "m3-opening-discussion__m03-discussion-8.html": {
+      "title": "M3 Opening Discussion",
+      "canvas_url": "m03-discussion-8",
+      "page_id": 4526,
+      "html_file": "pages/m3-opening-discussion__m03-discussion-8.html",
+      "last_canvas_update": "2026-06-03T00:49:08Z"
+    },
+    "m3-lesson-1-micro-1-1__m03-l1-ml-1-6.html": {
+      "title": "M3 Lesson 1 - Micro 1.1",
+      "canvas_url": "m03-l1-ml-1-6",
+      "page_id": 4527,
+      "html_file": "pages/m3-lesson-1-micro-1-1__m03-l1-ml-1-6.html",
+      "last_canvas_update": "2026-06-03T00:49:09Z"
+    },
+    "m3-lesson-1-micro-1-2__m03-l1-ml-2-6.html": {
+      "title": "M3 Lesson 1 - Micro 1.2",
+      "canvas_url": "m03-l1-ml-2-6",
+      "page_id": 4528,
+      "html_file": "pages/m3-lesson-1-micro-1-2__m03-l1-ml-2-6.html",
+      "last_canvas_update": "2026-06-03T00:49:09Z"
+    },
+    "m3-lesson-1-micro-1-3__m03-l1-ml-3-6.html": {
+      "title": "M3 Lesson 1 - Micro 1.3",
+      "canvas_url": "m03-l1-ml-3-6",
+      "page_id": 4529,
+      "html_file": "pages/m3-lesson-1-micro-1-3__m03-l1-ml-3-6.html",
+      "last_canvas_update": "2026-06-03T00:49:09Z"
+    },
+    "m3-lesson-1__m03-l1-6.html": {
+      "title": "M3 Lesson 1",
+      "canvas_url": "m03-l1-6",
+      "page_id": 4530,
+      "html_file": "pages/m3-lesson-1__m03-l1-6.html",
+      "last_canvas_update": "2026-06-03T00:49:09Z"
+    },
+    "m3-l2-assignment-teachable-machine-sprint__m03-l2-assignment.html": {
+      "title": "M3 L2 Assignment - Teachable Machine Sprint",
+      "canvas_url": "m03-l2-assignment",
+      "page_id": 4531,
+      "html_file": "pages/m3-l2-assignment-teachable-machine-sprint__m03-l2-assignment.html",
+      "last_canvas_update": "2026-06-03T00:49:09Z"
+    },
+    "m3-lesson-2-micro-2-1__m03-l2-ml-1-6.html": {
+      "title": "M3 Lesson 2 - Micro 2.1",
+      "canvas_url": "m03-l2-ml-1-6",
+      "page_id": 4532,
+      "html_file": "pages/m3-lesson-2-micro-2-1__m03-l2-ml-1-6.html",
+      "last_canvas_update": "2026-06-03T00:49:10Z"
+    },
+    "m3-lesson-2-micro-2-2__m03-l2-ml-2-6.html": {
+      "title": "M3 Lesson 2 - Micro 2.2",
+      "canvas_url": "m03-l2-ml-2-6",
+      "page_id": 4533,
+      "html_file": "pages/m3-lesson-2-micro-2-2__m03-l2-ml-2-6.html",
+      "last_canvas_update": "2026-06-03T00:49:10Z"
+    },
+    "m3-lesson-2-micro-2-3__m03-l2-ml-3-6.html": {
+      "title": "M3 Lesson 2 - Micro 2.3",
+      "canvas_url": "m03-l2-ml-3-6",
+      "page_id": 4534,
+      "html_file": "pages/m3-lesson-2-micro-2-3__m03-l2-ml-3-6.html",
+      "last_canvas_update": "2026-06-03T00:49:10Z"
+    },
+    "m3-lesson-2__m03-l2-6.html": {
+      "title": "M3 Lesson 2",
+      "canvas_url": "m03-l2-6",
+      "page_id": 4535,
+      "html_file": "pages/m3-lesson-2__m03-l2-6.html",
+      "last_canvas_update": "2026-06-03T00:49:10Z"
+    },
+    "m3-lesson-3-micro-3-1__m03-l3-ml-1-6.html": {
+      "title": "M3 Lesson 3 - Micro 3.1",
+      "canvas_url": "m03-l3-ml-1-6",
+      "page_id": 4536,
+      "html_file": "pages/m3-lesson-3-micro-3-1__m03-l3-ml-1-6.html",
+      "last_canvas_update": "2026-06-03T00:49:10Z"
+    },
+    "m3-lesson-3-micro-3-2__m03-l3-ml-2-6.html": {
+      "title": "M3 Lesson 3 - Micro 3.2",
+      "canvas_url": "m03-l3-ml-2-6",
+      "page_id": 4537,
+      "html_file": "pages/m3-lesson-3-micro-3-2__m03-l3-ml-2-6.html",
+      "last_canvas_update": "2026-06-03T00:49:10Z"
+    },
+    "m3-lesson-3-micro-3-3__m03-l3-ml-3-6.html": {
+      "title": "M3 Lesson 3 - Micro 3.3",
+      "canvas_url": "m03-l3-ml-3-6",
+      "page_id": 4538,
+      "html_file": "pages/m3-lesson-3-micro-3-3__m03-l3-ml-3-6.html",
+      "last_canvas_update": "2026-06-03T00:49:11Z"
+    },
+    "m3-lesson-3__m03-l3-6.html": {
+      "title": "M3 Lesson 3",
+      "canvas_url": "m03-l3-6",
+      "page_id": 4539,
+      "html_file": "pages/m3-lesson-3__m03-l3-6.html",
+      "last_canvas_update": "2026-06-03T00:49:11Z"
+    },
+    "m3-lesson-4-micro-4-1__m03-l4-ml-1-6.html": {
+      "title": "M3 Lesson 4 - Micro 4.1",
+      "canvas_url": "m03-l4-ml-1-6",
+      "page_id": 4540,
+      "html_file": "pages/m3-lesson-4-micro-4-1__m03-l4-ml-1-6.html",
+      "last_canvas_update": "2026-06-03T00:49:11Z"
+    },
+    "m3-lesson-4-micro-4-2__m03-l4-ml-2-6.html": {
+      "title": "M3 Lesson 4 - Micro 4.2",
+      "canvas_url": "m03-l4-ml-2-6",
+      "page_id": 4541,
+      "html_file": "pages/m3-lesson-4-micro-4-2__m03-l4-ml-2-6.html",
+      "last_canvas_update": "2026-06-03T00:49:11Z"
+    },
+    "m3-lesson-4-micro-4-3__m03-l4-ml-3-6.html": {
+      "title": "M3 Lesson 4 - Micro 4.3",
+      "canvas_url": "m03-l4-ml-3-6",
+      "page_id": 4542,
+      "html_file": "pages/m3-lesson-4-micro-4-3__m03-l4-ml-3-6.html",
+      "last_canvas_update": "2026-06-03T00:49:11Z"
+    },
+    "m3-lesson-4__m03-l4-6.html": {
+      "title": "M3 Lesson 4",
+      "canvas_url": "m03-l4-6",
+      "page_id": 4543,
+      "html_file": "pages/m3-lesson-4__m03-l4-6.html",
+      "last_canvas_update": "2026-06-03T00:49:11Z"
+    },
+    "m3-overview__m03-overview-8.html": {
+      "title": "M3 Overview",
+      "canvas_url": "m03-overview-8",
+      "page_id": 4544,
+      "html_file": "pages/m3-overview__m03-overview-8.html",
+      "last_canvas_update": "2026-06-03T00:49:12Z"
+    },
+    "m2-progress-checklist__m02-checklist-4.html": {
+      "title": "M2 Progress Checklist",
+      "canvas_url": "m02-checklist-4",
+      "page_id": 4545,
+      "html_file": "pages/m2-progress-checklist__m02-checklist-4.html",
+      "last_canvas_update": "2026-06-04T15:32:52Z"
+    },
+    "m2-opening-discussion__m02-discussion-4.html": {
+      "title": "M2 Opening Discussion",
+      "canvas_url": "m02-discussion-4",
+      "page_id": 4546,
+      "html_file": "pages/m2-opening-discussion__m02-discussion-4.html",
+      "last_canvas_update": "2026-06-04T15:32:52Z"
+    },
+    "m2-lesson-1-micro-1-1__m02-l1-ml-1-4.html": {
+      "title": "M2 Lesson 1 - Micro 1.1",
+      "canvas_url": "m02-l1-ml-1-4",
+      "page_id": 4547,
+      "html_file": "pages/m2-lesson-1-micro-1-1__m02-l1-ml-1-4.html",
+      "last_canvas_update": "2026-06-04T15:32:53Z"
+    },
+    "m2-lesson-1-micro-1-2__m02-l1-ml-2-4.html": {
+      "title": "M2 Lesson 1 - Micro 1.2",
+      "canvas_url": "m02-l1-ml-2-4",
+      "page_id": 4548,
+      "html_file": "pages/m2-lesson-1-micro-1-2__m02-l1-ml-2-4.html",
+      "last_canvas_update": "2026-06-04T15:32:53Z"
+    },
+    "m2-lesson-1-micro-1-3__m02-l1-ml-3-4.html": {
+      "title": "M2 Lesson 1 - Micro 1.3",
+      "canvas_url": "m02-l1-ml-3-4",
+      "page_id": 4549,
+      "html_file": "pages/m2-lesson-1-micro-1-3__m02-l1-ml-3-4.html",
+      "last_canvas_update": "2026-06-04T15:32:54Z"
+    },
+    "m2-lesson-1__m02-l1-4.html": {
+      "title": "M2 Lesson 1",
+      "canvas_url": "m02-l1-4",
+      "page_id": 4550,
+      "html_file": "pages/m2-lesson-1__m02-l1-4.html",
+      "last_canvas_update": "2026-06-04T15:32:54Z"
+    },
+    "m2-lesson-2-micro-2-1__m02-l2-ml-1-4.html": {
+      "title": "M2 Lesson 2 - Micro 2.1",
+      "canvas_url": "m02-l2-ml-1-4",
+      "page_id": 4551,
+      "html_file": "pages/m2-lesson-2-micro-2-1__m02-l2-ml-1-4.html",
+      "last_canvas_update": "2026-06-04T23:25:09Z"
+    },
+    "m2-lesson-2-micro-2-2__m02-l2-ml-2-4.html": {
+      "title": "M2 Lesson 2 - Micro 2.2",
+      "canvas_url": "m02-l2-ml-2-4",
+      "page_id": 4552,
+      "html_file": "pages/m2-lesson-2-micro-2-2__m02-l2-ml-2-4.html",
+      "last_canvas_update": "2026-06-04T15:32:55Z"
+    },
+    "m2-lesson-2-micro-2-3__m02-l2-ml-3-4.html": {
+      "title": "M2 Lesson 2 - Micro 2.3",
+      "canvas_url": "m02-l2-ml-3-4",
+      "page_id": 4553,
+      "html_file": "pages/m2-lesson-2-micro-2-3__m02-l2-ml-3-4.html",
+      "last_canvas_update": "2026-06-04T15:32:56Z"
+    },
+    "m2-lesson-2__m02-l2-4.html": {
+      "title": "M2 Lesson 2",
+      "canvas_url": "m02-l2-4",
+      "page_id": 4554,
+      "html_file": "pages/m2-lesson-2__m02-l2-4.html",
+      "last_canvas_update": "2026-06-04T15:32:56Z"
+    },
+    "m2-lesson-3-micro-3-1__m02-l3-ml-1-4.html": {
+      "title": "M2 Lesson 3 - Micro 3.1",
+      "canvas_url": "m02-l3-ml-1-4",
+      "page_id": 4555,
+      "html_file": "pages/m2-lesson-3-micro-3-1__m02-l3-ml-1-4.html",
+      "last_canvas_update": "2026-06-04T15:32:57Z"
+    },
+    "m2-lesson-3-micro-3-2__m02-l3-ml-2-4.html": {
+      "title": "M2 Lesson 3 - Micro 3.2",
+      "canvas_url": "m02-l3-ml-2-4",
+      "page_id": 4556,
+      "html_file": "pages/m2-lesson-3-micro-3-2__m02-l3-ml-2-4.html",
+      "last_canvas_update": "2026-06-04T15:32:58Z"
+    },
+    "m2-lesson-3-micro-3-3__m02-l3-ml-3-4.html": {
+      "title": "M2 Lesson 3 - Micro 3.3",
+      "canvas_url": "m02-l3-ml-3-4",
+      "page_id": 4557,
+      "html_file": "pages/m2-lesson-3-micro-3-3__m02-l3-ml-3-4.html",
+      "last_canvas_update": "2026-06-04T15:32:58Z"
+    },
+    "m2-lesson-3__m02-l3-4.html": {
+      "title": "M2 Lesson 3",
+      "canvas_url": "m02-l3-4",
+      "page_id": 4558,
+      "html_file": "pages/m2-lesson-3__m02-l3-4.html",
+      "last_canvas_update": "2026-06-04T15:32:59Z"
+    },
+    "m2-lesson-4-micro-4-1__m02-l4-ml-1-4.html": {
+      "title": "M2 Lesson 4 - Micro 4.1",
+      "canvas_url": "m02-l4-ml-1-4",
+      "page_id": 4559,
+      "html_file": "pages/m2-lesson-4-micro-4-1__m02-l4-ml-1-4.html",
+      "last_canvas_update": "2026-06-04T15:32:59Z"
+    },
+    "m2-lesson-4-micro-4-2__m02-l4-ml-2-4.html": {
+      "title": "M2 Lesson 4 - Micro 4.2",
+      "canvas_url": "m02-l4-ml-2-4",
+      "page_id": 4560,
+      "html_file": "pages/m2-lesson-4-micro-4-2__m02-l4-ml-2-4.html",
+      "last_canvas_update": "2026-06-04T15:32:59Z"
+    },
+    "m2-lesson-4-micro-4-3__m02-l4-ml-3-4.html": {
+      "title": "M2 Lesson 4 - Micro 4.3",
+      "canvas_url": "m02-l4-ml-3-4",
+      "page_id": 4561,
+      "html_file": "pages/m2-lesson-4-micro-4-3__m02-l4-ml-3-4.html",
+      "last_canvas_update": "2026-06-04T15:33:00Z"
+    },
+    "m2-lesson-4__m02-l4-4.html": {
+      "title": "M2 Lesson 4",
+      "canvas_url": "m02-l4-4",
+      "page_id": 4562,
+      "html_file": "pages/m2-lesson-4__m02-l4-4.html",
+      "last_canvas_update": "2026-06-04T15:33:00Z"
+    },
+    "m2-overview__m02-overview-4.html": {
+      "title": "M2 Overview",
+      "canvas_url": "m02-overview-4",
+      "page_id": 4563,
+      "html_file": "pages/m2-overview__m02-overview-4.html",
+      "last_canvas_update": "2026-06-04T15:33:01Z"
+    },
+    "m3-progress-checklist__m03-checklist-7.html": {
+      "title": "M3 Progress Checklist",
+      "canvas_url": "m03-checklist-7",
+      "page_id": 4564,
+      "html_file": "pages/m3-progress-checklist__m03-checklist-7.html",
+      "last_canvas_update": "2026-06-04T15:33:14Z"
+    },
+    "m3-opening-discussion__m03-discussion-9.html": {
+      "title": "M3 Opening Discussion",
+      "canvas_url": "m03-discussion-9",
+      "page_id": 4565,
+      "html_file": "pages/m3-opening-discussion__m03-discussion-9.html",
+      "last_canvas_update": "2026-06-04T15:33:14Z"
+    },
+    "m3-lesson-1-micro-1-1__m03-l1-ml-1-7.html": {
+      "title": "M3 Lesson 1 - Micro 1.1",
+      "canvas_url": "m03-l1-ml-1-7",
+      "page_id": 4566,
+      "html_file": "pages/m3-lesson-1-micro-1-1__m03-l1-ml-1-7.html",
+      "last_canvas_update": "2026-06-04T15:33:14Z"
+    },
+    "m3-lesson-1-micro-1-2__m03-l1-ml-2-7.html": {
+      "title": "M3 Lesson 1 - Micro 1.2",
+      "canvas_url": "m03-l1-ml-2-7",
+      "page_id": 4567,
+      "html_file": "pages/m3-lesson-1-micro-1-2__m03-l1-ml-2-7.html",
+      "last_canvas_update": "2026-06-04T15:33:15Z"
+    },
+    "m3-lesson-1-micro-1-3__m03-l1-ml-3-7.html": {
+      "title": "M3 Lesson 1 - Micro 1.3",
+      "canvas_url": "m03-l1-ml-3-7",
+      "page_id": 4568,
+      "html_file": "pages/m3-lesson-1-micro-1-3__m03-l1-ml-3-7.html",
+      "last_canvas_update": "2026-06-04T15:33:15Z"
+    },
+    "m3-lesson-1__m03-l1-7.html": {
+      "title": "M3 Lesson 1",
+      "canvas_url": "m03-l1-7",
+      "page_id": 4569,
+      "html_file": "pages/m3-lesson-1__m03-l1-7.html",
+      "last_canvas_update": "2026-06-04T15:33:16Z"
+    },
+    "m3-l2-assignment-teachable-machine-sprint__m03-l2-assignment-2.html": {
+      "title": "M3 L2 Assignment - Teachable Machine Sprint",
+      "canvas_url": "m03-l2-assignment-2",
+      "page_id": 4570,
+      "html_file": "pages/m3-l2-assignment-teachable-machine-sprint__m03-l2-assignment-2.html",
+      "last_canvas_update": "2026-06-04T15:33:16Z"
+    },
+    "m3-lesson-2-micro-2-1__m03-l2-ml-1-7.html": {
+      "title": "M3 Lesson 2 - Micro 2.1",
+      "canvas_url": "m03-l2-ml-1-7",
+      "page_id": 4571,
+      "html_file": "pages/m3-lesson-2-micro-2-1__m03-l2-ml-1-7.html",
+      "last_canvas_update": "2026-06-04T15:33:17Z"
+    },
+    "m3-lesson-2-micro-2-2__m03-l2-ml-2-7.html": {
+      "title": "M3 Lesson 2 - Micro 2.2",
+      "canvas_url": "m03-l2-ml-2-7",
+      "page_id": 4572,
+      "html_file": "pages/m3-lesson-2-micro-2-2__m03-l2-ml-2-7.html",
+      "last_canvas_update": "2026-06-04T15:33:17Z"
+    },
+    "m3-lesson-2-micro-2-3__m03-l2-ml-3-7.html": {
+      "title": "M3 Lesson 2 - Micro 2.3",
+      "canvas_url": "m03-l2-ml-3-7",
+      "page_id": 4573,
+      "html_file": "pages/m3-lesson-2-micro-2-3__m03-l2-ml-3-7.html",
+      "last_canvas_update": "2026-06-04T15:33:17Z"
+    },
+    "m3-lesson-2__m03-l2-7.html": {
+      "title": "M3 Lesson 2",
+      "canvas_url": "m03-l2-7",
+      "page_id": 4574,
+      "html_file": "pages/m3-lesson-2__m03-l2-7.html",
+      "last_canvas_update": "2026-06-04T15:33:18Z"
+    },
+    "m3-lesson-3-micro-3-1__m03-l3-ml-1-7.html": {
+      "title": "M3 Lesson 3 - Micro 3.1",
+      "canvas_url": "m03-l3-ml-1-7",
+      "page_id": 4575,
+      "html_file": "pages/m3-lesson-3-micro-3-1__m03-l3-ml-1-7.html",
+      "last_canvas_update": "2026-06-04T15:33:18Z"
+    },
+    "m3-lesson-3-micro-3-2__m03-l3-ml-2-7.html": {
+      "title": "M3 Lesson 3 - Micro 3.2",
+      "canvas_url": "m03-l3-ml-2-7",
+      "page_id": 4576,
+      "html_file": "pages/m3-lesson-3-micro-3-2__m03-l3-ml-2-7.html",
+      "last_canvas_update": "2026-06-04T15:33:19Z"
+    },
+    "m3-lesson-3-micro-3-3__m03-l3-ml-3-7.html": {
+      "title": "M3 Lesson 3 - Micro 3.3",
+      "canvas_url": "m03-l3-ml-3-7",
+      "page_id": 4577,
+      "html_file": "pages/m3-lesson-3-micro-3-3__m03-l3-ml-3-7.html",
+      "last_canvas_update": "2026-06-04T15:33:19Z"
+    },
+    "m3-lesson-3__m03-l3-7.html": {
+      "title": "M3 Lesson 3",
+      "canvas_url": "m03-l3-7",
+      "page_id": 4578,
+      "html_file": "pages/m3-lesson-3__m03-l3-7.html",
+      "last_canvas_update": "2026-06-04T15:33:19Z"
+    },
+    "m3-lesson-4-micro-4-1__m03-l4-ml-1-7.html": {
+      "title": "M3 Lesson 4 - Micro 4.1",
+      "canvas_url": "m03-l4-ml-1-7",
+      "page_id": 4579,
+      "html_file": "pages/m3-lesson-4-micro-4-1__m03-l4-ml-1-7.html",
+      "last_canvas_update": "2026-06-04T15:33:20Z"
+    },
+    "m3-lesson-4-micro-4-2__m03-l4-ml-2-7.html": {
+      "title": "M3 Lesson 4 - Micro 4.2",
+      "canvas_url": "m03-l4-ml-2-7",
+      "page_id": 4580,
+      "html_file": "pages/m3-lesson-4-micro-4-2__m03-l4-ml-2-7.html",
+      "last_canvas_update": "2026-06-04T15:33:20Z"
+    },
+    "m3-lesson-4-micro-4-3__m03-l4-ml-3-7.html": {
+      "title": "M3 Lesson 4 - Micro 4.3",
+      "canvas_url": "m03-l4-ml-3-7",
+      "page_id": 4581,
+      "html_file": "pages/m3-lesson-4-micro-4-3__m03-l4-ml-3-7.html",
+      "last_canvas_update": "2026-06-04T15:33:21Z"
+    },
+    "m3-lesson-4__m03-l4-7.html": {
+      "title": "M3 Lesson 4",
+      "canvas_url": "m03-l4-7",
+      "page_id": 4582,
+      "html_file": "pages/m3-lesson-4__m03-l4-7.html",
+      "last_canvas_update": "2026-06-04T15:33:21Z"
+    },
+    "m3-overview__m03-overview-9.html": {
+      "title": "M3 Overview",
+      "canvas_url": "m03-overview-9",
+      "page_id": 4583,
+      "html_file": "pages/m3-overview__m03-overview-9.html",
+      "last_canvas_update": "2026-06-04T15:33:22Z"
+    },
+    "m4-progress-checklist__m04-checklist-4.html": {
+      "title": "M4 Progress Checklist",
+      "canvas_url": "m04-checklist-4",
+      "page_id": 4584,
+      "html_file": "pages/m4-progress-checklist__m04-checklist-4.html",
+      "last_canvas_update": "2026-06-04T15:33:34Z"
+    },
+    "m4-opening-discussion__m04-discussion-6.html": {
+      "title": "M4 Opening Discussion",
+      "canvas_url": "m04-discussion-6",
+      "page_id": 4585,
+      "html_file": "pages/m4-opening-discussion__m04-discussion-6.html",
+      "last_canvas_update": "2026-06-04T15:33:35Z"
+    },
+    "m4-lesson-1-micro-1-1__m04-l1-ml-1-4.html": {
+      "title": "M4 Lesson 1 - Micro 1.1",
+      "canvas_url": "m04-l1-ml-1-4",
+      "page_id": 4586,
+      "html_file": "pages/m4-lesson-1-micro-1-1__m04-l1-ml-1-4.html",
+      "last_canvas_update": "2026-06-04T15:33:35Z"
+    },
+    "m4-lesson-1-micro-1-2__m04-l1-ml-2-4.html": {
+      "title": "M4 Lesson 1 - Micro 1.2",
+      "canvas_url": "m04-l1-ml-2-4",
+      "page_id": 4587,
+      "html_file": "pages/m4-lesson-1-micro-1-2__m04-l1-ml-2-4.html",
+      "last_canvas_update": "2026-06-04T15:33:35Z"
+    },
+    "m4-lesson-1-micro-1-3__m04-l1-ml-3-4.html": {
+      "title": "M4 Lesson 1 - Micro 1.3",
+      "canvas_url": "m04-l1-ml-3-4",
+      "page_id": 4588,
+      "html_file": "pages/m4-lesson-1-micro-1-3__m04-l1-ml-3-4.html",
+      "last_canvas_update": "2026-06-04T15:33:36Z"
+    },
+    "m4-lesson-1__m04-l1-4.html": {
+      "title": "M4 Lesson 1",
+      "canvas_url": "m04-l1-4",
+      "page_id": 4589,
+      "html_file": "pages/m4-lesson-1__m04-l1-4.html",
+      "last_canvas_update": "2026-06-04T15:33:36Z"
+    },
+    "m4-lesson-2-micro-2-1__m04-l2-ml-1-4.html": {
+      "title": "M4 Lesson 2 - Micro 2.1",
+      "canvas_url": "m04-l2-ml-1-4",
+      "page_id": 4590,
+      "html_file": "pages/m4-lesson-2-micro-2-1__m04-l2-ml-1-4.html",
+      "last_canvas_update": "2026-06-04T15:33:37Z"
+    },
+    "m4-lesson-2-micro-2-2__m04-l2-ml-2-4.html": {
+      "title": "M4 Lesson 2 - Micro 2.2",
+      "canvas_url": "m04-l2-ml-2-4",
+      "page_id": 4591,
+      "html_file": "pages/m4-lesson-2-micro-2-2__m04-l2-ml-2-4.html",
+      "last_canvas_update": "2026-06-04T15:33:37Z"
+    },
+    "m4-lesson-2-micro-2-3__m04-l2-ml-3-4.html": {
+      "title": "M4 Lesson 2 - Micro 2.3",
+      "canvas_url": "m04-l2-ml-3-4",
+      "page_id": 4592,
+      "html_file": "pages/m4-lesson-2-micro-2-3__m04-l2-ml-3-4.html",
+      "last_canvas_update": "2026-06-04T15:33:38Z"
+    },
+    "m4-lesson-2__m04-l2-4.html": {
+      "title": "M4 Lesson 2",
+      "canvas_url": "m04-l2-4",
+      "page_id": 4593,
+      "html_file": "pages/m4-lesson-2__m04-l2-4.html",
+      "last_canvas_update": "2026-06-04T15:33:38Z"
+    },
+    "m4-lesson-3-micro-3-1__m04-l3-ml-1-4.html": {
+      "title": "M4 Lesson 3 - Micro 3.1",
+      "canvas_url": "m04-l3-ml-1-4",
+      "page_id": 4594,
+      "html_file": "pages/m4-lesson-3-micro-3-1__m04-l3-ml-1-4.html",
+      "last_canvas_update": "2026-06-04T15:33:39Z"
+    },
+    "m4-lesson-3-micro-3-2__m04-l3-ml-2-4.html": {
+      "title": "M4 Lesson 3 - Micro 3.2",
+      "canvas_url": "m04-l3-ml-2-4",
+      "page_id": 4595,
+      "html_file": "pages/m4-lesson-3-micro-3-2__m04-l3-ml-2-4.html",
+      "last_canvas_update": "2026-06-04T15:33:39Z"
+    },
+    "m4-lesson-3-micro-3-3__m04-l3-ml-3-4.html": {
+      "title": "M4 Lesson 3 - Micro 3.3",
+      "canvas_url": "m04-l3-ml-3-4",
+      "page_id": 4596,
+      "html_file": "pages/m4-lesson-3-micro-3-3__m04-l3-ml-3-4.html",
+      "last_canvas_update": "2026-06-04T15:33:39Z"
+    },
+    "m4-lesson-3__m04-l3-4.html": {
+      "title": "M4 Lesson 3",
+      "canvas_url": "m04-l3-4",
+      "page_id": 4597,
+      "html_file": "pages/m4-lesson-3__m04-l3-4.html",
+      "last_canvas_update": "2026-06-04T15:33:40Z"
+    },
+    "m4-lesson-4-micro-4-1__m04-l4-ml-1-4.html": {
+      "title": "M4 Lesson 4 - Micro 4.1",
+      "canvas_url": "m04-l4-ml-1-4",
+      "page_id": 4598,
+      "html_file": "pages/m4-lesson-4-micro-4-1__m04-l4-ml-1-4.html",
+      "last_canvas_update": "2026-06-04T15:33:41Z"
+    },
+    "m4-lesson-4-micro-4-2__m04-l4-ml-2-4.html": {
+      "title": "M4 Lesson 4 - Micro 4.2",
+      "canvas_url": "m04-l4-ml-2-4",
+      "page_id": 4599,
+      "html_file": "pages/m4-lesson-4-micro-4-2__m04-l4-ml-2-4.html",
+      "last_canvas_update": "2026-06-04T15:33:41Z"
+    },
+    "m4-lesson-4-micro-4-3__m04-l4-ml-3-4.html": {
+      "title": "M4 Lesson 4 - Micro 4.3",
+      "canvas_url": "m04-l4-ml-3-4",
+      "page_id": 4600,
+      "html_file": "pages/m4-lesson-4-micro-4-3__m04-l4-ml-3-4.html",
+      "last_canvas_update": "2026-06-04T15:33:41Z"
+    },
+    "m4-lesson-4__m04-l4-4.html": {
+      "title": "M4 Lesson 4",
+      "canvas_url": "m04-l4-4",
+      "page_id": 4601,
+      "html_file": "pages/m4-lesson-4__m04-l4-4.html",
+      "last_canvas_update": "2026-06-04T15:33:42Z"
+    },
+    "m4-overview__m04-overview-6.html": {
+      "title": "M4 Overview",
+      "canvas_url": "m04-overview-6",
+      "page_id": 4602,
+      "html_file": "pages/m4-overview__m04-overview-6.html",
+      "last_canvas_update": "2026-06-04T15:33:42Z"
+    },
+    "test-page__test-page.html": {
+      "title": "test page",
+      "canvas_url": "test-page",
+      "page_id": 4652,
+      "html_file": "pages/test-page__test-page.html",
+      "last_canvas_update": "2026-06-04T23:19:48Z"
+    }
+  }
+}

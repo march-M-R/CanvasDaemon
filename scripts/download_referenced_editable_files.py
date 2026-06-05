@@ -2,7 +2,6 @@ import csv
 import json
 import re
 from pathlib import Path
-from urllib.parse import urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -11,7 +10,7 @@ ROOT_DIR = Path(__file__).resolve().parents[1]
 
 PAGES_DIR = ROOT_DIR / "pages"
 REPORTS_DIR = ROOT_DIR / "reports"
-USED_MODULE_PAGES_CSV = REPORTS_DIR / "used_module_pages.csv"
+USED_MODULE_PAGES_CSV = REPORTS_DIR / "pages" / "used_module_pages.csv"
 
 ASSET_MANIFEST_PATH = ROOT_DIR / "asset_manifest.json"
 OUTPUT_DIR = ROOT_DIR / "canvas_files" / "editable" / "referenced"
@@ -20,6 +19,12 @@ EDITABLE_EXTENSIONS = {".html", ".css", ".js", ".json", ".txt"}
 
 
 def load_active_page_files():
+    if not USED_MODULE_PAGES_CSV.exists():
+        raise FileNotFoundError(
+            "reports/pages/used_module_pages.csv not found.\n"
+            "Run: python scripts/course_inventory.py"
+        )
+
     active_files = []
 
     with USED_MODULE_PAGES_CSV.open("r", encoding="utf-8") as f:
@@ -34,14 +39,18 @@ def load_active_page_files():
 
 
 def load_asset_manifest():
+    if not ASSET_MANIFEST_PATH.exists():
+        raise FileNotFoundError(
+            "asset_manifest.json not found.\n"
+            "Run: python scripts/pull_files_metadata.py"
+        )
+
     return json.loads(ASSET_MANIFEST_PATH.read_text(encoding="utf-8"))
 
 
 def extract_file_ids_from_html(html):
     file_ids = set()
 
-    # Common Canvas file URL pattern:
-    # /courses/226/files/123456
     for match in re.findall(r"/files/(\d+)", html):
         file_ids.add(match)
 

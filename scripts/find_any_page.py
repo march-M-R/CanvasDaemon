@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = ROOT_DIR / "manifest.json"
-USED_MODULE_PAGES_CSV = ROOT_DIR / "reports" / "used_module_pages.csv"
+USED_MODULE_PAGES_CSV = ROOT_DIR / "reports" / "pages" / "used_module_pages.csv"
 
 
 def normalize(text):
@@ -23,7 +23,7 @@ def load_manifest_pages():
 def load_active_files():
     if not USED_MODULE_PAGES_CSV.exists():
         raise FileNotFoundError(
-            "reports/used_module_pages.csv not found.\n"
+            "reports/pages/used_module_pages.csv not found.\n"
             "Run: python scripts/course_inventory.py"
         )
 

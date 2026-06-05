@@ -16,7 +16,8 @@ ROOT_DIR = Path(__file__).resolve().parents[1]
 
 ASSET_MANIFEST_PATH = ROOT_DIR / "asset_manifest.json"
 REPORTS_DIR = ROOT_DIR / "reports"
-CANVAS_FILES_CSV = REPORTS_DIR / "canvas_files.csv"
+FILES_REPORTS_DIR = REPORTS_DIR / "files"
+CANVAS_FILES_CSV = FILES_REPORTS_DIR / "canvas_files.csv"
 
 HEADERS = {
     "Authorization": f"Bearer {TOKEN}"
@@ -74,7 +75,7 @@ def classify_file(filename, content_type):
 
 def main():
     check_env()
-    REPORTS_DIR.mkdir(exist_ok=True)
+    FILES_REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
     files = get_all_files()
 

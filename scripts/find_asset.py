@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
-CANVAS_FILES_CSV = ROOT_DIR / "reports" / "canvas_files.csv"
+CANVAS_FILES_CSV = ROOT_DIR / "reports" / "files" / "canvas_files.csv"
 
 
 def normalize(text):
@@ -13,7 +13,7 @@ def normalize(text):
 def load_assets():
     if not CANVAS_FILES_CSV.exists():
         raise FileNotFoundError(
-            "reports/canvas_files.csv not found. Run: python scripts/pull_files_metadata.py"
+            "reports/files/canvas_files.csv not found. Run: python scripts/pull_files_metadata.py"
         )
 
     with CANVAS_FILES_CSV.open("r", encoding="utf-8") as f:

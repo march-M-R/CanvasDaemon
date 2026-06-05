@@ -16,6 +16,7 @@ COURSE_ID = os.getenv("COURSE_ID")
 ROOT_DIR = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = ROOT_DIR / "manifest.json"
 REPORTS_DIR = ROOT_DIR / "reports"
+PAGES_REPORTS_DIR = REPORTS_DIR / "pages"
 
 HEADERS = {
     "Authorization": f"Bearer {TOKEN}"
@@ -51,7 +52,7 @@ def load_manifest():
 
 def main():
     check_env()
-    REPORTS_DIR.mkdir(exist_ok=True)
+    PAGES_REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
     manifest = load_manifest()
     all_manifest_pages = manifest["pages"]
@@ -92,7 +93,7 @@ def main():
                 "item_position": position,
                 "page_title": item.get("title"),
                 "canvas_page_url": page_url,
-                "local_file": local_file or "NOT_FOUND_IN_MANIFEST"
+                "local_file": local_file or "NOT_FOUND_IN_MANIFEST",
             }
 
             used_pages.append(row)
@@ -109,10 +110,10 @@ def main():
         if len(files) > 1
     }
 
-    used_csv = REPORTS_DIR / "used_module_pages.csv"
-    unused_txt = REPORTS_DIR / "unused_pages.txt"
-    duplicates_txt = REPORTS_DIR / "duplicate_titles.txt"
-    summary_txt = REPORTS_DIR / "inventory_summary.txt"
+    used_csv = PAGES_REPORTS_DIR / "used_module_pages.csv"
+    unused_txt = PAGES_REPORTS_DIR / "unused_pages.txt"
+    duplicates_txt = PAGES_REPORTS_DIR / "duplicate_titles.txt"
+    summary_txt = PAGES_REPORTS_DIR / "inventory_summary.txt"
 
     with used_csv.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(
@@ -123,15 +124,15 @@ def main():
                 "item_position",
                 "page_title",
                 "canvas_page_url",
-                "local_file"
-            ]
+                "local_file",
+            ],
         )
         writer.writeheader()
         writer.writerows(used_pages)
 
     unused_txt.write_text(
         "\n".join(unused_files),
-        encoding="utf-8"
+        encoding="utf-8",
     )
 
     duplicate_lines = []
@@ -142,9 +143,9 @@ def main():
             duplicate_lines.append(f"  - {file}")
 
     duplicates_txt.write_text(
-    "\n".join(duplicate_lines),
-    encoding="utf-8"
-)
+        "\n".join(duplicate_lines),
+        encoding="utf-8",
+    )
 
     summary = f"""
 COURSE INVENTORY SUMMARY
@@ -166,9 +167,10 @@ Duplicate page titles:
 {len(duplicate_titles)}
 
 Reports created:
-- reports/used_module_pages.csv
-- reports/unused_pages.txt
-- reports/duplicate_titles.txt
+- reports/pages/used_module_pages.csv
+- reports/pages/unused_pages.txt
+- reports/pages/duplicate_titles.txt
+- reports/pages/inventory_summary.txt
 """.strip()
 
     summary_txt.write_text(summary, encoding="utf-8")

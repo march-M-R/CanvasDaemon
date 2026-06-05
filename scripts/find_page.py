@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
-USED_MODULE_PAGES_CSV = ROOT_DIR / "reports" / "used_module_pages.csv"
+USED_MODULE_PAGES_CSV = ROOT_DIR / "reports" / "pages" / "used_module_pages.csv"
 
 
 def normalize(text):
@@ -13,7 +13,7 @@ def normalize(text):
 def load_rows():
     if not USED_MODULE_PAGES_CSV.exists():
         raise FileNotFoundError(
-            "reports/used_module_pages.csv not found.\n"
+            "reports/pages/used_module_pages.csv not found.\n"
             "Run: python scripts/course_inventory.py"
         )
 
@@ -32,12 +32,14 @@ def main():
     matches = []
 
     for row in rows:
-        haystack = " ".join([
-            row.get("module_name", ""),
-            row.get("page_title", ""),
-            row.get("canvas_page_url", ""),
-            row.get("local_file", "")
-        ])
+        haystack = " ".join(
+            [
+                row.get("module_name", ""),
+                row.get("page_title", ""),
+                row.get("canvas_page_url", ""),
+                row.get("local_file", ""),
+            ]
+        )
 
         if search_text in normalize(haystack):
             matches.append(row)
@@ -52,15 +54,17 @@ def main():
     print(f'\nFound {len(matches)} match(es) for: "{search_text}"\n')
 
     for i, row in enumerate(matches, start=1):
+        local_file = row.get("local_file")
+
         print("=" * 80)
         print(f"{i}. Module: {row.get('module_name')}")
         print(f"   Page:   {row.get('page_title')}")
         print(f"   URL:    {row.get('canvas_page_url')}")
-        print(f"   File:   pages/{row.get('local_file')}")
+        print(f"   File:   pages/{local_file}")
         print()
-        print(f'   Open:   code "pages/{row.get("local_file")}"')
-        print(f'   Dry:    python scripts/push_module_page.py "{row.get("local_file")}"')
-        print(f'   Push:   python scripts/push_module_page.py "{row.get("local_file")}" --apply')
+        print(f'   Open:   code "pages/{local_file}"')
+        print(f'   Dry:    python scripts/push_module_page.py "{local_file}"')
+        print(f'   Push:   python scripts/push_module_page.py "{local_file}" --apply')
         print()
 
 

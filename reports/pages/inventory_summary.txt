@@ -17,6 +17,7 @@ Duplicate page titles:
 59
 
 Reports created:
-- reports/used_module_pages.csv
-- reports/unused_pages.txt
-- reports/duplicate_titles.txt
+- reports/pages/used_module_pages.csv
+- reports/pages/unused_pages.txt
+- reports/pages/duplicate_titles.txt
+- reports/pages/inventory_summary.txt

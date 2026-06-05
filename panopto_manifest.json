@@ -1,0 +1,1900 @@
+{
+  "videos": {
+    "78986d7f-727c-4b95-9659-b4400155a6ef": {
+      "video_id": "78986d7f-727c-4b95-9659-b4400155a6ef",
+      "embed_url": "https://stevens.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=78986d7f-727c-4b95-9659-b4400155a6ef&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all",
+      "first_seen_title": "",
+      "found_in": [
+        {
+          "page_file": "course-introduction__course-introduction-2.html",
+          "page_title": "Course_Introduction",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "course-overview-v2__course-overview-v2.html",
+          "page_title": "course overview v2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "welcome-to-the-course__welcome-to-the-course.html",
+          "page_title": "Welcome to the course",
+          "embed_type": "iframe"
+        }
+      ]
+    },
+    "be644063-339b-438a-9169-b44301466ea7": {
+      "video_id": "be644063-339b-438a-9169-b44301466ea7",
+      "embed_url": "https://stevens.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=be644063-339b-438a-9169-b44301466ea7&autoplay=false",
+      "first_seen_title": "Lesson 1 video: What Is Intelligence? What Is Artificial Intelligence?",
+      "found_in": [
+        {
+          "page_file": "lesson-1-what-is-artificial-intelligence__lesson-1-what-is-artificial-intelligence.html",
+          "page_title": "Lesson 1 - What is artificial intelligence?",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "lesson-1-what-is-artificial-intelligence__lesson-1-what-is-artificial-intelligence.html",
+          "page_title": "Lesson 1 - What is artificial intelligence?",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "ml11__ml11.html",
+          "page_title": "ml11",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "ml11__ml11.html",
+          "page_title": "ml11",
+          "embed_type": "link"
+        }
+      ]
+    },
+    "PLACEHOLDER": {
+      "video_id": "PLACEHOLDER",
+      "embed_url": "https://stevens.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=PLACEHOLDER&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all",
+      "first_seen_title": "Micro-Learning 1.1 video: What Counts as Data (and What Doesn't)",
+      "found_in": [
+        {
+          "page_file": "m2-lesson-1-micro-1-1__m02-l1-ml-1-2.html",
+          "page_title": "M2 Lesson 1 - Micro 1.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-1__m02-l1-ml-1-3.html",
+          "page_title": "M2 Lesson 1 - Micro 1.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-1__m02-l1-ml-1-4.html",
+          "page_title": "M2 Lesson 1 - Micro 1.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-1__m02-l1-ml-1.html",
+          "page_title": "M2 Lesson 1 - Micro 1.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-2__m02-l1-ml-2-2.html",
+          "page_title": "M2 Lesson 1 - Micro 1.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-2__m02-l1-ml-2-2.html",
+          "page_title": "M2 Lesson 1 - Micro 1.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-2__m02-l1-ml-2-3.html",
+          "page_title": "M2 Lesson 1 - Micro 1.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-2__m02-l1-ml-2-3.html",
+          "page_title": "M2 Lesson 1 - Micro 1.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-2__m02-l1-ml-2-4.html",
+          "page_title": "M2 Lesson 1 - Micro 1.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-2__m02-l1-ml-2-4.html",
+          "page_title": "M2 Lesson 1 - Micro 1.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-2__m02-l1-ml-2.html",
+          "page_title": "M2 Lesson 1 - Micro 1.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-2__m02-l1-ml-2.html",
+          "page_title": "M2 Lesson 1 - Micro 1.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-3__m02-l1-ml-3-2.html",
+          "page_title": "M2 Lesson 1 - Micro 1.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-3__m02-l1-ml-3-2.html",
+          "page_title": "M2 Lesson 1 - Micro 1.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-3__m02-l1-ml-3-3.html",
+          "page_title": "M2 Lesson 1 - Micro 1.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-3__m02-l1-ml-3-3.html",
+          "page_title": "M2 Lesson 1 - Micro 1.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-3__m02-l1-ml-3-4.html",
+          "page_title": "M2 Lesson 1 - Micro 1.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-3__m02-l1-ml-3-4.html",
+          "page_title": "M2 Lesson 1 - Micro 1.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-3__m02-l1-ml-3.html",
+          "page_title": "M2 Lesson 1 - Micro 1.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1-micro-1-3__m02-l1-ml-3.html",
+          "page_title": "M2 Lesson 1 - Micro 1.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-1__m02-l1-2.html",
+          "page_title": "M2 Lesson 1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1__m02-l1-2.html",
+          "page_title": "M2 Lesson 1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-1__m02-l1-3.html",
+          "page_title": "M2 Lesson 1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1__m02-l1-3.html",
+          "page_title": "M2 Lesson 1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-1__m02-l1-4.html",
+          "page_title": "M2 Lesson 1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1__m02-l1-4.html",
+          "page_title": "M2 Lesson 1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-1__m02-l1.html",
+          "page_title": "M2 Lesson 1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-1__m02-l1.html",
+          "page_title": "M2 Lesson 1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-1__m02-l2-ml-1-2.html",
+          "page_title": "M2 Lesson 2 - Micro 2.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-1__m02-l2-ml-1-2.html",
+          "page_title": "M2 Lesson 2 - Micro 2.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-1__m02-l2-ml-1-3.html",
+          "page_title": "M2 Lesson 2 - Micro 2.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-1__m02-l2-ml-1-3.html",
+          "page_title": "M2 Lesson 2 - Micro 2.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-1__m02-l2-ml-1-4.html",
+          "page_title": "M2 Lesson 2 - Micro 2.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-1__m02-l2-ml-1-4.html",
+          "page_title": "M2 Lesson 2 - Micro 2.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-1__m02-l2-ml-1.html",
+          "page_title": "M2 Lesson 2 - Micro 2.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-1__m02-l2-ml-1.html",
+          "page_title": "M2 Lesson 2 - Micro 2.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-2__m02-l2-ml-2-2.html",
+          "page_title": "M2 Lesson 2 - Micro 2.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-2__m02-l2-ml-2-2.html",
+          "page_title": "M2 Lesson 2 - Micro 2.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-2__m02-l2-ml-2-3.html",
+          "page_title": "M2 Lesson 2 - Micro 2.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-2__m02-l2-ml-2-3.html",
+          "page_title": "M2 Lesson 2 - Micro 2.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-2__m02-l2-ml-2-4.html",
+          "page_title": "M2 Lesson 2 - Micro 2.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-2__m02-l2-ml-2-4.html",
+          "page_title": "M2 Lesson 2 - Micro 2.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-2__m02-l2-ml-2.html",
+          "page_title": "M2 Lesson 2 - Micro 2.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-2__m02-l2-ml-2.html",
+          "page_title": "M2 Lesson 2 - Micro 2.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-3__m02-l2-ml-3-2.html",
+          "page_title": "M2 Lesson 2 - Micro 2.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-3__m02-l2-ml-3-3.html",
+          "page_title": "M2 Lesson 2 - Micro 2.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-3__m02-l2-ml-3-4.html",
+          "page_title": "M2 Lesson 2 - Micro 2.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2-micro-2-3__m02-l2-ml-3.html",
+          "page_title": "M2 Lesson 2 - Micro 2.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2__m02-l2-2.html",
+          "page_title": "M2 Lesson 2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2__m02-l2-2.html",
+          "page_title": "M2 Lesson 2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-2__m02-l2-3.html",
+          "page_title": "M2 Lesson 2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2__m02-l2-3.html",
+          "page_title": "M2 Lesson 2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-2__m02-l2-4.html",
+          "page_title": "M2 Lesson 2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2__m02-l2-4.html",
+          "page_title": "M2 Lesson 2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-2__m02-l2.html",
+          "page_title": "M2 Lesson 2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-2__m02-l2.html",
+          "page_title": "M2 Lesson 2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-1__m02-l3-ml-1-2.html",
+          "page_title": "M2 Lesson 3 - Micro 3.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-1__m02-l3-ml-1-2.html",
+          "page_title": "M2 Lesson 3 - Micro 3.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-1__m02-l3-ml-1-3.html",
+          "page_title": "M2 Lesson 3 - Micro 3.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-1__m02-l3-ml-1-3.html",
+          "page_title": "M2 Lesson 3 - Micro 3.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-1__m02-l3-ml-1-4.html",
+          "page_title": "M2 Lesson 3 - Micro 3.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-1__m02-l3-ml-1-4.html",
+          "page_title": "M2 Lesson 3 - Micro 3.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-1__m02-l3-ml-1.html",
+          "page_title": "M2 Lesson 3 - Micro 3.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-1__m02-l3-ml-1.html",
+          "page_title": "M2 Lesson 3 - Micro 3.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-2__m02-l3-ml-2-2.html",
+          "page_title": "M2 Lesson 3 - Micro 3.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-2__m02-l3-ml-2-3.html",
+          "page_title": "M2 Lesson 3 - Micro 3.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-2__m02-l3-ml-2-4.html",
+          "page_title": "M2 Lesson 3 - Micro 3.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-2__m02-l3-ml-2.html",
+          "page_title": "M2 Lesson 3 - Micro 3.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-3__m02-l3-ml-3-2.html",
+          "page_title": "M2 Lesson 3 - Micro 3.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-3__m02-l3-ml-3-2.html",
+          "page_title": "M2 Lesson 3 - Micro 3.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-3__m02-l3-ml-3-3.html",
+          "page_title": "M2 Lesson 3 - Micro 3.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-3__m02-l3-ml-3-3.html",
+          "page_title": "M2 Lesson 3 - Micro 3.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-3__m02-l3-ml-3-4.html",
+          "page_title": "M2 Lesson 3 - Micro 3.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-3__m02-l3-ml-3-4.html",
+          "page_title": "M2 Lesson 3 - Micro 3.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-3__m02-l3-ml-3.html",
+          "page_title": "M2 Lesson 3 - Micro 3.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3-micro-3-3__m02-l3-ml-3.html",
+          "page_title": "M2 Lesson 3 - Micro 3.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-3__m02-l3-2.html",
+          "page_title": "M2 Lesson 3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3__m02-l3-2.html",
+          "page_title": "M2 Lesson 3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-3__m02-l3-3.html",
+          "page_title": "M2 Lesson 3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3__m02-l3-3.html",
+          "page_title": "M2 Lesson 3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-3__m02-l3-4.html",
+          "page_title": "M2 Lesson 3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3__m02-l3-4.html",
+          "page_title": "M2 Lesson 3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-3__m02-l3.html",
+          "page_title": "M2 Lesson 3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-3__m02-l3.html",
+          "page_title": "M2 Lesson 3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-1__m02-l4-ml-1-2.html",
+          "page_title": "M2 Lesson 4 - Micro 4.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-1__m02-l4-ml-1-3.html",
+          "page_title": "M2 Lesson 4 - Micro 4.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-1__m02-l4-ml-1-4.html",
+          "page_title": "M2 Lesson 4 - Micro 4.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-1__m02-l4-ml-1.html",
+          "page_title": "M2 Lesson 4 - Micro 4.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-2__m02-l4-ml-2-2.html",
+          "page_title": "M2 Lesson 4 - Micro 4.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-2__m02-l4-ml-2-2.html",
+          "page_title": "M2 Lesson 4 - Micro 4.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-2__m02-l4-ml-2-3.html",
+          "page_title": "M2 Lesson 4 - Micro 4.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-2__m02-l4-ml-2-3.html",
+          "page_title": "M2 Lesson 4 - Micro 4.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-2__m02-l4-ml-2-4.html",
+          "page_title": "M2 Lesson 4 - Micro 4.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-2__m02-l4-ml-2-4.html",
+          "page_title": "M2 Lesson 4 - Micro 4.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-2__m02-l4-ml-2.html",
+          "page_title": "M2 Lesson 4 - Micro 4.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-2__m02-l4-ml-2.html",
+          "page_title": "M2 Lesson 4 - Micro 4.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-3__m02-l4-ml-3-2.html",
+          "page_title": "M2 Lesson 4 - Micro 4.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-3__m02-l4-ml-3-2.html",
+          "page_title": "M2 Lesson 4 - Micro 4.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-3__m02-l4-ml-3-3.html",
+          "page_title": "M2 Lesson 4 - Micro 4.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-3__m02-l4-ml-3-3.html",
+          "page_title": "M2 Lesson 4 - Micro 4.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-3__m02-l4-ml-3-4.html",
+          "page_title": "M2 Lesson 4 - Micro 4.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-3__m02-l4-ml-3-4.html",
+          "page_title": "M2 Lesson 4 - Micro 4.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-3__m02-l4-ml-3.html",
+          "page_title": "M2 Lesson 4 - Micro 4.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4-micro-4-3__m02-l4-ml-3.html",
+          "page_title": "M2 Lesson 4 - Micro 4.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-4__m02-l4-2.html",
+          "page_title": "M2 Lesson 4",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4__m02-l4-2.html",
+          "page_title": "M2 Lesson 4",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-4__m02-l4-3.html",
+          "page_title": "M2 Lesson 4",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4__m02-l4-3.html",
+          "page_title": "M2 Lesson 4",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-4__m02-l4-4.html",
+          "page_title": "M2 Lesson 4",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4__m02-l4-4.html",
+          "page_title": "M2 Lesson 4",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m2-lesson-4__m02-l4.html",
+          "page_title": "M2 Lesson 4",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m2-lesson-4__m02-l4.html",
+          "page_title": "M2 Lesson 4",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-1__m03-l1-ml-1-2.html",
+          "page_title": "M3 Lesson 1 - Micro 1.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-1__m03-l1-ml-1-3.html",
+          "page_title": "M3 Lesson 1 - Micro 1.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-1__m03-l1-ml-1-4.html",
+          "page_title": "M3 Lesson 1 - Micro 1.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-1__m03-l1-ml-1-5.html",
+          "page_title": "M3 Lesson 1 - Micro 1.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-1__m03-l1-ml-1-6.html",
+          "page_title": "M3 Lesson 1 - Micro 1.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-1__m03-l1-ml-1-6.html",
+          "page_title": "M3 Lesson 1 - Micro 1.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-1__m03-l1-ml-1-7.html",
+          "page_title": "M3 Lesson 1 - Micro 1.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-1__m03-l1-ml-1-7.html",
+          "page_title": "M3 Lesson 1 - Micro 1.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-1__m03-l1-ml-1.html",
+          "page_title": "M3 Lesson 1 - Micro 1.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-2__m03-l1-ml-2-2.html",
+          "page_title": "M3 Lesson 1 - Micro 1.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-2__m03-l1-ml-2-3.html",
+          "page_title": "M3 Lesson 1 - Micro 1.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-2__m03-l1-ml-2-4.html",
+          "page_title": "M3 Lesson 1 - Micro 1.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-2__m03-l1-ml-2-5.html",
+          "page_title": "M3 Lesson 1 - Micro 1.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-2__m03-l1-ml-2-6.html",
+          "page_title": "M3 Lesson 1 - Micro 1.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-2__m03-l1-ml-2-6.html",
+          "page_title": "M3 Lesson 1 - Micro 1.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-2__m03-l1-ml-2-7.html",
+          "page_title": "M3 Lesson 1 - Micro 1.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-2__m03-l1-ml-2-7.html",
+          "page_title": "M3 Lesson 1 - Micro 1.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-2__m03-l1-ml-2.html",
+          "page_title": "M3 Lesson 1 - Micro 1.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-3__m03-l1-ml-3-2.html",
+          "page_title": "M3 Lesson 1 - Micro 1.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-3__m03-l1-ml-3-3.html",
+          "page_title": "M3 Lesson 1 - Micro 1.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-3__m03-l1-ml-3-4.html",
+          "page_title": "M3 Lesson 1 - Micro 1.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-3__m03-l1-ml-3-5.html",
+          "page_title": "M3 Lesson 1 - Micro 1.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-3__m03-l1-ml-3-6.html",
+          "page_title": "M3 Lesson 1 - Micro 1.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-3__m03-l1-ml-3-7.html",
+          "page_title": "M3 Lesson 1 - Micro 1.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1-micro-1-3__m03-l1-ml-3.html",
+          "page_title": "M3 Lesson 1 - Micro 1.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1__m03-l1-2.html",
+          "page_title": "M3 Lesson 1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1__m03-l1-2.html",
+          "page_title": "M3 Lesson 1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-1__m03-l1-3.html",
+          "page_title": "M3 Lesson 1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1__m03-l1-3.html",
+          "page_title": "M3 Lesson 1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-1__m03-l1-4.html",
+          "page_title": "M3 Lesson 1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1__m03-l1-4.html",
+          "page_title": "M3 Lesson 1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-1__m03-l1-5.html",
+          "page_title": "M3 Lesson 1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1__m03-l1-5.html",
+          "page_title": "M3 Lesson 1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-1__m03-l1-6.html",
+          "page_title": "M3 Lesson 1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1__m03-l1-6.html",
+          "page_title": "M3 Lesson 1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-1__m03-l1-7.html",
+          "page_title": "M3 Lesson 1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1__m03-l1-7.html",
+          "page_title": "M3 Lesson 1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-1__m03-l1.html",
+          "page_title": "M3 Lesson 1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-1__m03-l1.html",
+          "page_title": "M3 Lesson 1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-1__m03-l2-ml-1-2.html",
+          "page_title": "M3 Lesson 2 - Micro 2.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-1__m03-l2-ml-1-3.html",
+          "page_title": "M3 Lesson 2 - Micro 2.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-1__m03-l2-ml-1-4.html",
+          "page_title": "M3 Lesson 2 - Micro 2.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-1__m03-l2-ml-1-5.html",
+          "page_title": "M3 Lesson 2 - Micro 2.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-1__m03-l2-ml-1-6.html",
+          "page_title": "M3 Lesson 2 - Micro 2.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-1__m03-l2-ml-1-6.html",
+          "page_title": "M3 Lesson 2 - Micro 2.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-1__m03-l2-ml-1-7.html",
+          "page_title": "M3 Lesson 2 - Micro 2.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-1__m03-l2-ml-1-7.html",
+          "page_title": "M3 Lesson 2 - Micro 2.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-1__m03-l2-ml-1.html",
+          "page_title": "M3 Lesson 2 - Micro 2.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-2__m03-l2-ml-2-2.html",
+          "page_title": "M3 Lesson 2 - Micro 2.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-2__m03-l2-ml-2-3.html",
+          "page_title": "M3 Lesson 2 - Micro 2.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-2__m03-l2-ml-2-4.html",
+          "page_title": "M3 Lesson 2 - Micro 2.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-2__m03-l2-ml-2-5.html",
+          "page_title": "M3 Lesson 2 - Micro 2.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-2__m03-l2-ml-2-6.html",
+          "page_title": "M3 Lesson 2 - Micro 2.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-2__m03-l2-ml-2-7.html",
+          "page_title": "M3 Lesson 2 - Micro 2.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-2__m03-l2-ml-2.html",
+          "page_title": "M3 Lesson 2 - Micro 2.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-3__m03-l2-ml-3-2.html",
+          "page_title": "M3 Lesson 2 - Micro 2.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-3__m03-l2-ml-3-3.html",
+          "page_title": "M3 Lesson 2 - Micro 2.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-3__m03-l2-ml-3-4.html",
+          "page_title": "M3 Lesson 2 - Micro 2.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-3__m03-l2-ml-3-5.html",
+          "page_title": "M3 Lesson 2 - Micro 2.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-3__m03-l2-ml-3-6.html",
+          "page_title": "M3 Lesson 2 - Micro 2.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-3__m03-l2-ml-3-6.html",
+          "page_title": "M3 Lesson 2 - Micro 2.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-3__m03-l2-ml-3-7.html",
+          "page_title": "M3 Lesson 2 - Micro 2.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-3__m03-l2-ml-3-7.html",
+          "page_title": "M3 Lesson 2 - Micro 2.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-2-micro-2-3__m03-l2-ml-3.html",
+          "page_title": "M3 Lesson 2 - Micro 2.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2__m03-l2-2.html",
+          "page_title": "M3 Lesson 2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2__m03-l2-2.html",
+          "page_title": "M3 Lesson 2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-2__m03-l2-3.html",
+          "page_title": "M3 Lesson 2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2__m03-l2-3.html",
+          "page_title": "M3 Lesson 2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-2__m03-l2-4.html",
+          "page_title": "M3 Lesson 2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2__m03-l2-4.html",
+          "page_title": "M3 Lesson 2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-2__m03-l2-5.html",
+          "page_title": "M3 Lesson 2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2__m03-l2-5.html",
+          "page_title": "M3 Lesson 2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-2__m03-l2-6.html",
+          "page_title": "M3 Lesson 2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2__m03-l2-6.html",
+          "page_title": "M3 Lesson 2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-2__m03-l2-7.html",
+          "page_title": "M3 Lesson 2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2__m03-l2-7.html",
+          "page_title": "M3 Lesson 2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-2__m03-l2.html",
+          "page_title": "M3 Lesson 2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-2__m03-l2.html",
+          "page_title": "M3 Lesson 2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-1__m03-l3-ml-1-2.html",
+          "page_title": "M3 Lesson 3 - Micro 3.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-1__m03-l3-ml-1-3.html",
+          "page_title": "M3 Lesson 3 - Micro 3.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-1__m03-l3-ml-1-4.html",
+          "page_title": "M3 Lesson 3 - Micro 3.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-1__m03-l3-ml-1-5.html",
+          "page_title": "M3 Lesson 3 - Micro 3.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-1__m03-l3-ml-1-6.html",
+          "page_title": "M3 Lesson 3 - Micro 3.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-1__m03-l3-ml-1-7.html",
+          "page_title": "M3 Lesson 3 - Micro 3.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-1__m03-l3-ml-1.html",
+          "page_title": "M3 Lesson 3 - Micro 3.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-2__m03-l3-ml-2-2.html",
+          "page_title": "M3 Lesson 3 - Micro 3.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-2__m03-l3-ml-2-3.html",
+          "page_title": "M3 Lesson 3 - Micro 3.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-2__m03-l3-ml-2-4.html",
+          "page_title": "M3 Lesson 3 - Micro 3.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-2__m03-l3-ml-2-5.html",
+          "page_title": "M3 Lesson 3 - Micro 3.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-2__m03-l3-ml-2-6.html",
+          "page_title": "M3 Lesson 3 - Micro 3.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-2__m03-l3-ml-2-6.html",
+          "page_title": "M3 Lesson 3 - Micro 3.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-2__m03-l3-ml-2-7.html",
+          "page_title": "M3 Lesson 3 - Micro 3.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-2__m03-l3-ml-2-7.html",
+          "page_title": "M3 Lesson 3 - Micro 3.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-2__m03-l3-ml-2.html",
+          "page_title": "M3 Lesson 3 - Micro 3.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-3__m03-l3-ml-3-2.html",
+          "page_title": "M3 Lesson 3 - Micro 3.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-3__m03-l3-ml-3-3.html",
+          "page_title": "M3 Lesson 3 - Micro 3.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-3__m03-l3-ml-3-4.html",
+          "page_title": "M3 Lesson 3 - Micro 3.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-3__m03-l3-ml-3-5.html",
+          "page_title": "M3 Lesson 3 - Micro 3.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-3__m03-l3-ml-3-6.html",
+          "page_title": "M3 Lesson 3 - Micro 3.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-3__m03-l3-ml-3-6.html",
+          "page_title": "M3 Lesson 3 - Micro 3.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-3__m03-l3-ml-3-7.html",
+          "page_title": "M3 Lesson 3 - Micro 3.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-3__m03-l3-ml-3-7.html",
+          "page_title": "M3 Lesson 3 - Micro 3.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-3-micro-3-3__m03-l3-ml-3.html",
+          "page_title": "M3 Lesson 3 - Micro 3.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3__m03-l3-2.html",
+          "page_title": "M3 Lesson 3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3__m03-l3-2.html",
+          "page_title": "M3 Lesson 3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-3__m03-l3-3.html",
+          "page_title": "M3 Lesson 3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3__m03-l3-3.html",
+          "page_title": "M3 Lesson 3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-3__m03-l3-4.html",
+          "page_title": "M3 Lesson 3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3__m03-l3-4.html",
+          "page_title": "M3 Lesson 3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-3__m03-l3-5.html",
+          "page_title": "M3 Lesson 3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3__m03-l3-5.html",
+          "page_title": "M3 Lesson 3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-3__m03-l3-6.html",
+          "page_title": "M3 Lesson 3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3__m03-l3-6.html",
+          "page_title": "M3 Lesson 3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-3__m03-l3-7.html",
+          "page_title": "M3 Lesson 3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3__m03-l3-7.html",
+          "page_title": "M3 Lesson 3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-3__m03-l3.html",
+          "page_title": "M3 Lesson 3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-3__m03-l3.html",
+          "page_title": "M3 Lesson 3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-1__m03-l4-ml-1-2.html",
+          "page_title": "M3 Lesson 4 - Micro 4.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-1__m03-l4-ml-1-3.html",
+          "page_title": "M3 Lesson 4 - Micro 4.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-1__m03-l4-ml-1-4.html",
+          "page_title": "M3 Lesson 4 - Micro 4.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-1__m03-l4-ml-1-5.html",
+          "page_title": "M3 Lesson 4 - Micro 4.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-1__m03-l4-ml-1-6.html",
+          "page_title": "M3 Lesson 4 - Micro 4.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-1__m03-l4-ml-1-6.html",
+          "page_title": "M3 Lesson 4 - Micro 4.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-1__m03-l4-ml-1-7.html",
+          "page_title": "M3 Lesson 4 - Micro 4.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-1__m03-l4-ml-1-7.html",
+          "page_title": "M3 Lesson 4 - Micro 4.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-1__m03-l4-ml-1.html",
+          "page_title": "M3 Lesson 4 - Micro 4.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-2__m03-l4-ml-2-2.html",
+          "page_title": "M3 Lesson 4 - Micro 4.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-2__m03-l4-ml-2-3.html",
+          "page_title": "M3 Lesson 4 - Micro 4.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-2__m03-l4-ml-2-4.html",
+          "page_title": "M3 Lesson 4 - Micro 4.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-2__m03-l4-ml-2-5.html",
+          "page_title": "M3 Lesson 4 - Micro 4.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-2__m03-l4-ml-2-6.html",
+          "page_title": "M3 Lesson 4 - Micro 4.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-2__m03-l4-ml-2-7.html",
+          "page_title": "M3 Lesson 4 - Micro 4.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-2__m03-l4-ml-2.html",
+          "page_title": "M3 Lesson 4 - Micro 4.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-3__m03-l4-ml-3-2.html",
+          "page_title": "M3 Lesson 4 - Micro 4.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-3__m03-l4-ml-3-3.html",
+          "page_title": "M3 Lesson 4 - Micro 4.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-3__m03-l4-ml-3-4.html",
+          "page_title": "M3 Lesson 4 - Micro 4.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-3__m03-l4-ml-3-5.html",
+          "page_title": "M3 Lesson 4 - Micro 4.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-3__m03-l4-ml-3-6.html",
+          "page_title": "M3 Lesson 4 - Micro 4.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-3__m03-l4-ml-3-6.html",
+          "page_title": "M3 Lesson 4 - Micro 4.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-3__m03-l4-ml-3-7.html",
+          "page_title": "M3 Lesson 4 - Micro 4.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-3__m03-l4-ml-3-7.html",
+          "page_title": "M3 Lesson 4 - Micro 4.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-4-micro-4-3__m03-l4-ml-3.html",
+          "page_title": "M3 Lesson 4 - Micro 4.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4__m03-l4-2.html",
+          "page_title": "M3 Lesson 4",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4__m03-l4-2.html",
+          "page_title": "M3 Lesson 4",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-4__m03-l4-3.html",
+          "page_title": "M3 Lesson 4",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4__m03-l4-3.html",
+          "page_title": "M3 Lesson 4",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-4__m03-l4-4.html",
+          "page_title": "M3 Lesson 4",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4__m03-l4-4.html",
+          "page_title": "M3 Lesson 4",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-4__m03-l4-5.html",
+          "page_title": "M3 Lesson 4",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4__m03-l4-5.html",
+          "page_title": "M3 Lesson 4",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-4__m03-l4-6.html",
+          "page_title": "M3 Lesson 4",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4__m03-l4-6.html",
+          "page_title": "M3 Lesson 4",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-4__m03-l4-7.html",
+          "page_title": "M3 Lesson 4",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4__m03-l4-7.html",
+          "page_title": "M3 Lesson 4",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m3-lesson-4__m03-l4.html",
+          "page_title": "M3 Lesson 4",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m3-lesson-4__m03-l4.html",
+          "page_title": "M3 Lesson 4",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-1-micro-1-1__m04-l1-ml-1-2.html",
+          "page_title": "M4 Lesson 1 - Micro 1.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1-micro-1-1__m04-l1-ml-1-3.html",
+          "page_title": "M4 Lesson 1 - Micro 1.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1-micro-1-1__m04-l1-ml-1-4.html",
+          "page_title": "M4 Lesson 1 - Micro 1.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1-micro-1-1__m04-l1-ml-1-4.html",
+          "page_title": "M4 Lesson 1 - Micro 1.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-1-micro-1-1__m04-l1-ml-1.html",
+          "page_title": "M4 Lesson 1 - Micro 1.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1-micro-1-2__m04-l1-ml-2-2.html",
+          "page_title": "M4 Lesson 1 - Micro 1.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1-micro-1-2__m04-l1-ml-2-3.html",
+          "page_title": "M4 Lesson 1 - Micro 1.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1-micro-1-2__m04-l1-ml-2-4.html",
+          "page_title": "M4 Lesson 1 - Micro 1.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1-micro-1-2__m04-l1-ml-2.html",
+          "page_title": "M4 Lesson 1 - Micro 1.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1-micro-1-3__m04-l1-ml-3-2.html",
+          "page_title": "M4 Lesson 1 - Micro 1.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1-micro-1-3__m04-l1-ml-3-3.html",
+          "page_title": "M4 Lesson 1 - Micro 1.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1-micro-1-3__m04-l1-ml-3-4.html",
+          "page_title": "M4 Lesson 1 - Micro 1.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1-micro-1-3__m04-l1-ml-3-4.html",
+          "page_title": "M4 Lesson 1 - Micro 1.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-1-micro-1-3__m04-l1-ml-3.html",
+          "page_title": "M4 Lesson 1 - Micro 1.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1__m04-l1-2.html",
+          "page_title": "M4 Lesson 1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1__m04-l1-2.html",
+          "page_title": "M4 Lesson 1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-1__m04-l1-3.html",
+          "page_title": "M4 Lesson 1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1__m04-l1-3.html",
+          "page_title": "M4 Lesson 1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-1__m04-l1-4.html",
+          "page_title": "M4 Lesson 1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1__m04-l1-4.html",
+          "page_title": "M4 Lesson 1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-1__m04-l1.html",
+          "page_title": "M4 Lesson 1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-1__m04-l1.html",
+          "page_title": "M4 Lesson 1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-2-micro-2-1__m04-l2-ml-1-2.html",
+          "page_title": "M4 Lesson 2 - Micro 2.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2-micro-2-1__m04-l2-ml-1-3.html",
+          "page_title": "M4 Lesson 2 - Micro 2.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2-micro-2-1__m04-l2-ml-1-4.html",
+          "page_title": "M4 Lesson 2 - Micro 2.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2-micro-2-1__m04-l2-ml-1.html",
+          "page_title": "M4 Lesson 2 - Micro 2.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2-micro-2-2__m04-l2-ml-2-2.html",
+          "page_title": "M4 Lesson 2 - Micro 2.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2-micro-2-2__m04-l2-ml-2-3.html",
+          "page_title": "M4 Lesson 2 - Micro 2.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2-micro-2-2__m04-l2-ml-2-4.html",
+          "page_title": "M4 Lesson 2 - Micro 2.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2-micro-2-2__m04-l2-ml-2-4.html",
+          "page_title": "M4 Lesson 2 - Micro 2.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-2-micro-2-2__m04-l2-ml-2.html",
+          "page_title": "M4 Lesson 2 - Micro 2.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2-micro-2-3__m04-l2-ml-3-2.html",
+          "page_title": "M4 Lesson 2 - Micro 2.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2-micro-2-3__m04-l2-ml-3-3.html",
+          "page_title": "M4 Lesson 2 - Micro 2.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2-micro-2-3__m04-l2-ml-3-4.html",
+          "page_title": "M4 Lesson 2 - Micro 2.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2-micro-2-3__m04-l2-ml-3-4.html",
+          "page_title": "M4 Lesson 2 - Micro 2.3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-2-micro-2-3__m04-l2-ml-3.html",
+          "page_title": "M4 Lesson 2 - Micro 2.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2__m04-l2-2.html",
+          "page_title": "M4 Lesson 2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2__m04-l2-2.html",
+          "page_title": "M4 Lesson 2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-2__m04-l2-3.html",
+          "page_title": "M4 Lesson 2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2__m04-l2-3.html",
+          "page_title": "M4 Lesson 2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-2__m04-l2-4.html",
+          "page_title": "M4 Lesson 2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2__m04-l2-4.html",
+          "page_title": "M4 Lesson 2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-2__m04-l2.html",
+          "page_title": "M4 Lesson 2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-2__m04-l2.html",
+          "page_title": "M4 Lesson 2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-3-micro-3-1__m04-l3-ml-1-2.html",
+          "page_title": "M4 Lesson 3 - Micro 3.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3-micro-3-1__m04-l3-ml-1-3.html",
+          "page_title": "M4 Lesson 3 - Micro 3.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3-micro-3-1__m04-l3-ml-1-4.html",
+          "page_title": "M4 Lesson 3 - Micro 3.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3-micro-3-1__m04-l3-ml-1-4.html",
+          "page_title": "M4 Lesson 3 - Micro 3.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-3-micro-3-1__m04-l3-ml-1.html",
+          "page_title": "M4 Lesson 3 - Micro 3.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3-micro-3-2__m04-l3-ml-2-2.html",
+          "page_title": "M4 Lesson 3 - Micro 3.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3-micro-3-2__m04-l3-ml-2-3.html",
+          "page_title": "M4 Lesson 3 - Micro 3.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3-micro-3-2__m04-l3-ml-2-4.html",
+          "page_title": "M4 Lesson 3 - Micro 3.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3-micro-3-2__m04-l3-ml-2-4.html",
+          "page_title": "M4 Lesson 3 - Micro 3.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-3-micro-3-2__m04-l3-ml-2.html",
+          "page_title": "M4 Lesson 3 - Micro 3.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3-micro-3-3__m04-l3-ml-3-2.html",
+          "page_title": "M4 Lesson 3 - Micro 3.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3-micro-3-3__m04-l3-ml-3-3.html",
+          "page_title": "M4 Lesson 3 - Micro 3.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3-micro-3-3__m04-l3-ml-3-4.html",
+          "page_title": "M4 Lesson 3 - Micro 3.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3-micro-3-3__m04-l3-ml-3.html",
+          "page_title": "M4 Lesson 3 - Micro 3.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3__m04-l3-2.html",
+          "page_title": "M4 Lesson 3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3__m04-l3-2.html",
+          "page_title": "M4 Lesson 3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-3__m04-l3-3.html",
+          "page_title": "M4 Lesson 3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3__m04-l3-3.html",
+          "page_title": "M4 Lesson 3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-3__m04-l3-4.html",
+          "page_title": "M4 Lesson 3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3__m04-l3-4.html",
+          "page_title": "M4 Lesson 3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-3__m04-l3.html",
+          "page_title": "M4 Lesson 3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-3__m04-l3.html",
+          "page_title": "M4 Lesson 3",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-4-micro-4-1__m04-l4-ml-1-2.html",
+          "page_title": "M4 Lesson 4 - Micro 4.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4-micro-4-1__m04-l4-ml-1-3.html",
+          "page_title": "M4 Lesson 4 - Micro 4.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4-micro-4-1__m04-l4-ml-1-4.html",
+          "page_title": "M4 Lesson 4 - Micro 4.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4-micro-4-1__m04-l4-ml-1-4.html",
+          "page_title": "M4 Lesson 4 - Micro 4.1",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-4-micro-4-1__m04-l4-ml-1.html",
+          "page_title": "M4 Lesson 4 - Micro 4.1",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4-micro-4-2__m04-l4-ml-2-2.html",
+          "page_title": "M4 Lesson 4 - Micro 4.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4-micro-4-2__m04-l4-ml-2-3.html",
+          "page_title": "M4 Lesson 4 - Micro 4.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4-micro-4-2__m04-l4-ml-2-4.html",
+          "page_title": "M4 Lesson 4 - Micro 4.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4-micro-4-2__m04-l4-ml-2-4.html",
+          "page_title": "M4 Lesson 4 - Micro 4.2",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-4-micro-4-2__m04-l4-ml-2.html",
+          "page_title": "M4 Lesson 4 - Micro 4.2",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4-micro-4-3__m04-l4-ml-3-2.html",
+          "page_title": "M4 Lesson 4 - Micro 4.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4-micro-4-3__m04-l4-ml-3-3.html",
+          "page_title": "M4 Lesson 4 - Micro 4.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4-micro-4-3__m04-l4-ml-3-4.html",
+          "page_title": "M4 Lesson 4 - Micro 4.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4-micro-4-3__m04-l4-ml-3.html",
+          "page_title": "M4 Lesson 4 - Micro 4.3",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4__m04-l4-2.html",
+          "page_title": "M4 Lesson 4",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4__m04-l4-2.html",
+          "page_title": "M4 Lesson 4",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-4__m04-l4-3.html",
+          "page_title": "M4 Lesson 4",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4__m04-l4-3.html",
+          "page_title": "M4 Lesson 4",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-4__m04-l4-4.html",
+          "page_title": "M4 Lesson 4",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4__m04-l4-4.html",
+          "page_title": "M4 Lesson 4",
+          "embed_type": "link"
+        },
+        {
+          "page_file": "m4-lesson-4__m04-l4.html",
+          "page_title": "M4 Lesson 4",
+          "embed_type": "iframe"
+        },
+        {
+          "page_file": "m4-lesson-4__m04-l4.html",
+          "page_title": "M4 Lesson 4",
+          "embed_type": "link"
+        }
+      ]
+    },
+    "772a67d0-2f3f-4ef4-a3e2-b44300c00b0b": {
+      "video_id": "772a67d0-2f3f-4ef4-a3e2-b44300c00b0b",
+      "embed_url": "https://stevens.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=772a67d0-2f3f-4ef4-a3e2-b44300c00b0b&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all",
+      "first_seen_title": "Micro-Learning 1.1 video: The Three Forms of Intelligence",
+      "found_in": [
+        {
+          "page_file": "micro-learning-1-1__micro-learning-1-dot-1.html",
+          "page_title": "Micro Learning 1.1",
+          "embed_type": "iframe"
+        }
+      ]
+    },
+    "3cceae62-1cba-43c4-ac83-b44300c00aff": {
+      "video_id": "3cceae62-1cba-43c4-ac83-b44300c00aff",
+      "embed_url": "https://stevens.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=3cceae62-1cba-43c4-ac83-b44300c00aff&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all",
+      "first_seen_title": "Micro-Learning 1.2 video: How AI Actually Thinks",
+      "found_in": [
+        {
+          "page_file": "micro-learning-1-2__micro-learning-1-dot-2.html",
+          "page_title": "Micro learning 1.2",
+          "embed_type": "iframe"
+        }
+      ]
+    },
+    "6ced22e6-6b81-49dd-b209-b44300c00b06": {
+      "video_id": "6ced22e6-6b81-49dd-b209-b44300c00b06",
+      "embed_url": "https://stevens.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=6ced22e6-6b81-49dd-b209-b44300c00b06&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all",
+      "first_seen_title": "Micro-Learning 1.3 video: The AI Tier Ladder",
+      "found_in": [
+        {
+          "page_file": "micro-learning-1-3__micro-learning-1-dot-3.html",
+          "page_title": "Micro Learning 1.3",
+          "embed_type": "iframe"
+        }
+      ]
+    },
+    "5289af4b-d916-42c0-bc8c-b443014b073c": {
+      "video_id": "5289af4b-d916-42c0-bc8c-b443014b073c",
+      "embed_url": "https://stevens.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=5289af4b-d916-42c0-bc8c-b443014b073c&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all",
+      "first_seen_title": "Embedded course video",
+      "found_in": [
+        {
+          "page_file": "summary__summary-2.html",
+          "page_title": "Summary",
+          "embed_type": "iframe"
+        }
+      ]
+    },
+    "e1bc5adc-58ce-4e55-a68e-b443013e9217": {
+      "video_id": "e1bc5adc-58ce-4e55-a68e-b443013e9217",
+      "embed_url": "https://stevens.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=e1bc5adc-58ce-4e55-a68e-b443013e9217&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all",
+      "first_seen_title": "Welcome message from the instructor",
+      "found_in": [
+        {
+          "page_file": "welcome-to-the-course__welcome-to-the-course.html",
+          "page_title": "Welcome to the course",
+          "embed_type": "iframe"
+        }
+      ]
+    }
+  }
+}

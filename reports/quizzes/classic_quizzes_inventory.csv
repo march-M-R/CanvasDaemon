@@ -1,0 +1,3 @@
+quiz_id,title,published,quiz_type,points_possible,question_count,time_limit,allowed_attempts,shuffle_answers,show_correct_answers,html_url,created_at,updated_at
+380,CanvasDaemon Test Classic Quiz,False,assignment,,2,10,2,True,True,https://sit-online.instructure.com/courses/226/quizzes/380,,
+377,Unnamed Quiz,False,assignment,0.0,0,,1,False,True,https://sit-online.instructure.com/courses/226/quizzes/377,,

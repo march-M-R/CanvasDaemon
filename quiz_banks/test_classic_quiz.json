@@ -1,0 +1,72 @@
+{
+  "title": "CanvasDaemon Test Classic Quiz",
+  "module": "Module 2: How AI Learns from Data",
+  "lesson": "Test Lesson",
+  "description": "Test quiz created through CanvasDaemon. Keep unpublished.",
+  "published": false,
+  "time_limit": 10,
+  "allowed_attempts": 2,
+  "shuffle_answers": true,
+  "show_correct_answers": true,
+  "hide_results": null,
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "question_name": "AI Example",
+      "objective": "Identify examples of AI systems.",
+      "difficulty": "easy",
+      "tags": ["ai", "examples"],
+      "image": "canvasdaemon_test_image.png",
+      "question_text": "Which of these is an example of AI?",
+      "points_possible": 1,
+      "correct_comments": "A recommendation system is an example of AI because it uses data patterns to suggest items.",
+      "incorrect_comments": "Look for the option that uses data and prediction to make a recommendation.",
+      "choices": [
+        {"text": "A recommendation system", "correct": true},
+        {"text": "A wooden pencil", "correct": false},
+        {"text": "A blank notebook", "correct": false}
+      ]
+    },
+    {
+      "type": "true_false",
+      "question_name": "AI Learns From Data",
+      "objective": "Explain that AI systems can learn from data.",
+      "difficulty": "easy",
+      "tags": ["ai", "data"],
+      "question_text": "AI systems can learn patterns from data.",
+      "points_possible": 1,
+      "correct": true,
+      "correct_comments": "Correct. Many AI systems learn patterns from examples or data.",
+      "incorrect_comments": "AI systems often improve by finding patterns in data."
+    },
+    {
+      "type": "multiple_answers",
+      "question_name": "AI Applications",
+      "objective": "Recognize common AI applications.",
+      "difficulty": "easy",
+      "tags": ["ai", "applications"],
+      "question_text": "Select all examples that can involve AI.",
+      "points_possible": 1,
+      "correct_comments": "Chatbots, recommendation systems, and image classifiers can all involve AI.",
+      "incorrect_comments": "Choose the options that use prediction, classification, or pattern recognition.",
+      "choices": [
+        {"text": "Chatbot", "correct": true},
+        {"text": "Spotify recommendations", "correct": true},
+        {"text": "Plain paper folder", "correct": false},
+        {"text": "Image classifier", "correct": true}
+      ]
+    },
+    {
+      "type": "fill_blank",
+      "question_name": "Training Data",
+      "objective": "Identify data as a key input for AI training.",
+      "difficulty": "easy",
+      "tags": ["data", "training"],
+      "question_text": "AI models learn patterns from ____.",
+      "points_possible": 1,
+      "answers": ["data", "training data"],
+      "correct_comments": "Correct. AI models learn patterns from data or training data.",
+      "incorrect_comments": "The missing word is what AI models use to learn patterns."
+    }
+  ]
+}

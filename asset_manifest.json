@@ -394,6 +394,34 @@
       "locked": false,
       "hidden": false
     },
+    "16254": {
+      "file_id": 16254,
+      "filename": "canvasdaemon_test_activity.html",
+      "display_name": "canvasdaemon_test_activity.html",
+      "category": "editable",
+      "content_type": "text/html",
+      "size": 304,
+      "url": "https://sit-online.instructure.com/files/16254/download?download_frd=1&verifier=4B9MLj9gvoGQnJSLyySnqlGGXaFJcY6eQ8eBSVTa",
+      "folder_id": 1483,
+      "created_at": "2026-06-05T10:56:41Z",
+      "updated_at": "2026-06-05T10:56:41Z",
+      "locked": false,
+      "hidden": false
+    },
+    "16255": {
+      "file_id": 16255,
+      "filename": "canvasdaemon_test_image.png",
+      "display_name": "canvasdaemon_test_image.png",
+      "category": "image",
+      "content_type": "image/png",
+      "size": 3357,
+      "url": "https://sit-online.instructure.com/files/16255/download?download_frd=1&verifier=9GssPeCsd5QOTGESp2lBWxwfHYrv0cF10ZFaNDTz",
+      "folder_id": 1484,
+      "created_at": "2026-06-05T10:58:07Z",
+      "updated_at": "2026-06-05T10:58:07Z",
+      "locked": false,
+      "hidden": false
+    },
     "15237": {
       "file_id": 15237,
       "filename": "check.png",

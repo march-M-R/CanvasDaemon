@@ -1,3 +1,4 @@
+canvasdaemon-new-test-page__canvasdaemon-new-test-page.html
 canvasdaemon-test-2__canvasdaemon-test-2.html
 checklist__checklist.html
 course-guide__course-guide.html
@@ -312,5 +313,6 @@ m4-progress-checklist__m04-checklist.html
 m4-progress-checklist__m04-progress-checklist-2.html
 m4-progress-checklist__m04-progress-checklist.html
 ml11__ml11.html
+new-lesson-page__new-lesson-page.html
 progress-and-portfolio__progress-and-portfolio.html
 summary__summary.html

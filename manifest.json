@@ -2825,6 +2825,14 @@
       "html_file": "pages/new-lesson-page__new-lesson-page.html",
       "last_canvas_update": "2026-06-05T09:24:20Z",
       "created_locally_at": "20260605_052420"
+    },
+    "canvasdaemon-full-flow-test__canvasdaemon-full-flow-test.html": {
+      "title": "CanvasDaemon Full Flow Test",
+      "canvas_url": "canvasdaemon-full-flow-test",
+      "page_id": 4656,
+      "html_file": "pages/canvasdaemon-full-flow-test__canvasdaemon-full-flow-test.html",
+      "last_canvas_update": "2026-06-05T09:40:17Z",
+      "created_locally_at": "20260605_054017"
     }
   }
 }

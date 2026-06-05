@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CanvasDaemon Interactive Runbook</title>
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --panel: #111318;
+      --card: #1a1d23;
+      --soft: #242832;
+      --red: #a32638;
+      --red2: #c64155;
+      --cream: #f7f3ea;
+      --muted: #c9cdd2;
+      --text: #ffffff;
+      --line: rgba(255,255,255,0.12);
+      --shadow: 0 24px 80px rgba(0,0,0,0.35);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(163,38,56,0.28), transparent 34rem),
+        radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 28rem),
+        linear-gradient(180deg, #0b0d10 0%, #111318 45%, #0b0d10 100%);
+      color: var(--cream);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+    .shell { width: min(1180px, calc(100% - 34px)); margin: 0 auto; }
+
+    .hero {
+      padding: 64px 0 34px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.16fr 0.84fr;
+      gap: 28px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 13px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .pulse {
+      width: 9px; height: 9px; border-radius: 50%; background: var(--red2);
+      box-shadow: 0 0 0 0 rgba(198,65,85,0.7);
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(198,65,85,0.6); }
+      70% { box-shadow: 0 0 0 12px rgba(198,65,85,0); }
+      100% { box-shadow: 0 0 0 0 rgba(198,65,85,0); }
+    }
+    h1 {
+      margin: 22px 0 18px;
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 0.94;
+      letter-spacing: -0.055em;
+      color: #fff;
+    }
+    .hero p.lead {
+      max-width: 730px;
+      color: rgba(247,243,234,0.82);
+      font-size: clamp(17px, 2vw, 21px);
+      margin: 0 0 26px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      border: 0;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 14px;
+      padding: 13px 18px;
+      background: var(--red);
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 14px 38px rgba(163,38,56,0.28);
+      transition: transform .18s ease, background .18s ease;
+    }
+    .btn:hover { transform: translateY(-2px); background: var(--red2); }
+    .btn.secondary { background: rgba(255,255,255,0.08); box-shadow: none; border: 1px solid rgba(255,255,255,0.15); color: var(--cream); }
+
+    .terminal-card {
+      background: rgba(17,19,24,0.86);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform: rotate(1deg);
+    }
+    .terminal-top { display: flex; align-items: center; gap: 8px; padding: 14px 16px; background: rgba(255,255,255,0.06); border-bottom: 1px solid var(--line); }
+    .dot { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }
+    .dot:nth-child(2) { background: #ffbd2e; }
+    .dot:nth-child(3) { background: #28c840; }
+    .terminal-body { padding: 22px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; color: #c9ffda; min-height: 270px; }
+    .line { display: block; margin: 0 0 10px; white-space: nowrap; overflow: hidden; animation: typeIn .9s steps(40,end) both; }
+    .line:nth-child(2) { animation-delay: .3s; }
+    .line:nth-child(3) { animation-delay: .6s; }
+    .line:nth-child(4) { animation-delay: .9s; }
+    .line:nth-child(5) { animation-delay: 1.2s; }
+    @keyframes typeIn { from { width: 0; } to { width: 100%; } }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin: 34px 0 24px;
+    }
+    .stat {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    .stat b { display: block; font-size: 27px; color: #fff; margin-bottom: 2px; }
+    .stat span { color: var(--muted); font-size: 13px; }
+
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(11,13,16,0.78);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .tabs {
+      display: flex;
+      overflow-x: auto;
+      gap: 8px;
+      padding: 12px 0;
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      white-space: nowrap;
+      padding: 10px 13px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 650;
+      transition: all .18s ease;
+    }
+    .tab.active, .tab:hover { background: var(--red); color: #fff; border-color: transparent; }
+
+    main { padding: 34px 0 72px; }
+    .section { display: none; animation: fade .28s ease; }
+    .section.active { display: block; }
+    @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr 290px;
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 22px;
+    }
+    .section-title {
+      background: linear-gradient(135deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 30px;
+    }
+    h2 { margin: 0 0 10px; font-size: clamp(28px, 4vw, 46px); line-height: 1; letter-spacing: -0.035em; color: #fff; }
+    h3 { margin: 0 0 10px; color: #fff; font-size: 22px; letter-spacing: -0.02em; }
+    .section-title p { margin: 0; color: rgba(247,243,234,0.78); max-width: 800px; }
+    .visual-card {
+      min-height: 190px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: #151820;
+      overflow: hidden;
+      position: relative;
+    }
+    .visual-card img { width: 100%; height: 100%; object-fit: cover; opacity: .86; display: block; }
+    .visual-card:after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent, rgba(11,13,16,0.54));
+    }
+    .caption { position: absolute; bottom: 14px; left: 14px; right: 14px; z-index: 2; color: #fff; font-size: 13px; font-weight: 700; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid.two { grid-template-columns: repeat(2, 1fr); }
+    .grid.four { grid-template-columns: repeat(4, 1fr); }
+    .card {
+      background: rgba(26,29,35,0.92);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    }
+    .card p { color: rgba(247,243,234,0.76); margin: 0; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(163,38,56,0.16);
+      color: #ffcbd3;
+      border: 1px solid rgba(163,38,56,0.3);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .codebox {
+      background: #080a0d;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 14px 0 0;
+    }
+    .codebar { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.08); color: var(--muted); font-size: 12px; }
+    pre { margin: 0; padding: 15px; overflow-x: auto; color: #d6ffe0; font-size: 13px; line-height: 1.5; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .copy {
+      background: rgba(255,255,255,0.08);
+      color: var(--cream);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 9px;
+      padding: 6px 9px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .copy:hover { background: var(--red); }
+
+    .accordion { display: grid; gap: 12px; }
+    details {
+      background: rgba(26,29,35,0.92);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    summary { cursor: pointer; padding: 17px 20px; font-weight: 800; color: #fff; }
+    details > div { padding: 0 20px 20px; color: rgba(247,243,234,0.78); }
+
+    .timeline { display: grid; gap: 14px; counter-reset: step; }
+    .step {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 14px;
+      align-items: start;
+      background: rgba(26,29,35,0.92);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    .step:before {
+      counter-increment: step;
+      content: counter(step);
+      width: 42px; height: 42px; border-radius: 14px;
+      display: grid; place-items: center;
+      background: var(--red); color: #fff; font-weight: 900;
+    }
+    .step p { margin: 4px 0 0; color: rgba(247,243,234,0.76); }
+
+    table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 16px; }
+    th, td { padding: 13px 14px; border-bottom: 1px solid rgba(255,255,255,0.09); text-align: left; vertical-align: top; }
+    th { color: #fff; background: rgba(255,255,255,0.07); font-size: 13px; }
+    td { color: rgba(247,243,234,0.78); font-size: 14px; }
+    tr:last-child td { border-bottom: 0; }
+
+    .searchbar { margin: 0 0 18px; display: flex; gap: 10px; }
+    .searchbar input {
+      width: 100%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; color: #fff; padding: 13px 15px; font-size: 15px;
+    }
+    .searchbar input::placeholder { color: rgba(255,255,255,0.45); }
+
+    .callout {
+      border-left: 5px solid var(--red);
+      background: rgba(163,38,56,0.14);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin: 18px 0;
+      color: rgba(247,243,234,0.82);
+    }
+
+    .footer { padding: 34px 0 60px; color: var(--muted); text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
+
+    @media (max-width: 900px) {
+      .hero-grid, .section-head, .grid, .grid.two, .grid.four, .stats { grid-template-columns: 1fr; }
+      .terminal-card { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="shell hero-grid">
+      <div>
+        <div class="eyebrow"><span class="pulse"></span> Canvas automation tool runbook</div>
+        <h1>CanvasDaemon</h1>
+        <p class="lead">An interactive guide to the automation pipeline: pages, assets, quizzes, previews, Panopto, reports, backups, and safe deployment workflows.</p>
+        <div class="hero-actions">
+          <button class="btn" data-jump="workflows">Start with workflows</button>
+          <button class="btn secondary" data-jump="scripts">Browse scripts</button>
+          <button class="btn secondary" data-jump="safety">Safety rules</button>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>Pages</b><span>pull, search, preview, push</span></div>
+          <div class="stat"><b>Assets</b><span>upload, find, embed, preview</span></div>
+          <div class="stat"><b>Quizzes</b><span>create, inventory, sync</span></div>
+          <div class="stat"><b>Canvas</b><span>real render preview</span></div>
+        </div>
+      </div>
+      <div class="terminal-card" aria-label="animated terminal illustration">
+        <div class="terminal-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="terminal-body">
+          <span class="line">$ python scripts/find_page.py "overview"</span>
+          <span class="line">✓ Found active module page</span>
+          <span class="line">$ python scripts/preview_page_in_canvas.py page.html</span>
+          <span class="line">✓ Canvas preview opened</span>
+          <span class="line">$ python scripts/push_module_page.py page.html --apply</span>
+          <span class="line">✓ Backup saved before push</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav-wrap">
+    <div class="shell tabs" role="tablist">
+      <button class="tab active" data-tab="overview">Overview</button>
+      <button class="tab" data-tab="architecture">Architecture</button>
+      <button class="tab" data-tab="folders">Folders</button>
+      <button class="tab" data-tab="scripts">Scripts</button>
+      <button class="tab" data-tab="workflows">Workflows</button>
+      <button class="tab" data-tab="pages">Pages</button>
+      <button class="tab" data-tab="assets">Assets</button>
+      <button class="tab" data-tab="quizzes">Quizzes</button>
+      <button class="tab" data-tab="preview">Preview</button>
+      <button class="tab" data-tab="panopto">Panopto</button>
+      <button class="tab" data-tab="safety">Safety</button>
+      <button class="tab" data-tab="next">Next</button>
+    </div>
+  </nav>
+
+  <main class="shell">
+    <section class="section active" id="overview">
+      <div class="section-head">
+        <div class="section-title">
+          <h2>What CanvasDaemon does</h2>
+          <p>CanvasDaemon turns Canvas course building into a controlled local workflow. Instead of copying HTML by hand, you pull course content, edit locally, preview inside real Canvas, and push only when ready.</p>
+        </div>
+        <div class="visual-card"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=80" alt="team planning around a table"><div class="caption">Built for fast curriculum production without chaos.</div></div>
+      </div>
+      <div class="grid three">
+        <div class="card"><span class="badge">Core idea</span><h3>Local-first editing</h3><p>Canvas pages and editable files are pulled into the project so Codex, VS Code, and local tools can edit them safely.</p></div>
+        <div class="card"><span class="badge">Safety layer</span><h3>Dry-run by default</h3><p>Most dangerous operations preview first. Real Canvas updates require explicit <code>--apply</code>.</p></div>
+        <div class="card"><span class="badge">Preview layer</span><h3>Real Canvas render</h3><p>Preview scripts write to a reusable CanvasDaemon Preview Page so you see Canvas-sanitized output before touching production pages.</p></div>
+      </div>
+      <div class="callout"><strong>North Star:</strong> AI can help edit locally, but CanvasDaemon decides what gets pushed, where it goes, and how it is backed up.</div>
+    </section>
+
+    <section class="section" id="architecture">
+      <div class="section-head">
+        <div class="section-title">
+          <h2>System architecture</h2>
+          <p>The pipeline has five major lanes: Canvas pages, Canvas files/assets, quizzes, Panopto embeds, and previews. Reports and manifests act as the local source of truth.</p>
+        </div>
+        <div class="visual-card"><img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=900&q=80" alt="code and system architecture"><div class="caption">Automation pipeline = local repo + Canvas API + reports.</div></div>
+      </div>
+      <div class="timeline">
+        <div class="step"><div><h3>Pull inventory</h3><p>Scripts read Canvas and write local manifests/reports: pages, files, active module pages, quizzes, and Panopto references.</p></div></div>
+        <div class="step"><div><h3>Edit locally</h3><p>HTML pages, activities, quiz JSON, and assets live in project folders where AI coding tools can safely modify them.</p></div></div>
+        <div class="step"><div><h3>Preview in Canvas</h3><p>Preview scripts overwrite only the dedicated CanvasDaemon Preview Page. This tests what Canvas actually renders.</p></div></div>
+        <div class="step"><div><h3>Push or sync</h3><p>Production updates use explicit commands such as <code>push_page.py --apply</code>, <code>push_module_page.py --apply</code>, and quiz sync commands.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="folders">
+      <div class="section-title" style="margin-bottom:22px;"><h2>Folder map</h2><p>Each folder has a specific job. Keeping them clean prevents duplicate-page confusion and makes future UI work easier.</p></div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Folder / file</th><th>Purpose</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><code>pages/</code></td><td>Local copies of Canvas page bodies.</td><td>Used by preview, push, and page search workflows.</td></tr>
+            <tr><td><code>assets/</code></td><td>Local source assets you create before upload.</td><td>Subfolders: activities, images, pdfs, videos, other.</td></tr>
+            <tr><td><code>canvas_files/</code></td><td>Downloaded Canvas file content.</td><td><code>editable/referenced</code> contains active-page referenced HTML/CSS/JS/text files.</td></tr>
+            <tr><td><code>quiz_banks/</code></td><td>Quiz source JSON files.</td><td>Used by create/sync quiz scripts.</td></tr>
+            <tr><td><code>reports/pages/</code></td><td>Page inventory reports.</td><td>Used pages, unused pages, duplicate titles, summary.</td></tr>
+            <tr><td><code>reports/files/</code></td><td>Canvas file metadata reports.</td><td>Main CSV: <code>canvas_files.csv</code>.</td></tr>
+            <tr><td><code>reports/quizzes/</code></td><td>Quiz inventory and sync logs.</td><td>Classic quiz inventory and sync log live here.</td></tr>
+            <tr><td><code>reports/panopto/</code></td><td>Panopto discovery output.</td><td>Tracks embeds found in pages.</td></tr>
+            <tr><td><code>backups/</code></td><td>Pre-push and pull backups.</td><td>Generated by push/pull workflows. Usually not committed.</td></tr>
+            <tr><td><code>manifest.json</code></td><td>Local map of Canvas pages.</td><td>Generated by page pull scripts.</td></tr>
+            <tr><td><code>asset_manifest.json</code></td><td>Local map of Canvas files.</td><td>Generated by file metadata pull.</td></tr>
+            <tr><td><code>panopto_manifest.json</code></td><td>Local map of Panopto embeds.</td><td>Generated by Panopto discovery.</td></tr>
+            <tr><td><code>preview_config.json</code></td><td>Preview environment configuration.</td><td>Stores the reusable Canvas preview page URL and preview asset folder name.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="scripts">
+      <div class="section-title" style="margin-bottom:18px;"><h2>Script command center</h2><p>Use the search box to filter scripts. These are the main capabilities currently in the pipeline.</p></div>
+      <div class="searchbar"><input id="scriptSearch" placeholder="Search scripts, for example: quiz, preview, asset, page..." /></div>
+      <div class="accordion" id="scriptList">
+        <details open data-search="canvas test connection env"><summary><code>test_canvas.py</code> — connection check</summary><div>Confirms <code>.env</code> values work and Canvas API is reachable. Safe read-only command.<div class="codebox"><div class="codebar"><span>Command</span><button class="copy">Copy</button></div><pre><code>python scripts/test_canvas.py</code></pre></div></div></details>
+        <details data-search="pull pages manifest backup"><summary><code>pull_pages.py</code> — pull Canvas pages</summary><div>Downloads Canvas page bodies into <code>pages/</code> and updates <code>manifest.json</code>. Used before editing locally.</div></details>
+        <details data-search="list pages canvas"><summary><code>list_pages.py</code> — list pages from Canvas</summary><div>Reads Canvas page list and prints titles/URLs. Good for quick inspection.</div></details>
+        <details data-search="course inventory active unused duplicate module pages"><summary><code>course_inventory.py</code> — active vs unused page inventory</summary><div>Reads modules and page manifest, then writes reports to <code>reports/pages/</code>.</div></details>
+        <details data-search="find active page module"><summary><code>find_page.py</code> — find active module pages</summary><div>Searches only pages currently used in modules. Best for production editing.</div></details>
+        <details data-search="find any page active unused duplicates"><summary><code>find_any_page.py</code> — find active and unused pages</summary><div>Searches all pulled pages and marks whether each result is active or unused.</div></details>
+        <details data-search="push page dry run backup apply"><summary><code>push_page.py</code> — push any page</summary><div>Compares local HTML to Canvas, saves a pre-push backup, shows diff, and pushes only with <code>--apply</code>.</div></details>
+        <details data-search="push module page active safe"><summary><code>push_module_page.py</code> — push active module page safely</summary><div>Verifies the file appears in <code>used_module_pages.csv</code>, then delegates to <code>push_page.py</code>.</div></details>
+        <details data-search="create page canvas"><summary><code>create_page.py</code> — create Canvas page</summary><div>Creates a new Canvas page from title/body file and updates local tracking.</div></details>
+        <details data-search="add page module"><summary><code>add_page_to_module.py</code> — add page to module</summary><div>Adds an existing Canvas page to a module by page file/title/module name.</div></details>
+        <details data-search="files metadata asset manifest"><summary><code>pull_files_metadata.py</code> — pull Canvas file metadata</summary><div>Creates <code>asset_manifest.json</code> and <code>reports/files/canvas_files.csv</code>.</div></details>
+        <details data-search="find asset image html iframe"><summary><code>find_asset.py</code> — find Canvas assets and snippets</summary><div>Searches Canvas file metadata and prints ready-to-copy iframe/img/link snippets.</div></details>
+        <details data-search="download referenced editable files active pages"><summary><code>download_referenced_editable_files.py</code> — download referenced editable files</summary><div>Scans active pages for Canvas file IDs and downloads editable HTML/CSS/JS/text files.</div></details>
+        <details data-search="upload file canvas asset"><summary><code>upload_canvas_file.py</code> — upload new file asset</summary><div>Uploads local assets into Canvas Files. Used for activities, images, and supporting files.</div></details>
+        <details data-search="panopto discover video embeds"><summary><code>discover_panopto.py</code> — discover Panopto embeds</summary><div>Scans local pages for Panopto iframe/link references and writes Panopto reports.</div></details>
+        <details data-search="quiz create classic json"><summary><code>create_classic_quiz.py</code> — create Classic Quiz from JSON</summary><div>Creates an unpublished Classic Quiz with multiple choice, true/false, multiple answers, fill blank, images, comments, time limit, and attempts.</div></details>
+        <details data-search="quiz inventory classic"><summary><code>pull_classic_quizzes.py</code> — inventory Classic Quizzes</summary><div>Pulls all Classic Quizzes into <code>reports/quizzes/classic_quizzes_inventory.csv</code>.</div></details>
+        <details data-search="find quiz search"><summary><code>find_quiz.py</code> — search quiz inventory</summary><div>Searches quiz inventory by title, ID, type, published state, and URL.</div></details>
+        <details data-search="sync quiz settings"><summary><code>sync_classic_quiz.py</code> — sync quiz settings</summary><div>Dry-run by default. Finds quiz by exact title and updates quiz shell/settings only with <code>--apply</code>.</div></details>
+        <details data-search="preview setup canvas page"><summary><code>setup_preview_environment.py</code> — setup preview sandbox</summary><div>Creates/reuses the permanent CanvasDaemon Preview Page and writes <code>preview_config.json</code>.</div></details>
+        <details data-search="preview page canvas render"><summary><code>preview_page_in_canvas.py</code> — Canvas-rendered page preview</summary><div>Copies local page HTML into the dedicated preview page and opens Canvas.</div></details>
+        <details data-search="preview asset canvas iframe image file"><summary><code>preview_asset_in_canvas.py</code> — Canvas-rendered asset preview</summary><div>Uploads a local asset to the preview assets folder, embeds it on the preview page, and opens Canvas.</div></details>
+      </div>
+    </section>
+
+    <section class="section" id="workflows">
+      <div class="section-head">
+        <div class="section-title"><h2>End-to-end workflows</h2><p>These are the actual day-to-day sequences. Most commands are safe unless they include <code>--apply</code>.</p></div>
+        <div class="visual-card"><img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" alt="coding gif"><div class="caption">Move fast, but with dry-runs.</div></div>
+      </div>
+      <div class="grid two">
+        <div class="card"><h3>Create or edit a page</h3><div class="codebox"><div class="codebar"><span>Workflow</span><button class="copy">Copy</button></div><pre><code>python scripts/course_inventory.py
+python scripts/find_page.py "overview"
+code pages/m2-overview__m02-overview-4.html
+python scripts/preview_page_in_canvas.py "m2-overview__m02-overview-4.html"
+python scripts/push_module_page.py "m2-overview__m02-overview-4.html"
+python scripts/push_module_page.py "m2-overview__m02-overview-4.html" --apply</code></pre></div></div>
+        <div class="card"><h3>Create a quiz</h3><div class="codebox"><div class="codebar"><span>Workflow</span><button class="copy">Copy</button></div><pre><code>code quiz_banks/module2_lesson1.json
+python -m json.tool quiz_banks/module2_lesson1.json
+python -m py_compile scripts/create_classic_quiz.py
+python scripts/create_classic_quiz.py quiz_banks/module2_lesson1.json
+python scripts/pull_classic_quizzes.py
+python scripts/find_quiz.py "module2"</code></pre></div></div>
+      </div>
+      <div class="grid two" style="margin-top:16px;">
+        <div class="card"><h3>Preview an HTML activity</h3><div class="codebox"><div class="codebar"><span>Workflow</span><button class="copy">Copy</button></div><pre><code>python scripts/setup_preview_environment.py
+python scripts/preview_asset_in_canvas.py \
+"canvas_files/editable/referenced/15879__m02_ml1_1_data_or_not.html"</code></pre></div></div>
+        <div class="card"><h3>Update quiz settings</h3><div class="codebox"><div class="codebar"><span>Workflow</span><button class="copy">Copy</button></div><pre><code>python scripts/pull_classic_quizzes.py
+python scripts/find_quiz.py "CanvasDaemon"
+python scripts/sync_classic_quiz.py quiz_banks/test_classic_quiz.json
+python scripts/sync_classic_quiz.py quiz_banks/test_classic_quiz.json --apply</code></pre></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="pages">
+      <div class="section-title" style="margin-bottom:22px;"><h2>Pages pipeline</h2><p>Pages are Canvas wiki pages. The key safety problem is duplicates: many pages have the same title, so active module checks matter.</p></div>
+      <div class="timeline">
+        <div class="step"><div><h3>Inventory first</h3><p><code>course_inventory.py</code> separates active pages from unused duplicates.</p></div></div>
+        <div class="step"><div><h3>Find active file</h3><p>Use <code>find_page.py</code> for module pages, not raw title guessing.</p></div></div>
+        <div class="step"><div><h3>Preview in Canvas</h3><p>Use <code>preview_page_in_canvas.py</code> to see Canvas-rendered HTML before production push.</p></div></div>
+        <div class="step"><div><h3>Push with backup</h3><p><code>push_page.py</code> saves a pre-push backup and shows a diff. <code>push_module_page.py</code> adds active-page verification.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="assets">
+      <div class="section-head">
+        <div class="section-title"><h2>Assets and files</h2><p>Assets include HTML activities, images, PDFs, videos, and other Canvas Files. Editable files can be downloaded and previewed before embedding.</p></div>
+        <div class="visual-card"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&q=80" alt="laptop with code"><div class="caption">Activities are first-class assets.</div></div>
+      </div>
+      <div class="grid three">
+        <div class="card"><h3>Metadata</h3><p><code>pull_files_metadata.py</code> records Canvas file IDs, URLs, content types, folders, and categories.</p></div>
+        <div class="card"><h3>Search</h3><p><code>find_asset.py</code> outputs iframe/image/link snippets so assets can be embedded correctly.</p></div>
+        <div class="card"><h3>Preview</h3><p><code>preview_asset_in_canvas.py</code> uploads a preview copy and embeds it in the Canvas preview page using Canvas-style file URLs.</p></div>
+      </div>
+      <div class="callout"><strong>Important:</strong> Created assets get pushed/uploaded to Canvas. Downloaded assets are local copies and do not update Canvas unless a future update-file/sync script is used.</div>
+    </section>
+
+    <section class="section" id="quizzes">
+      <div class="section-title" style="margin-bottom:22px;"><h2>Classic Quiz automation</h2><p>The quiz pipeline currently targets Classic Quizzes because they are simpler for MVP automation.</p></div>
+      <div class="grid two">
+        <div class="card"><h3>Supported question types</h3><table><tbody><tr><td>Multiple choice</td><td>Auto-graded</td></tr><tr><td>True/False</td><td>Auto-graded</td></tr><tr><td>Multiple answers</td><td>Auto-graded</td></tr><tr><td>Fill blank</td><td>Auto-graded with accepted answers</td></tr></tbody></table></div>
+        <div class="card"><h3>Supported quiz settings</h3><table><tbody><tr><td>Published</td><td>Usually false while testing</td></tr><tr><td>Time limit</td><td>Example: 10 minutes</td></tr><tr><td>Allowed attempts</td><td>Example: 2</td></tr><tr><td>Shuffle answers</td><td>Supported</td></tr><tr><td>Show correct answers</td><td>Supported</td></tr><tr><td>Question images</td><td>Resolved from asset manifest</td></tr></tbody></table></div>
+      </div>
+      <div class="card" style="margin-top:16px;"><h3>Quiz JSON example</h3><div class="codebox"><div class="codebar"><span>quiz_banks/test_classic_quiz.json</span><button class="copy">Copy</button></div><pre><code>{
+  "title": "CanvasDaemon Test Classic Quiz",
+  "published": false,
+  "time_limit": 10,
+  "allowed_attempts": 2,
+  "shuffle_answers": true,
+  "show_correct_answers": true,
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "question_name": "AI Example",
+      "image": "canvasdaemon_test_image.png",
+      "question_text": "Which of these is an example of AI?",
+      "choices": [
+        {"text": "A recommendation system", "correct": true},
+        {"text": "A wooden pencil", "correct": false}
+      ]
+    }
+  ]
+}</code></pre></div></div>
+    </section>
+
+    <section class="section" id="preview">
+      <div class="section-head">
+        <div class="section-title"><h2>Preview system</h2><p>Preview is not just local browser rendering. It uses a real Canvas page so Canvas sanitization, iframes, file URLs, and embedded behavior can be tested safely.</p></div>
+        <div class="visual-card"><img src="https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif" alt="software preview gif"><div class="caption">Preview inside Canvas before production push.</div></div>
+      </div>
+      <div class="grid three">
+        <div class="card"><h3>Setup</h3><p><code>setup_preview_environment.py</code> creates/reuses <strong>CanvasDaemon Preview Page</strong> and writes <code>preview_config.json</code>.</p></div>
+        <div class="card"><h3>Page preview</h3><p><code>preview_page_in_canvas.py</code> copies local page HTML into the preview page.</p></div>
+        <div class="card"><h3>Asset preview</h3><p><code>preview_asset_in_canvas.py</code> uploads the local asset to preview assets and embeds only the iframe/image/link part.</p></div>
+      </div>
+      <div class="callout">The preview page is reusable. Running a new preview overwrites the previous preview, keeping Canvas clean.</div>
+    </section>
+
+    <section class="section" id="panopto">
+      <div class="section-title" style="margin-bottom:22px;"><h2>Panopto videos</h2><p>Panopto videos are external embeds, not Canvas Files. CanvasDaemon discovers them from local page HTML.</p></div>
+      <div class="grid two">
+        <div class="card"><h3>Discovery</h3><p><code>discover_panopto.py</code> scans pages for Panopto iframe and link URLs, then writes <code>panopto_manifest.json</code> and a CSV report.</p></div>
+        <div class="card"><h3>Future path</h3><p>Later, Panopto can become a first-class asset source with <code>find_panopto.py</code> and direct API pull if credentials become available.</p></div>
+      </div>
+      <div class="codebox"><div class="codebar"><span>Panopto iframe style</span><button class="copy">Copy</button></div><pre><code>&lt;iframe src="https://stevens.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=..." allowfullscreen loading="lazy"&gt;&lt;/iframe&gt;</code></pre></div>
+    </section>
+
+    <section class="section" id="safety">
+      <div class="section-title" style="margin-bottom:22px;"><h2>Safety rules</h2><p>CanvasDaemon is designed around reversible changes and explicit deploy commands.</p></div>
+      <div class="grid two">
+        <div class="card"><h3>Do</h3><table><tbody><tr><td>Run inventory before editing</td></tr><tr><td>Use <code>find_page.py</code> for active pages</td></tr><tr><td>Preview in Canvas before push</td></tr><tr><td>Use dry runs first</td></tr><tr><td>Commit after stable milestones</td></tr></tbody></table></div>
+        <div class="card"><h3>Do not</h3><table><tbody><tr><td>Blindly edit duplicate page names</td></tr><tr><td>Push without previewing important HTML</td></tr><tr><td>Bulk-update quizzes without explicit IDs</td></tr><tr><td>Commit <code>.env</code> or Canvas tokens</td></tr><tr><td>Assume local browser preview equals Canvas rendering</td></tr></tbody></table></div>
+      </div>
+      <div class="callout"><strong>Rule:</strong> Discovery scripts never delete. Push/update scripts require explicit intent.</div>
+    </section>
+
+    <section class="section" id="next">
+      <div class="section-title" style="margin-bottom:22px;"><h2>Recommended next builds</h2><p>These are the highest-value next steps before building a full UI.</p></div>
+      <div class="timeline">
+        <div class="step"><div><h3>Quiz question sync</h3><p>Add <code>--replace-questions</code> to sync quizzes by deleting/recreating questions only when explicitly requested.</p></div></div>
+        <div class="step"><div><h3>Quiz preview</h3><p>Create <code>preview_quiz.py</code> to inspect JSON locally before creating/updating Canvas quizzes.</p></div></div>
+        <div class="step"><div><h3>Command center</h3><p>Create <code>daemon.py</code>, a terminal UI that groups pages, assets, quizzes, Panopto, reports, and previews.</p></div></div>
+        <div class="step"><div><h3>Web UI</h3><p>After CLI stabilization, build a small local web UI on top of the same scripts.</p></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">CanvasDaemon Interactive Runbook · Stevens CPE Applied AI Course Automation · Local-first, Canvas-safe.</div>
+  </footer>
+
+  <script>
+    const tabs = [...document.querySelectorAll('.tab')];
+    const sections = [...document.querySelectorAll('.section')];
+    function activate(id) {
+      tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === id));
+      sections.forEach(s => s.classList.toggle('active', s.id === id));
+      window.scrollTo({ top: document.querySelector('.nav-wrap').offsetTop, behavior: 'smooth' });
+    }
+    tabs.forEach(tab => tab.addEventListener('click', () => activate(tab.dataset.tab)));
+    document.querySelectorAll('[data-jump]').forEach(btn => btn.addEventListener('click', () => activate(btn.dataset.jump)));
+
+    document.querySelectorAll('.copy').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const code = btn.closest('.codebox').querySelector('code').innerText;
+        try { await navigator.clipboard.writeText(code); btn.innerText = 'Copied'; setTimeout(() => btn.innerText = 'Copy', 1100); }
+        catch { btn.innerText = 'Select'; }
+      });
+    });
+
+    const scriptSearch = document.getElementById('scriptSearch');
+    if (scriptSearch) {
+      scriptSearch.addEventListener('input', () => {
+        const q = scriptSearch.value.toLowerCase().trim();
+        document.querySelectorAll('#scriptList details').forEach(d => {
+          const hay = (d.dataset.search + ' ' + d.innerText).toLowerCase();
+          d.style.display = hay.includes(q) ? '' : 'none';
+        });
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# Environment
+
+.env
+.venv/
+
+# Python
+
+**pycache**/
+*.pyc
+
+# macOS
+
+.DS_Store
+
+# Generated artifacts
+
+backups/
+reports/
+
+# Preview environment
+
+preview_config.json
+pages/canvasdaemon-preview-page__canvasdaemon-preview-page.html
+
+# Downloaded Canvas assets
+
+canvas_files/

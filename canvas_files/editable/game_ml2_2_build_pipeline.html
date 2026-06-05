@@ -1,0 +1,295 @@
+<!--
+  CANVAS EMBED: ML 2.2 - Build the Pipeline
+  <iframe src="LINK" width="100%" height="600" style="border:none;border-radius:12px;margin:32px 0;" title="Build the Pipeline"></iframe>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build the Pipeline</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+input[type=radio] { display: none; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f5f5f5; color: #363d45; line-height: 1.7; padding: 20px; }
+
+.prog { color: #a32638; font-size: 12px; font-weight: bold; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 12px; }
+#nav1:checked ~ .prog::before { content: "Scenario 1 of 5"; }
+#nav2:checked ~ .prog::before { content: "Scenario 2 of 5"; }
+#nav3:checked ~ .prog::before { content: "Scenario 3 of 5"; }
+#nav4:checked ~ .prog::before { content: "Scenario 4 of 5"; }
+#nav5:checked ~ .prog::before { content: "Scenario 5 of 5"; }
+.prog::before { content: "Scenario 1 of 5"; }
+
+.q-block { display: none; }
+#nav1:checked ~ .q-block[data-q="1"] { display: block; }
+#nav2:checked ~ .q-block[data-q="2"] { display: block; }
+#nav3:checked ~ .q-block[data-q="3"] { display: block; }
+#nav4:checked ~ .q-block[data-q="4"] { display: block; }
+#nav5:checked ~ .q-block[data-q="5"] { display: block; }
+#nav1:checked ~ .q-block:not([data-q="1"]) { display: none; }
+#nav2:checked ~ .q-block:not([data-q="2"]) { display: none; }
+#nav3:checked ~ .q-block:not([data-q="3"]) { display: none; }
+#nav4:checked ~ .q-block:not([data-q="4"]) { display: none; }
+#nav5:checked ~ .q-block:not([data-q="5"]) { display: none; }
+
+.card { background: #ffffff; border: 1px solid #E4E5E6; border-left: 5px solid #A32638; border-radius: 12px; padding: 20px 22px; margin-bottom: 14px; }
+.card-tag { color: #a32638; font-size: 12px; margin-bottom: 5px; font-weight: bold; letter-spacing: .06em; text-transform: uppercase; }
+.card-text { font-family: Georgia, serif; font-size: 18px; color: #0b0d10; line-height: 1.55; margin-bottom: 12px; }
+.card-error { background: #FFF8F8; border: 1px solid #F0D6D9; border-left: 4px solid #A32638; border-radius: 0 8px 8px 0; padding: 11px 14px; font-size: 13px; color: #4b535c; line-height: 1.55; }
+.card-error strong { color: #0b0d10; }
+
+.step-q { color: #4b535c; font-size: 14px; margin-bottom: 12px; }
+.steps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
+.step-lbl { display: block; background: #ffffff; border: 1.5px solid #E4E5E6; border-radius: 10px; padding: 13px 14px; cursor: pointer; transition: border-color .15s, background .15s; user-select: none; }
+.step-lbl:hover { border-color: #A32638; background: #FFF8F8; }
+.step-name { font-size: 13px; font-weight: bold; color: #0b0d10; display: block; margin-bottom: 2px; }
+.step-desc { font-size: 11px; color: #4b535c; display: block; }
+
+.fb { display: none; border-radius: 10px; padding: 13px 16px; font-size: 14px; line-height: 1.65; margin-bottom: 10px; }
+.fb.ok  { background: #FAFAFA; border: 1px solid #E4E5E6; border-left: 4px solid #363D45; }
+.fb.bad { background: #FFF8F8; border: 1px solid #F0D6D9; border-left: 4px solid #A32638; }
+.fb-stamp { display: inline-block; font-size: 11px; font-weight: bold; letter-spacing: .1em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; margin-bottom: 6px; }
+.fb.ok  .fb-stamp { background: #363D45; color: #fff; }
+.fb.bad .fb-stamp { background: #A32638; color: #fff; }
+
+.nxt { display: none; margin-top: 4px; }
+.nxt-btn { background: #A32638; color: #fff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 14px; font-weight: bold; cursor: pointer; }
+.nxt-btn:hover { background: #8a1d2a; }
+
+#q1a:checked ~ .q-block[data-q="1"] .fb[data-for="q1a"],
+#q1b:checked ~ .q-block[data-q="1"] .fb[data-for="q1b"],
+#q1c:checked ~ .q-block[data-q="1"] .fb[data-for="q1c"],
+#q1d:checked ~ .q-block[data-q="1"] .fb[data-for="q1d"] { display: block; }
+#q1a:checked ~ .q-block[data-q="1"] .nxt,
+#q1b:checked ~ .q-block[data-q="1"] .nxt,
+#q1c:checked ~ .q-block[data-q="1"] .nxt,
+#q1d:checked ~ .q-block[data-q="1"] .nxt { display: block; }
+#q1a:checked ~ .q-block[data-q="1"] .step-lbl,
+#q1b:checked ~ .q-block[data-q="1"] .step-lbl,
+#q1c:checked ~ .q-block[data-q="1"] .step-lbl,
+#q1d:checked ~ .q-block[data-q="1"] .step-lbl { pointer-events: none; opacity: .55; }
+#q1a:checked ~ .q-block[data-q="1"] label[for="q1a"],
+#q1b:checked ~ .q-block[data-q="1"] label[for="q1b"],
+#q1c:checked ~ .q-block[data-q="1"] label[for="q1c"],
+#q1d:checked ~ .q-block[data-q="1"] label[for="q1d"] { opacity: 1; border-color: #A32638; background: #FFF8F8; }
+
+#q2a:checked ~ .q-block[data-q="2"] .fb[data-for="q2a"],
+#q2b:checked ~ .q-block[data-q="2"] .fb[data-for="q2b"],
+#q2c:checked ~ .q-block[data-q="2"] .fb[data-for="q2c"],
+#q2d:checked ~ .q-block[data-q="2"] .fb[data-for="q2d"] { display: block; }
+#q2a:checked ~ .q-block[data-q="2"] .nxt,
+#q2b:checked ~ .q-block[data-q="2"] .nxt,
+#q2c:checked ~ .q-block[data-q="2"] .nxt,
+#q2d:checked ~ .q-block[data-q="2"] .nxt { display: block; }
+#q2a:checked ~ .q-block[data-q="2"] .step-lbl,
+#q2b:checked ~ .q-block[data-q="2"] .step-lbl,
+#q2c:checked ~ .q-block[data-q="2"] .step-lbl,
+#q2d:checked ~ .q-block[data-q="2"] .step-lbl { pointer-events: none; opacity: .55; }
+#q2a:checked ~ .q-block[data-q="2"] label[for="q2a"],
+#q2b:checked ~ .q-block[data-q="2"] label[for="q2b"],
+#q2c:checked ~ .q-block[data-q="2"] label[for="q2c"],
+#q2d:checked ~ .q-block[data-q="2"] label[for="q2d"] { opacity: 1; border-color: #A32638; background: #FFF8F8; }
+
+#q3a:checked ~ .q-block[data-q="3"] .fb[data-for="q3a"],
+#q3b:checked ~ .q-block[data-q="3"] .fb[data-for="q3b"],
+#q3c:checked ~ .q-block[data-q="3"] .fb[data-for="q3c"],
+#q3d:checked ~ .q-block[data-q="3"] .fb[data-for="q3d"] { display: block; }
+#q3a:checked ~ .q-block[data-q="3"] .nxt,
+#q3b:checked ~ .q-block[data-q="3"] .nxt,
+#q3c:checked ~ .q-block[data-q="3"] .nxt,
+#q3d:checked ~ .q-block[data-q="3"] .nxt { display: block; }
+#q3a:checked ~ .q-block[data-q="3"] .step-lbl,
+#q3b:checked ~ .q-block[data-q="3"] .step-lbl,
+#q3c:checked ~ .q-block[data-q="3"] .step-lbl,
+#q3d:checked ~ .q-block[data-q="3"] .step-lbl { pointer-events: none; opacity: .55; }
+#q3a:checked ~ .q-block[data-q="3"] label[for="q3a"],
+#q3b:checked ~ .q-block[data-q="3"] label[for="q3b"],
+#q3c:checked ~ .q-block[data-q="3"] label[for="q3c"],
+#q3d:checked ~ .q-block[data-q="3"] label[for="q3d"] { opacity: 1; border-color: #A32638; background: #FFF8F8; }
+
+#q4a:checked ~ .q-block[data-q="4"] .fb[data-for="q4a"],
+#q4b:checked ~ .q-block[data-q="4"] .fb[data-for="q4b"],
+#q4c:checked ~ .q-block[data-q="4"] .fb[data-for="q4c"],
+#q4d:checked ~ .q-block[data-q="4"] .fb[data-for="q4d"] { display: block; }
+#q4a:checked ~ .q-block[data-q="4"] .nxt,
+#q4b:checked ~ .q-block[data-q="4"] .nxt,
+#q4c:checked ~ .q-block[data-q="4"] .nxt,
+#q4d:checked ~ .q-block[data-q="4"] .nxt { display: block; }
+#q4a:checked ~ .q-block[data-q="4"] .step-lbl,
+#q4b:checked ~ .q-block[data-q="4"] .step-lbl,
+#q4c:checked ~ .q-block[data-q="4"] .step-lbl,
+#q4d:checked ~ .q-block[data-q="4"] .step-lbl { pointer-events: none; opacity: .55; }
+#q4a:checked ~ .q-block[data-q="4"] label[for="q4a"],
+#q4b:checked ~ .q-block[data-q="4"] label[for="q4b"],
+#q4c:checked ~ .q-block[data-q="4"] label[for="q4c"],
+#q4d:checked ~ .q-block[data-q="4"] label[for="q4d"] { opacity: 1; border-color: #A32638; background: #FFF8F8; }
+
+#q5a:checked ~ .q-block[data-q="5"] .fb[data-for="q5a"],
+#q5b:checked ~ .q-block[data-q="5"] .fb[data-for="q5b"],
+#q5c:checked ~ .q-block[data-q="5"] .fb[data-for="q5c"],
+#q5d:checked ~ .q-block[data-q="5"] .fb[data-for="q5d"] { display: block; }
+#q5a:checked ~ .q-block[data-q="5"] .step-lbl,
+#q5b:checked ~ .q-block[data-q="5"] .step-lbl,
+#q5c:checked ~ .q-block[data-q="5"] .step-lbl,
+#q5d:checked ~ .q-block[data-q="5"] .step-lbl { pointer-events: none; opacity: .55; }
+#q5a:checked ~ .q-block[data-q="5"] label[for="q5a"],
+#q5b:checked ~ .q-block[data-q="5"] label[for="q5b"],
+#q5c:checked ~ .q-block[data-q="5"] label[for="q5c"],
+#q5d:checked ~ .q-block[data-q="5"] label[for="q5d"] { opacity: 1; border-color: #A32638; background: #FFF8F8; }
+
+@media (max-width: 520px) {
+  body { padding: 14px; }
+  .steps-grid { grid-template-columns: 1fr; }
+}
+
+/* End screen */
+#nav-end:checked ~ .q-block { display: none; }
+#nav-end:checked ~ .end-screen { display: block; }
+.end-screen { display: none; background: #ffffff; border: 1px solid #E4E5E6; border-left: 5px solid #A32638; border-radius: 12px; padding: 28px 24px; text-align: center; }
+.end-title { font-family: Georgia, serif; font-size: 22px; color: #0b0d10; margin-bottom: 10px; }
+.end-body { font-size: 14px; color: #4b535c; line-height: 1.7; max-width: 520px; margin: 0 auto 20px; }
+.replay-btn { display: inline-block; background: #f5f5f5; border: 1.5px solid #E4E5E6; color: #363d45; text-decoration: none; border-radius: 8px; padding: 10px 22px; font-size: 14px; font-weight: bold; cursor: pointer; }
+.replay-btn:hover { border-color: #A32638; color: #A32638; background: #FFF8F8; }
+#q5a:checked ~ .q-block[data-q="5"] .nxt { display: block; }
+#q5b:checked ~ .q-block[data-q="5"] .nxt { display: block; }
+#q5c:checked ~ .q-block[data-q="5"] .nxt { display: block; }
+#q5d:checked ~ .q-block[data-q="5"] .nxt { display: block; }
+</style>
+</head>
+<body>
+
+<input type="radio" name="nav" id="nav1" checked>
+<input type="radio" name="nav" id="nav2">
+<input type="radio" name="nav" id="nav3">
+<input type="radio" name="nav" id="nav4">
+<input type="radio" name="nav" id="nav5">
+<input type="radio" name="nav" id="nav-end">
+<input type="radio" name="a1" id="q1a"><input type="radio" name="a1" id="q1b"><input type="radio" name="a1" id="q1c"><input type="radio" name="a1" id="q1d">
+<input type="radio" name="a2" id="q2a"><input type="radio" name="a2" id="q2b"><input type="radio" name="a2" id="q2c"><input type="radio" name="a2" id="q2d">
+<input type="radio" name="a3" id="q3a"><input type="radio" name="a3" id="q3b"><input type="radio" name="a3" id="q3c"><input type="radio" name="a3" id="q3d">
+<input type="radio" name="a4" id="q4a"><input type="radio" name="a4" id="q4b"><input type="radio" name="a4" id="q4c"><input type="radio" name="a4" id="q4d">
+<input type="radio" name="a5" id="q5a"><input type="radio" name="a5" id="q5b"><input type="radio" name="a5" id="q5c"><input type="radio" name="a5" id="q5d">
+
+<div class="prog"></div>
+
+<div class="q-block" data-q="1">
+  <div class="card">
+    <p class="card-tag">Scenario 1 of 5 &middot; Sentiment Analysis</p>
+    <p class="card-text">A sentiment analysis model was trained on product reviews from a single electronics retailer. When deployed to analyse restaurant reviews, it consistently labels complaints as positive and praise as negative.</p>
+    <div class="card-error"><strong>Error:</strong> The model performs well on electronics reviews but fails completely on any other category of text.</div>
+  </div>
+  <p class="step-q">Which pipeline step caused this failure?</p>
+  <div class="steps-grid">
+    <label class="step-lbl" for="q1a"><span class="step-name">Data Collection</span><span class="step-desc">Gathering the training examples</span></label>
+    <label class="step-lbl" for="q1b"><span class="step-name">Feature Extraction</span><span class="step-desc">Converting data into usable inputs</span></label>
+    <label class="step-lbl" for="q1c"><span class="step-name">Model Training</span><span class="step-desc">Learning patterns from examples</span></label>
+    <label class="step-lbl" for="q1d"><span class="step-name">Deployment</span><span class="step-desc">Using the model in the real world</span></label>
+  </div>
+  <div class="fb ok" data-for="q1a"><div class="fb-stamp">Correct</div>The training data came from a single narrow source and did not represent the real use case. Restaurant and electronics reviews use different language, vocabulary, and tone. The model learned patterns from electronics text and those patterns simply do not transfer. This is a data collection failure: the wrong data was gathered for the intended application.</div>
+  <div class="fb bad" data-for="q1b"><div class="fb-stamp">Not quite</div>Feature extraction processes whatever data it receives. The problem is upstream: the training data itself was not representative of the real use case. Even perfect feature extraction from the wrong data would produce a model that fails on different domains. The failure is in data collection, before feature extraction runs.</div>
+  <div class="fb bad" data-for="q1c"><div class="fb-stamp">Not quite</div>Training ran correctly on the data it was given. The problem is that the data did not represent the actual task. Even perfectly executed training on narrow data produces a model that only works on that narrow slice. The failure originates in data collection, not training.</div>
+  <div class="fb bad" data-for="q1d"><div class="fb-stamp">Not quite</div>The model was deployed correctly to a new task. The failure existed long before deployment, in how the training data was collected. Deployment cannot fix a model trained on the wrong data. The root cause is upstream in data collection.</div>
+  <div class="nxt"><label class="nxt-btn" for="nav2">Next scenario</label></div>
+</div>
+
+<div class="q-block" data-q="2">
+  <div class="card">
+    <p class="card-tag">Scenario 2 of 5 &middot; House Price Prediction</p>
+    <p class="card-text">A house price prediction model was given raw address strings as its only input. The model performs no better than random guessing and cannot identify any pricing patterns.</p>
+    <div class="card-error"><strong>Error:</strong> The model received data but could not learn anything meaningful from it.</div>
+  </div>
+  <p class="step-q">Which pipeline step caused this failure?</p>
+  <div class="steps-grid">
+    <label class="step-lbl" for="q2a"><span class="step-name">Data Collection</span><span class="step-desc">Gathering the training examples</span></label>
+    <label class="step-lbl" for="q2b"><span class="step-name">Feature Extraction</span><span class="step-desc">Converting data into usable inputs</span></label>
+    <label class="step-lbl" for="q2c"><span class="step-name">Model Training</span><span class="step-desc">Learning patterns from examples</span></label>
+    <label class="step-lbl" for="q2d"><span class="step-name">Model Evaluation</span><span class="step-desc">Testing on held-out data</span></label>
+  </div>
+  <div class="fb bad" data-for="q2a"><div class="fb-stamp">Not quite</div>Data was collected. Addresses do contain location information relevant to house prices. The problem is that raw address text was never converted into usable numerical or categorical signals. That conversion should happen in feature extraction. The failure is in the step after collection.</div>
+  <div class="fb ok" data-for="q2b"><div class="fb-stamp">Correct</div>Raw address text like "14 Oak Street, Brooklyn" contains no signal a model can learn from directly. Feature extraction should have converted addresses into meaningful variables: neighbourhood, proximity to transit, school ratings, square footage, number of bedrooms. Without extracting actual features, the model receives meaningless text and has nothing to learn from. This is a feature extraction failure.</div>
+  <div class="fb bad" data-for="q2c"><div class="fb-stamp">Not quite</div>Training ran correctly on the inputs it received. The problem is that the inputs were meaningless strings with no predictive signal. Training cannot extract pricing patterns from raw text. The failure is in feature extraction, which runs before training and determines what the model is actually given to learn from.</div>
+  <div class="fb bad" data-for="q2d"><div class="fb-stamp">Not quite</div>Evaluation tests the model after training. The failure happened before evaluation, in feature extraction. The model never had a chance to learn anything because it received meaningless inputs. Better evaluation would reveal the problem but would not fix its cause.</div>
+  <div class="nxt"><label class="nxt-btn" for="nav3">Next scenario</label></div>
+</div>
+
+<div class="q-block" data-q="3">
+  <div class="card">
+    <p class="card-tag">Scenario 3 of 5 &middot; Fraud Detection</p>
+    <p class="card-text">A fraud detection model achieves 99.7% accuracy in testing. When deployed, it consistently flags the same type of transaction every time, completely missing different fraud patterns that did not appear in training.</p>
+    <div class="card-error"><strong>Error:</strong> The model memorised training examples instead of learning generalisable patterns.</div>
+  </div>
+  <p class="step-q">Which pipeline step caused this failure?</p>
+  <div class="steps-grid">
+    <label class="step-lbl" for="q3a"><span class="step-name">Data Collection</span><span class="step-desc">Gathering the training examples</span></label>
+    <label class="step-lbl" for="q3b"><span class="step-name">Feature Extraction</span><span class="step-desc">Converting data into usable inputs</span></label>
+    <label class="step-lbl" for="q3c"><span class="step-name">Model Training</span><span class="step-desc">Learning patterns from examples</span></label>
+    <label class="step-lbl" for="q3d"><span class="step-name">Model Evaluation</span><span class="step-desc">Testing on held-out data</span></label>
+  </div>
+  <div class="fb bad" data-for="q3a"><div class="fb-stamp">Partially correct</div>The training data lacked diversity of fraud types, which contributed to the problem. But the more specific failure is in training: the model overfitted, memorising the specific examples it saw rather than learning the underlying patterns of fraudulent behaviour. Both play a role, but overfitting during training is the proximate cause.</div>
+  <div class="fb bad" data-for="q3b"><div class="fb-stamp">Not quite</div>Feature extraction was likely fine. The model received meaningful transaction data. The issue is that during training, the algorithm learned the specific examples too closely rather than the general patterns behind them. This is a training failure called overfitting, not a feature extraction problem.</div>
+  <div class="fb ok" data-for="q3c"><div class="fb-stamp">Correct</div>This is overfitting: a training failure where the model memorises the training data instead of learning generalisable patterns. It achieves near-perfect accuracy on data it has already seen but fails on anything new. Solutions include regularisation techniques, dropout, using more diverse training data, and proper cross-validation during the training process itself.</div>
+  <div class="fb bad" data-for="q3d"><div class="fb-stamp">Partially correct</div>Better evaluation using diverse test cases, including fraud types not in training, would have caught this problem before deployment. But the root cause is that training produced an overfitted model. Evaluation can detect the failure; the training step is where it originated.</div>
+  <div class="nxt"><label class="nxt-btn" for="nav4">Next scenario</label></div>
+</div>
+
+<div class="q-block" data-q="4">
+  <div class="card">
+    <p class="card-tag">Scenario 4 of 5 &middot; Medical Imaging</p>
+    <p class="card-text">A medical imaging AI achieves 98% accuracy in evaluation. When deployed, doctors notice it flags a specific region in the lower-right corner of every scan, including blank control scans with no patient data.</p>
+    <div class="card-error"><strong>Error:</strong> The model learned a spurious pattern completely unrelated to the actual medical condition it was supposed to detect.</div>
+  </div>
+  <p class="step-q">Which pipeline step caused this failure?</p>
+  <div class="steps-grid">
+    <label class="step-lbl" for="q4a"><span class="step-name">Data Collection</span><span class="step-desc">Gathering the training examples</span></label>
+    <label class="step-lbl" for="q4b"><span class="step-name">Feature Extraction</span><span class="step-desc">Converting data into usable inputs</span></label>
+    <label class="step-lbl" for="q4c"><span class="step-name">Model Evaluation</span><span class="step-desc">Testing on held-out data</span></label>
+    <label class="step-lbl" for="q4d"><span class="step-name">Model Training</span><span class="step-desc">Learning patterns from examples</span></label>
+  </div>
+  <div class="fb ok" data-for="q4a"><div class="fb-stamp">Correct</div>The training images likely contained a consistent artifact in the lower-right corner, such as a scanner watermark, equipment marking, or hospital logo. This artifact correlated with positive diagnoses because it appeared consistently on images from the same scanner that produced positive results. The model learned to flag the artifact rather than the actual condition. Contaminated training data with a systematic flaw is a data collection failure.</div>
+  <div class="fb bad" data-for="q4b"><div class="fb-stamp">Not quite</div>Feature extraction faithfully processed what was in the images. The artifact was present in the raw training data before feature extraction ran. The root cause is that the training images themselves were contaminated with a systematic flaw. Feature extraction cannot be blamed for accurately representing what was in the data it received.</div>
+  <div class="fb bad" data-for="q4c"><div class="fb-stamp">Partially correct</div>Better evaluation on diverse scanners and blank control scans would have exposed this problem before deployment. But the root cause is that the training data contained a contaminating artifact. Evaluation can reveal the failure; data collection is where it was introduced.</div>
+  <div class="fb bad" data-for="q4d"><div class="fb-stamp">Not quite</div>Training learned exactly what it was shown: the artifact in the lower-right corner correlated with diagnoses in the training data, so the model learned to use it. The training algorithm is not at fault. It correctly identified the strongest pattern in the data. The problem is that the data itself contained a spurious artifact. That is a data collection failure.</div>
+  <div class="nxt"><label class="nxt-btn" for="nav5">Next scenario</label></div>
+</div>
+
+<div class="q-block" data-q="5">
+  <div class="card">
+    <p class="card-tag">Scenario 5 of 5 &middot; Loan Approval</p>
+    <p class="card-text">A loan approval model was developed, trained, and evaluated internally. After deployment, an audit finds it approves loans for applicants from wealthy zip codes at a rate 40% higher than for applicants with equivalent financial profiles from lower-income areas.</p>
+    <div class="card-error"><strong>Error:</strong> The model produces systematically different outcomes for groups that should be treated equally based on their financial situation.</div>
+  </div>
+  <p class="step-q">Which pipeline step caused this failure?</p>
+  <div class="steps-grid">
+    <label class="step-lbl" for="q5a"><span class="step-name">Data Collection</span><span class="step-desc">Gathering the training examples</span></label>
+    <label class="step-lbl" for="q5b"><span class="step-name">Model Training</span><span class="step-desc">Learning patterns from examples</span></label>
+    <label class="step-lbl" for="q5c"><span class="step-name">Model Evaluation</span><span class="step-desc">Testing on held-out data</span></label>
+    <label class="step-lbl" for="q5d"><span class="step-name">Deployment</span><span class="step-desc">Using the model in the real world</span></label>
+  </div>
+  <div class="fb ok" data-for="q5a"><div class="fb-stamp">Correct</div>Historical lending data reflects decades of unequal access to credit. If the training data shows higher approval rates for applicants from wealthy areas because of past discriminatory lending practices, the model learns and reproduces those patterns as if they are legitimate. The model did not invent this bias. It learned it from the patterns encoded in the historical data it was trained on. This is a data collection failure: the training data carried historical discrimination forward into a new system.</div>
+  <div class="fb bad" data-for="q5b"><div class="fb-stamp">Partially correct</div>Training amplified the patterns present in the data. But those patterns themselves came from the data collection step. The training algorithm did exactly what it was supposed to do: it learned from the data it was given. Biased input data produces a biased model. The root cause is in what data was collected and used, not in how training ran.</div>
+  <div class="fb bad" data-for="q5c"><div class="fb-stamp">Partially correct</div>Evaluation should have included fairness metrics across demographic groups. If it had, this disparity might have been caught before deployment. But the bias originated in the training data, not in evaluation. Evaluation can detect it; data collection is where it was introduced into the system.</div>
+  <div class="fb bad" data-for="q5d"><div class="fb-stamp">Not quite</div>Deployment worked exactly as designed. The model was applied correctly. The problem was baked into the model before deployment, during data collection and training. Deployment did not create the bias; it exposed a wider audience to a bias that already existed in the model.</div>
+
+  <div class="nxt"><label class="nxt-btn" for="nav-end">See conclusion</label></div>
+</div>
+
+
+<div class="end-screen">
+  <h2 class="end-title">All five failures diagnosed.</h2>
+  <p class="end-body">Every AI failure traces back to a specific pipeline step. Data collection introduces bias. Feature extraction determines what the model can see. Training determines what it learns. Evaluation reveals whether it generalises. Knowing the step is the first step to fixing it.</p>
+  <button class="replay-btn" onclick="resetGame()">Play again</button>
+</div>
+
+<script>
+function resetGame() {
+  document.getElementById('nav1').checked = true;
+    var els = document.querySelectorAll('[name=a1]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a2]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a3]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a4]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a5]'); els.forEach(function(e){e.checked=false;});
+}
+</script>
+</body>
+</html>

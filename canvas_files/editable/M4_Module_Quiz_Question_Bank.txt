@@ -1,0 +1,151 @@
+MODULE 4 QUIZ QUESTION BANK
+Auto-graded question types only
+Total: 27 points
+
+1. Multiple Choice, 1 point
+Question: Algorithmic fairness is best described as:
+A. A model that has 100% accuracy
+B. A design choice about how a model treats different groups
+C. The absence of any bias in any system
+D. A legal requirement that all models meet automatically
+Correct answer: B
+
+2. Multiple Choice, 1 point
+Question: Disparate impact means:
+A. The model uses different code for each user
+B. A 'neutral' rule produces unequal outcomes across groups
+C. The model crashes for some users
+D. The model is highly accurate overall
+Correct answer: B
+
+3. Multiple Answer, 2 points
+Question: Which are examples of proxy variables for sensitive traits?
+A. Zip code
+B. School name
+C. Browsing history
+D. Purchase history
+E. A completely random number
+Correct answer: A, B, C, D
+
+4. Multiple Choice, 1 point
+Question: A model with 90% overall accuracy can still be unfair because:
+A. 90% is too low for any use
+B. Accuracy can vary widely by group, hiding harm to some groups
+C. Accuracy and fairness are the same thing
+D. The model must be retrained every day
+Correct answer: B
+
+5. True or False, 1 point
+Question: Removing names from a dataset always makes the data anonymous.
+Correct answer: False
+
+6. Multiple Choice, 1 point
+Question: Quasi-identifiers are:
+A. Direct identifiers like a person's name
+B. Pieces of information that can re-identify someone when combined
+C. Random IDs that mean nothing
+D. Internal database keys
+Correct answer: B
+
+7. Multiple Answer, 2 points
+Question: Which three questions help you read a privacy policy quickly?
+A. What data is collected
+B. Who the data is shared with
+C. How long the data is kept
+D. What the company's stock price is
+E. The company's office address
+Correct answer: A, B, C
+
+8. Multiple Choice, 1 point
+Question: Meaningful consent requires that the user:
+A. Clicks 'accept' without reading
+B. Is informed, can opt in specifically, and can revoke consent
+C. Pays a fee
+D. Provides biometric authentication
+Correct answer: B
+
+9. Multiple Choice, 1 point
+Question: An LLM 'hallucination' is:
+A. A verified source the model retrieved from the web
+B. A fluent but incorrect or fabricated output
+C. A type of computer error message
+D. Output produced when the user types in all caps
+Correct answer: B
+
+10. True or False, 1 point
+Question: A confident-sounding LLM answer is guaranteed to be correct.
+Correct answer: False
+
+11. Multiple Choice, 1 point
+Question: Why do LLMs hallucinate?
+A. They are lying on purpose
+B. They predict likely next tokens without an internal fact-checker
+C. They are running out of memory
+D. They only repeat verified facts
+Correct answer: B
+
+12. Multiple Answer, 2 points
+Question: Bias in AI outputs commonly traces back to:
+A. Training data that underrepresents some groups
+B. Stereotypes that appeared in training data
+C. Cultural framing of the training corpus
+D. The user's question being phrased politely
+E. The model running too fast
+Correct answer: A, B, C
+
+13. Multiple Choice, 1 point
+Question: 'Human in the loop' means:
+A. A human reviews and can override the model's decision
+B. The model trains itself with no humans involved
+C. Users see the model's source code
+D. The model only runs on weekends
+Correct answer: A
+
+14. Multiple Answer, 2 points
+Question: Which decisions typically require non-negotiable human review?
+A. Medical diagnosis
+B. Loan approval
+C. Criminal sentencing recommendations
+D. Sorting your personal photo album
+E. Hiring decisions
+Correct answer: A, B, C, E
+
+15. Ordering, 2 points
+Question: Put the steps of an AI risk review in order.
+1. Name the specific harms the system could cause
+2. Identify the groups that would be affected
+3. Define concrete mitigations and oversight
+4. Document the review and the decision to launch or not
+Correct answer: 1, 2, 3, 4
+
+16. Categorization, 3 points
+Question: Place each item in the correct category.
+
+Fairness concepts: Disparate impact, Proxy variable, Group fairness
+
+Privacy concepts: Quasi-identifier, Linkage attack, Revocable consent
+Correct answer: Disparate impact -> Fairness, Proxy variable -> Fairness, Group fairness -> Fairness, Quasi-identifier -> Privacy, Linkage attack -> Privacy, Revocable consent -> Privacy
+
+17. Multiple Choice, 1 point
+Question: Which is the strongest example of 'dark pattern' consent design?
+A. A clear toggle for analytics
+B. 'Accept all to continue' with no other path
+C. A short, plain-language summary above the policy
+D. A button to revoke consent later
+Correct answer: B
+
+18. Fill in the Blank, 1 point
+Question: When a model produces fluent text that is incorrect or invented, that output is called a ______.
+Correct answer: hallucination
+
+19. True or False, 1 point
+Question: A useful AI risk review must name specific harms, affected groups, and concrete mitigations.
+Correct answer: True
+
+20. Multiple Choice, 1 point
+Question: Which statement best captures responsible AI?
+A. Build first, deploy fast, fix problems if they get reported
+B. Identify harms, affected groups, and mitigations before launch, and keep humans in the loop where stakes are high
+C. Trust models with high confidence scores by default
+D. Avoid all use of AI in serious decisions
+Correct answer: B

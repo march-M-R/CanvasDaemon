@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Model Card Builder</title>
+<style>
+ * { box-sizing: border-box; }
+ body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f5f5f5; color: #363d45; line-height: 1.6; }
+ .wrap { max-width: 1200px; margin: 0 auto; padding: 32px 28px 64px; }
+
+ .hero { background: linear-gradient(135deg, #0B0D10 0%, #1f1f1f 50%, #A32638 100%); color: #fff; padding: 36px 32px; border-radius: 14px; margin-bottom: 26px; }
+ .hero .tag { font-size: 14px; color: #f2d6da; margin-bottom: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
+ .hero h1 { margin: 0 0 10px; font-family: Georgia, serif; font-size: 36px; line-height: 1.1; }
+ .hero p { margin: 0; max-width: 760px; opacity: 0.92; font-size: 16px; }
+
+ .grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 22px; }
+ @media (max-width: 940px) { .grid { grid-template-columns: 1fr; } }
+
+ .panel { background: #fff; border-radius: 14px; padding: 22px 26px; border: 1px solid #e4e5e6; }
+ .panel h2 { margin: 0 0 6px; font-family: Georgia, serif; font-size: 22px; color: #0b0d10; }
+ .panel .panel-sub { margin: 0 0 18px; font-size: 14px; color: #4b535c; }
+
+ .step { border: 1px solid #e7e7e7; border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; background: #fafafa; transition: border-color 0.15s; }
+ .step.active { border-color: #A32638; background: #fff; box-shadow: 0 0 0 1px #A32638; }
+ .step h3 { margin: 0 0 4px; font-family: Georgia, serif; font-size: 18px; color: #A32638; display: flex; align-items: center; gap: 10px; }
+ .step .step-num { display: inline-flex; width: 26px; height: 26px; align-items: center; justify-content: center; background: #A32638; color: #fff; border-radius: 50%; font-family: Arial; font-size: 13px; }
+ .step .hint { font-size: 13px; color: #4b535c; margin: 6px 0 12px; }
+ .step input.step textarea.step select { width: 100%; padding: 10px 12px; border: 1px solid #d0d0d0; border-radius: 7px; font: inherit; font-size: 14px; color: #20252b; background: #fff; }
+ .step textarea { min-height: 80px; resize: vertical; }
+ .step .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+ @media (max-width: 600px) { .step .row { grid-template-columns: 1fr; } }
+ .step .examples { font-size: 12px; color: #888; margin-top: 6px; font-style: italic; }
+ .step .wc { font-size: 11px; color: #999; text-align: right; margin-top: 4px; }
+
+ .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+ .btn { background: #A32638; color: #fff; border: 0; padding: 11px 20px; border-radius: 999px; font-size: 14px; cursor: pointer; font-family: inherit; }
+ .btn.secondary { background: #fff; color: #A32638; border: 1px solid #A32638; }
+ .btn.ghost { background: transparent; color: #4b535c; border: 1px solid #d0d0d0; }
+ .btn:hover { filter: brightness(0.95); }
+
+ .preview-wrap { position: sticky; top: 16px; }
+ .card-preview { background: #fff; border: 1px solid #e4e5e6; border-radius: 10px; padding: 28px 30px; min-height: 460px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+ .card-preview .header-bar { background: #A32638; color: #fff; margin: -28px -30px 22px; padding: 16px 30px; border-radius: 10px 10px 0 0; font-family: Georgia, serif; font-size: 22px; }
+ .card-preview .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #A32638; margin: 18px 0 4px; }
+ .card-preview .section-label:first-of-type { margin-top: 0; }
+ .card-preview .section-value { font-size: 14px; color: #20252b; white-space: pre-wrap; }
+ .card-preview .section-value.empty { color: #b0b0b0; font-style: italic; }
+ .card-preview .meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 12px 0; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; margin: 16px 0; }
+ .card-preview .meta-row > div p:first-child { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #A32638; margin: 0 0 4px; }
+ .card-preview .meta-row > div p:nth-child(2) { margin: 0; font-size: 14px; color: #20252b; }
+ .card-preview .trust { background: #0B0D10; color: #f7f3ea; border-radius: 8px; padding: 14px 18px; font-style: italic; font-family: Georgia, serif; font-size: 16px; line-height: 1.5; margin-top: 14px; }
+ .card-preview .trust.empty { color: #555; }
+
+ .progress { display: flex; gap: 6px; margin-bottom: 16px; }
+ .progress .dot { flex: 1; height: 6px; border-radius: 3px; background: #e0e0e0; }
+ .progress .dot.done { background: #A32638; }
+
+ .pull { background: #0B0D10; color: #fff; padding: 14px 18px; border-left: 4px solid #A32638; border-radius: 0 8px 8px 0; margin-bottom: 16px; font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+ <div class="hero">
+ <div class="tag">Module 3 · Portfolio Deliverable</div>
+ <h1>Model Card Builder</h1>
+ <p>A Model Card is a one-page honest description of what your AI does, where it works, and where it should not be trusted. Fill in each step. Watch the card take shape on the right. Download when you're done and save it to your portfolio.</p>
+ </div>
+
+ <div class="grid">
+ <div class="panel">
+ <h2>Build your card, step by step</h2>
+ <p class="panel-sub">Each section asks one specific thing. Aim for one or two clean sentences per box.</p>
+
+ <div class="progress" id="progress">
+ <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+ <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+ <div class="dot"></div>
+ </div>
+
+ <div class="pull">Honest beats impressive. A card that names a real weakness is worth more than a card that hides one.</div>
+
+ <div class="step">
+ <h3><span class="step-num">1</span>Model name &amp; purpose</h3>
+ <p class="hint">Two sentences max. What does the model do, and who would use it?</p>
+ <input id="f_name" placeholder="e.g. Ripe vs Overripe Avocado Classifier">
+ <textarea id="f_purpose" placeholder="One sentence: what does it do? One sentence: who would use it?" oninput="updateAll()"></textarea>
+ <p class="examples">Example: "Classifies a phone photo of an avocado as 'ripe' or 'overripe'. Built for shoppers who have trouble assessing fruit by sight."</p>
+ </div>
+
+ <div class="step">
+ <h3><span class="step-num">2</span>Your two classes</h3>
+ <p class="hint">Name each class and write one sentence about how you defined it. Edge cases matter.</p>
+ <div class="row">
+ <input id="f_classA" placeholder="Class A name" oninput="updateAll()">
+ <input id="f_classB" placeholder="Class B name" oninput="updateAll()">
+ </div>
+ <textarea id="f_classA_def" placeholder="Class A definition, what counts? What borderline cases did you decide to include?" style="margin-top: 10px;" oninput="updateAll()"></textarea>
+ <textarea id="f_classB_def" placeholder="Class B definition, what counts? Where is the boundary?" style="margin-top: 10px;" oninput="updateAll()"></textarea>
+ </div>
+
+ <div class="step">
+ <h3><span class="step-num">3</span>Training data summary</h3>
+ <p class="hint">How many samples per class? What did you deliberately vary?</p>
+ <div class="row">
+ <input id="f_samples_a" type="number" min="0" placeholder="# samples in Class A" oninput="updateAll()">
+ <input id="f_samples_b" type="number" min="0" placeholder="# samples in Class B" oninput="updateAll()">
+ </div>
+ <textarea id="f_variety" placeholder="What you varied: angles, lighting, backgrounds, distance, etc." style="margin-top: 10px;" oninput="updateAll()"></textarea>
+ </div>
+
+ <div class="step">
+ <h3><span class="step-num">4</span>Performance on fresh test samples</h3>
+ <p class="hint">Numbers from your test log. The model never saw these photos during training.</p>
+ <div class="row">
+ <input id="f_correct" type="number" min="0" placeholder="# correct predictions" oninput="updateAll()">
+ <input id="f_total" type="number" min="0" placeholder="# total test samples" oninput="updateAll()">
+ </div>
+ <textarea id="f_mistakes" placeholder="What kinds of mistakes did the model make most often? (Read your confusion matrix)" style="margin-top: 10px;" oninput="updateAll()"></textarea>
+ </div>
+
+ <div class="step">
+ <h3><span class="step-num">5</span>Known weaknesses</h3>
+ <p class="hint">Be honest. What lighting, angles, or backgrounds break it?</p>
+ <textarea id="f_weaknesses" placeholder="e.g. 'Fails in dim light. Confused by red countertops. Cannot handle partial views.'" oninput="updateAll()"></textarea>
+ </div>
+
+ <div class="step">
+ <h3><span class="step-num">6</span>Intended use &amp; out-of-scope use</h3>
+ <p class="hint">Where would you use this? Where should it absolutely not be used?</p>
+ <div class="row">
+ <textarea id="f_use_yes" placeholder="Where to use it..." oninput="updateAll()"></textarea>
+ <textarea id="f_use_no" placeholder="Where NOT to use it..." oninput="updateAll()"></textarea>
+ </div>
+ </div>
+
+ <div class="step">
+ <h3><span class="step-num">7</span>Trust statement</h3>
+ <p class="hint">One sentence each. This is the hardest part. Be specific.</p>
+ <textarea id="f_trust_yes" placeholder="One sentence: When I would trust this model in the real world..." oninput="updateAll()"></textarea>
+ <textarea id="f_trust_no" placeholder="One sentence: When I would NOT trust this model..." style="margin-top: 10px;" oninput="updateAll()"></textarea>
+ </div>
+
+ <div class="actions">
+ <button class="btn" onclick="downloadCard()">Download as text</button>
+ <button class="btn secondary" onclick="copyCard()">Copy to clipboard</button>
+ <button class="btn ghost" onclick="loadExample()">Load example</button>
+ <button class="btn ghost" onclick="clearAll()">Clear all</button>
+ </div>
+ <p id="status" style="margin: 12px 0 0; font-size: 13px; color: #4b535c;"></p>
+ </div>
+
+ <div class="preview-wrap">
+ <div class="panel">
+ <h2>Live preview</h2>
+ <p class="panel-sub">This is what your Model Card looks like as you fill it in.</p>
+ <div class="card-preview" id="preview">
+ <div class="header-bar" id="p_name">Model Card</div>
+
+ <p class="section-label">Purpose</p>
+ <div class="section-value empty" id="p_purpose">(Start filling in step 1)</div>
+
+ <div class="meta-row">
+ <div>
+ <p>Class A</p>
+ <p id="p_classA">, </p>
+ </div>
+ <div>
+ <p>Class B</p>
+ <p id="p_classB">, </p>
+ </div>
+ </div>
+
+ <p class="section-label">Class definitions</p>
+ <div class="section-value empty" id="p_class_defs">(Add definitions in step 2)</div>
+
+ <p class="section-label">Training data</p>
+ <div class="section-value empty" id="p_training">(Add data summary in step 3)</div>
+
+ <p class="section-label">Performance on fresh samples</p>
+ <div class="section-value empty" id="p_perf">(Add test results in step 4)</div>
+
+ <p class="section-label">Known weaknesses</p>
+ <div class="section-value empty" id="p_weak">(Add weaknesses in step 5)</div>
+
+ <p class="section-label">Intended use</p>
+ <div class="section-value empty" id="p_useyes">(Add intended use in step 6)</div>
+
+ <p class="section-label">Out of scope</p>
+ <div class="section-value empty" id="p_useno">(Add out-of-scope use in step 6)</div>
+
+ <div class="trust empty" id="p_trust">(Add your trust statement in step 7)</div>
+ </div>
+ </div>
+ </div>
+ </div>
+</div>
+
+<script>
+function val(id) { return document.getElementById(id).value.trim(); }
+function setText(id, text, isEmpty) {
+ const el = document.getElementById(id);
+ el.textContent = text;
+ if (isEmpty) el.classList.add('empty'); else el.classList.remove('empty');
+}
+
+function updateAll() {
+ // Header
+ const name = val('f_name') || 'Model Card';
+ document.getElementById('p_name').textContent = name;
+
+ // Purpose
+ const purpose = val('f_purpose');
+ setText('p_purpose', purpose || '(Start filling in step 1)', !purpose);
+
+ // Classes
+ document.getElementById('p_classA').textContent = val('f_classA') || ', ';
+ document.getElementById('p_classB').textContent = val('f_classB') || ', ';
+
+ const classA = val('f_classA') || 'Class A';
+ const classB = val('f_classB') || 'Class B';
+ const defA = val('f_classA_def');
+ const defB = val('f_classB_def');
+ let defs = '';
+ if (defA) defs += classA + ': ' + defA;
+ if (defB) defs += (defs ? '\n\n' : '') + classB + ': ' + defB;
+ setText('p_class_defs', defs || '(Add definitions in step 2)', !defs);
+
+ // Training
+ const sA = val('f_samples_a');
+ const sB = val('f_samples_b');
+ const variety = val('f_variety');
+ let train = '';
+ if (sA || sB) train += `Samples, ${classA}: ${sA || '?'} · ${classB}: ${sB || '?'}\n`;
+ if (variety) train += `Varied across: ${variety}`;
+ setText('p_training', train.trim() || '(Add data summary in step 3)', !train.trim());
+
+ // Performance
+ const c = val('f_correct');
+ const t = val('f_total');
+ const mistakes = val('f_mistakes');
+ let perf = '';
+ if (c && t) {
+ const pct = Math.round(100 * Number(c) / Number(t));
+ perf += `Correct on ${c} of ${t} fresh test samples (${pct}% accuracy).\n`;
+ }
+ if (mistakes) perf += `Most common mistakes: ${mistakes}`;
+ setText('p_perf', perf.trim() || '(Add test results in step 4)', !perf.trim());
+
+ // Weaknesses
+ const weak = val('f_weaknesses');
+ setText('p_weak', weak || '(Add weaknesses in step 5)', !weak);
+
+ // Intended / Out of scope
+ setText('p_useyes', val('f_use_yes') || '(Add intended use in step 6)', !val('f_use_yes'));
+ setText('p_useno', val('f_use_no') || '(Add out-of-scope use in step 6)', !val('f_use_no'));
+
+ // Trust
+ const trustYes = val('f_trust_yes');
+ const trustNo = val('f_trust_no');
+ let trust = '';
+ if (trustYes) trust += '✓ ' + trustYes;
+ if (trustNo) trust += (trust ? '\n\n' : '') + '✗ ' + trustNo;
+ setText('p_trust', trust || '(Add your trust statement in step 7)', !trust);
+
+ // Active step + progress
+ const fields = ['f_purpose', 'f_classA_def', 'f_variety', 'f_mistakes', 'f_weaknesses', 'f_use_yes', 'f_trust_yes'];
+ const dots = document.querySelectorAll('#progress .dot');
+ let firstEmpty = -1;
+ fields.forEach((f, i) => {
+ const filled = !!val(f);
+ if (filled) dots[i].classList.add('done'); else dots[i].classList.remove('done');
+ if (firstEmpty === -1 && !filled) firstEmpty = i;
+ });
+ document.querySelectorAll('.step').forEach((s, i) => s.classList.remove('active'));
+ if (firstEmpty >= 0) document.querySelectorAll('.step')[firstEmpty].classList.add('active');
+}
+
+function buildText() {
+ const lines = [];
+ lines.push('MODEL CARD');
+ lines.push('='.repeat(60));
+ lines.push('Name: ' + (val('f_name') || 'Untitled Model'));
+ lines.push('');
+ lines.push('PURPOSE');
+ lines.push(val('f_purpose') || '(blank)');
+ lines.push('');
+ lines.push('CLASSES');
+ lines.push('Class A: ' + (val('f_classA') || '(blank)'));
+ lines.push(' → ' + (val('f_classA_def') || '(no definition)'));
+ lines.push('Class B: ' + (val('f_classB') || '(blank)'));
+ lines.push(' → ' + (val('f_classB_def') || '(no definition)'));
+ lines.push('');
+ lines.push('TRAINING DATA');
+ lines.push(`Samples. Class A: ${val('f_samples_a') || '?'}, Class B: ${val('f_samples_b') || '?'}`);
+ lines.push('Varied across: ' + (val('f_variety') || '(not specified)'));
+ lines.push('');
+ lines.push('PERFORMANCE (fresh test samples)');
+ const c = val('f_correct'), t = val('f_total');
+ if (c && t) {
+ const pct = Math.round(100 * Number(c) / Number(t));
+ lines.push(`Correct on ${c} of ${t} fresh test samples (${pct}% accuracy).`);
+ } else {
+ lines.push('(not measured)');
+ }
+ lines.push('Most common mistakes: ' + (val('f_mistakes') || '(not analyzed)'));
+ lines.push('');
+ lines.push('KNOWN WEAKNESSES');
+ lines.push(val('f_weaknesses') || '(none noted)');
+ lines.push('');
+ lines.push('INTENDED USE');
+ lines.push(val('f_use_yes') || '(blank)');
+ lines.push('');
+ lines.push('OUT OF SCOPE');
+ lines.push(val('f_use_no') || '(blank)');
+ lines.push('');
+ lines.push('TRUST STATEMENT');
+ lines.push('When I would trust this model: ' + (val('f_trust_yes') || '(blank)'));
+ lines.push('When I would NOT trust it: ' + (val('f_trust_no') || '(blank)'));
+ return lines.join('\n');
+}
+
+function downloadCard() {
+ const txt = buildText();
+ const blob = new Blob([txt], { type: 'text/plain' });
+ const a = document.createElement('a');
+ const safeName = (val('f_name') || 'model_card').replace(/[^a-zA-Z0-9-_]/g, '_');
+ a.href = URL.createObjectURL(blob);
+ a.download = safeName + '.txt';
+ a.click();
+ setStatus('Downloaded.');
+}
+
+async function copyCard() {
+ try {
+ await navigator.clipboard.writeText(buildText());
+ setStatus('Copied to clipboard.');
+ } catch (e) {
+ setStatus('Copy failed. Use Download instead.');
+ }
+}
+
+function setStatus(s) {
+ document.getElementById('status').textContent = s;
+ setTimeout(() => { document.getElementById('status').textContent = ''; }, 2400);
+}
+
+function clearAll() {
+ document.querySelectorAll('input, textarea').forEach(el => el.value = '');
+ updateAll();
+ setStatus('Cleared.');
+}
+
+function loadExample() {
+ document.getElementById('f_name').value = 'Ripe vs Overripe Avocado Classifier';
+ document.getElementById('f_purpose').value = 'Classifies a phone photo of an avocado as ripe or overripe. Built for shoppers who have trouble assessing fruit by sight.';
+ document.getElementById('f_classA').value = 'Ripe';
+ document.getElementById('f_classB').value = 'Overripe';
+ document.getElementById('f_classA_def').value = 'Skin is dark green to deep purple, slight give under thumb pressure. Includes "perfectly ready to eat today" cases.';
+ document.getElementById('f_classB_def').value = 'Skin is fully blackened, mushy under pressure, or has visible soft spots. Includes "still edible but past prime" cases.';
+ document.getElementById('f_samples_a').value = '32';
+ document.getElementById('f_samples_b').value = '30';
+ document.getElementById('f_variety').value = 'Window light and ceiling light, top-down and side angles, on wood counter and white plate, with and without my hand in frame.';
+ document.getElementById('f_correct').value = '17';
+ document.getElementById('f_total').value = '20';
+ document.getElementById('f_mistakes').value = 'Confuses very-ripe (borderline) avocados as overripe. Two of three errors were borderline cases.';
+ document.getElementById('f_weaknesses').value = 'Fails under dim light. Confused by avocados photographed against very dark backgrounds (model leans toward "overripe"). Has not been tested on different avocado varieties beyond Hass.';
+ document.getElementById('f_use_yes').value = 'Personal use at home when picking which avocado to eat today.';
+ document.getElementById('f_use_no').value = 'Restaurant quality control, grocery store sorting, or any decision someone else depends on.';
+ document.getElementById('f_trust_yes').value = 'I would trust this for personal smoothie planning under good light, knowing I will eyeball borderline cases myself.';
+ document.getElementById('f_trust_no').value = 'I would not trust this to throw away food, to evaluate avocados I cannot also see, or in any commercial setting.';
+ updateAll();
+ setStatus('Example loaded.');
+}
+
+updateAll();
+</script>
+</body>
+</html>

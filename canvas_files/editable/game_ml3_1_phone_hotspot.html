@@ -1,0 +1,258 @@
+<!--
+  CANVAS EMBED: ML 3.1 - Your Phone Is Watching
+  <iframe src="LINK" width="100%" height="700" style="border:none;border-radius:14px;margin:32px 0;" title="Your Phone Is Watching"></iframe>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Phone Is Watching</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+input[type=radio] { display: none; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f5f5f5; color: #363d45; line-height: 1.7; padding: 20px; }
+
+
+.hdr { background: linear-gradient(135deg, rgba(11,13,16,0.97) 0%, rgba(17,19,24,0.95) 58%, rgba(163,38,56,0.86) 100%); padding: 40px 48px 36px; }
+.hdr-bread { color: #f2d6da; font-size: 14px; margin-bottom: 10px; }
+.hdr-title { font-family: Georgia, serif; font-size: 38px; color: #0b0d10; line-height: 1.1; margin-bottom: 10px; }
+.hdr-sub { font-family: Georgia, serif; font-style: italic; font-size: 17px; color: #4b535c; }
+.red-bar { background: #A32638; padding: 20px 48px; }
+.rb-label { color: #4b535c; font-size: 14px; margin-bottom: 4px; }
+.rb-text { color: #0b0d10; font-family: Georgia, serif; font-size: 18px; }
+
+.intro { background: #ffffff; padding: 40px 48px; }
+.i-label { color: #a32638; font-size: 14px; margin-bottom: 6px; }
+.i-title { font-family: Georgia, serif; font-size: 28px; color: #0b0d10; margin-bottom: 8px; }
+.i-sub { color: #4b535c; font-size: 15px; margin-bottom: 24px; line-height: 1.7; max-width: 680px; }
+.callout { background: #FAFAFA; border: 1px solid #E4E5E6; border-left: 4px solid #A32638; border-radius: 0 12px 12px 0; padding: 18px 22px; margin-bottom: 24px; }
+.callout p { color: #4b535c; font-size: 14px; line-height: 1.7; }
+.callout strong { color: #0b0d10; }
+.how-label { color: #a32638; font-size: 14px; margin-bottom: 10px; }
+
+.phone-section { background: #f5f5f5; padding: 0; }
+.ps-label { color: #a32638; font-size: 14px; margin-bottom: 6px; }
+.ps-title { font-family: Georgia, serif; font-size: 28px; color: #0b0d10; margin-bottom: 8px; }
+.ps-sub { color: #4b535c; font-size: 14px; margin-bottom: 28px; }
+
+.phone-layout { display: grid; grid-template-columns: 400px minmax(360px, 520px); gap: 38px; align-items: stretch; }
+
+.phone-frame { background: #11151c; border: 2px solid #262A31; border-radius: 54px; padding: 22px 18px; position: relative; box-shadow: 0 22px 48px rgba(11,13,16,.22); }
+.phone-notch { width: 108px; height: 20px; background: #0B0D10; border-radius: 0 0 16px 16px; margin: 0 auto 18px; }
+.phone-screen { min-height: 480px; background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.78), rgba(255,255,255,.22) 28%, transparent 46%), linear-gradient(160deg,#f8fafc 0%,#e5e7eb 46%,#dbe4ee 100%); border-radius: 36px; padding: 28px 22px 24px; display: grid; grid-template-columns: repeat(4,1fr); gap: 20px 16px; align-content: start; border: 1px solid rgba(255,255,255,.55); }
+.app-tile { min-width: 0; }
+.app-icon { width: 100%; aspect-ratio: 1; border-radius: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform .12s, box-shadow .15s, outline-color .15s; user-select: none; box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 8px 18px rgba(11,13,16,.13); outline: 2px solid transparent; outline-offset: 2px; position: relative; overflow: hidden; }
+.app-icon::after { content: ""; position: absolute; inset: 0; background: linear-gradient(145deg, rgba(255,255,255,.30), transparent 42%); pointer-events: none; }
+.app-icon:hover { transform: translateY(-3px); box-shadow: inset 0 1px 0 rgba(255,255,255,.42), 0 12px 22px rgba(11,13,16,.18); }
+.app-icon:active { transform: translateY(0) scale(.97); }
+.app-icon label { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 22px; color: #ffffff; font-weight: 800; letter-spacing: .02em; position: relative; z-index: 1; }
+.app-glyph { position: relative; display: inline-block; width: 34px; height: 34px; line-height: 34px; text-align: center; font-size: 18px; text-shadow: 0 1px 2px rgba(0,0,0,.18); }
+.glyph-camera { border: 3px solid #fff; border-radius: 9px; }
+.glyph-camera::before { content: ""; position: absolute; width: 11px; height: 11px; border: 3px solid #fff; border-radius: 50%; top: 8px; left: 8px; }
+.glyph-camera::after { content: ""; position: absolute; width: 10px; height: 5px; background: #fff; border-radius: 4px 4px 0 0; top: -7px; left: 6px; }
+.glyph-music { font-size: 34px; line-height: 30px; }
+.glyph-ai { border: 2px solid rgba(255,255,255,.95); border-radius: 50%; font-size: 14px; line-height: 31px; }
+.glyph-map { width: 32px; height: 32px; border: 3px solid #fff; border-radius: 50% 50% 50% 8px; transform: rotate(-45deg); }
+.glyph-map::after { content: ""; position: absolute; width: 9px; height: 9px; border-radius: 50%; background: #fff; top: 8px; left: 8px; }
+.glyph-play { width: 0; height: 0; border-top: 14px solid transparent; border-bottom: 14px solid transparent; border-left: 22px solid #fff; margin-left: 5px; }
+.glyph-health { font-size: 34px; line-height: 30px; }
+.glyph-message { border: 3px solid #fff; border-radius: 12px; }
+.glyph-message::after { content: ""; position: absolute; width: 10px; height: 10px; background: #fff; transform: rotate(45deg); bottom: 0; right: 3px; }
+.glyph-photos { width: 34px; height: 28px; border: 3px solid #fff; border-radius: 8px; }
+.glyph-photos::before { content: ""; position: absolute; width: 8px; height: 8px; border-radius: 50%; background: #fff; top: 5px; right: 6px; }
+.glyph-photos::after { content: ""; position: absolute; left: 4px; right: 4px; bottom: 4px; height: 12px; background: linear-gradient(135deg, transparent 48%, #fff 50%); }
+.app-icon.camera { background: linear-gradient(135deg,#20242b,#6b7280); }
+.app-icon.music { background: linear-gradient(135deg,#7c3aed,#ec4899); }
+.app-icon.assistant { background: linear-gradient(135deg,#0891b2,#2563eb); }
+.app-icon.maps { background: linear-gradient(135deg,#16a34a,#22c55e); }
+.app-icon.video { background: linear-gradient(135deg,#0f172a,#ef4444); }
+.app-icon.health { background: linear-gradient(135deg,#be123c,#fb7185); }
+.app-icon.messages { background: linear-gradient(135deg,#047857,#34d399); }
+.app-icon.photos { background: linear-gradient(135deg,#f59e0b,#7c3aed); }
+.app-name { font-size: 11px; color: #374151; text-align: center; margin-top: 7px; font-family: Arial; line-height: 1.2; font-weight: 700; }
+.phone-home { width: 56px; height: 6px; border-radius: 999px; background: rgba(255,255,255,.35); margin: 20px auto 4px; }
+
+.info-panel { min-height: 626px; display: flex; }
+.ip-empty { background: #FAFAFA; border: 1px solid #262A31; border-radius: 42px; padding: 34px; text-align: center; min-height: 626px; width: 100%; display: flex; align-items: center; justify-content: center; }
+.ip-empty-icon { font-size: 36px; display: block; margin-bottom: 10px; opacity: .4; }
+.ip-empty-text { color: #4b535c; font-size: 14px; }
+
+.app-info { display: none; background: #FAFAFA; border: 1px solid #262A31; border-radius: 42px; overflow: hidden; min-height: 626px; width: 100%; }
+
+/* Show one app info panel at a time when a radio option is selected */
+#app-camera:checked ~ .phone-section .app-info[data-app="camera"] { display: block; }
+#app-spotify:checked ~ .phone-section .app-info[data-app="spotify"] { display: block; }
+#app-siri:checked ~ .phone-section .app-info[data-app="siri"] { display: block; }
+#app-maps:checked ~ .phone-section .app-info[data-app="maps"] { display: block; }
+#app-tiktok:checked ~ .phone-section .app-info[data-app="tiktok"] { display: block; }
+#app-health:checked ~ .phone-section .app-info[data-app="health"] { display: block; }
+#app-messages:checked ~ .phone-section .app-info[data-app="messages"] { display: block; }
+#app-photos:checked ~ .phone-section .app-info[data-app="photos"] { display: block; }
+
+#app-camera:checked ~ .phone-section .ip-empty,
+#app-spotify:checked ~ .phone-section .ip-empty,
+#app-siri:checked ~ .phone-section .ip-empty,
+#app-maps:checked ~ .phone-section .ip-empty,
+#app-tiktok:checked ~ .phone-section .ip-empty,
+#app-health:checked ~ .phone-section .ip-empty,
+#app-messages:checked ~ .phone-section .ip-empty,
+#app-photos:checked ~ .phone-section .ip-empty { display: none; }
+
+#app-camera:checked ~ .phone-section label[for="app-camera"],
+#app-spotify:checked ~ .phone-section label[for="app-spotify"],
+#app-siri:checked ~ .phone-section label[for="app-siri"],
+#app-maps:checked ~ .phone-section label[for="app-maps"],
+#app-tiktok:checked ~ .phone-section label[for="app-tiktok"],
+#app-health:checked ~ .phone-section label[for="app-health"],
+#app-messages:checked ~ .phone-section label[for="app-messages"],
+#app-photos:checked ~ .phone-section label[for="app-photos"] { outline: 2px solid #A32638; outline-offset: 3px; box-shadow: inset 0 1px 0 rgba(255,255,255,.36), 0 0 0 4px rgba(163,38,56,.16), 0 12px 20px rgba(11,13,16,.18); }
+
+.ai-head { background: #A32638; padding: 22px 24px; display: flex; align-items: center; gap: 12px; }
+.ai-icon { width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; color: #ffffff; flex-shrink: 0; }
+.ai-icon .app-glyph { transform: scale(.82); }
+.ai-icon .glyph-map { transform: rotate(-45deg) scale(.82); }
+.ai-name { font-family: Georgia, serif; font-size: 18px; color: #0b0d10; }
+.ai-type-badge { background: rgba(255,255,255,0.15); color: #4b535c; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: bold; letter-spacing: .06em; margin-left: auto; }
+.ai-body { padding: 24px; }
+.ai-row { display: flex; flex-direction: column; gap: 18px; }
+.ai-item { }
+.ai-item-label { color: #a32638; font-size: 12px; font-weight: bold; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 3px; }
+.ai-item-text { color: #4b535c; font-size: 14px; line-height: 1.7; }
+.ai-item-text strong { color: #0b0d10; }
+
+.summary-section { background: #ffffff; padding: 40px 48px; }
+.sum-label { color: #a32638; font-size: 14px; margin-bottom: 6px; }
+.sum-title { font-family: Georgia, serif; font-size: 28px; color: #0b0d10; margin-bottom: 8px; }
+.sum-sub { color: #4b535c; font-size: 15px; margin-bottom: 24px; line-height: 1.7; max-width: 700px; }
+.type-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.type-card { border: 1px solid #E4E5E6; border-top: 4px solid #A32638; border-radius: 14px; padding: 20px; }
+.tc-name { font-family: Georgia, serif; font-size: 18px; color: #a32638; margin-bottom: 6px; }
+.tc-body { color: #4b535c; font-size: 14px; line-height: 1.6; margin-bottom: 10px; }
+.tc-examples { font-size: 12px; color: #4b535c; }
+.tc-examples strong { color: #0b0d10; }
+
+@media (max-width:600px) {
+  .hdr,.red-bar,.intro,.phone-section,.summary-section { padding-left:20px; padding-right:20px; }
+  .phone-layout { grid-template-columns: 1fr; }
+  .phone-frame { max-width: 390px; margin: 0 auto; }
+  .type-grid { grid-template-columns: 1fr; }
+  .hdr-title { font-size:26px; }
+}
+</style>
+</head>
+<body>
+
+<input type="radio" name="selected-app" id="app-camera">
+<input type="radio" name="selected-app" id="app-spotify">
+<input type="radio" name="selected-app" id="app-siri">
+<input type="radio" name="selected-app" id="app-maps">
+<input type="radio" name="selected-app" id="app-tiktok">
+<input type="radio" name="selected-app" id="app-health">
+<input type="radio" name="selected-app" id="app-messages">
+<input type="radio" name="selected-app" id="app-photos">
+
+<div class="phone-section">
+  <p class="ps-label">Mini Activity</p>
+  <h2 class="ps-title">Tap an app to decode it</h2>
+  <p class="ps-sub">Select each icon to reveal the AI type and how it uses your data. Work through all eight.</p>
+  <div class="phone-layout">
+    <div>
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="app-tile"><div class="app-icon camera"><label for="app-camera"><span class="app-glyph glyph-camera"></span></label></div><div class="app-name">Camera</div></div>
+          <div class="app-tile"><div class="app-icon music"><label for="app-spotify"><span class="app-glyph glyph-music">♪</span></label></div><div class="app-name">Music</div></div>
+          <div class="app-tile"><div class="app-icon assistant"><label for="app-siri"><span class="app-glyph glyph-ai">AI</span></label></div><div class="app-name">Assistant</div></div>
+          <div class="app-tile"><div class="app-icon maps"><label for="app-maps"><span class="app-glyph glyph-map"></span></label></div><div class="app-name">Maps</div></div>
+          <div class="app-tile"><div class="app-icon video"><label for="app-tiktok"><span class="app-glyph glyph-play"></span></label></div><div class="app-name">Video</div></div>
+          <div class="app-tile"><div class="app-icon health"><label for="app-health"><span class="app-glyph glyph-health">+</span></label></div><div class="app-name">Health</div></div>
+          <div class="app-tile"><div class="app-icon messages"><label for="app-messages"><span class="app-glyph glyph-message"></span></label></div><div class="app-name">Messages</div></div>
+          <div class="app-tile"><div class="app-icon photos"><label for="app-photos"><span class="app-glyph glyph-photos"></span></label></div><div class="app-name">Photos</div></div>
+        </div>
+        <div class="phone-home"></div>
+      </div>
+    </div>
+    <div class="info-panel">
+      <div class="ip-empty">
+        
+        <p class="ip-empty-text">Select an app to decode it</p>
+      </div>
+      <div class="app-info" data-app="camera">
+        <div class="ai-head"><span class="ai-icon"><span class="app-glyph glyph-camera"></span></span><span class="ai-name">Camera</span><span class="ai-type-badge">Vision AI</span></div>
+        <div class="ai-body"><div class="ai-row">
+          <div class="ai-item"><div class="ai-item-label">What it does</div><div class="ai-item-text">Recognises faces, scenes, objects, and text in real time as you point the camera.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Input</div><div class="ai-item-text">Pixel data from the camera sensor, processed as image arrays.</div></div>
+          <div class="ai-item"><div class="ai-item-label">AI in action</div><div class="ai-item-text"><strong>Face detection</strong> for portrait mode, <strong>scene recognition</strong> to adjust exposure, <strong>object detection</strong> for suggested tags.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Not AI</div><div class="ai-item-text">The shutter button, zoom controls, and saving to storage are conventional software.</div></div>
+        </div></div>
+      </div>
+      <div class="app-info" data-app="spotify">
+        <div class="ai-head"><span class="ai-icon"><span class="app-glyph glyph-music">♪</span></span><span class="ai-name">Music Streaming</span><span class="ai-type-badge">Recommendation AI</span></div>
+        <div class="ai-body"><div class="ai-row">
+          <div class="ai-item"><div class="ai-item-label">What it does</div><div class="ai-item-text">Selects and ranks songs you are likely to enjoy based on your listening history and the habits of similar users.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Input</div><div class="ai-item-text">Play events, skip events, replay events, save events, and listening duration across millions of users.</div></div>
+          <div class="ai-item"><div class="ai-item-label">AI in action</div><div class="ai-item-text"><strong>Discover Weekly</strong> is generated weekly using collaborative filtering. Every user gets a different playlist.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Not AI</div><div class="ai-item-text">Playback controls, volume, and searching for a specific song by name are conventional software.</div></div>
+        </div></div>
+      </div>
+      <div class="app-info" data-app="siri">
+        <div class="ai-head"><span class="ai-icon"><span class="app-glyph glyph-ai">AI</span></span><span class="ai-name">Voice Assistant</span><span class="ai-type-badge">Language AI</span></div>
+        <div class="ai-body"><div class="ai-row">
+          <div class="ai-item"><div class="ai-item-label">What it does</div><div class="ai-item-text">Converts speech to text, understands the intent behind your request, and generates or retrieves an appropriate response.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Input</div><div class="ai-item-text">Audio waveforms converted to text, then processed as natural language.</div></div>
+          <div class="ai-item"><div class="ai-item-label">AI in action</div><div class="ai-item-text"><strong>Speech recognition</strong> converts your voice to text. <strong>Intent classification</strong> decides what you want. <strong>Response generation</strong> produces the answer.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Not AI</div><div class="ai-item-text">Setting an alarm for a specific time, once understood, is carried out by conventional software.</div></div>
+        </div></div>
+      </div>
+      <div class="app-info" data-app="maps">
+        <div class="ai-head"><span class="ai-icon"><span class="app-glyph glyph-map"></span></span><span class="ai-name">Maps</span><span class="ai-type-badge">Predictive AI</span></div>
+        <div class="ai-body"><div class="ai-row">
+          <div class="ai-item"><div class="ai-item-label">What it does</div><div class="ai-item-text">Estimates travel time, predicts traffic conditions, and routes you around delays before they fully form.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Input</div><div class="ai-item-text">GPS signals from millions of devices, historical traffic patterns by time of day and day of week, incident reports.</div></div>
+          <div class="ai-item"><div class="ai-item-label">AI in action</div><div class="ai-item-text"><strong>Travel time prediction</strong> uses historical and live data. <strong>Route optimisation</strong> uses learned traffic patterns. <strong>Incident detection</strong> uses anomalies in GPS speed.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Not AI</div><div class="ai-item-text">Drawing the map, calculating straight-line distance, and satellite imagery rendering are conventional software.</div></div>
+        </div></div>
+      </div>
+      <div class="app-info" data-app="tiktok">
+        <div class="ai-head"><span class="ai-icon"><span class="app-glyph glyph-play"></span></span><span class="ai-name">Short Video</span><span class="ai-type-badge">Recommendation AI</span></div>
+        <div class="ai-body"><div class="ai-row">
+          <div class="ai-item"><div class="ai-item-label">What it does</div><div class="ai-item-text">Selects the next video you see based on what you have watched, rewatched, commented on, shared, or scrolled past.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Input</div><div class="ai-item-text">Watch time, replay rate, comment activity, share behaviour, follows, and the content of videos you engage with.</div></div>
+          <div class="ai-item"><div class="ai-item-label">AI in action</div><div class="ai-item-text">The <strong>For You Page</strong> is rebuilt constantly. A video shown to a small group first. Strong engagement signals wider distribution. Your feed is different from every other user's.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Not AI</div><div class="ai-item-text">Playback, volume, upload, and direct messaging are conventional software.</div></div>
+        </div></div>
+      </div>
+      <div class="app-info" data-app="health">
+        <div class="ai-head"><span class="ai-icon"><span class="app-glyph glyph-health">+</span></span><span class="ai-name">Health Tracking</span><span class="ai-type-badge">Predictive AI</span></div>
+        <div class="ai-body"><div class="ai-row">
+          <div class="ai-item"><div class="ai-item-label">What it does</div><div class="ai-item-text">Detects irregular heart rhythms, predicts sleep quality, and identifies unusual patterns in biometric data that may indicate health changes.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Input</div><div class="ai-item-text">Heart rate sensor data, accelerometer readings, GPS movement patterns, sleep motion data.</div></div>
+          <div class="ai-item"><div class="ai-item-label">AI in action</div><div class="ai-item-text"><strong>Atrial fibrillation detection</strong> uses an ECG model. <strong>Sleep stage prediction</strong> uses motion and heart rate patterns. <strong>Trend analysis</strong> flags unusual changes over time.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Not AI</div><div class="ai-item-text">Counting steps by counting accelerometer peaks is conventional sensor logic, not AI.</div></div>
+        </div></div>
+      </div>
+      <div class="app-info" data-app="messages">
+        <div class="ai-head"><span class="ai-icon"><span class="app-glyph glyph-message"></span></span><span class="ai-name">Messages</span><span class="ai-type-badge">Language AI</span></div>
+        <div class="ai-body"><div class="ai-row">
+          <div class="ai-item"><div class="ai-item-label">What it does</div><div class="ai-item-text">Predicts the next word you are likely to type, corrects spelling in context, and suggests quick reply options.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Input</div><div class="ai-item-text">The words you have typed in this message, your typing history, and general language patterns from training data.</div></div>
+          <div class="ai-item"><div class="ai-item-label">AI in action</div><div class="ai-item-text"><strong>Predictive text</strong> uses a language model trained on your writing style. <strong>Contextual autocorrect</strong> uses the surrounding words, not just the misspelled word. <strong>Smart replies</strong> generate short suggested responses.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Not AI</div><div class="ai-item-text">Sending, receiving, storing, and encrypting messages are conventional software.</div></div>
+        </div></div>
+      </div>
+      <div class="app-info" data-app="photos">
+        <div class="ai-head"><span class="ai-icon"><span class="app-glyph glyph-photos"></span></span><span class="ai-name">Photo Library</span><span class="ai-type-badge">Vision AI</span></div>
+        <div class="ai-body"><div class="ai-row">
+          <div class="ai-item"><div class="ai-item-label">What it does</div><div class="ai-item-text">Automatically organises your photos by face, place, object, and scene without you doing anything.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Input</div><div class="ai-item-text">Raw image pixel data from every photo in your library, processed locally on your device.</div></div>
+          <div class="ai-item"><div class="ai-item-label">AI in action</div><div class="ai-item-text"><strong>Face clustering</strong> groups photos by person. <strong>Scene recognition</strong> identifies beach, mountain, food, and more. <strong>Text in image detection</strong> makes photos searchable by words they contain.</div></div>
+          <div class="ai-item"><div class="ai-item-label">Not AI</div><div class="ai-item-text">Sorting by date, storing files, and sharing photos are conventional software.</div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

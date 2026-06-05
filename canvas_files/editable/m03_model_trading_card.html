@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Model Trading Card</title>
+<style>
+*{box-sizing:border-box;}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0d0e10;color:#f1f1f1;line-height:1.6;}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 22px 60px;}
+.hero{background:linear-gradient(135deg,#0B0D10 0%,#1f1f1f 50%,#A32638 100%);padding:30px 28px;border-radius:14px;margin-bottom:16px;border:1px solid #2a2a2a;}
+.hero .tag{font-size:12px;color:#f2d6da;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.hero h1{margin:0 0 8px;font-family:Georgia,serif;font-size:32px;color:#fff;}
+.hero p{margin:0;opacity:0.92;font-size:14px;max-width:720px;}
+
+.layout{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:flex-start;}
+@media(max-width:900px){.layout{grid-template-columns:1fr;}}
+
+/* LEFT: builder */
+.builder{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:22px 26px;}
+.builder h2{margin:0 0 4px;font-family:Georgia,serif;font-size:22px;color:#fff;}
+.builder .sub{font-size:13px;color:#9aa0a6;margin-bottom:14px;}
+.mascot{display:flex;gap:12px;align-items:flex-start;background:#0d0e10;border:1px solid #2a2a2a;border-left:3px solid #ffc800;border-radius:0 12px 12px 0;padding:12px 14px;margin-bottom:14px;}
+.mascot .avatar{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#A32638,#7a1c28);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.mascot .bubble{flex:1;font-size:13px;color:#d8dadd;line-height:1.55;}
+.mascot .bubble strong{color:#ffc800;}
+.field{margin-bottom:12px;}
+.field label{display:block;font-size:12px;color:#c0c4c8;margin-bottom:4px;font-weight:600;}
+.field label .num{display:inline-block;background:#A32638;color:#fff;width:18px;height:18px;border-radius:50%;font-size:11px;text-align:center;line-height:18px;margin-right:6px;}
+.field input,.field textarea,.field select{width:100%;background:#0d0e10;border:1px solid #2a2a2a;color:#fff;padding:9px 12px;border-radius:8px;font:inherit;font-size:13px;}
+.field input:focus,.field textarea:focus{border-color:#A32638;outline:none;}
+.field textarea{resize:vertical;min-height:60px;}
+.field .row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.field .help{font-size:11px;color:#888;margin-top:3px;}
+.builder .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+.btn{background:#A32638;color:#fff;border:0;padding:10px 18px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:13px;}
+.btn:hover{filter:brightness(1.1);}
+.btn.ghost{background:transparent;color:#c0c4c8;border:1px solid #444;}
+.btn.gold{background:#ffc800;color:#0d0e10;font-weight:600;}
+
+/* RIGHT: trading card */
+.card-stage{position:sticky;top:16px;}
+.tcard{position:relative;background:linear-gradient(160deg,#1a1c1f 0%,#0d0e10 60%,#2a0d10 100%);border:3px solid #ffc800;border-radius:18px;padding:18px;min-height:560px;box-shadow:0 8px 32px rgba(0,0,0,0.6),inset 0 0 0 1px rgba(255,200,0,0.2);overflow:hidden;transition:border-color 0.3s, box-shadow 0.4s;}
+.tcard.rarity-c{border-color:#9aa0a6;box-shadow:0 8px 32px rgba(0,0,0,0.6),inset 0 0 0 1px rgba(154,160,166,0.3);}
+.tcard.rarity-b{border-color:#2ec850;box-shadow:0 8px 32px rgba(0,0,0,0.6),inset 0 0 0 1px rgba(46,200,80,0.3);}
+.tcard.rarity-a{border-color:#1565C0;box-shadow:0 8px 32px rgba(0,0,0,0.6),inset 0 0 0 1px rgba(21,101,192,0.4);}
+.tcard.rarity-s{border-color:#ffc800;box-shadow:0 8px 40px rgba(255,200,0,0.4),inset 0 0 0 1px rgba(255,200,0,0.5);animation:glow 2s ease-in-out infinite alternate;}
+@keyframes glow{from{box-shadow:0 8px 40px rgba(255,200,0,0.4),inset 0 0 0 1px rgba(255,200,0,0.5);}to{box-shadow:0 8px 50px rgba(255,200,0,0.7),inset 0 0 0 1px rgba(255,200,0,0.8);}}
+
+.tcard .rarity-badge{position:absolute;top:14px;right:14px;background:rgba(0,0,0,0.5);padding:4px 12px;border-radius:99px;font-family:Georgia,serif;font-size:14px;color:#fff;letter-spacing:0.06em;border:1px solid rgba(255,255,255,0.2);}
+.tcard.rarity-c .rarity-badge{color:#9aa0a6;}
+.tcard.rarity-b .rarity-badge{color:#2ec850;}
+.tcard.rarity-a .rarity-badge{color:#1565C0;}
+.tcard.rarity-s .rarity-badge{color:#ffc800;}
+
+.tcard .card-head{margin-bottom:14px;padding-right:80px;}
+.tcard .card-name{font-family:Georgia,serif;font-size:22px;color:#fff;margin:0 0 4px;line-height:1.2;}
+.tcard .card-name.empty{color:#5a5a5a;font-style:italic;font-weight:normal;}
+.tcard .card-purpose{font-size:12px;color:#c0c4c8;font-style:italic;line-height:1.5;}
+.tcard .card-purpose.empty{color:#5a5a5a;}
+
+.tcard .types-row{display:flex;gap:8px;margin-bottom:14px;}
+.tcard .type-chip{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);padding:6px 12px;border-radius:99px;font-size:12px;color:#fff;display:flex;align-items:center;gap:6px;}
+.tcard .type-chip.empty{color:#5a5a5a;font-style:italic;}
+.tcard .type-chip .icon{font-size:14px;}
+
+.tcard .hp-section{background:rgba(0,0,0,0.35);border-radius:10px;padding:10px 14px;margin-bottom:14px;}
+.tcard .hp-label{display:flex;justify-content:space-between;font-size:11px;color:#ffc800;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;}
+.tcard .hp-track{background:rgba(0,0,0,0.5);height:14px;border-radius:99px;overflow:hidden;position:relative;}
+.tcard .hp-fill{background:linear-gradient(90deg,#dc3c46,#ffc800,#2ec850);height:100%;border-radius:99px;transition:width 0.5s ease-out;width:0%;}
+.tcard .hp-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:11px;color:#fff;font-weight:600;text-shadow:0 1px 2px rgba(0,0,0,0.8);}
+
+.tcard .section{background:rgba(0,0,0,0.25);border-radius:10px;padding:10px 14px;margin-bottom:10px;}
+.tcard .section h4{margin:0 0 4px;font-family:Georgia,serif;font-size:14px;color:#ffc800;display:flex;align-items:center;gap:6px;}
+.tcard .section .body{font-size:12px;color:#d8dadd;line-height:1.55;white-space:pre-wrap;}
+.tcard .section .body.empty{color:#5a5a5a;font-style:italic;}
+
+.tcard .trainer-note{background:linear-gradient(135deg,rgba(163,38,56,0.3),rgba(0,0,0,0.4));border:1px solid rgba(255,200,0,0.3);border-radius:10px;padding:12px 14px;margin-top:12px;}
+.tcard .trainer-note .label{font-size:10px;color:#ffc800;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
+.tcard .trainer-note .quote{font-family:Georgia,serif;font-size:13px;color:#fff;font-style:italic;line-height:1.5;}
+.tcard .trainer-note .quote.empty{color:#5a5a5a;font-weight:normal;}
+
+.tcard .stamp{position:absolute;bottom:14px;right:14px;font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.08em;}
+
+/* Audit modal */
+.audit{display:none;background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:24px 26px;margin-top:14px;}
+.audit.show{display:block;animation:fade 0.4s;}
+@keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.audit h2{margin:0 0 4px;font-family:Georgia,serif;font-size:24px;color:#fff;}
+.audit .asub{font-size:13px;color:#9aa0a6;margin-bottom:14px;}
+.audit .q{background:#0d0e10;border-left:3px solid #ffc800;border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:10px;}
+.audit .q .qnum{font-size:11px;color:#ffc800;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;}
+.audit .q .qtext{font-size:14px;color:#fff;margin-bottom:8px;}
+.audit .q textarea{width:100%;background:#1a1c1f;border:1px solid #2a2a2a;color:#fff;padding:8px 10px;border-radius:6px;font:inherit;font-size:13px;min-height:50px;}
+.audit .verdict{background:linear-gradient(135deg,#0B0D10,#A32638);border-radius:12px;padding:16px 18px;margin-top:12px;color:#fff;display:none;}
+.audit .verdict.show{display:block;}
+.audit .verdict h3{margin:0 0 4px;font-family:Georgia,serif;font-size:18px;}
+.audit .verdict p{margin:6px 0;font-size:13px;}
+.audit .verdict .cert{background:rgba(255,200,0,0.15);border:1px solid rgba(255,200,0,0.4);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:13px;}
+</style></head><body>
+<div class="wrap">
+<div class="hero">
+<div class="tag">Module 3 · Portfolio Deliverable</div>
+<h1>Model Trading Card</h1>
+<p>Your final M3 deliverable is a one-page honest description of your AI: what it does, where it works, where it breaks. We are going to build it as a collectible trading card. As you fill out the builder on the left, the card on the right takes shape. Earn rarity tiers for completeness and honesty. Pass the final audit to certify.</p>
+</div>
+
+<div class="layout">
+  <!-- BUILDER -->
+  <div class="builder">
+    <h2>Builder</h2>
+    <div class="sub">CIRCUIT, your lab assistant, will react as you go.</div>
+    <div class="mascot">
+      <div class="avatar">🤖</div>
+      <div class="bubble" id="bubble"><strong>CIRCUIT here.</strong> Start by giving your model a name. Be specific. "Cat detector" beats "Project 1."</div>
+    </div>
+
+    <div class="field">
+      <label><span class="num">1</span>Model name</label>
+      <input id="f_name" placeholder="e.g. Ripe vs Overripe Avocado Classifier" oninput="updateAll('name')">
+    </div>
+    <div class="field">
+      <label><span class="num">2</span>One-line purpose</label>
+      <textarea id="f_purpose" placeholder="What does it do? Who would use it?" oninput="updateAll('purpose')"></textarea>
+    </div>
+    <div class="field">
+      <label><span class="num">3</span>Your two classes (types)</label>
+      <div class="row">
+        <input id="f_classA" placeholder="Class A" oninput="updateAll('classes')">
+        <input id="f_classB" placeholder="Class B" oninput="updateAll('classes')">
+      </div>
+      <p class="help">Pick icons (optional) for visual flavor:</p>
+      <div class="row">
+        <select id="f_iconA" onchange="updateAll('icon')"><option value="🔵">🔵 dot</option><option value="🍎">🍎 fruit</option><option value="🐱">🐱 cat</option><option value="🐶">🐶 dog</option><option value="🌱">🌱 plant</option><option value="📷">📷 photo</option><option value="🥤">🥤 cup</option><option value="🎨">🎨 art</option><option value="🍞">🍞 bread</option><option value="⚙️">⚙️ tool</option></select>
+        <select id="f_iconB" onchange="updateAll('icon')"><option value="🔴">🔴 dot</option><option value="🍎">🍎 fruit</option><option value="🐱">🐱 cat</option><option value="🐶">🐶 dog</option><option value="🌱">🌱 plant</option><option value="📷">📷 photo</option><option value="🥤">🥤 cup</option><option value="🎨">🎨 art</option><option value="🍞">🍞 bread</option><option value="⚙️">⚙️ tool</option></select>
+      </div>
+    </div>
+    <div class="field">
+      <label><span class="num">4</span>HP (test accuracy %)</label>
+      <input id="f_hp" type="number" min="0" max="100" placeholder="e.g. 85" oninput="updateAll('hp')">
+      <p class="help">Use the actual % from your fresh-sample test. Be honest.</p>
+    </div>
+    <div class="field">
+      <label><span class="num">5</span>Moves (what your model can do)</label>
+      <textarea id="f_moves" placeholder="One or two things the model is genuinely good at." oninput="updateAll('moves')"></textarea>
+    </div>
+    <div class="field">
+      <label><span class="num">6</span>Weakness</label>
+      <textarea id="f_weak" placeholder="What lighting, angle, or condition breaks it?" oninput="updateAll('weak')"></textarea>
+    </div>
+    <div class="field">
+      <label><span class="num">7</span>Trainer's note (when to trust)</label>
+      <textarea id="f_trust" placeholder="One sentence: when would you trust this model and when not?" oninput="updateAll('trust')"></textarea>
+    </div>
+
+    <div class="actions">
+      <button class="btn gold" onclick="startAudit()">Start audit challenge</button>
+      <button class="btn" onclick="downloadCard()">Download card</button>
+      <button class="btn ghost" onclick="loadExample()">Load example</button>
+      <button class="btn ghost" onclick="clearAll()">Clear</button>
+    </div>
+  </div>
+
+  <!-- CARD -->
+  <div class="card-stage">
+    <div class="tcard rarity-c" id="tcard">
+      <div class="rarity-badge" id="rarity">Rarity: C</div>
+      <div class="card-head">
+        <div class="card-name empty" id="p_name">Untitled Model</div>
+        <div class="card-purpose empty" id="p_purpose">(Purpose will appear here)</div>
+      </div>
+      <div class="types-row">
+        <div class="type-chip empty" id="p_typeA"><span class="icon">⬜</span><span>Class A</span></div>
+        <div class="type-chip empty" id="p_typeB"><span class="icon">⬜</span><span>Class B</span></div>
+      </div>
+      <div class="hp-section">
+        <div class="hp-label"><span>HP (Accuracy)</span><span id="p_hpnum">-- / 100</span></div>
+        <div class="hp-track"><div class="hp-fill" id="p_hpfill"></div></div>
+      </div>
+      <div class="section">
+        <h4>⚡ Moves</h4>
+        <div class="body empty" id="p_moves">(What your model is good at)</div>
+      </div>
+      <div class="section">
+        <h4>💢 Weakness</h4>
+        <div class="body empty" id="p_weak">(Where it breaks)</div>
+      </div>
+      <div class="trainer-note">
+        <div class="label">Trainer's note</div>
+        <div class="quote empty" id="p_trust">"When to trust this model goes here."</div>
+      </div>
+      <div class="stamp">Module 3 · Stevens · No-Code AI Lab</div>
+    </div>
+
+    <div class="audit" id="audit">
+      <h2>Audit Challenge</h2>
+      <p class="asub">CIRCUIT runs three final questions on your card. Answer briefly. Then certify.</p>
+      <div class="q">
+        <div class="qnum">Audit Q1</div>
+        <div class="qtext">If your model is wrong, who pays the cost?</div>
+        <textarea id="aq1" placeholder="Name a real person or group."></textarea>
+      </div>
+      <div class="q">
+        <div class="qnum">Audit Q2</div>
+        <div class="qtext">Pick the one condition that would most likely break your model in the real world. Be specific.</div>
+        <textarea id="aq2" placeholder="Specific condition, not 'edge cases.'"></textarea>
+      </div>
+      <div class="q">
+        <div class="qnum">Audit Q3</div>
+        <div class="qtext">In one sentence, what would you tell someone who wants to use this model for a serious decision?</div>
+        <textarea id="aq3" placeholder="Your honest professional opinion."></textarea>
+      </div>
+      <div style="text-align:right;margin-top:8px;"><button class="btn gold" onclick="submitAudit()">Submit audit</button></div>
+      <div class="verdict" id="verdict"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+function val(id){return (document.getElementById(id).value||'').trim();}
+function emptyClass(el,empty){el.classList.toggle('empty',empty);}
+
+const REACTIONS = {
+  start: "<strong>CIRCUIT here.</strong> Start by giving your model a name. Be specific. \"Cat detector\" beats \"Project 1.\"",
+  name_short: "Name looks short. Specific names help future-you remember what this thing actually does.",
+  name_ok: "Good name. Future-you will recognize this in the portfolio folder.",
+  purpose_short: "Two sentences max for purpose. Who would actually use this? Name them.",
+  purpose_ok: "Clear purpose. That is rare. Most cards say 'detects things.'",
+  classes_missing: "Pick both classes. They define what your model even is.",
+  classes_ok: "Class types locked in. The model will only ever return one of these two.",
+  hp_high: "90+ HP is impressive. Did you test on fresh samples? Or is that training accuracy?",
+  hp_low: "Lower HP is fine if stakes are low. Just say so in your trainer's note.",
+  hp_ok: "Honest HP value. That is the actual mark of a real practitioner.",
+  weak_short: "Weakness section is light. Every model breaks somewhere. Name the specific condition.",
+  weak_ok: "Naming a weakness clearly is worth more than hiding it. Honesty earns rarity.",
+  trust_ok: "Solid trainer's note. The 'when to trust' sentence is the most-skipped piece in real ML practice."
+};
+function setBubble(key){document.getElementById('bubble').innerHTML = REACTIONS[key] || REACTIONS.start;}
+
+function rarity() {
+  // Score based on which fields are filled + honesty signals
+  const fields = ['f_name','f_purpose','f_classA','f_classB','f_hp','f_moves','f_weak','f_trust'];
+  const filled = fields.filter(f => val(f).length >= 3).length;
+  const hp = parseInt(val('f_hp')) || 0;
+  const weakLen = val('f_weak').length;
+  const trustLen = val('f_trust').length;
+  // Honesty bonus: naming a real weakness, having a trust sentence with both yes/no notion
+  const honestyBonus = (weakLen > 20 ? 1 : 0) + (trustLen > 30 ? 1 : 0);
+  const purposeBonus = val('f_purpose').length > 40 ? 1 : 0;
+  const score = filled + honestyBonus + purposeBonus;
+  if (score >= 10) return 's';
+  if (score >= 8) return 'a';
+  if (score >= 6) return 'b';
+  return 'c';
+}
+function rarityLabel(r) { return {c:'C - Common', b:'B - Solid', a:'A - Rare', s:'S - Legendary'}[r] || 'C - Common'; }
+
+function updateAll(trigger) {
+  // Header
+  const name = val('f_name');
+  emptyClass(document.getElementById('p_name'), !name);
+  document.getElementById('p_name').textContent = name || 'Untitled Model';
+  const purpose = val('f_purpose');
+  emptyClass(document.getElementById('p_purpose'), !purpose);
+  document.getElementById('p_purpose').textContent = purpose || '(Purpose will appear here)';
+
+  // Types
+  const a = val('f_classA'), b = val('f_classB');
+  const iA = document.getElementById('f_iconA').value, iB = document.getElementById('f_iconB').value;
+  const tA = document.getElementById('p_typeA'), tB = document.getElementById('p_typeB');
+  emptyClass(tA, !a); emptyClass(tB, !b);
+  tA.innerHTML = `<span class="icon">${iA}</span><span>${a || 'Class A'}</span>`;
+  tB.innerHTML = `<span class="icon">${iB}</span><span>${b || 'Class B'}</span>`;
+
+  // HP
+  const hpRaw = parseInt(val('f_hp')); const hp = isNaN(hpRaw) ? 0 : Math.max(0, Math.min(100, hpRaw));
+  document.getElementById('p_hpnum').textContent = isNaN(hpRaw) ? '-- / 100' : `${hp} / 100`;
+  document.getElementById('p_hpfill').style.width = hp + '%';
+
+  // Moves / Weakness / Trust
+  const moves = val('f_moves');
+  emptyClass(document.getElementById('p_moves'), !moves);
+  document.getElementById('p_moves').textContent = moves || '(What your model is good at)';
+  const weak = val('f_weak');
+  emptyClass(document.getElementById('p_weak'), !weak);
+  document.getElementById('p_weak').textContent = weak || '(Where it breaks)';
+  const trust = val('f_trust');
+  emptyClass(document.getElementById('p_trust'), !trust);
+  document.getElementById('p_trust').textContent = trust ? '"' + trust + '"' : '"When to trust this model goes here."';
+
+  // Rarity
+  const r = rarity();
+  const tcard = document.getElementById('tcard');
+  tcard.classList.remove('rarity-c','rarity-b','rarity-a','rarity-s');
+  tcard.classList.add('rarity-' + r);
+  document.getElementById('rarity').textContent = 'Rarity: ' + rarityLabel(r);
+
+  // Mascot reaction
+  if (trigger === 'name') setBubble(name.length < 6 ? 'name_short' : 'name_ok');
+  else if (trigger === 'purpose') setBubble(purpose.length < 30 ? 'purpose_short' : 'purpose_ok');
+  else if (trigger === 'classes') setBubble((!a || !b) ? 'classes_missing' : 'classes_ok');
+  else if (trigger === 'hp') setBubble(hp >= 90 ? 'hp_high' : hp > 0 && hp < 70 ? 'hp_low' : 'hp_ok');
+  else if (trigger === 'weak') setBubble(weak.length < 20 ? 'weak_short' : 'weak_ok');
+  else if (trigger === 'trust') setBubble('trust_ok');
+}
+
+function clearAll() {
+  ['f_name','f_purpose','f_classA','f_classB','f_hp','f_moves','f_weak','f_trust','aq1','aq2','aq3'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  document.getElementById('audit').classList.remove('show');
+  document.getElementById('verdict').classList.remove('show');
+  setBubble('start');
+  updateAll();
+}
+
+function loadExample() {
+  document.getElementById('f_name').value = "Ripe vs Overripe Avocado";
+  document.getElementById('f_purpose').value = "Classifies a phone photo of an avocado as ripe or overripe. For home shoppers who struggle with squeeze-testing fruit.";
+  document.getElementById('f_classA').value = "Ripe";
+  document.getElementById('f_classB').value = "Overripe";
+  document.getElementById('f_iconA').value = "🍎";
+  document.getElementById('f_iconB').value = "🍞";
+  document.getElementById('f_hp').value = "85";
+  document.getElementById('f_moves').value = "Reliably sorts clearly-ripe from clearly-overripe Hass avocados in good light.";
+  document.getElementById('f_weak').value = "Confuses borderline cases as overripe. Fails in dim light and on dark countertops.";
+  document.getElementById('f_trust').value = "Trust for personal smoothie planning in good light. Do not trust to throw away food or for any commercial use.";
+  setBubble('trust_ok');
+  updateAll();
+}
+
+function downloadCard() {
+  const lines = [
+    "MODEL TRADING CARD",
+    "=".repeat(50),
+    "Name: " + (val('f_name') || 'Untitled'),
+    "Rarity: " + rarityLabel(rarity()),
+    "",
+    "PURPOSE: " + (val('f_purpose') || '(blank)'),
+    "",
+    "TYPES",
+    "  Class A: " + (document.getElementById('f_iconA').value + ' ' + (val('f_classA') || '?')),
+    "  Class B: " + (document.getElementById('f_iconB').value + ' ' + (val('f_classB') || '?')),
+    "",
+    "HP / ACCURACY: " + (val('f_hp') || '?') + " / 100",
+    "",
+    "MOVES: " + (val('f_moves') || '(blank)'),
+    "",
+    "WEAKNESS: " + (val('f_weak') || '(blank)'),
+    "",
+    "TRAINER'S NOTE:",
+    '  "' + (val('f_trust') || '(blank)') + '"'
+  ];
+  const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+  const a = document.createElement('a');
+  const safeName = (val('f_name') || 'model_card').replace(/[^a-zA-Z0-9-_]/g, '_');
+  a.href = URL.createObjectURL(blob);
+  a.download = safeName + '.txt';
+  a.click();
+}
+
+function startAudit() {
+  const required = ['f_name','f_purpose','f_classA','f_classB','f_hp','f_moves','f_weak','f_trust'];
+  const missing = required.filter(f => !val(f));
+  if (missing.length) { alert("Fill in all 7 builder fields before the audit can run."); return; }
+  document.getElementById('audit').classList.add('show');
+  document.getElementById('audit').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function submitAudit() {
+  const a1 = val('aq1'), a2 = val('aq2'), a3 = val('aq3');
+  if (!a1 || !a2 || !a3) { alert("Answer all three audit questions."); return; }
+  const r = rarity();
+  const cert = r === 's' ? "Legendary certification. Honest, complete, and specific." :
+               r === 'a' ? "Rare certification. Strong card with one or two areas to tighten." :
+               r === 'b' ? "Solid certification. Card is shippable; expand the weakness section for an upgrade." :
+               "Trainee certification. Card passes minimum; the next pass through fields 5-7 will boost the rarity.";
+  const v = document.getElementById('verdict');
+  v.innerHTML = `<h3>Audit Verdict: ${rarityLabel(r)}</h3>
+    <p>You named who pays the cost. You named a specific breaking condition. You committed to a trust statement. That is the difference between a real Model Card and a marketing brochure.</p>
+    <div class="cert">${cert}</div>
+    <p style="margin-top:10px;font-size:12px;opacity:0.85;">Download the card now and save it to your Module 3 portfolio. The trading card is the final deliverable.</p>`;
+  v.classList.add('show');
+  v.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+updateAll();
+</script></body></html>

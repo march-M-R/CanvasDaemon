@@ -1,0 +1,94 @@
+MODULE 4 LESSON 3 QUIZ QUESTION BANK
+Lesson 3: Hallucinations and Bias in Outputs
+Auto-graded question types only
+Total: 12 points
+
+1. Multiple Choice, 1 point
+Question: What is a "hallucination" in the context of a large language model?
+A. The model is sleeping
+B. A confident output that is factually false or invented
+C. The model refuses to answer
+D. The model returns an error
+Correct answer: B
+
+2. Multiple Choice, 1 point
+Question: Why do language models hallucinate?
+A. They are deliberately programmed to lie
+B. They predict the next token based on statistical patterns, without a built-in fact checker
+C. They are broken
+D. The internet is broken
+Correct answer: B
+
+3. Multiple Answer, 2 points
+Question: Which of the following are reliable strategies for catching LLM hallucinations?
+A. Verify claims against primary sources
+B. Check whether cited papers actually exist
+C. Trust whatever sounds confident
+D. Ask the model to provide URLs and verify each one
+E. Stop using AI entirely
+Correct answer: A, B, D
+
+4. Multiple Choice, 1 point
+Question: A language model returns a fabricated citation that looks real. What is the safest user response?
+A. Trust it because the model is usually right
+B. Check whether the citation exists in a real source before using it
+C. Repost it on social media
+D. Ignore the issue
+Correct answer: B
+
+5. True or False, 1 point
+Question: An LLM that is 99% confident in its answer is guaranteed to be correct.
+Correct answer: False
+
+6. Multiple Choice, 1 point
+Question: Asking the same LLM the same prompt with two different user names sometimes produces different answers. What does that demonstrate?
+A. The model is random
+B. Output bias: the model's response can shift based on signals like a name, even when the underlying question is identical
+C. The model is broken
+D. Names confuse all software
+Correct answer: B
+
+7. Multiple Choice, 1 point
+Question: A user asks an LLM "what should a programmer named Devansh wear to an interview" and "what should a programmer named Sarah wear to an interview" and gets different style advice. The cleanest explanation is:
+A. Coincidence
+B. Bias in the model's training data influencing how it personalizes outputs by name
+C. Sarah is a programmer
+D. The model is offline
+Correct answer: B
+
+8. Multiple Choice, 1 point
+Question: Which of the following is NOT a property of typical LLM outputs?
+A. Fluent grammar
+B. Surface plausibility
+C. Built-in fact verification
+D. Confident phrasing even when wrong
+Correct answer: C
+
+9. True or False, 1 point
+Question: "Confident" and "correct" are the same thing for a language model output.
+Correct answer: False
+
+10. Multiple Choice, 1 point
+Question: Why is the term "confidently wrong" especially dangerous for LLMs?
+A. Users tend to trust confident-sounding answers more, even when they are false
+B. The model has more compute
+C. The model is angry
+D. The model is sleeping
+Correct answer: A
+
+11. Multiple Answer, 2 points
+Question: Which of the following are red flags that an LLM might be hallucinating?
+A. A very specific citation you cannot verify
+B. Statistics quoted without a source
+C. URLs that 404 when you try to open them
+D. Long, fluent answers with no caveats
+E. Answers from a peer-reviewed paper you can confirm
+Correct answer: A, B, C, D
+
+12. Multiple Choice, 1 point
+Question: Two users with different first names get materially different career advice from the same model. Which fairness concern is at play?
+A. Group fairness
+B. Procedural fairness
+C. Output bias by personal attribute
+D. Individual fairness violation (similar inputs treated differently based on a sensitive attribute)
+Correct answer: D

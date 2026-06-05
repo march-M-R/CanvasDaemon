@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Split the Data</title>
+<style>*{box-sizing:border-box;}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0d0e10;color:#f1f1f1;line-height:1.6;}
+.wrap{max-width:920px;margin:0 auto;padding:24px 20px 60px;}
+.hero{background:linear-gradient(135deg,#0B0D10 0%,#1f1f1f 50%,#A32638 100%);padding:26px 26px;border-radius:14px;margin-bottom:16px;border:1px solid #2a2a2a;}
+.hero .tag{font-size:12px;color:#f2d6da;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.hero h1{margin:0 0 6px;font-family:Georgia,serif;font-size:30px;color:#fff;line-height:1.14;}
+.hero p{margin:0;opacity:0.92;font-size:14px;max-width:660px;}
+.panel{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:18px 22px;margin-bottom:14px;}
+.stats{display:flex;gap:10px;margin-bottom:14px;}
+.stat{flex:1;background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:10px 14px;text-align:center;}
+.stat .l{font-size:11px;color:#9aa0a6;text-transform:uppercase;letter-spacing:0.05em;}
+.stat .v{font-family:Georgia,serif;font-size:20px;color:#fff;margin-top:2px;}
+.btn{background:#A32638;color:#fff;border:0;padding:10px 22px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:14px;}
+.btn:disabled{background:#444;cursor:not-allowed;}
+.btn:hover:not(:disabled){filter:brightness(1.1);}
+.btn.ghost{background:transparent;color:#c0c4c8;border:1px solid #444;}
+.reveal{background:#0d0e10;border-left:3px solid #ffc800;border-radius:0 10px 10px 0;padding:14px 18px;margin-top:14px;display:none;color:#d8dadd;font-size:14px;line-height:1.65;}
+.reveal.show{display:block;animation:fade 0.3s;}
+.reveal h3{margin:0 0 6px;font-family:Georgia,serif;font-size:18px;color:#fff;}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.final{background:linear-gradient(135deg,#0B0D10,#A32638);border-radius:14px;padding:30px 28px;text-align:center;margin-top:14px;display:none;}
+.final.show{display:block;}
+.final h2{font-family:Georgia,serif;font-size:28px;color:#fff;margin:0 0 6px;}
+.final .big{font-family:Georgia,serif;font-size:56px;color:#fff;line-height:1;margin:6px 0;}
+.final p{color:rgba(255,255,255,0.92);max-width:540px;margin:0 auto 12px;}
+.hidden{display:none!important;}
+.right{color:#2ec850;}
+.wrong{color:#dc3c46;}
+
+.split-wrap{display:grid;grid-template-columns:240px 1fr;gap:20px;align-items:center;margin-bottom:14px;}
+@media(max-width:680px){.split-wrap{grid-template-columns:1fr;}.pie{margin:0 auto;}}
+.pie{position:relative;width:220px;height:220px;border-radius:50%;background:conic-gradient(#3a86ff 0% 70%,#ffc800 70% 85%,#2ec850 85% 100%);transition:background 0.3s;}
+.pie::after{content:"";position:absolute;inset:30px;background:#0d0e10;border-radius:50%;}
+.pie .center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;color:#fff;font-size:13px;text-align:center;z-index:1;}
+.sliders{display:flex;flex-direction:column;gap:14px;}
+.slider-row{background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:12px 16px;}
+.slider-row .label{display:flex;justify-content:space-between;font-size:13px;color:#f1f1f1;margin-bottom:6px;}
+.slider-row .label .name{display:flex;align-items:center;gap:8px;}
+.slider-row .label .dot{width:12px;height:12px;border-radius:3px;}
+.slider-row input{width:100%;accent-color:#A32638;}
+.warnings{background:#15171a;border:1px solid #2a2a2a;border-radius:12px;padding:14px;margin-bottom:12px;}
+.warn{background:#2a1d10;border-left:3px solid #ffc800;border-radius:0 8px 8px 0;padding:10px 14px;margin:6px 0;font-size:13px;color:#ffc800;}
+.ok{background:#0f2412;border-left:3px solid #2ec850;border-radius:0 8px 8px 0;padding:10px 14px;margin:6px 0;font-size:13px;color:#2ec850;}
+.target{font-size:12px;color:#9aa0a6;margin-top:8px;}
+</style></head><body>
+<div class="wrap">
+<div class="hero"><div class="tag">Module 2 &middot; Micro-Learning 3.2</div><h1>Split the Data</h1><p>Drag the sliders to set training, validation, and test proportions. Watch warnings appear if any zone is too thin. The right split depends on your dataset, but the discipline of having all three is non-negotiable.</p></div>
+<div class="split-wrap">
+<div class="pie" id="pie"><div class="center" id="pieText">70 / 15 / 15</div></div>
+<div class="sliders">
+<div class="slider-row"><div class="label"><span class="name"><span class="dot" style="background:#3a86ff;"></span>Training</span><span id="trVal">70%</span></div><input type="range" id="train" min="40" max="90" value="70" oninput="update()"></div>
+<div class="slider-row"><div class="label"><span class="name"><span class="dot" style="background:#ffc800;"></span>Validation</span><span id="vaVal">15%</span></div><input type="range" id="val" min="5" max="40" value="15" oninput="update()"></div>
+<div class="slider-row"><div class="label"><span class="name"><span class="dot" style="background:#2ec850;"></span>Test (computed)</span><span id="teVal">15%</span></div><p style="margin:6px 0 0;color:#9aa0a6;font-size:12px;">Test gets whatever is left over. Lock the split, then never touch the test set again.</p></div>
+</div>
+</div>
+<div class="warnings" id="warnings"></div>
+<div class="reveal" id="reveal"></div>
+<div style="display:flex;justify-content:flex-end;"><button class="btn" onclick="lockIn()">Lock in split</button></div>
+</div>
+<script>
+function update(){
+  const tr=parseInt(document.getElementById("train").value);
+  const va=parseInt(document.getElementById("val").value);
+  const te=Math.max(0,100-tr-va);
+  document.getElementById("trVal").textContent=tr+"%";
+  document.getElementById("vaVal").textContent=va+"%";
+  document.getElementById("teVal").textContent=te+"%";
+  document.getElementById("pieText").textContent=tr+" / "+va+" / "+te;
+  document.getElementById("pie").style.background=`conic-gradient(#3a86ff 0% ${tr}%,#ffc800 ${tr}% ${tr+va}%,#2ec850 ${tr+va}% 100%)`;
+  const w=document.getElementById("warnings");
+  const msgs=[];
+  if(te<5)msgs.push(`<div class="warn">Test set is only ${te}%. Too thin to give an honest accuracy number. Aim for at least 10%.</div>`);
+  if(va<5)msgs.push(`<div class="warn">Validation set is only ${va}%. You won't be able to compare model versions reliably.</div>`);
+  if(tr<50)msgs.push(`<div class="warn">Training set is only ${tr}%. The model may not have enough examples to learn the pattern.</div>`);
+  if(tr+va+te!==100)msgs.push(`<div class="warn">Splits sum to ${tr+va+te}%. Sliders are out of sync.</div>`);
+  if(msgs.length===0)msgs.push(`<div class="ok">Healthy split. Train teaches the model, validation chooses between versions, test gives the honest accuracy number.</div>`);
+  w.innerHTML=msgs.join("");
+}
+function lockIn(){
+  const tr=parseInt(document.getElementById("train").value);
+  const va=parseInt(document.getElementById("val").value);
+  const te=Math.max(0,100-tr-va);
+  const r=document.getElementById("reveal");
+  let verdict="";
+  if(tr>=60&&tr<=80&&va>=10&&va<=20&&te>=10&&te<=20)verdict="<strong style='color:#2ec850;'>Production-ready split.</strong> This is the range most teams converge on for small to medium datasets.";
+  else if(te<10)verdict="<strong style='color:#dc3c46;'>Test set too small.</strong> Any accuracy number you get will have huge confidence intervals. Don't ship.";
+  else if(tr<60)verdict="<strong style='color:#ffc800;'>Training set small.</strong> Workable for tiny datasets but the model may underfit. Consider 70/15/15.";
+  else verdict="<strong style='color:#2ec850;'>Acceptable.</strong> Slight tilt from canonical 70/15/15 but workable.";
+  r.innerHTML=`<h3>You picked ${tr}/${va}/${te}.</h3><p>${verdict}</p><p style="margin-top:8px;">Every time you check the test set and change something, you are slowly turning it into a second validation set. The discipline is to hold the test set, untouched, until the very end.</p>`;
+  r.classList.add("show");
+}
+update();
+</script>
+</body></html>

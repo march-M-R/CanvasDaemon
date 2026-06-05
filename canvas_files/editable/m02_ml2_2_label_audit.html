@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Label Audit</title>
+<style>*{box-sizing:border-box;}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0d0e10;color:#f1f1f1;line-height:1.6;}
+.wrap{max-width:920px;margin:0 auto;padding:24px 20px 60px;}
+.hero{background:linear-gradient(135deg,#0B0D10 0%,#1f1f1f 50%,#A32638 100%);padding:26px 26px;border-radius:14px;margin-bottom:16px;border:1px solid #2a2a2a;}
+.hero .tag{font-size:12px;color:#f2d6da;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.hero h1{margin:0 0 6px;font-family:Georgia,serif;font-size:30px;color:#fff;line-height:1.14;}
+.hero p{margin:0;opacity:0.92;font-size:14px;max-width:660px;}
+.panel{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:18px 22px;margin-bottom:14px;}
+.stats{display:flex;gap:10px;margin-bottom:14px;}
+.stat{flex:1;background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:10px 14px;text-align:center;}
+.stat .l{font-size:11px;color:#9aa0a6;text-transform:uppercase;letter-spacing:0.05em;}
+.stat .v{font-family:Georgia,serif;font-size:20px;color:#fff;margin-top:2px;}
+.btn{background:#A32638;color:#fff;border:0;padding:10px 22px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:14px;}
+.btn:disabled{background:#444;cursor:not-allowed;}
+.btn:hover:not(:disabled){filter:brightness(1.1);}
+.btn.ghost{background:transparent;color:#c0c4c8;border:1px solid #444;}
+.reveal{background:#0d0e10;border-left:3px solid #ffc800;border-radius:0 10px 10px 0;padding:14px 18px;margin-top:14px;display:none;color:#d8dadd;font-size:14px;line-height:1.65;}
+.reveal.show{display:block;animation:fade 0.3s;}
+.reveal h3{margin:0 0 6px;font-family:Georgia,serif;font-size:18px;color:#fff;}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.final{background:linear-gradient(135deg,#0B0D10,#A32638);border-radius:14px;padding:30px 28px;text-align:center;margin-top:14px;display:none;}
+.final.show{display:block;}
+.final h2{font-family:Georgia,serif;font-size:28px;color:#fff;margin:0 0 6px;}
+.final .big{font-family:Georgia,serif;font-size:56px;color:#fff;line-height:1;margin:6px 0;}
+.final p{color:rgba(255,255,255,0.92);max-width:540px;margin:0 auto 12px;}
+.hidden{display:none!important;}
+.right{color:#2ec850;}
+.wrong{color:#dc3c46;}
+
+.dataset{background:#15171a;border:1px solid #2a2a2a;border-radius:12px;padding:0;margin-bottom:12px;overflow:hidden;}
+.dataset h4{margin:0;padding:14px 18px;font-size:13px;color:#9aa0a6;text-transform:uppercase;letter-spacing:0.05em;border-bottom:1px solid #2a2a2a;}
+.row{display:grid;grid-template-columns:50px 1fr 110px 50px;gap:0;padding:11px 18px;border-bottom:1px solid #1f2125;cursor:pointer;align-items:center;font-size:13px;transition:background 0.15s;}
+.row:hover{background:#1a1c20;}
+.row:last-child{border-bottom:none;}
+.row.flagged{background:#2a1d10;border-left:3px solid #ffc800;padding-left:15px;}
+.row.right{background:#0f2412;}
+.row.wrong{background:#2a0d10;}
+.row .num{color:#9aa0a6;font-family:monospace;}
+.row .text{color:#f1f1f1;line-height:1.4;}
+.row .label{font-family:monospace;font-size:12px;color:#A32638;}
+.row .flag{text-align:right;font-size:18px;color:#ffc800;}
+.row.flagged .flag::before{content:"⚠";}
+.controls{display:flex;justify-content:space-between;gap:10px;margin-bottom:12px;align-items:center;}
+.flag-count{font-size:13px;color:#9aa0a6;}
+</style></head><body>
+<div class="wrap">
+<div class="hero"><div class="tag">Module 2 &middot; Micro-Learning 2.2</div><h1>Label Audit</h1><p>A small training set with some mislabels. Click each row you suspect was labeled wrong. The model will trust whatever you give it, so audits like this catch the kind of bias that becomes a learned model behavior.</p></div>
+<div class="stats">
+<div class="stat"><div class="l">Dataset</div><div class="v">Spam filter</div></div>
+<div class="stat"><div class="l">Flagged</div><div class="v" id="fcount">0</div></div>
+<div class="stat"><div class="l">Caught</div><div class="v" id="score">-</div></div>
+</div>
+<p style="color:#9aa0a6;font-size:13px;margin:0 0 12px;">Click each row you suspect was labeled wrong. Then lock in to see which ones the model would actually learn from.</p>
+<div class="dataset"><h4>Training set (10 emails labeled by crowd workers)</h4><div id="rows"></div></div>
+<div class="controls"><button class="btn ghost" onclick="reset()">Reset</button><button class="btn" id="lock" onclick="check()">Lock in audit</button></div>
+<div class="reveal" id="reveal"></div>
+</div>
+<script>
+const ROWS=[
+ {id:0,text:"URGENT: claim your prize $1000 click here now",label:"spam",bad:false,why:"Classic spam phrasing. Correctly labeled."},
+ {id:1,text:"Hi Mom, can you send me the WiFi password?",label:"spam",bad:true,why:"Personal message wrongly labeled spam. A single bad label like this teaches the model to flag personal messages."},
+ {id:2,text:"Meeting moved to 3pm in the conference room",label:"inbox",bad:false,why:"Normal work email. Correct."},
+ {id:3,text:"YOU WON FREE iPhone CLICK NOW LIMITED TIME",label:"spam",bad:false,why:"Obvious spam pattern. Correct."},
+ {id:4,text:"Your library hold is ready for pickup",label:"spam",bad:true,why:"Wrongly labeled. This is a legitimate notification."},
+ {id:5,text:"Lunch tomorrow?",label:"inbox",bad:false,why:"Short personal message. Correct."},
+ {id:6,text:"Re: project budget Q2 review attached",label:"inbox",bad:false,why:"Work email. Correct."},
+ {id:7,text:"Wedding photos uploaded to album",label:"spam",bad:true,why:"Wrongly labeled. The model now learns photo notifications are spam."},
+ {id:8,text:"FW: Crypto invest now make $$$$ guarantee",label:"spam",bad:false,why:"Spam. Correct."},
+ {id:9,text:"Reminder: dentist appointment Friday 2pm",label:"spam",bad:true,why:"Wrongly labeled. Three wrong labels in this dataset cluster on 'normal life notifications'. The model will learn to filter them out."}
+];
+let flagged=new Set(),locked=false;
+function render(){
+  document.getElementById("rows").innerHTML=ROWS.map(r=>{
+    const cls=flagged.has(r.id)?"flagged":"";
+    const verdict=locked?(r.bad===flagged.has(r.id)?"right":"wrong"):"";
+    return `<div class="row ${cls} ${verdict}" onclick="toggle(${r.id})"><div class="num">#${r.id+1}</div><div class="text">${r.text}</div><div class="label">[${r.label}]</div><div class="flag"></div></div>`;
+  }).join("");
+  document.getElementById("fcount").textContent=flagged.size;
+}
+function toggle(i){if(locked)return;if(flagged.has(i))flagged.delete(i);else flagged.add(i);render();}
+function reset(){flagged=new Set();locked=false;document.getElementById("score").textContent="-";document.getElementById("reveal").classList.remove("show");render();}
+function check(){
+  locked=true;
+  const bad=ROWS.filter(r=>r.bad).map(r=>r.id);
+  const caught=bad.filter(id=>flagged.has(id)).length;
+  const wrongFlags=[...flagged].filter(id=>!ROWS[id].bad).length;
+  document.getElementById("score").textContent=caught+"/"+bad.length;
+  render();
+  const r=document.getElementById("reveal");
+  r.innerHTML=`<h3>You caught ${caught} of ${bad.length} mislabeled rows.</h3>${wrongFlags?`<p>You also flagged ${wrongFlags} correctly-labeled rows as suspicious. Sample audits work best with high precision.</p>`:""}<p>The mislabeled rows below all share a pattern: legitimate personal or service notifications labeled as spam. The model trained on this would learn to filter out the wrong things, with confidence.</p>`+ROWS.filter(r=>r.bad).map(r=>`<p style="margin:8px 0;"><strong>"${r.text}"</strong> &middot; ${r.why}</p>`).join("");
+  r.classList.add("show");
+}
+render();
+</script>
+</body></html>

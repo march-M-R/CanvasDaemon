@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Module 1 Progress Checklist</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --stevens-red: #A32638;
+    --ink: #0B0D10;
+    --text: #363D45;
+    --muted: #59636E;
+    --line: #E4E5E6;
+    --paper: #FFFFFF;
+    --soft: #F6F7F8;
+    --rose: #FFF7F8;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--soft);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.65;
+  }
+
+  .checklist-shell {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 26px;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 24px;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(11,13,16,0.97), rgba(28,31,36,0.95) 62%, rgba(163,38,56,0.9));
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 18px;
+  }
+
+  .hero-visual {
+    margin: 0;
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .hero-visual img {
+    display: block;
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+  }
+
+  .hero-visual figcaption {
+    padding: 9px 11px;
+    color: rgba(255,255,255,0.86);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .eyebrow {
+    margin: 0 0 8px;
+    color: #F2D6DA;
+    font-size: 14px;
+  }
+
+  h1 {
+    margin: 0 0 10px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 34px;
+    line-height: 1.1;
+    color: #fff;
+  }
+
+  .hero-copy {
+    margin: 0;
+    max-width: 760px;
+    color: rgba(255,255,255,0.9);
+    font-size: 15px;
+  }
+
+  .progress-card {
+    display: grid;
+    grid-template-columns: 120px 1fr 210px;
+    gap: 24px;
+    align-items: center;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 18px;
+  }
+
+  .progress-gif {
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: #F1F2F3;
+  }
+
+  .progress-title {
+    margin: 0 0 8px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 24px;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  .progress-text {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  .progress-meter {
+    text-align: right;
+  }
+
+  .progress-count {
+    margin: 0 0 10px;
+    color: var(--stevens-red);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  .progress-label {
+    margin: 0 0 10px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .progress-bar-bg {
+    width: 100%;
+    height: 12px;
+    background: #E9EAEC;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--stevens-red);
+    border-radius: 999px;
+    transition: width 0.25s ease;
+  }
+
+  .section {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: 96px 1fr auto;
+    gap: 16px;
+    align-items: center;
+    background: #FAFAFA;
+    border-bottom: 1px solid var(--line);
+    padding: 18px 22px;
+  }
+
+  .section-image {
+    width: 96px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: #F1F2F3;
+  }
+
+  .section-kicker {
+    margin: 0 0 4px;
+    color: var(--stevens-red);
+    font-size: 14px;
+  }
+
+  h2 {
+    margin: 0;
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  .section-count {
+    min-width: 96px;
+    text-align: center;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: var(--muted);
+    font-size: 14px;
+    background: #fff;
+  }
+
+  .checklist-list {
+    padding: 14px;
+  }
+
+  .checklist-item {
+    display: grid;
+    grid-template-columns: 34px 1fr auto;
+    gap: 12px;
+    align-items: start;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--line);
+    border-radius: 8px;
+    padding: 15px 16px;
+    margin-bottom: 10px;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .checklist-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .checklist-item:hover {
+    border-left-color: var(--stevens-red);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  }
+
+  .checklist-item.completed {
+    border-left-color: var(--stevens-red);
+    background: var(--rose);
+  }
+
+  .checklist-item input {
+    width: 22px;
+    height: 22px;
+    margin: 2px 0 0;
+    accent-color: var(--stevens-red);
+    cursor: pointer;
+  }
+
+  .item-title {
+    display: block;
+    margin: 0 0 3px;
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .item-detail {
+    display: block;
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .item-tag {
+    display: inline-block;
+    white-space: nowrap;
+    background: #F1F2F3;
+    color: var(--text);
+    border-radius: 999px;
+    padding: 5px 9px;
+    font-size: 13px;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-top: 18px;
+  }
+
+  .actions p {
+    flex: 1 1 360px;
+    margin: 0;
+    color: rgba(255,255,255,0.9);
+    font-size: 15px;
+  }
+
+  .reset-button {
+    border: 1px solid rgba(255,255,255,0.7);
+    background: transparent;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .reset-button:hover,
+  .reset-button:focus {
+    background: #fff;
+    color: var(--ink);
+  }
+
+  .note {
+    margin-top: 14px;
+    padding: 14px 16px;
+    background: #FFF8F8;
+    border: 1px solid #F0CED3;
+    border-left: 4px solid var(--stevens-red);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  @media (max-width: 760px) {
+    .checklist-shell {
+      padding: 14px;
+    }
+
+    .hero,
+    .progress-card,
+    .section-header,
+    .actions {
+      display: block;
+      padding: 20px;
+    }
+
+    .hero-visual {
+      margin-top: 18px;
+    }
+
+    .hero-visual img {
+      height: 160px;
+    }
+
+    .progress-gif,
+    .section-image {
+      width: 100%;
+      height: 150px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    h2 {
+      font-size: 21px;
+    }
+
+    .progress-meter {
+      text-align: left;
+      margin-top: 18px;
+    }
+
+    .section-count {
+      display: inline-block;
+      margin-top: 12px;
+    }
+
+    .checklist-list {
+      padding: 10px;
+    }
+
+    .checklist-item {
+      grid-template-columns: 30px 1fr;
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .item-tag {
+      grid-column: 2;
+      justify-self: start;
+      margin-top: 4px;
+      white-space: normal;
+    }
+  }
+</style>
+</head>
+<body>
+<main class="checklist-shell">
+  <section class="hero" aria-labelledby="page-title">
+    <div>
+      <p class="eyebrow">Module 1 Progress Tool</p>
+      <h1 id="page-title">AI: Hidden in Plain Sight</h1>
+      <p class="hero-copy">Use this interactive checklist to track your Module 1 progress. Your selections are saved in this browser, so the embedded version can remember what you have checked off.</p>
+    </div>
+    <figure class="hero-visual">
+      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&amp;q=80" alt="Notebook and planning materials on a desk">
+      <figcaption>Plan the module, check your progress, and keep moving.</figcaption>
+    </figure>
+  </section>
+
+  <section class="progress-card" aria-labelledby="progress-title">
+    <img class="progress-gif" src="https://media.giphy.com/media/KEYMsj2LcXzfcTP5ii/giphy.gif" alt="Animated technology workflow loading into place">
+    <div>
+      <p id="progress-title" class="progress-title">Module 1 Checklist</p>
+      <p class="progress-text">Complete the lessons in order, then use the final readiness checks before moving forward.</p>
+    </div>
+    <div class="progress-meter" aria-live="polite">
+      <p id="progressCount" class="progress-count">0 of 24</p>
+      <p id="progressPercent" class="progress-label">0 percent complete</p>
+      <div class="progress-bar-bg" aria-hidden="true">
+        <div id="progressBar" class="progress-bar-fill"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="orientation-heading">
+    <div class="section-header">
+      <img class="section-image" src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=400&amp;q=80" alt="Checklist notebook used for planning">
+      <div>
+        <p class="section-kicker">1. Orientation</p>
+        <h2 id="orientation-heading">Set Up Your Module</h2>
+      </div>
+      <div class="section-count">3 items</div>
+    </div>
+    <div class="checklist-list">
+      <label class="checklist-item">
+        <input type="checkbox" data-id="review-overview">
+        <span>
+          <span class="item-title">Review the Module 1 overview.</span>
+          <span class="item-detail">Read the goals, learning outcomes, module rhythm, and expectations.</span>
+        </span>
+        <span class="item-tag">Start</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="open-discussion">
+        <span>
+          <span class="item-title">Open the Module 1 discussion prompt.</span>
+          <span class="item-detail">Read "Who's Really in Control?" before you begin the first lesson.</span>
+        </span>
+        <span class="item-tag">Discussion</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="note-baseline">
+        <span>
+          <span class="item-title">Write down your starting idea of AI.</span>
+          <span class="item-detail">Keep a short note you can compare with your thinking at the end of the module.</span>
+        </span>
+        <span class="item-tag">Reflection</span>
+      </label>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="lesson-one-heading">
+    <div class="section-header">
+      <img class="section-image" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&amp;q=80" alt="Close view of a computer circuit board">
+      <div>
+        <p class="section-kicker">2. Lesson 1</p>
+        <h2 id="lesson-one-heading">What Is Intelligence? What Is AI?</h2>
+      </div>
+      <div class="section-count">5 items</div>
+    </div>
+    <div class="checklist-list">
+      <label class="checklist-item">
+        <input type="checkbox" data-id="lesson-one-video">
+        <span>
+          <span class="item-title">Watch the Lesson 1 lecture video.</span>
+          <span class="item-detail">Focus on the difference between intelligence, automation, and AI.</span>
+        </span>
+        <span class="item-tag">Video</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="ml-1-1">
+        <span>
+          <span class="item-title">Complete Micro Learning 1.1: The Three Forms of Intelligence.</span>
+          <span class="item-detail">Human, collective, and machine intelligence are compared.</span>
+        </span>
+        <span class="item-tag">Page</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="ml-1-2">
+        <span>
+          <span class="item-title">Complete Micro Learning 1.2: How AI Actually Thinks.</span>
+          <span class="item-detail">Track how pattern recognition differs from human understanding.</span>
+        </span>
+        <span class="item-tag">Page</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="ml-1-3">
+        <span>
+          <span class="item-title">Complete Micro Learning 1.3: The AI Tier Ladder.</span>
+          <span class="item-detail">Use the ladder to judge the capability of an AI system.</span>
+        </span>
+        <span class="item-tag">Page</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="lesson-one-check">
+        <span>
+          <span class="item-title">Check that you can define AI in your own words.</span>
+          <span class="item-detail">You should be able to explain what makes a system more than ordinary software.</span>
+        </span>
+        <span class="item-tag">Self Check</span>
+      </label>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="lesson-two-heading">
+    <div class="section-header">
+      <img class="section-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&amp;q=80" alt="Laptop showing technology work">
+      <div>
+        <p class="section-kicker">3. Lesson 2</p>
+        <h2 id="lesson-two-heading">The Evolution of Artificial Intelligence</h2>
+      </div>
+      <div class="section-count">5 items</div>
+    </div>
+    <div class="checklist-list">
+      <label class="checklist-item">
+        <input type="checkbox" data-id="lesson-two-video">
+        <span>
+          <span class="item-title">Watch the Lesson 2 lecture video.</span>
+          <span class="item-detail">Look for the long history behind today's AI tools.</span>
+        </span>
+        <span class="item-tag">Video</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="ml-2-1">
+        <span>
+          <span class="item-title">Complete Micro Learning 2.1: AI Before the Hype.</span>
+          <span class="item-detail">Notice what early AI systems could and could not do.</span>
+        </span>
+        <span class="item-tag">Page</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="ml-2-2">
+        <span>
+          <span class="item-title">Complete Micro Learning 2.2: Breakthroughs That Changed AI.</span>
+          <span class="item-detail">Connect the breakthroughs to the systems students use now.</span>
+        </span>
+        <span class="item-tag">Page</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="ml-2-3">
+        <span>
+          <span class="item-title">Complete Micro Learning 2.3: Why AI Took Off Now.</span>
+          <span class="item-detail">Identify how data, computing power, and new methods came together.</span>
+        </span>
+        <span class="item-tag">Page</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="lesson-two-check">
+        <span>
+          <span class="item-title">Check that you can explain why modern AI accelerated.</span>
+          <span class="item-detail">Use specific reasons instead of saying only that technology improved.</span>
+        </span>
+        <span class="item-tag">Self Check</span>
+      </label>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="lesson-three-heading">
+    <div class="section-header">
+      <img class="section-image" src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=400&amp;q=80" alt="Person using digital devices at a desk">
+      <div>
+        <p class="section-kicker">4. Lesson 3</p>
+        <h2 id="lesson-three-heading">AI in Everyday Life</h2>
+      </div>
+      <div class="section-count">5 items</div>
+    </div>
+    <div class="checklist-list">
+      <label class="checklist-item">
+        <input type="checkbox" data-id="lesson-three-video">
+        <span>
+          <span class="item-title">Watch the Lesson 3 lecture video.</span>
+          <span class="item-detail">Pay attention to AI in familiar apps and digital services.</span>
+        </span>
+        <span class="item-tag">Video</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="ml-3-1">
+        <span>
+          <span class="item-title">Complete Micro Learning 3.1: Recognition AI.</span>
+          <span class="item-detail">Identify systems that recognize faces, speech, images, or patterns.</span>
+        </span>
+        <span class="item-tag">Page</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="ml-3-2">
+        <span>
+          <span class="item-title">Complete Micro Learning 3.2: Recommendation AI.</span>
+          <span class="item-detail">Connect recommendations to ranking, personalization, and behavior data.</span>
+        </span>
+        <span class="item-tag">Page</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="ml-3-3">
+        <span>
+          <span class="item-title">Complete Micro Learning 3.3: Prediction AI.</span>
+          <span class="item-detail">Study how systems estimate what may happen next.</span>
+        </span>
+        <span class="item-tag">Page</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="lesson-three-check">
+        <span>
+          <span class="item-title">List three everyday AI examples you can explain clearly.</span>
+          <span class="item-detail">For each example, name what the system is trying to predict or recognize.</span>
+        </span>
+        <span class="item-tag">Self Check</span>
+      </label>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="lesson-four-heading">
+    <div class="section-header">
+      <img class="section-image" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&amp;q=80" alt="Abstract artificial intelligence interface">
+      <div>
+        <p class="section-kicker">5. Lesson 4</p>
+        <h2 id="lesson-four-heading">How LLMs Work and Why They Get Things Wrong</h2>
+      </div>
+      <div class="section-count">5 items</div>
+    </div>
+    <div class="checklist-list">
+      <label class="checklist-item">
+        <input type="checkbox" data-id="lesson-four-video">
+        <span>
+          <span class="item-title">Watch the Lesson 4 lecture video.</span>
+          <span class="item-detail">Focus on prediction, tokens, bias, hallucination, and verification.</span>
+        </span>
+        <span class="item-tag">Video</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="ml-4-1">
+        <span>
+          <span class="item-title">Complete Micro Learning 4.1: How LLMs Predict Language.</span>
+          <span class="item-detail">Understand why a fluent answer is not automatically a true answer.</span>
+        </span>
+        <span class="item-tag">Page</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="ml-4-2">
+        <span>
+          <span class="item-title">Complete Micro Learning 4.2: Limitations and Bias in AI.</span>
+          <span class="item-detail">Name where bias and unreliable outputs can enter a system.</span>
+        </span>
+        <span class="item-tag">Page</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="ml-4-3">
+        <span>
+          <span class="item-title">Complete Micro Learning 4.3: Hallucination Hunt.</span>
+          <span class="item-detail">Practice spotting confident claims that still need verification.</span>
+        </span>
+        <span class="item-tag">Page</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox" data-id="lesson-four-check">
+        <span>
+          <span class="item-title">Check that you can question an AI answer responsibly.</span>
+          <span class="item-detail">You should know when to verify, compare sources, and keep a human in the loop.</span>
+        </span>
+        <span class="item-tag">Self Check</span>
+      </label>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="wrap-heading">
+    <div class="section-header">
+      <img class="section-image" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&amp;q=80" alt="Students working together around a laptop">
+      <div>
+        <p class="section-kicker">6. Wrap Up</p>
+        <h2 id="wrap-heading">Finish Module 1</h2>
+      </div>
+      <div class="section-count">1 item</div>
+    </div>
+    <div class="checklist-list">
+      <label class="checklist-item">
+        <input type="checkbox" data-id="module-one-ready">
+        <span>
+          <span class="item-title">Confirm that Canvas shows your required Module 1 work as complete.</span>
+          <span class="item-detail">Check discussions, quizzes, assessments, and any portfolio notes that your instructor expects.</span>
+        </span>
+        <span class="item-tag">Canvas Check</span>
+      </label>
+    </div>
+  </section>
+
+  <div class="actions">
+    <p>Progress is saved only in this browser. If you switch devices or clear browser data, the checklist may reset.</p>
+    <button class="reset-button" type="button" onclick="resetChecklist()">Reset checklist</button>
+  </div>
+
+  <div class="note">
+    <strong>Note:</strong> This checklist helps you track your own progress. Canvas submissions, discussions, quizzes, and module requirements remain the official course record.
+  </div>
+</main>
+
+<script>
+  const storageKey = "m01_ai_hidden_plain_sight_checklist_v2";
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const progressBar = document.getElementById("progressBar");
+  const progressCount = document.getElementById("progressCount");
+  const progressPercent = document.getElementById("progressPercent");
+
+  function readSavedState() {
+    try {
+      return JSON.parse(localStorage.getItem(storageKey) || "{}");
+    } catch (error) {
+      return {};
+    }
+  }
+
+  function loadChecklist() {
+    const saved = readSavedState();
+
+    checkboxes.forEach(function(box) {
+      const id = box.dataset.id;
+      box.checked = saved[id] === true;
+      updateItemStyle(box);
+    });
+
+    updateProgress();
+  }
+
+  function saveChecklist() {
+    const saved = {};
+
+    checkboxes.forEach(function(box) {
+      saved[box.dataset.id] = box.checked;
+      updateItemStyle(box);
+    });
+
+    localStorage.setItem(storageKey, JSON.stringify(saved));
+    updateProgress();
+  }
+
+  function updateItemStyle(box) {
+    const item = box.closest(".checklist-item");
+
+    if (box.checked) {
+      item.classList.add("completed");
+    } else {
+      item.classList.remove("completed");
+    }
+  }
+
+  function updateProgress() {
+    const total = checkboxes.length;
+    const completed = Array.from(checkboxes).filter(function(box) {
+      return box.checked;
+    }).length;
+
+    const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+    progressBar.style.width = percent + "%";
+    progressCount.textContent = completed + " of " + total;
+    progressPercent.textContent = percent + " percent complete";
+  }
+
+  function resetChecklist() {
+    checkboxes.forEach(function(box) {
+      box.checked = false;
+      updateItemStyle(box);
+    });
+
+    localStorage.removeItem(storageKey);
+    updateProgress();
+  }
+
+  checkboxes.forEach(function(box) {
+    box.addEventListener("change", saveChecklist);
+  });
+
+  loadChecklist();
+</script>
+</body>
+</html>

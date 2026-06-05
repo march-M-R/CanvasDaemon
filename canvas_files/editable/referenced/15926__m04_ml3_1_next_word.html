@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Next Word Predictor</title>
+<style>*{box-sizing:border-box;}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0d0e10;color:#f1f1f1;line-height:1.6;}
+.wrap{max-width:920px;margin:0 auto;padding:24px 20px 60px;}
+.hero{background:linear-gradient(135deg,#0B0D10 0%,#1f1f1f 50%,#A32638 100%);padding:26px 26px;border-radius:14px;margin-bottom:16px;border:1px solid #2a2a2a;}
+.hero .tag{font-size:12px;color:#f2d6da;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.hero h1{margin:0 0 6px;font-family:Georgia,serif;font-size:30px;color:#fff;line-height:1.14;}
+.hero p{margin:0;opacity:0.92;font-size:14px;max-width:660px;}
+.panel{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:18px 22px;margin-bottom:14px;}
+.stats{display:flex;gap:10px;margin-bottom:14px;}
+.stat{flex:1;background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:10px 14px;text-align:center;}
+.stat .l{font-size:11px;color:#9aa0a6;text-transform:uppercase;letter-spacing:0.05em;}
+.stat .v{font-family:Georgia,serif;font-size:20px;color:#fff;margin-top:2px;}
+.btn{background:#A32638;color:#fff;border:0;padding:10px 22px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:14px;}
+.btn:disabled{background:#444;cursor:not-allowed;}
+.btn:hover:not(:disabled){filter:brightness(1.1);}
+.btn.ghost{background:transparent;color:#c0c4c8;border:1px solid #444;}
+.reveal{background:#0d0e10;border-left:3px solid #ffc800;border-radius:0 10px 10px 0;padding:14px 18px;margin-top:14px;display:none;color:#d8dadd;font-size:14px;line-height:1.65;}
+.reveal.show{display:block;}
+.reveal h3{margin:0 0 6px;font-family:Georgia,serif;font-size:18px;color:#fff;}
+.final{background:linear-gradient(135deg,#0B0D10,#A32638);border-radius:14px;padding:30px 28px;text-align:center;margin-top:14px;display:none;}
+.final.show{display:block;}
+.final h2{font-family:Georgia,serif;font-size:28px;color:#fff;margin:0 0 6px;}
+.final .big{font-family:Georgia,serif;font-size:56px;color:#fff;line-height:1;margin:6px 0;}
+.final p{color:rgba(255,255,255,0.92);max-width:540px;margin:0 auto 12px;}
+.hidden{display:none!important;}
+.right{color:#2ec850;}
+.wrong{color:#dc3c46;}
+
+.prompt-bar{background:#0d0e10;border:1px solid #2a2a2a;border-radius:10px;padding:14px 16px;margin-bottom:12px;font-family:monospace;font-size:14px;color:#f1f1f1;}
+.prompt-bar .pre{color:#9aa0a6;}
+.prompt-bar .cursor{display:inline-block;width:8px;height:14px;background:#A32638;vertical-align:text-bottom;animation:blink 1s step-end infinite;margin-left:2px;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.suggestions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+@media(max-width:600px){.suggestions{grid-template-columns:1fr;}}
+.sugg{background:#1a1c1f;border:2px solid #2a2a2a;border-radius:10px;padding:10px 14px;color:#fff;cursor:pointer;font-family:monospace;font-size:14px;text-align:center;}
+.sugg:hover{border-color:#A32638;}
+.sugg.picked-right{border-color:#2ec850;background:#0f2412;}
+.sugg.picked-wrong{border-color:#dc3c46;background:#2a0d10;}
+.sugg .prob{font-size:11px;color:#9aa0a6;margin-top:4px;}
+.case-tag{font-size:11px;color:#A32638;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.case-q{margin:0 0 12px;color:#f1f1f1;font-size:14px;line-height:1.6;}
+.actions{display:flex;justify-content:flex-end;margin-top:12px;}
+</style></head><body>
+<div class="wrap">
+<div class="hero"><div class="tag">Module 4 &middot; Micro-Learning 3.1</div><h1>Next Word Predictor</h1><p>Five prompts. For each, predict which word the language model would pick as most likely next. The reveal shows the actual probabilities. Some are mundane. Some reveal bias.</p></div>
+<div class="stats">
+<div class="stat"><div class="l">Prompt</div><div class="v" id="round">1/5</div></div>
+<div class="stat"><div class="l">Correct calls</div><div class="v" id="score">0</div></div>
+</div>
+<p style="color:#9aa0a6;font-size:13px;margin:0 0 12px;">A language model sees a prompt and predicts the next word from probabilities. Pick the word YOU think the model would most likely predict, based on its training data. Then see the model's actual top-3.</p>
+<div id="game"></div>
+<div class="final" id="final"></div>
+</div>
+<script>
+const PROMPTS=[
+ {tag:"Everyday phrase",prompt:"I am going to the",options:[{w:"store",p:0.42,correct:true},{w:"moon",p:0.04},{w:"dentist",p:0.11}],explain:"The model leans toward common phrasings. 'Store' wins not because it is the right answer to this person's day, but because it is the statistically most-likely continuation in the training data."},
+ {tag:"Profession bias",prompt:"The nurse said that",options:[{w:"she",p:0.58,correct:true},{w:"he",p:0.18},{w:"they",p:0.12}],explain:"Output bias by occupation. Trained on text where 'nurse' co-occurs with female pronouns more often, the model defaults to 'she' even when the actual person could be any gender. Bolukbasi et al. (2016) documented this exact pattern."},
+ {tag:"Profession bias inverse",prompt:"The engineer said that",options:[{w:"he",p:0.51,correct:true},{w:"she",p:0.22},{w:"they",p:0.14}],explain:"Same mechanism, opposite default. 'Engineer' is more frequently paired with male pronouns in the training corpus. The model is not lying; it is reproducing what it was shown."},
+ {tag:"Name + role",prompt:"Lakisha submitted her resume for the",options:[{w:"administrative",p:0.31,correct:true},{w:"executive",p:0.10},{w:"engineering",p:0.17}],explain:"Replicating the Bertrand & Mullainathan (2004) callback-rate finding. Names associated with certain demographics get steered into certain roles. The model amplifies the bias in its training data."},
+ {tag:"Geography stereotype",prompt:"In rural areas, people tend to",options:[{w:"vote",p:0.22},{w:"distrust",p:0.16,correct:true},{w:"appreciate",p:0.12}],explain:"The model has been trained on text that often pairs 'rural' with 'distrust' framings. Whether you agree or not, the prediction reveals the worldview baked into the training corpus."}];
+let state={i:0,score:0,locked:false};
+function render(){if(state.i>=PROMPTS.length)return finish();const p=PROMPTS[state.i];document.getElementById("round").textContent=(state.i+1)+"/"+PROMPTS.length;document.getElementById("score").textContent=state.score;document.getElementById("game").innerHTML=`<div class="case-tag">${p.tag}</div><p class="case-q">Which word do you think the model predicts most likely next?</p><div class="prompt-bar"><span class="pre">${p.prompt}</span> <span class="cursor"></span></div><div class="suggestions">${p.options.map((o,i)=>`<button class="sugg" data-i="${i}" onclick="pick(${i})"><div>${o.w}</div><div class="prob">probability: ?</div></button>`).join("")}</div><div class="reveal" id="reveal"></div><div class="actions"><button class="btn hidden" id="next" onclick="next()">Next prompt →</button></div>`;state.locked=false;}
+function pick(i){if(state.locked)return;state.locked=true;const p=PROMPTS[state.i];const ci=p.options.findIndex(o=>o.correct);document.querySelectorAll(".sugg").forEach((b,j)=>{const probDiv=b.querySelector(".prob");probDiv.textContent="probability: "+Math.round(p.options[j].p*100)+"%";if(j===ci)b.classList.add("picked-right");else if(j===i)b.classList.add("picked-wrong");b.disabled=true;b.onclick=null;});if(i===ci)state.score++;document.getElementById("score").textContent=state.score;const r=document.getElementById("reveal");r.innerHTML=`<strong class="${i===ci?'right':'wrong'}">${i===ci?'You read the model right.':'Model picked something else.'}</strong> ${p.explain}`;r.classList.add("show");document.getElementById("next").classList.remove("hidden");}
+function next(){state.i++;render();}
+function finish(){document.getElementById("game").classList.add("hidden");const f=document.getElementById("final");f.classList.add("show");f.innerHTML=`<h2>${state.score} / ${PROMPTS.length}</h2><p>Language models do not reason. They predict probabilities. Whatever shows up most in the training text becomes the model's default, including its biases.</p><button class="btn" style="background:#fff;color:#A32638;margin-top:8px;" onclick="restart()">Run again</button>`;}
+function restart(){state={i:0,score:0,locked:false};document.getElementById("final").classList.remove("show");document.getElementById("game").classList.remove("hidden");render();}
+render();
+</script>
+</body></html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spot the Proxy</title>
+<style>*{box-sizing:border-box;}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0d0e10;color:#f1f1f1;line-height:1.6;}
+.wrap{max-width:920px;margin:0 auto;padding:24px 20px 60px;}
+.hero{background:linear-gradient(135deg,#0B0D10 0%,#1f1f1f 50%,#A32638 100%);padding:26px 26px;border-radius:14px;margin-bottom:16px;border:1px solid #2a2a2a;}
+.hero .tag{font-size:12px;color:#f2d6da;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.hero h1{margin:0 0 6px;font-family:Georgia,serif;font-size:30px;color:#fff;line-height:1.14;}
+.hero p{margin:0;opacity:0.92;font-size:14px;max-width:660px;}
+.panel{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:18px 22px;margin-bottom:14px;}
+.stats{display:flex;gap:10px;margin-bottom:14px;}
+.stat{flex:1;background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:10px 14px;text-align:center;}
+.stat .l{font-size:11px;color:#9aa0a6;text-transform:uppercase;letter-spacing:0.05em;}
+.stat .v{font-family:Georgia,serif;font-size:20px;color:#fff;margin-top:2px;}
+.btn{background:#A32638;color:#fff;border:0;padding:10px 22px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:14px;}
+.btn:disabled{background:#444;cursor:not-allowed;}
+.btn:hover:not(:disabled){filter:brightness(1.1);}
+.btn.ghost{background:transparent;color:#c0c4c8;border:1px solid #444;}
+.reveal{background:#0d0e10;border-left:3px solid #ffc800;border-radius:0 10px 10px 0;padding:14px 18px;margin-top:14px;display:none;color:#d8dadd;font-size:14px;line-height:1.65;}
+.reveal.show{display:block;}
+.reveal h3{margin:0 0 6px;font-family:Georgia,serif;font-size:18px;color:#fff;}
+.final{background:linear-gradient(135deg,#0B0D10,#A32638);border-radius:14px;padding:30px 28px;text-align:center;margin-top:14px;display:none;}
+.final.show{display:block;}
+.final h2{font-family:Georgia,serif;font-size:28px;color:#fff;margin:0 0 6px;}
+.final .big{font-family:Georgia,serif;font-size:56px;color:#fff;line-height:1;margin:6px 0;}
+.final p{color:rgba(255,255,255,0.92);max-width:540px;margin:0 auto 12px;}
+.hidden{display:none!important;}
+.right{color:#2ec850;}
+.wrong{color:#dc3c46;}
+
+.dataset{background:#15171a;border:1px solid #2a2a2a;border-radius:12px;padding:0;margin-bottom:12px;overflow:hidden;}
+.dataset .head{padding:14px 18px;border-bottom:1px solid #2a2a2a;}
+.dataset .head .tag{font-size:11px;color:#A32638;text-transform:uppercase;letter-spacing:0.06em;}
+.dataset .head h3{margin:4px 0 0;font-family:Georgia,serif;font-size:18px;color:#fff;}
+.cols{padding:0;}
+.col{padding:12px 18px;border-bottom:1px solid #1f2125;cursor:pointer;display:grid;grid-template-columns:1fr 110px 30px;gap:0;align-items:center;font-size:13px;}
+.col:last-child{border-bottom:none;}
+.col:hover{background:#1a1c20;}
+.col.flagged{background:#2a1d10;border-left:3px solid #ffc800;padding-left:15px;}
+.col.right{background:#0f2412;}
+.col.wrong{background:#2a0d10;}
+.col .name{color:#f1f1f1;font-family:monospace;}
+.col .note{color:#9aa0a6;font-size:11px;}
+.col .icon{text-align:right;font-size:16px;}
+.col.flagged .icon::before{content:"⚠";color:#ffc800;}
+.controls{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:12px 0;}
+</style></head><body>
+<div class="wrap">
+<div class="hero"><div class="tag">Module 4 &middot; Micro-Learning 1.2</div><h1>Spot the Proxy</h1><p>Four real dataset audits. For each, click the columns you think proxy for a protected attribute. The sensitive attribute itself has been removed in every case.</p></div>
+<div class="stats">
+<div class="stat"><div class="l">Case</div><div class="v" id="round">1/4</div></div>
+<div class="stat"><div class="l">Proxies caught</div><div class="v" id="score">0</div></div>
+</div>
+<div id="game"></div>
+<div class="final" id="final"></div>
+</div>
+<script>
+const CASES=[
+ {target:"Predict loan default risk",task:"US lending model (race removed from dataset)",
+  cols:[{n:"credit_score",proxy:false,note:"Direct financial signal"},{n:"zip_code",proxy:true,note:"Strongly correlates with race in the US due to historical redlining"},{n:"employment_length",proxy:false,note:"Direct financial signal"},{n:"school_name",proxy:true,note:"Correlates with race, class, and SES"},{n:"age_in_years",proxy:false,note:"Direct demographic, separately a protected attribute"}],
+  explain:"Zip code and school name are the canonical US proxies for race. Removing the 'race' column does not make the model race-blind."},
+ {target:"Score job applicants",task:"Resume screening model",
+  cols:[{n:"years_of_experience",proxy:false,note:"Direct signal"},{n:"first_name",proxy:true,note:"Strong proxy for ethnicity, national origin, and gender"},{n:"career_gap_months",proxy:true,note:"Proxies for gender via caregiving patterns"},{n:"degree_subject",proxy:false,note:"Direct signal"},{n:"languages_spoken",proxy:true,note:"Proxies for national origin"}],
+  explain:"Names, career gaps, and language fluency are well-documented proxies for protected attributes in hiring."},
+ {target:"Predict student dropout",task:"School early-warning model",
+  cols:[{n:"attendance_rate",proxy:false,note:"Direct behavioral signal"},{n:"home_zip_code",proxy:true,note:"Proxies for race and SES"},{n:"free_lunch_eligibility",proxy:true,note:"Proxies for family income"},{n:"sibling_history_in_district",proxy:true,note:"Proxies for family background"},{n:"current_GPA",proxy:false,note:"Direct academic signal"}],
+  explain:"All three demographic-tied columns are proxies. Even with race removed, the model would still learn demographic patterns through these."},
+ {target:"Voice-activated assistant confidence",task:"Smart-home speaker recognition",
+  cols:[{n:"speech_pace_wpm",proxy:false,note:"Linguistic feature"},{n:"accent_classifier_score",proxy:true,note:"Strong proxy for national origin, race, native language"},{n:"vocabulary_size",proxy:false,note:"Linguistic feature"},{n:"prosody_pattern",proxy:true,note:"Proxies for native language and region"}],
+  explain:"Voice and accent features are direct proxies for protected attributes. Voice systems that adjust based on these have produced well-documented accuracy disparities."}];
+let state={i:0,score:0,flagged:new Set(),locked:false};
+function render(){if(state.i>=CASES.length)return finish();const c=CASES[state.i];document.getElementById("round").textContent=(state.i+1)+"/"+CASES.length;document.getElementById("score").textContent=state.score;document.getElementById("game").innerHTML=`<div class="dataset"><div class="head"><div class="tag">${c.task}</div><h3>${c.target}</h3></div><div class="cols" id="clist"></div></div><div class="controls"><p style="color:#9aa0a6;font-size:13px;margin:0;">Click each column you think is a proxy for a protected attribute.</p><button class="btn" id="lock" onclick="check()">Lock in audit</button></div><div class="reveal" id="reveal"></div>`;state.flagged=new Set();state.locked=false;renderCols();}
+function renderCols(){const c=CASES[state.i];document.getElementById("clist").innerHTML=c.cols.map((col,i)=>{const cls=state.flagged.has(i)?"flagged":"";const v=state.locked?(col.proxy===state.flagged.has(i)?"right":"wrong"):"";return `<div class="col ${cls} ${v}" onclick="toggle(${i})"><div class="name">${col.n}<div class="note">${state.locked?col.note:''}</div></div><div class="note">${state.locked?(col.proxy?'PROXY':'OK'):''}</div><div class="icon"></div></div>`;}).join("");}
+function toggle(i){if(state.locked)return;if(state.flagged.has(i))state.flagged.delete(i);else state.flagged.add(i);renderCols();}
+function check(){state.locked=true;const c=CASES[state.i];const proxyIdx=c.cols.map((co,i)=>co.proxy?i:-1).filter(i=>i>=0);const caught=proxyIdx.filter(i=>state.flagged.has(i)).length;const total=proxyIdx.length;const wrongFlags=[...state.flagged].filter(i=>!c.cols[i].proxy).length;if(caught===total&&wrongFlags===0)state.score++;renderCols();document.getElementById("score").textContent=state.score;document.getElementById("lock").classList.add("hidden");const r=document.getElementById("reveal");r.innerHTML=`<h3>${caught} of ${total} proxies caught${wrongFlags?', '+wrongFlags+' false alarm'+(wrongFlags===1?'':'s'):''}.</h3><p>${c.explain}</p><div style="text-align:right;margin-top:10px;"><button class="btn" onclick="next()">${state.i+1<CASES.length?'Next case →':'See final'}</button></div>`;r.classList.add("show");}
+function next(){state.i++;render();}
+function finish(){document.getElementById("game").classList.add("hidden");const f=document.getElementById("final");f.classList.add("show");f.innerHTML=`<h2>${state.score} / ${CASES.length} cases perfect</h2><p>Removing a sensitive attribute from a dataset does not make the model blind to it. Proxies are subtle by design. Audit by group outcomes, not by column names.</p><button class="btn" style="background:#fff;color:#A32638;margin-top:8px;" onclick="restart()">Run again</button>`;}
+function restart(){state={i:0,score:0,flagged:new Set(),locked:false};document.getElementById("final").classList.remove("show");document.getElementById("game").classList.remove("hidden");render();}
+render();
+</script>
+</body></html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Same Prompt, Different Name</title>
+<style>*{box-sizing:border-box;}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0d0e10;color:#f1f1f1;line-height:1.6;}
+.wrap{max-width:920px;margin:0 auto;padding:24px 20px 60px;}
+.hero{background:linear-gradient(135deg,#0B0D10 0%,#1f1f1f 50%,#A32638 100%);padding:26px 26px;border-radius:14px;margin-bottom:16px;border:1px solid #2a2a2a;}
+.hero .tag{font-size:12px;color:#f2d6da;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.hero h1{margin:0 0 6px;font-family:Georgia,serif;font-size:30px;color:#fff;line-height:1.14;}
+.hero p{margin:0;opacity:0.92;font-size:14px;max-width:660px;}
+.panel{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:18px 22px;margin-bottom:14px;}
+.stats{display:flex;gap:10px;margin-bottom:14px;}
+.stat{flex:1;background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:10px 14px;text-align:center;}
+.stat .l{font-size:11px;color:#9aa0a6;text-transform:uppercase;letter-spacing:0.05em;}
+.stat .v{font-family:Georgia,serif;font-size:20px;color:#fff;margin-top:2px;}
+.btn{background:#A32638;color:#fff;border:0;padding:10px 22px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:14px;}
+.btn:disabled{background:#444;cursor:not-allowed;}
+.btn:hover:not(:disabled){filter:brightness(1.1);}
+.btn.ghost{background:transparent;color:#c0c4c8;border:1px solid #444;}
+.reveal{background:#0d0e10;border-left:3px solid #ffc800;border-radius:0 10px 10px 0;padding:14px 18px;margin-top:14px;display:none;color:#d8dadd;font-size:14px;line-height:1.65;}
+.reveal.show{display:block;}
+.reveal h3{margin:0 0 6px;font-family:Georgia,serif;font-size:18px;color:#fff;}
+.final{background:linear-gradient(135deg,#0B0D10,#A32638);border-radius:14px;padding:30px 28px;text-align:center;margin-top:14px;display:none;}
+.final.show{display:block;}
+.final h2{font-family:Georgia,serif;font-size:28px;color:#fff;margin:0 0 6px;}
+.final .big{font-family:Georgia,serif;font-size:56px;color:#fff;line-height:1;margin:6px 0;}
+.final p{color:rgba(255,255,255,0.92);max-width:540px;margin:0 auto 12px;}
+.hidden{display:none!important;}
+.right{color:#2ec850;}
+.wrong{color:#dc3c46;}
+
+.ab{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+@media(max-width:760px){.ab{grid-template-columns:1fr;}}
+.side{background:#15171a;border:1px solid #2a2a2a;border-radius:12px;padding:16px 18px;}
+.side .name-strip{background:#0d0e10;padding:8px 12px;border-radius:6px;font-family:monospace;font-size:13px;color:#ffc800;margin-bottom:10px;}
+.side .out{background:#0d0e10;border-left:3px solid #A32638;border-radius:0 8px 8px 0;padding:12px 14px;font-size:13px;color:#d8dadd;line-height:1.7;}
+.judgement{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:600px){.judgement{grid-template-columns:1fr;}}
+.j-btn{background:#1a1c1f;border:2px solid #2a2a2a;border-radius:10px;padding:14px;color:#fff;cursor:pointer;font-family:inherit;font-size:13px;text-align:center;}
+.j-btn:hover{border-color:#A32638;}
+.j-btn.picked-right{border-color:#2ec850;background:#0f2412;}
+.j-btn.picked-wrong{border-color:#dc3c46;background:#2a0d10;}
+.j-btn .icon{font-size:20px;display:block;margin-bottom:4px;}
+.case-tag{font-size:11px;color:#A32638;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.actions{display:flex;justify-content:flex-end;margin-top:12px;}
+</style></head><body>
+<div class="wrap">
+<div class="hero"><div class="tag">Module 4 &middot; Micro-Learning 3.3</div><h1>Same Prompt, Different Name</h1><p>Four prompt pairs. Same question, two different first names, the model's actual two responses. Judge whether the difference is reasonable variation or unfair treatment by name.</p></div>
+<div class="stats">
+<div class="stat"><div class="l">Pair</div><div class="v" id="round">1/4</div></div>
+<div class="stat"><div class="l">Correct calls</div><div class="v" id="score">0</div></div>
+</div>
+<p style="color:#9aa0a6;font-size:13px;margin:0 0 12px;">Identical prompt, two different first names. Compare the model's two outputs and judge: is the difference reasonable, or is the model treating the names unfairly?</p>
+<div id="game"></div>
+<div class="final" id="final"></div>
+</div>
+<script>
+const PAIRS=[
+ {tag:"Career advice",q:"What should I wear to a tech job interview?",
+  a:{name:"Emily",out:"Choose a smart-casual outfit. A tailored blouse with neutral slacks works well. Avoid heavy jewelry."},
+  b:{name:"Devansh",out:"Wear something professional. A button-down shirt and dark slacks is a safe choice. Make sure your shoes are polished."},
+  verdict:"reasonable",explain:"The advice differs in surface style cues (blouse vs shirt) but the underlying recommendation is equivalent: smart-casual, professional. This is reasonable variation in pronoun and example, not unfair treatment."},
+ {tag:"Career direction",q:"I want to switch into software engineering. What roles should I apply for?",
+  a:{name:"Greg",out:"Senior Engineer or Engineering Lead roles will play to your strengths. Consider also Architect-track positions that value experience."},
+  b:{name:"Lakisha",out:"You might start with Junior Engineer or Engineering Support roles to build your network. Bootcamp-style entry positions can also be a good fit."},
+  verdict:"unfair",explain:"Identical prompt, identical career switch. The model steered Greg toward Senior/Lead/Architect tracks and Lakisha toward Junior/Support/Bootcamp tracks. This is exactly the Bertrand-Mullainathan name-bias finding showing up in modern LLM outputs."},
+ {tag:"Risk advice",q:"Should I take out a loan to start a small business?",
+  a:{name:"Michael",out:"Calculate your projected cash flow and compare loan rates. With a solid business plan, this can be a reasonable risk."},
+  b:{name:"Tiana",out:"This is risky. Many small businesses fail in the first two years. You might want to save more before borrowing."},
+  verdict:"unfair",explain:"The factual concerns (failure rate, cash flow) apply to ANY borrower. But the model framed Michael's situation as a calculated decision and Tiana's as 'this is risky, save more.' Same prompt, different default tone."},
+ {tag:"Medical concern",q:"I have been feeling chest tightness lately. What should I do?",
+  a:{name:"Sarah",out:"It could be stress or anxiety. Try slow breathing exercises and see if it improves. If it gets worse, talk to a doctor."},
+  b:{name:"James",out:"Chest tightness can be serious. Please see a doctor as soon as possible to rule out cardiac issues."},
+  verdict:"unfair",explain:"Same symptom, two different framings. Sarah is gently steered toward anxiety and self-help. James is urgently steered toward cardiac evaluation. This pattern (under-triaging women's symptoms) is well-documented in clinical AI bias research and shows up in LLM outputs too."}];
+let state={i:0,score:0,locked:false};
+function render(){if(state.i>=PAIRS.length)return finish();const p=PAIRS[state.i];document.getElementById("round").textContent=(state.i+1)+"/"+PAIRS.length;document.getElementById("score").textContent=state.score;document.getElementById("game").innerHTML=`<div class="case-tag">${p.tag}</div><p style="margin:0 0 12px;color:#fff;font-family:Georgia,serif;font-size:16px;font-style:italic;">"${p.q}"</p><div class="ab"><div class="side"><div class="name-strip">User name: ${p.a.name}</div><div class="out">${p.a.out}</div></div><div class="side"><div class="name-strip">User name: ${p.b.name}</div><div class="out">${p.b.out}</div></div></div><div class="judgement"><button class="j-btn" data-v="reasonable" onclick="pick('reasonable')"><span class="icon">✓</span>Difference is reasonable</button><button class="j-btn" data-v="unfair" onclick="pick('unfair')"><span class="icon">⚠</span>Unfair treatment by name</button></div><div class="reveal" id="reveal"></div><div class="actions"><button class="btn hidden" id="next" onclick="next()">Next pair →</button></div>`;state.locked=false;}
+function pick(v){if(state.locked)return;state.locked=true;const p=PAIRS[state.i];document.querySelectorAll(".j-btn").forEach(b=>{if(b.dataset.v===p.verdict)b.classList.add("picked-right");else if(b.dataset.v===v)b.classList.add("picked-wrong");b.disabled=true;b.onclick=null;});if(v===p.verdict)state.score++;document.getElementById("score").textContent=state.score;const r=document.getElementById("reveal");r.innerHTML=`<strong class="${v===p.verdict?'right':'wrong'}">${v===p.verdict?'Correct call.':'Look again.'}</strong> ${p.explain}`;r.classList.add("show");document.getElementById("next").classList.remove("hidden");}
+function next(){state.i++;render();}
+function finish(){document.getElementById("game").classList.add("hidden");const f=document.getElementById("final");f.classList.add("show");f.innerHTML=`<h2>${state.score} / ${PAIRS.length}</h2><p>The same prompt with different names should not change the substance of the answer. When it does, the model is reproducing bias from its training data. Sheng et al. (2019) and Tamkin et al. (2023) document this pattern systematically.</p><button class="btn" style="background:#fff;color:#A32638;margin-top:8px;" onclick="restart()">Run again</button>`;}
+function restart(){state={i:0,score:0,locked:false};document.getElementById("final").classList.remove("show");document.getElementById("game").classList.remove("hidden");render();}
+render();
+</script>
+</body></html>

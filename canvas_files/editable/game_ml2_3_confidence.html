@@ -1,0 +1,400 @@
+<!--
+  CANVAS EMBED: ML 2.3 - How Confident Is the Model?
+  <iframe src="LINK" width="100%" height="580" style="border:none;border-radius:12px;margin:32px 0;" title="How Confident Is the Model?"></iframe>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Confident Is the Model?</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+input[type=radio] { display: none; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f5f5f5; color: #363d45; line-height: 1.7; padding: 20px; }
+
+.prog { color: #a32638; font-size: 12px; font-weight: bold; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 12px; }
+#nav1:checked ~ .prog::before { content: "Scenario 1 of 6"; }
+#nav2:checked ~ .prog::before { content: "Scenario 2 of 6"; }
+#nav3:checked ~ .prog::before { content: "Scenario 3 of 6"; }
+#nav4:checked ~ .prog::before { content: "Scenario 4 of 6"; }
+#nav5:checked ~ .prog::before { content: "Scenario 5 of 6"; }
+#nav6:checked ~ .prog::before { content: "Scenario 6 of 6"; }
+.prog::before { content: "Scenario 1 of 6"; }
+
+.q-block { display: none; }
+#nav1:checked ~ .q-block[data-q="1"] { display: block; }
+#nav2:checked ~ .q-block[data-q="2"] { display: block; }
+#nav3:checked ~ .q-block[data-q="3"] { display: block; }
+#nav4:checked ~ .q-block[data-q="4"] { display: block; }
+#nav5:checked ~ .q-block[data-q="5"] { display: block; }
+#nav6:checked ~ .q-block[data-q="6"] { display: block; }
+#nav1:checked ~ .q-block:not([data-q="1"]) { display: none; }
+#nav2:checked ~ .q-block:not([data-q="2"]) { display: none; }
+#nav3:checked ~ .q-block:not([data-q="3"]) { display: none; }
+#nav4:checked ~ .q-block:not([data-q="4"]) { display: none; }
+#nav5:checked ~ .q-block:not([data-q="5"]) { display: none; }
+#nav6:checked ~ .q-block:not([data-q="6"]) { display: none; }
+
+.card { background: #ffffff; border: 1px solid #E4E5E6; border-left: 5px solid #A32638; border-radius: 12px; padding: 20px 22px; margin-bottom: 14px; }
+.card-tag { color: #a32638; font-size: 12px; margin-bottom: 5px; font-weight: bold; letter-spacing: .06em; text-transform: uppercase; }
+.card-text { font-family: Georgia, serif; font-size: 18px; color: #0b0d10; line-height: 1.55; margin-bottom: 10px; }
+.card-context { background: #FAFAFA; border: 1px solid #E4E5E6; border-left: 3px solid #363D45; border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 13px; color: #4b535c; line-height: 1.55; }
+.card-context strong { color: #0b0d10; }
+
+.conf-q { color: #4b535c; font-size: 14px; margin-bottom: 12px; }
+.conf-choices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+.conf-lbl { display: block; background: #ffffff; border: 1.5px solid #E4E5E6; border-radius: 10px; padding: 14px 10px; cursor: pointer; text-align: center; user-select: none; transition: border-color .15s, background .15s; }
+.conf-lbl:hover { border-color: #A32638; background: #FFF8F8; }
+.c-name { font-size: 14px; font-weight: bold; color: #0b0d10; display: block; margin-bottom: 3px; }
+.c-hint { font-size: 11px; color: #4b535c; display: block; }
+
+.fb { display: none; border-radius: 10px; padding: 14px 16px; font-size: 14px; line-height: 1.65; margin-bottom: 10px; }
+.fb.ok  { background: #FAFAFA; border: 1px solid #E4E5E6; border-left: 4px solid #363D45; }
+.fb.bad { background: #FFF8F8; border: 1px solid #F0D6D9; border-left: 4px solid #A32638; }
+.fb-stamp { display: inline-block; font-size: 11px; font-weight: bold; letter-spacing: .1em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; margin-bottom: 6px; display: block; }
+.fb.ok  .fb-stamp { background: #363D45; color: #fff; }
+.fb.bad .fb-stamp { background: #A32638; color: #fff; }
+.fb-actual { font-size: 12px; color: #4b535c; margin-bottom: 8px; }
+.fb-actual strong { color: #0b0d10; }
+.conf-bar-wrap { margin-bottom: 10px; }
+.conf-bar-lbl { font-size: 12px; color: #4b535c; margin-bottom: 4px; display: flex; justify-content: space-between; }
+.conf-bar { height: 10px; background: #E4E5E6; border-radius: 5px; overflow: hidden; }
+.conf-fill { height: 100%; border-radius: 5px; background: #A32638; }
+.fb-explain { font-size: 14px; color: #4b535c; line-height: 1.65; }
+.fb-explain strong { color: #0b0d10; }
+
+.nxt { display: none; margin-top: 4px; }
+.nxt-btn { background: #A32638; color: #fff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 14px; font-weight: bold; cursor: pointer; }
+.nxt-btn:hover { background: #8a1d2a; }
+
+#q1h:checked ~ .q-block[data-q="1"] .fb[data-for="q1h"],
+#q1m:checked ~ .q-block[data-q="1"] .fb[data-for="q1m"],
+#q1l:checked ~ .q-block[data-q="1"] .fb[data-for="q1l"] { display: block; }
+#q1h:checked ~ .q-block[data-q="1"] .nxt,
+#q1m:checked ~ .q-block[data-q="1"] .nxt,
+#q1l:checked ~ .q-block[data-q="1"] .nxt { display: block; }
+#q1h:checked ~ .q-block[data-q="1"] .conf-lbl,
+#q1m:checked ~ .q-block[data-q="1"] .conf-lbl,
+#q1l:checked ~ .q-block[data-q="1"] .conf-lbl { pointer-events: none; opacity: .55; }
+#q1h:checked ~ .q-block[data-q="1"] label[for="q1h"],
+#q1m:checked ~ .q-block[data-q="1"] label[for="q1m"],
+#q1l:checked ~ .q-block[data-q="1"] label[for="q1l"] { opacity: 1; border-color: #A32638; }
+
+#q2h:checked ~ .q-block[data-q="2"] .fb[data-for="q2h"],
+#q2m:checked ~ .q-block[data-q="2"] .fb[data-for="q2m"],
+#q2l:checked ~ .q-block[data-q="2"] .fb[data-for="q2l"] { display: block; }
+#q2h:checked ~ .q-block[data-q="2"] .nxt,
+#q2m:checked ~ .q-block[data-q="2"] .nxt,
+#q2l:checked ~ .q-block[data-q="2"] .nxt { display: block; }
+#q2h:checked ~ .q-block[data-q="2"] .conf-lbl,
+#q2m:checked ~ .q-block[data-q="2"] .conf-lbl,
+#q2l:checked ~ .q-block[data-q="2"] .conf-lbl { pointer-events: none; opacity: .55; }
+#q2h:checked ~ .q-block[data-q="2"] label[for="q2h"],
+#q2m:checked ~ .q-block[data-q="2"] label[for="q2m"],
+#q2l:checked ~ .q-block[data-q="2"] label[for="q2l"] { opacity: 1; border-color: #A32638; }
+
+#q3h:checked ~ .q-block[data-q="3"] .fb[data-for="q3h"],
+#q3m:checked ~ .q-block[data-q="3"] .fb[data-for="q3m"],
+#q3l:checked ~ .q-block[data-q="3"] .fb[data-for="q3l"] { display: block; }
+#q3h:checked ~ .q-block[data-q="3"] .nxt,
+#q3m:checked ~ .q-block[data-q="3"] .nxt,
+#q3l:checked ~ .q-block[data-q="3"] .nxt { display: block; }
+#q3h:checked ~ .q-block[data-q="3"] .conf-lbl,
+#q3m:checked ~ .q-block[data-q="3"] .conf-lbl,
+#q3l:checked ~ .q-block[data-q="3"] .conf-lbl { pointer-events: none; opacity: .55; }
+#q3h:checked ~ .q-block[data-q="3"] label[for="q3h"],
+#q3m:checked ~ .q-block[data-q="3"] label[for="q3m"],
+#q3l:checked ~ .q-block[data-q="3"] label[for="q3l"] { opacity: 1; border-color: #A32638; }
+
+#q4h:checked ~ .q-block[data-q="4"] .fb[data-for="q4h"],
+#q4m:checked ~ .q-block[data-q="4"] .fb[data-for="q4m"],
+#q4l:checked ~ .q-block[data-q="4"] .fb[data-for="q4l"] { display: block; }
+#q4h:checked ~ .q-block[data-q="4"] .nxt,
+#q4m:checked ~ .q-block[data-q="4"] .nxt,
+#q4l:checked ~ .q-block[data-q="4"] .nxt { display: block; }
+#q4h:checked ~ .q-block[data-q="4"] .conf-lbl,
+#q4m:checked ~ .q-block[data-q="4"] .conf-lbl,
+#q4l:checked ~ .q-block[data-q="4"] .conf-lbl { pointer-events: none; opacity: .55; }
+#q4h:checked ~ .q-block[data-q="4"] label[for="q4h"],
+#q4m:checked ~ .q-block[data-q="4"] label[for="q4m"],
+#q4l:checked ~ .q-block[data-q="4"] label[for="q4l"] { opacity: 1; border-color: #A32638; }
+
+#q5h:checked ~ .q-block[data-q="5"] .fb[data-for="q5h"],
+#q5m:checked ~ .q-block[data-q="5"] .fb[data-for="q5m"],
+#q5l:checked ~ .q-block[data-q="5"] .fb[data-for="q5l"] { display: block; }
+#q5h:checked ~ .q-block[data-q="5"] .nxt,
+#q5m:checked ~ .q-block[data-q="5"] .nxt,
+#q5l:checked ~ .q-block[data-q="5"] .nxt { display: block; }
+#q5h:checked ~ .q-block[data-q="5"] .conf-lbl,
+#q5m:checked ~ .q-block[data-q="5"] .conf-lbl,
+#q5l:checked ~ .q-block[data-q="5"] .conf-lbl { pointer-events: none; opacity: .55; }
+#q5h:checked ~ .q-block[data-q="5"] label[for="q5h"],
+#q5m:checked ~ .q-block[data-q="5"] label[for="q5m"],
+#q5l:checked ~ .q-block[data-q="5"] label[for="q5l"] { opacity: 1; border-color: #A32638; }
+
+#q6h:checked ~ .q-block[data-q="6"] .fb[data-for="q6h"],
+#q6m:checked ~ .q-block[data-q="6"] .fb[data-for="q6m"],
+#q6l:checked ~ .q-block[data-q="6"] .fb[data-for="q6l"] { display: block; }
+#q6h:checked ~ .q-block[data-q="6"] .conf-lbl,
+#q6m:checked ~ .q-block[data-q="6"] .conf-lbl,
+#q6l:checked ~ .q-block[data-q="6"] .conf-lbl { pointer-events: none; opacity: .55; }
+#q6h:checked ~ .q-block[data-q="6"] label[for="q6h"],
+#q6m:checked ~ .q-block[data-q="6"] label[for="q6m"],
+#q6l:checked ~ .q-block[data-q="6"] label[for="q6l"] { opacity: 1; border-color: #A32638; }
+
+@media (max-width: 520px) {
+  body { padding: 14px; }
+  .conf-choices { grid-template-columns: 1fr; }
+}
+
+/* End screen */
+#nav-end:checked ~ .q-block { display: none; }
+#nav-end:checked ~ .end-screen { display: block; }
+.end-screen { display: none; background: #ffffff; border: 1px solid #E4E5E6; border-left: 5px solid #A32638; border-radius: 12px; padding: 28px 24px; text-align: center; }
+.end-title { font-family: Georgia, serif; font-size: 22px; color: #0b0d10; margin-bottom: 10px; }
+.end-body { font-size: 14px; color: #4b535c; line-height: 1.7; max-width: 520px; margin: 0 auto 20px; }
+.replay-btn { display: inline-block; background: #f5f5f5; border: 1.5px solid #E4E5E6; color: #363d45; text-decoration: none; border-radius: 8px; padding: 10px 22px; font-size: 14px; font-weight: bold; cursor: pointer; }
+.replay-btn:hover { border-color: #A32638; color: #A32638; background: #FFF8F8; }
+#q6h:checked ~ .q-block[data-q="6"] .nxt { display: block; }
+#q6m:checked ~ .q-block[data-q="6"] .nxt { display: block; }
+#q6l:checked ~ .q-block[data-q="6"] .nxt { display: block; }
+</style>
+</head>
+<body>
+
+<input type="radio" name="nav" id="nav1" checked>
+<input type="radio" name="nav" id="nav2">
+<input type="radio" name="nav" id="nav3">
+<input type="radio" name="nav" id="nav4">
+<input type="radio" name="nav" id="nav5">
+<input type="radio" name="nav" id="nav6">
+<input type="radio" name="nav" id="nav-end">
+<input type="radio" name="a1" id="q1h"><input type="radio" name="a1" id="q1m"><input type="radio" name="a1" id="q1l">
+<input type="radio" name="a2" id="q2h"><input type="radio" name="a2" id="q2m"><input type="radio" name="a2" id="q2l">
+<input type="radio" name="a3" id="q3h"><input type="radio" name="a3" id="q3m"><input type="radio" name="a3" id="q3l">
+<input type="radio" name="a4" id="q4h"><input type="radio" name="a4" id="q4m"><input type="radio" name="a4" id="q4l">
+<input type="radio" name="a5" id="q5h"><input type="radio" name="a5" id="q5m"><input type="radio" name="a5" id="q5l">
+<input type="radio" name="a6" id="q6h"><input type="radio" name="a6" id="q6m"><input type="radio" name="a6" id="q6l">
+
+<div class="prog"></div>
+
+<div class="q-block" data-q="1">
+  <div class="card">
+    <p class="card-tag">Email Classification</p>
+    <p class="card-text">A spam filter reads an email beginning: "CONGRATULATIONS! You have been selected for a PRIZE. Click here to claim your FREE gift NOW!!!"</p>
+    <div class="card-context"><strong>Context:</strong> The model was trained on 500 million labeled emails. This all-caps prize language pattern appears in tens of thousands of training examples.</div>
+  </div>
+  <p class="conf-q">What confidence level would you expect from this model on this email?</p>
+  <div class="conf-choices">
+    <label class="conf-lbl" for="q1h"><span class="c-name">High</span><span class="c-hint">Very likely to be right</span></label>
+    <label class="conf-lbl" for="q1m"><span class="c-name">Medium</span><span class="c-hint">Could go either way</span></label>
+    <label class="conf-lbl" for="q1l"><span class="c-name">Low</span><span class="c-hint">Unlikely to be reliable</span></label>
+  </div>
+  <div class="fb ok" data-for="q1h">
+    <div class="fb-stamp">Correct</div>
+    <p class="fb-actual">Actual confidence: <strong>High (approx. 97%)</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Spam confidence</span><span>97%</span></div><div class="conf-bar"><div class="conf-fill" style="width:97%;"></div></div></div>
+    <p class="fb-explain">This email contains multiple high-probability spam signals that the model has seen tens of thousands of times: all-caps text, prize language, urgency, free gift phrasing, and a call-to-click. Strong, familiar patterns produce high confidence. The model has seen this exact combination so often that it can classify it with very high certainty.</p>
+  </div>
+  <div class="fb bad" data-for="q1m">
+    <div class="fb-stamp">Not quite</div>
+    <p class="fb-actual">Actual confidence: <strong>High (approx. 97%)</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Spam confidence</span><span>97%</span></div><div class="conf-bar"><div class="conf-fill" style="width:97%;"></div></div></div>
+    <p class="fb-explain">This is a textbook spam pattern. All-caps, prize language, excessive punctuation, urgency, and a free gift claim are all strong signals the model has encountered many thousands of times. Medium confidence would suggest the model is uncertain. It is not: this pattern is very familiar territory.</p>
+  </div>
+  <div class="fb bad" data-for="q1l">
+    <div class="fb-stamp">Not quite</div>
+    <p class="fb-actual">Actual confidence: <strong>High (approx. 97%)</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Spam confidence</span><span>97%</span></div><div class="conf-bar"><div class="conf-fill" style="width:97%;"></div></div></div>
+    <p class="fb-explain">Low confidence applies when the model faces unfamiliar situations or rare events. This email pattern is neither unfamiliar nor rare. It is one of the most common spam patterns in the training data. Strong, frequently seen patterns produce high confidence, not low.</p>
+  </div>
+  <div class="nxt"><label class="nxt-btn" for="nav2">Next scenario</label></div>
+</div>
+
+<div class="q-block" data-q="2">
+  <div class="card">
+    <p class="card-tag">Medical Diagnosis</p>
+    <p class="card-text">A diagnostic AI is shown a set of symptoms matching a rare autoimmune condition that affects 1 in 200,000 people. The model was trained on data from general hospitals with few cases of this condition.</p>
+    <div class="card-context"><strong>Context:</strong> Rare conditions appear very infrequently in general hospital training data. The model has seen very few examples of this pattern.</div>
+  </div>
+  <p class="conf-q">What confidence level would you expect from this model on this diagnosis?</p>
+  <div class="conf-choices">
+    <label class="conf-lbl" for="q2h"><span class="c-name">High</span><span class="c-hint">Very likely to be right</span></label>
+    <label class="conf-lbl" for="q2m"><span class="c-name">Medium</span><span class="c-hint">Could go either way</span></label>
+    <label class="conf-lbl" for="q2l"><span class="c-name">Low</span><span class="c-hint">Unlikely to be reliable</span></label>
+  </div>
+  <div class="fb bad" data-for="q2h">
+    <div class="fb-stamp">Not quite</div>
+    <p class="fb-actual">Actual confidence: <strong>Low</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Diagnosis confidence</span><span>~18%</span></div><div class="conf-bar"><div class="conf-fill" style="width:18%;"></div></div></div>
+    <p class="fb-explain">Rare conditions appear very infrequently in general hospital training data. A model trained on general patients would have seen very few examples of a condition affecting 1 in 200,000 people. Without sufficient examples to learn from, the model cannot distinguish this condition's symptoms reliably. Thin training data produces low confidence, not high.</p>
+  </div>
+  <div class="fb bad" data-for="q2m">
+    <div class="fb-stamp">Close, but low is more accurate</div>
+    <p class="fb-actual">Actual confidence: <strong>Low</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Diagnosis confidence</span><span>~18%</span></div><div class="conf-bar"><div class="conf-fill" style="width:18%;"></div></div></div>
+    <p class="fb-explain">One in 200,000 is extremely rare. General hospital training data would contain very few examples of this condition. The model has almost nothing to learn from. Medium confidence would still be too optimistic. Thin data produces unreliable, low-confidence predictions, especially for rare conditions whose symptoms may overlap with more common ones.</p>
+  </div>
+  <div class="fb ok" data-for="q2l">
+    <div class="fb-stamp">Correct</div>
+    <p class="fb-actual">Actual confidence: <strong>Low</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Diagnosis confidence</span><span>~18%</span></div><div class="conf-bar"><div class="conf-fill" style="width:18%;"></div></div></div>
+    <p class="fb-explain">Rare events produce low-confidence predictions because the model has very few examples to learn from. A condition affecting 1 in 200,000 people will barely appear in general hospital data. The model cannot reliably distinguish this condition's symptoms from other more common conditions. This is why rare disease AI tools are used only as supplementary aids, never as primary diagnosticians.</p>
+  </div>
+  <div class="nxt"><label class="nxt-btn" for="nav3">Next scenario</label></div>
+</div>
+
+<div class="q-block" data-q="3">
+  <div class="card">
+    <p class="card-tag">Language Prediction</p>
+    <p class="card-text">A language model is shown the phrase "Peanut butter and..." and asked to predict the next word.</p>
+    <div class="card-context"><strong>Context:</strong> This phrase appears in billions of documents across the internet. The completion is extremely consistent across virtually all sources.</div>
+  </div>
+  <p class="conf-q">What confidence level would you expect from this model on this prediction?</p>
+  <div class="conf-choices">
+    <label class="conf-lbl" for="q3h"><span class="c-name">High</span><span class="c-hint">Very likely to be right</span></label>
+    <label class="conf-lbl" for="q3m"><span class="c-name">Medium</span><span class="c-hint">Could go either way</span></label>
+    <label class="conf-lbl" for="q3l"><span class="c-name">Low</span><span class="c-hint">Unlikely to be reliable</span></label>
+  </div>
+  <div class="fb ok" data-for="q3h">
+    <div class="fb-stamp">Correct</div>
+    <p class="fb-actual">Actual confidence: <strong>High (approx. 94% for "jelly")</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Next word: "jelly"</span><span>94%</span></div><div class="conf-bar"><div class="conf-fill" style="width:94%;"></div></div></div>
+    <p class="fb-explain">This phrase appears in billions of training documents with an extremely consistent completion. The model has seen this pattern so many times that it can predict the next word with very high confidence. Common, highly consistent patterns are exactly where language models are most reliable. This is one of the most predictable phrases in the English language.</p>
+  </div>
+  <div class="fb bad" data-for="q3m">
+    <div class="fb-stamp">Not quite</div>
+    <p class="fb-actual">Actual confidence: <strong>High (approx. 94% for "jelly")</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Next word: "jelly"</span><span>94%</span></div><div class="conf-bar"><div class="conf-fill" style="width:94%;"></div></div></div>
+    <p class="fb-explain">Medium confidence would suggest the model is uncertain between several completions. It is not. This is one of the most consistent phrases in the English language, appearing in billions of documents with the same completion. Extremely common, extremely consistent patterns produce high confidence, not medium.</p>
+  </div>
+  <div class="fb bad" data-for="q3l">
+    <div class="fb-stamp">Not quite</div>
+    <p class="fb-actual">Actual confidence: <strong>High (approx. 94% for "jelly")</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Next word: "jelly"</span><span>94%</span></div><div class="conf-bar"><div class="conf-fill" style="width:94%;"></div></div></div>
+    <p class="fb-explain">Low confidence applies to unfamiliar or rare patterns. This phrase is the opposite: one of the most frequently seen patterns in all of English language training data. High-frequency, highly consistent patterns produce high confidence predictions.</p>
+  </div>
+  <div class="nxt"><label class="nxt-btn" for="nav4">Next scenario</label></div>
+</div>
+
+<div class="q-block" data-q="4">
+  <div class="card">
+    <p class="card-tag">Financial Prediction</p>
+    <p class="card-text">An AI model is asked to predict the price of a specific stock tomorrow, based on historical price data, recent news sentiment, and trading volume patterns.</p>
+    <div class="card-context"><strong>Context:</strong> Financial markets are driven by many factors including unpredictable human decisions, geopolitical events, and complex interactions that do not follow stable patterns.</div>
+  </div>
+  <p class="conf-q">What confidence level would you expect from this model on this prediction?</p>
+  <div class="conf-choices">
+    <label class="conf-lbl" for="q4h"><span class="c-name">High</span><span class="c-hint">Very likely to be right</span></label>
+    <label class="conf-lbl" for="q4m"><span class="c-name">Medium</span><span class="c-hint">Could go either way</span></label>
+    <label class="conf-lbl" for="q4l"><span class="c-name">Low</span><span class="c-hint">Unlikely to be reliable</span></label>
+  </div>
+  <div class="fb bad" data-for="q4h">
+    <div class="fb-stamp">Not quite</div>
+    <p class="fb-actual">Actual confidence: <strong>Low</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Tomorrow's price prediction</span><span>~30%</span></div><div class="conf-bar"><div class="conf-fill" style="width:30%;"></div></div></div>
+    <p class="fb-explain">Financial markets are influenced by unpredictable human decisions, breaking news, geopolitical events, and complex feedback loops that do not follow stable, learnable patterns. Even well-resourced institutional AI systems show limited accuracy beyond very short time horizons. High confidence is not achievable in a domain this unpredictable.</p>
+  </div>
+  <div class="fb bad" data-for="q4m">
+    <div class="fb-stamp">Too optimistic</div>
+    <p class="fb-actual">Actual confidence: <strong>Low</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Tomorrow's price prediction</span><span>~30%</span></div><div class="conf-bar"><div class="conf-fill" style="width:30%;"></div></div></div>
+    <p class="fb-explain">Medium confidence would still overstate reliability here. Markets are driven by factors that historical data alone cannot capture: a sudden news event, a regulatory announcement, or a shift in investor sentiment can move prices in ways no pattern-based model can reliably predict. Professional finance acknowledges this: individual stock prediction over days is notoriously unreliable.</p>
+  </div>
+  <div class="fb ok" data-for="q4l">
+    <div class="fb-stamp">Correct</div>
+    <p class="fb-actual">Actual confidence: <strong>Low</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Tomorrow's price prediction</span><span>~30%</span></div><div class="conf-bar"><div class="conf-fill" style="width:30%;"></div></div></div>
+    <p class="fb-explain">Stock prices are driven by unpredictable factors that historical data cannot capture reliably. Random news events, policy changes, and shifts in investor sentiment all move markets in ways that break any pattern a model might learn. Low confidence is appropriate, which is why serious AI trading tools focus on risk management and portfolio diversification rather than confident individual stock predictions.</p>
+  </div>
+  <div class="nxt"><label class="nxt-btn" for="nav5">Next scenario</label></div>
+</div>
+
+<div class="q-block" data-q="5">
+  <div class="card">
+    <p class="card-tag">Computer Vision</p>
+    <p class="card-text">A facial recognition system is shown a clear, front-facing photograph taken in good lighting of a person whose face is in its training database.</p>
+    <div class="card-context"><strong>Context:</strong> Ideal conditions: good lighting, clear angle, known person, similar to thousands of training examples.</div>
+  </div>
+  <p class="conf-q">What confidence level would you expect from this model on this recognition?</p>
+  <div class="conf-choices">
+    <label class="conf-lbl" for="q5h"><span class="c-name">High</span><span class="c-hint">Very likely to be right</span></label>
+    <label class="conf-lbl" for="q5m"><span class="c-name">Medium</span><span class="c-hint">Could go either way</span></label>
+    <label class="conf-lbl" for="q5l"><span class="c-name">Low</span><span class="c-hint">Unlikely to be reliable</span></label>
+  </div>
+  <div class="fb ok" data-for="q5h">
+    <div class="fb-stamp">Correct</div>
+    <p class="fb-actual">Actual confidence: <strong>High (approx. 98%)</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Recognition confidence</span><span>98%</span></div><div class="conf-bar"><div class="conf-fill" style="width:98%;"></div></div></div>
+    <p class="fb-explain">Near-ideal conditions produce near-maximum confidence. Good lighting, a clear frontal angle, a known person, and conditions that closely match the training data all work together to make this an easy prediction. Modern facial recognition systems perform very well exactly under these conditions because they represent the majority of their training examples.</p>
+  </div>
+  <div class="fb bad" data-for="q5m">
+    <div class="fb-stamp">Not quite</div>
+    <p class="fb-actual">Actual confidence: <strong>High (approx. 98%)</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Recognition confidence</span><span>98%</span></div><div class="conf-bar"><div class="conf-fill" style="width:98%;"></div></div></div>
+    <p class="fb-explain">These are near-ideal conditions. The person is known, the photo is clear, the lighting is good, and the angle is straight-on. There is no meaningful source of uncertainty here. Medium confidence would apply when some degrading factor is present. Under ideal conditions like these, confidence would be very high.</p>
+  </div>
+  <div class="fb bad" data-for="q5l">
+    <div class="fb-stamp">Not quite</div>
+    <p class="fb-actual">Actual confidence: <strong>High (approx. 98%)</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Recognition confidence</span><span>98%</span></div><div class="conf-bar"><div class="conf-fill" style="width:98%;"></div></div></div>
+    <p class="fb-explain">Low confidence applies to unfamiliar, degraded, or novel situations. This is the opposite: known person, ideal lighting, clear angle, and a match to training data conditions. Under ideal conditions, a well-trained facial recognition system will be highly confident.</p>
+  </div>
+  <div class="nxt"><label class="nxt-btn" for="nav6">Next scenario</label></div>
+</div>
+
+<div class="q-block" data-q="6">
+  <div class="card">
+    <p class="card-tag">Computer Vision</p>
+    <p class="card-text">The same facial recognition system is shown a photograph of a person wearing large sunglasses and a hat, photographed from a slight angle in dim indoor lighting.</p>
+    <div class="card-context"><strong>Context:</strong> Multiple degrading factors: partial face covered, non-standard angle, poor lighting. All three reduce the useful signal available to the model.</div>
+  </div>
+  <p class="conf-q">What confidence level would you expect from this model on this recognition?</p>
+  <div class="conf-choices">
+    <label class="conf-lbl" for="q6h"><span class="c-name">High</span><span class="c-hint">Very likely to be right</span></label>
+    <label class="conf-lbl" for="q6m"><span class="c-name">Medium</span><span class="c-hint">Could go either way</span></label>
+    <label class="conf-lbl" for="q6l"><span class="c-name">Low</span><span class="c-hint">Unlikely to be reliable</span></label>
+  </div>
+  <div class="fb bad" data-for="q6h">
+    <div class="fb-stamp">Not quite</div>
+    <p class="fb-actual">Actual confidence: <strong>Medium to Low</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Recognition confidence</span><span>~40%</span></div><div class="conf-bar"><div class="conf-fill" style="width:40%;"></div></div></div>
+    <p class="fb-explain">Sunglasses, a hat, a non-standard angle, and poor lighting each individually reduce the useful signal available to the model. Three degrading factors simultaneously push confidence down significantly from the ideal case in the previous scenario. High confidence requires good signal. Here the signal is significantly reduced.</p>
+  </div>
+  <div class="fb ok" data-for="q6m">
+    <div class="fb-stamp">Correct</div>
+    <p class="fb-actual">Actual confidence: <strong>Medium to Low</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Recognition confidence</span><span>~40%</span></div><div class="conf-bar"><div class="conf-fill" style="width:40%;"></div></div></div>
+    <p class="fb-explain">Three degrading factors reduce available signal: sunglasses cover the eyes, a hat covers the forehead, the angle distorts proportions, and dim lighting reduces image quality. The model may still recognise the person using visible features like jaw shape and visible skin, but confidence drops significantly. Compare this to the previous scenario: same person, same system, very different confidence because of conditions.</p>
+  </div>
+  <div class="fb ok" data-for="q6l">
+    <div class="fb-stamp">Also reasonable</div>
+    <p class="fb-actual">Actual confidence: <strong>Medium to Low</strong></p>
+    <div class="conf-bar-wrap"><div class="conf-bar-lbl"><span>Recognition confidence</span><span>~40%</span></div><div class="conf-bar"><div class="conf-fill" style="width:40%;"></div></div></div>
+    <p class="fb-explain">Low is also a defensible answer. Multiple degrading factors are working simultaneously against the model. Depending on the system and the specific person, confidence could fall anywhere from medium to low. The key takeaway is that conditions which deviate from training data reduce confidence significantly, which is exactly what this scenario demonstrates.</p>
+  </div>
+
+  <div class="nxt"><label class="nxt-btn" for="nav-end">See conclusion</label></div>
+</div>
+
+
+<div class="end-screen">
+  <h2 class="end-title">Six scenarios complete.</h2>
+  <p class="end-body">Confidence is not certainty. It reflects how much the model has seen patterns like this before. Familiar, frequent patterns produce high confidence. Rare events, degraded inputs, and unpredictable systems produce low confidence. Knowing the difference is what makes you a critical user of AI output.</p>
+  <button class="replay-btn" onclick="resetGame()">Play again</button>
+</div>
+
+<script>
+function resetGame() {
+  document.getElementById('nav1').checked = true;
+    var els = document.querySelectorAll('[name=a1]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a2]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a3]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a4]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a5]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a6]'); els.forEach(function(e){e.checked=false;});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Recommender Map</title>
+<style>*{box-sizing:border-box;}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0d0e10;color:#f1f1f1;line-height:1.6;}
+.wrap{max-width:920px;margin:0 auto;padding:24px 20px 60px;}
+.hero{background:linear-gradient(135deg,#0B0D10 0%,#1f1f1f 50%,#A32638 100%);padding:26px 26px;border-radius:14px;margin-bottom:16px;border:1px solid #2a2a2a;}
+.hero .tag{font-size:12px;color:#f2d6da;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.hero h1{margin:0 0 6px;font-family:Georgia,serif;font-size:30px;color:#fff;line-height:1.14;}
+.hero p{margin:0;opacity:0.92;font-size:14px;max-width:660px;}
+.panel{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:18px 22px;margin-bottom:14px;}
+.stats{display:flex;gap:10px;margin-bottom:14px;}
+.stat{flex:1;background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:10px 14px;text-align:center;}
+.stat .l{font-size:11px;color:#9aa0a6;text-transform:uppercase;letter-spacing:0.05em;}
+.stat .v{font-family:Georgia,serif;font-size:20px;color:#fff;margin-top:2px;}
+.btn{background:#A32638;color:#fff;border:0;padding:10px 22px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:14px;}
+.btn:disabled{background:#444;cursor:not-allowed;}
+.btn:hover:not(:disabled){filter:brightness(1.1);}
+.btn.ghost{background:transparent;color:#c0c4c8;border:1px solid #444;}
+.reveal{background:#0d0e10;border-left:3px solid #ffc800;border-radius:0 10px 10px 0;padding:14px 18px;margin-top:14px;display:none;color:#d8dadd;font-size:14px;line-height:1.65;}
+.reveal.show{display:block;animation:fade 0.3s;}
+.reveal h3{margin:0 0 6px;font-family:Georgia,serif;font-size:18px;color:#fff;}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.final{background:linear-gradient(135deg,#0B0D10,#A32638);border-radius:14px;padding:30px 28px;text-align:center;margin-top:14px;display:none;}
+.final.show{display:block;}
+.final h2{font-family:Georgia,serif;font-size:28px;color:#fff;margin:0 0 6px;}
+.final .big{font-family:Georgia,serif;font-size:56px;color:#fff;line-height:1;margin:6px 0;}
+.final p{color:rgba(255,255,255,0.92);max-width:540px;margin:0 auto 12px;}
+.hidden{display:none!important;}
+.right{color:#2ec850;}
+.wrong{color:#dc3c46;}
+
+.app-picker{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.app-btn{background:#15171a;border:2px solid #2a2a2a;border-radius:99px;padding:8px 18px;color:#fff;cursor:pointer;font-family:inherit;font-size:13px;}
+.app-btn:hover{border-color:#A32638;}
+.app-btn.active{background:#A32638;border-color:#A32638;}
+.flow{display:grid;grid-template-columns:1fr 60px 1fr 60px 1fr;gap:10px;align-items:center;margin-bottom:14px;}
+@media(max-width:700px){.flow{grid-template-columns:1fr;}.flow .arrow{transform:rotate(90deg);text-align:center;}}
+.col{background:#15171a;border:1px solid #2a2a2a;border-radius:12px;padding:14px;min-height:220px;}
+.col h4{margin:0 0 4px;font-size:11px;color:#A32638;text-transform:uppercase;letter-spacing:0.06em;}
+.col h3{margin:0 0 10px;font-family:Georgia,serif;font-size:18px;color:#fff;}
+.col.model{background:linear-gradient(135deg,#0B0D10,#1A1D23);border-color:#A32638;}
+.arrow{color:#A32638;font-size:24px;text-align:center;}
+.cell{background:#0d0e10;border:1px solid #2a2a2a;border-radius:8px;padding:8px 10px;margin-bottom:6px;cursor:pointer;font-size:13px;color:#d8dadd;}
+.cell:hover{border-color:#A32638;}
+.cell.flipped{background:#1a1c1f;border-color:#2ec850;color:#fff;}
+.cell .hint{font-size:11px;color:#9aa0a6;margin-top:3px;}
+.guide{font-size:13px;color:#9aa0a6;margin-bottom:8px;}
+</style></head><body>
+<div class="wrap">
+<div class="hero"><div class="tag">Module 2 &middot; Micro-Learning 1.2</div><h1>Recommender Map</h1><p>Every recommender has the same anatomy. Pick an app, then click each cell to reveal what role it plays. Notice the pattern: the labels change, the shape does not.</p></div>
+<div class="stats">
+<div class="stat"><div class="l">App</div><div class="v" id="app">-</div></div>
+<div class="stat"><div class="l">Cells revealed</div><div class="v" id="rev">0</div></div>
+</div>
+<p class="guide">Pick an app, then click each cell to reveal what role it plays in the system. The shape is the same for every recommender.</p>
+<div class="app-picker" id="apps"></div>
+<div class="flow">
+<div class="col"><h4>Inputs</h4><h3>What goes in</h3><div id="inputs"></div></div>
+<div class="arrow">&rarr;</div>
+<div class="col model"><h4>Model</h4><h3>What sits in the middle</h3><div id="model"></div></div>
+<div class="arrow">&rarr;</div>
+<div class="col"><h4>Outputs</h4><h3>What comes back</h3><div id="outputs"></div></div>
+</div>
+<div class="reveal" id="reveal"></div>
+</div>
+<script>
+const APPS={
+ spotify:{name:"Spotify",inputs:[["Listening history","Songs you played, skipped, finished"],["Song features","Tempo, genre, energy, key"],["Context","Time of day, device, playlist position"]],
+   model:[["Embedding lookup","Each song is a vector"],["Similarity scoring","Closer vectors = closer match"]],
+   outputs:[["Ranked list","Top 50 candidates next"],["Top pick","The one that autoplays"]]},
+ tiktok:{name:"TikTok",inputs:[["Watch history","What you watched and for how long"],["Interactions","Likes, shares, follows, comments"],["Context","Time, device, account age"]],
+   model:[["Engagement predictor","Will you keep watching"],["Ranker","Sort candidates by predicted watch time"]],
+   outputs:[["For You feed","Ranked list of videos"],["Autoplay","Next video starts immediately"]]},
+ maps:{name:"Maps",inputs:[["Origin and destination","Where to and from"],["Live traffic","Current speed on roads"],["Route history","Past trips on this corridor"]],
+   model:[["Routing graph","Roads as edges"],["ETA model","Predicts duration per segment"]],
+   outputs:[["Routes ranked by ETA","3 to 4 options"],["Turn-by-turn","Step list"]]},
+ mail:{name:"Email autocomplete",inputs:[["Recent words","What you just typed"],["Phrase corpus","Common patterns in general writing"],["Your style","Your past sent mail"]],
+   model:[["Language model","Predicts next word distribution"]],
+   outputs:[["Suggested words","Top 3"],["Inline ghost text","Auto-complete preview"]]}};
+let active=null,flipped=new Set();
+function renderApps(){document.getElementById("apps").innerHTML=Object.keys(APPS).map(k=>`<button class="app-btn ${k===active?'active':''}" onclick="pick('${k}')">${APPS[k].name}</button>`).join("");}
+function pick(k){active=k;flipped=new Set();document.getElementById("app").textContent=APPS[k].name;document.getElementById("rev").textContent="0";document.getElementById("reveal").classList.remove("show");renderFlow();}
+function renderFlow(){
+  if(!active){return;}
+  const a=APPS[active];
+  ["inputs","model","outputs"].forEach(col=>{
+    document.getElementById(col).innerHTML=a[col].map((c,i)=>{
+      const id=col+"-"+i;
+      const f=flipped.has(id);
+      return `<div class="cell ${f?'flipped':''}" onclick="flip('${id}','${c[0]}','${c[1]}')">${f?c[0]+'<div class="hint">'+c[1]+'</div>':'Click to reveal'}</div>`;
+    }).join("");
+  });
+  const totalCells=Object.keys(APPS[active]).filter(k=>Array.isArray(APPS[active][k])).reduce((s,k)=>s+APPS[active][k].length,0);
+  if(flipped.size===totalCells){
+    const r=document.getElementById("reveal");
+    r.innerHTML=`<h3>You mapped ${APPS[active].name} end to end.</h3><p>Every recommender has the same shape. Inputs go in, a model sits in the middle, outputs come back. The trick to reading any AI feature is to ask: what are the inputs, what is the model doing, what is the output?</p>`;
+    r.classList.add("show");
+  }
+}
+function flip(id,label,hint){flipped.add(id);document.getElementById("rev").textContent=flipped.size;renderFlow();}
+renderApps();
+</script>
+</body></html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Build Your Data System Diagram</title>
+<style>
+*{box-sizing:border-box;}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0d0e10;color:#f1f1f1;line-height:1.6;}
+.wrap{max-width:1000px;margin:0 auto;padding:28px 22px 60px;}
+.hero{background:linear-gradient(135deg,#0B0D10 0%,#1f1f1f 50%,#A32638 100%);padding:32px 30px;border-radius:14px;margin-bottom:18px;border:1px solid #2a2a2a;}
+.hero .tag{font-size:12px;color:#ffc800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
+.hero h1{margin:0 0 10px;font-family:Georgia,serif;font-size:34px;color:#fff;line-height:1.15;}
+.hero p{margin:0;opacity:0.92;font-size:14px;max-width:740px;}
+.step{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:22px 24px;margin-bottom:16px;}
+.step .step-num{display:inline-block;background:#A32638;color:#fff;font-family:Georgia,serif;font-size:14px;padding:4px 12px;border-radius:99px;margin-bottom:10px;}
+.step h2{margin:0 0 8px;font-family:Georgia,serif;font-size:22px;color:#fff;}
+.step .sub{font-size:13px;color:#9aa0a6;margin-bottom:14px;}
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:13px;color:#c0c4c8;margin-bottom:6px;font-weight:600;}
+.field input,.field textarea,.field select{width:100%;background:#0d0e10;border:1px solid #2a2a2a;color:#fff;padding:10px 12px;font-family:inherit;font-size:14px;border-radius:8px;}
+.field textarea{min-height:70px;resize:vertical;}
+.field input:focus,.field textarea:focus,.field select:focus{outline:0;border-color:#A32638;}
+.field .hint{font-size:12px;color:#7a7e84;margin-top:4px;}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:680px){.cols2{grid-template-columns:1fr;}}
+.feature-row{display:grid;grid-template-columns:1fr 1fr 130px;gap:8px;margin-bottom:8px;align-items:center;}
+.feature-row input{font-size:13px;padding:8px 10px;}
+@media(max-width:680px){.feature-row{grid-template-columns:1fr;}}
+.btn{background:#A32638;color:#fff;border:0;padding:11px 22px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:14px;}
+.btn:hover{filter:brightness(1.1);}
+.btn.ghost{background:transparent;color:#c0c4c8;border:1px solid #444;}
+.diagram-card{background:#0d0e10;border:1px solid #A32638;border-radius:14px;padding:28px 26px;margin-top:14px;}
+.diagram-card .title{font-family:Georgia,serif;font-size:22px;color:#ffc800;margin-bottom:18px;text-align:center;}
+.flow{display:flex;flex-direction:column;gap:10px;}
+.flow .box{background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:14px 16px;}
+.flow .box .lbl{font-size:11px;color:#A32638;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
+.flow .box .val{font-size:14px;color:#fff;}
+.flow .arrow{text-align:center;color:#A32638;font-size:18px;}
+.actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;}
+.tag-strong{display:inline-block;background:rgba(163,38,56,0.18);border:1px solid #A32638;color:#f4d7dc;padding:3px 9px;border-radius:99px;font-size:12px;margin:2px 4px 2px 0;}
+.empty{color:#7a7e84;font-style:italic;font-size:13px;}
+</style></head><body>
+<div class="wrap">
+<div class="hero">
+<div class="tag">Portfolio Deliverable &middot; Module 2</div>
+<h1>Build Your Data System Diagram</h1>
+<p>Pick a real AI system (one you use, one in the news, or one you wish existed). Document its data, features, labels, and pipeline. When you finish, download the one-page system diagram and save it to your portfolio.</p>
+</div>
+
+<div class="step">
+<span class="step-num">Step 1</span>
+<h2>Name your system</h2>
+<p class="sub">Pick something specific. Not "AI." Not "ChatGPT." Pick a single feature in a single product.</p>
+<div class="field">
+<label>System name</label>
+<input type="text" id="sys-name" placeholder="e.g., TikTok's For You feed recommender">
+</div>
+<div class="field">
+<label>What does it predict or generate?</label>
+<input type="text" id="sys-goal" placeholder="e.g., The next video the user is most likely to keep watching">
+</div>
+</div>
+
+<div class="step">
+<span class="step-num">Step 2</span>
+<h2>Identify your data</h2>
+<p class="sub">What does the system collect? Where does it come from?</p>
+<div class="cols2">
+<div class="field">
+<label>Inputs (what goes in)</label>
+<textarea id="inputs" placeholder="e.g., Watch history, like history, scroll speed, time of day, device type"></textarea>
+<div class="hint">List as many as you can think of, comma separated.</div>
+</div>
+<div class="field">
+<label>Outputs (what comes out)</label>
+<textarea id="outputs" placeholder="e.g., A ranked list of the next 10 videos to show"></textarea>
+<div class="hint">What does the user actually see?</div>
+</div>
+</div>
+<div class="field">
+<label>Data type (mostly)</label>
+<select id="data-type">
+<option value="">Pick one...</option>
+<option value="Structured">Structured (rows and columns)</option>
+<option value="Unstructured">Unstructured (text, images, audio, video)</option>
+<option value="Mixed">Mixed (both)</option>
+</select>
+</div>
+</div>
+
+<div class="step">
+<span class="step-num">Step 3</span>
+<h2>List three strong features</h2>
+<p class="sub">Features are the columns the model actually uses. Pick three that you think carry real signal, and explain why.</p>
+<div id="features">
+<div class="feature-row">
+<input type="text" placeholder="Feature 1 name" data-fname>
+<input type="text" placeholder="Why it carries signal" data-freason>
+<select data-fkind><option value="">Type...</option><option>Raw</option><option>Engineered</option></select>
+</div>
+<div class="feature-row">
+<input type="text" placeholder="Feature 2 name" data-fname>
+<input type="text" placeholder="Why it carries signal" data-freason>
+<select data-fkind><option value="">Type...</option><option>Raw</option><option>Engineered</option></select>
+</div>
+<div class="feature-row">
+<input type="text" placeholder="Feature 3 name" data-fname>
+<input type="text" placeholder="Why it carries signal" data-freason>
+<select data-fkind><option value="">Type...</option><option>Raw</option><option>Engineered</option></select>
+</div>
+</div>
+<div class="hint" style="margin-top:6px;">Engineered means you transformed raw data (e.g., "hour of day" derived from a timestamp).</div>
+</div>
+
+<div class="step">
+<span class="step-num">Step 4</span>
+<h2>Where do the labels come from?</h2>
+<p class="sub">If the model is supervised, who or what labels the training data? If unsupervised, write "no labels."</p>
+<div class="field">
+<label>Label source</label>
+<input type="text" id="label-source" placeholder="e.g., User behavior signals (likes, watch time, follows) treated as implicit labels">
+</div>
+<div class="field">
+<label>One risk in the labels</label>
+<input type="text" id="label-risk" placeholder="e.g., Watch time rewards content that holds attention, which can favor outrage">
+<div class="hint">A bias, a gap, or a way the label might mislead the model.</div>
+</div>
+</div>
+
+<div class="step">
+<span class="step-num">Step 5</span>
+<h2>One known weakness</h2>
+<p class="sub">If this system was wrong, who would carry the cost? Be specific.</p>
+<div class="field">
+<label>Weakness or failure mode</label>
+<textarea id="weakness" placeholder="e.g., A new user with no history gets generic content; minority interests get pushed down."></textarea>
+</div>
+</div>
+
+<div class="actions">
+<button class="btn ghost" onclick="resetAll()">Reset</button>
+<button class="btn" onclick="buildDiagram()">Build the system diagram</button>
+</div>
+
+<div id="card-out" style="display:none;">
+<div class="diagram-card" id="card">
+<div class="title" id="t-name">Your System</div>
+<div class="flow">
+<div class="box"><div class="lbl">Goal</div><div class="val" id="t-goal"></div></div>
+<div class="arrow">&darr;</div>
+<div class="box"><div class="lbl">Inputs</div><div class="val" id="t-inputs"></div></div>
+<div class="arrow">&darr;</div>
+<div class="box"><div class="lbl">Data type</div><div class="val" id="t-datatype"></div></div>
+<div class="arrow">&darr;</div>
+<div class="box"><div class="lbl">Features the model uses</div><div class="val" id="t-features"></div></div>
+<div class="arrow">&darr;</div>
+<div class="box"><div class="lbl">Labels (training signal)</div><div class="val" id="t-labels"></div></div>
+<div class="arrow">&darr;</div>
+<div class="box"><div class="lbl">Outputs</div><div class="val" id="t-outputs"></div></div>
+<div class="arrow">&darr;</div>
+<div class="box" style="border-left:3px solid #ffc800;"><div class="lbl" style="color:#ffc800;">Known weakness</div><div class="val" id="t-weakness"></div></div>
+</div>
+</div>
+<div class="actions">
+<button class="btn ghost" onclick="document.getElementById('card-out').style.display='none';">Edit answers</button>
+<button class="btn" onclick="downloadCard()">Download diagram (HTML)</button>
+</div>
+</div>
+</div>
+
+<script>
+function val(id){return document.getElementById(id).value.trim();}
+function resetAll(){
+  ['sys-name','sys-goal','inputs','outputs','data-type','label-source','label-risk','weakness'].forEach(id=>document.getElementById(id).value='');
+  document.querySelectorAll('#features input').forEach(e=>e.value='');
+  document.querySelectorAll('#features select').forEach(e=>e.value='');
+  document.getElementById('card-out').style.display='none';
+}
+function buildDiagram(){
+  const name = val('sys-name') || 'Unnamed System';
+  const goal = val('sys-goal') || '(missing)';
+  const ins = val('inputs') || '(missing)';
+  const outs = val('outputs') || '(missing)';
+  const dt = val('data-type') || '(unspecified)';
+  const lsrc = val('label-source') || '(missing)';
+  const lrisk = val('label-risk');
+  const weak = val('weakness') || '(missing)';
+  const feats = [];
+  document.querySelectorAll('#features .feature-row').forEach(row=>{
+    const n = row.querySelector('[data-fname]').value.trim();
+    const r = row.querySelector('[data-freason]').value.trim();
+    const k = row.querySelector('[data-fkind]').value.trim();
+    if(n){feats.push('<span class="tag-strong">'+escapeHtml(n)+(k?' ('+escapeHtml(k)+')':'')+'</span>'+(r?' &mdash; '+escapeHtml(r):''));}
+  });
+  document.getElementById('t-name').textContent = name;
+  document.getElementById('t-goal').textContent = goal;
+  document.getElementById('t-inputs').textContent = ins;
+  document.getElementById('t-datatype').textContent = dt;
+  document.getElementById('t-features').innerHTML = feats.length ? feats.join('<br><br>') : '<span class="empty">No features listed yet.</span>';
+  let labelText = lsrc;
+  if(lrisk){labelText += ' &nbsp; Risk: '+escapeHtml(lrisk);}
+  document.getElementById('t-labels').innerHTML = labelText;
+  document.getElementById('t-outputs').textContent = outs;
+  document.getElementById('t-weakness').textContent = weak;
+  document.getElementById('card-out').style.display='block';
+  document.getElementById('card-out').scrollIntoView({behavior:'smooth'});
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function downloadCard(){
+  const card = document.getElementById('card');
+  const css = '<style>body{font-family:Arial;background:#0d0e10;color:#f1f1f1;padding:30px;}*{box-sizing:border-box;}.diagram-card{background:#0d0e10;border:1px solid #A32638;border-radius:14px;padding:28px 26px;max-width:700px;margin:0 auto;}.title{font-family:Georgia,serif;font-size:22px;color:#ffc800;margin-bottom:18px;text-align:center;}.flow{display:flex;flex-direction:column;gap:10px;}.flow .box{background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:14px 16px;}.flow .box .lbl{font-size:11px;color:#A32638;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}.flow .box .val{font-size:14px;color:#fff;}.flow .arrow{text-align:center;color:#A32638;font-size:18px;}.tag-strong{display:inline-block;background:rgba(163,38,56,0.18);border:1px solid #A32638;color:#f4d7dc;padding:3px 9px;border-radius:99px;font-size:12px;margin:2px 4px 2px 0;}</style>';
+  const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+document.getElementById('t-name').textContent+' Data System Diagram</title>'+css+'</head><body>'+card.outerHTML+'</body></html>';
+  const blob = new Blob([html],{type:'text/html'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = (document.getElementById('t-name').textContent.replace(/[^a-z0-9]+/gi,'_').toLowerCase()||'system')+'_data_diagram.html';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},100);
+}
+</script>
+</body></html>

@@ -1,0 +1,283 @@
+<!--
+  CANVAS EMBED: ML 3.2 - Read Your Feed
+  <iframe src="LINK" width="100%" height="700" style="border:none;border-radius:12px;margin:32px 0;" title="Read Your Feed"></iframe>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Read Your Feed</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+input[type=checkbox] { position: absolute; left: -9999px; opacity: 0; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f5f5f5; color: #363d45; line-height: 1.7; padding: 20px; }
+
+.intro { margin-bottom: 18px; }
+.i-label { color: #a32638; font-size: 12px; font-weight: bold; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+.i-title { font-family: Georgia, serif; font-size: 22px; color: #0b0d10; margin-bottom: 4px; }
+.i-sub { font-size: 14px; color: #4b535c; line-height: 1.6; }
+
+/* POSTS */
+.post {
+  background: #ffffff;
+  border: 1px solid #E4E5E6;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.post-top { padding: 14px 16px 10px; display: flex; align-items: flex-start; gap: 10px; }
+.post-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: #363D45; color: #ffffff;
+  font-size: 11px; font-weight: bold;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.post-meta { flex: 1; }
+.post-name { font-size: 13px; font-weight: bold; color: #0b0d10; }
+.post-time { font-size: 11px; color: #9CA3AF; }
+.post-body { padding: 0 16px 12px; }
+.post-text { font-size: 14px; color: #363d45; line-height: 1.6; margin-bottom: 10px; }
+.post-image {
+  background: #1A1E27; color: #4b535c;
+  font-size: 12px; font-weight: bold; letter-spacing: .06em; text-transform: uppercase;
+  height: 70px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 10px;
+}
+.post-actions { display: flex; gap: 14px; }
+.post-action { font-size: 12px; color: #9CA3AF; }
+
+.why-btn-wrap { padding: 0 16px 14px; }
+.why-btn {
+  display: block; width: 100%;
+  background: #FAFAFA; border: 1px solid #E4E5E6;
+  border-radius: 8px; padding: 9px 14px;
+  font-size: 13px; font-weight: bold; color: #363d45;
+  cursor: pointer; text-align: left;
+  user-select: none; transition: border-color .15s, background .15s;
+}
+.why-btn:hover { border-color: #A32638; background: #FFF8F8; color: #A32638; }
+/* WHY PANELS - hidden by default, shown by CSS checkboxes */
+.why-panel {
+  display: none;
+  border-top: 1px solid #E4E5E6;
+  background: #FAFAFA;
+  padding: 14px 16px;
+}
+
+#w1:checked ~ .post .why-btn[for="w1"],
+#w2:checked ~ .post .why-btn[for="w2"],
+#w3:checked ~ .post .why-btn[for="w3"],
+#w4:checked ~ .post .why-btn[for="w4"],
+#w5:checked ~ .post .why-btn[for="w5"],
+#w6:checked ~ .post .why-btn[for="w6"] { border-color: #A32638; background: #FFF8F8; color: #A32638; }
+
+#w1:checked ~ .post #p1,
+#w2:checked ~ .post #p2,
+#w3:checked ~ .post #p3,
+#w4:checked ~ .post #p4,
+#w5:checked ~ .post #p5,
+#w6:checked ~ .post #p6 { display: block; }
+.wp-signal { font-size: 11px; font-weight: bold; letter-spacing: .08em; text-transform: uppercase; color: #a32638; margin-bottom: 4px; }
+.wp-explain { font-size: 13px; color: #4b535c; line-height: 1.65; }
+.wp-explain strong { color: #0b0d10; }
+.wp-note { margin-top: 8px; background: #ffffff; border: 1px solid #E4E5E6; border-left: 4px solid #363D45; border-radius: 0 6px 6px 0; padding: 9px 12px; font-size: 12px; color: #4b535c; line-height: 1.6; }
+.wp-note strong { color: #0b0d10; }
+
+@media (max-width: 520px) { body { padding: 14px; } }
+
+.activity-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  display: block;
+}
+</style>
+</head>
+<body>
+<input type="checkbox" id="w1">
+<input type="checkbox" id="w2">
+<input type="checkbox" id="w3">
+<input type="checkbox" id="w4">
+<input type="checkbox" id="w5">
+<input type="checkbox" id="w6">
+<img class="activity-img" src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=900&q=78" alt="Social media feed on a smartphone screen" loading="lazy">
+
+<div class="intro">
+  <p class="i-label">Mini Activity</p>
+  <h2 class="i-title">The algorithmic feed</h2>
+  <p class="i-sub">This is a simulated feed for a user called Alex. Select "Why am I seeing this?" on each post to reveal what signal the algorithm used to rank it here.</p>
+</div>
+
+<!-- Post 1: Gaming - watch time -->
+<div class="post">
+  <div class="post-top">
+    <div class="post-avatar">GR</div>
+    <div class="post-meta">
+      <div class="post-name">GameReviewWeekly</div>
+      <div class="post-time">2 hours ago</div>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-image">Gaming</div>
+    <p class="post-text">Our deep dive into the top strategy games of the year. Three titles worth your time this month.</p>
+    <div class="post-actions">
+      <span class="post-action">1.2k likes</span>
+      <span class="post-action">84 comments</span>
+      <span class="post-action">203 shares</span>
+    </div>
+  </div>
+  <div class="why-btn-wrap">
+    <label class="why-btn" for="w1">Why am I seeing this?</label>
+  </div>
+  <div class="why-panel" id="p1">
+    <p class="wp-signal">Signal used: Watch time</p>
+    <p class="wp-explain">Alex spent an average of 4 minutes on similar gaming content over the past 30 days, compared to a platform average of 45 seconds. The system treats long watch time as a strong positive signal.</p>
+    <div class="wp-note"><strong>Note:</strong> The system does not know Alex likes games. It knows Alex spends more time on gaming content than most users do. Behaviour, not stated preferences, drives the ranking.</div>
+  </div>
+</div>
+
+<!-- Post 2: Cafe - location -->
+<div class="post">
+  <div class="post-top">
+    <div class="post-avatar">CM</div>
+    <div class="post-meta">
+      <div class="post-name">CafeOnMain</div>
+      <div class="post-time">4 hours ago</div>
+    </div>
+  </div>
+  <div class="post-body">
+    <p class="post-text">Tuesday special: oat milk cortados and fresh croissants from 7am. Come see us.</p>
+    <div class="post-actions">
+      <span class="post-action">43 likes</span>
+      <span class="post-action">7 comments</span>
+      <span class="post-action">12 shares</span>
+    </div>
+  </div>
+  <div class="why-btn-wrap">
+    <label class="why-btn" for="w2">Why am I seeing this?</label>
+  </div>
+  <div class="why-panel" id="p2">
+    <p class="wp-signal">Signal used: Location history</p>
+    <p class="wp-explain">Alex's device GPS data shows regular presence within 400 metres of this cafe on weekday mornings. The platform infers Alex is a likely customer and surfaces local business content accordingly.</p>
+    <div class="wp-note"><strong>Note:</strong> This post has very low overall engagement. It appeared not because it is popular, but because of proximity. Location is one of the strongest ranking signals for local business content.</div>
+  </div>
+</div>
+
+<!-- Post 3: Music - cross-platform -->
+<div class="post">
+  <div class="post-top">
+    <div class="post-avatar">MD</div>
+    <div class="post-meta">
+      <div class="post-name">MusicDiscover</div>
+      <div class="post-time">6 hours ago</div>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-image">Music</div>
+    <p class="post-text">New artists in the lo-fi and ambient space this month. A playlist for deep work sessions.</p>
+    <div class="post-actions">
+      <span class="post-action">3.4k likes</span>
+      <span class="post-action">156 comments</span>
+      <span class="post-action">891 shares</span>
+    </div>
+  </div>
+  <div class="why-btn-wrap">
+    <label class="why-btn" for="w3">Why am I seeing this?</label>
+  </div>
+  <div class="why-panel" id="p3">
+    <p class="wp-signal">Signal used: Cross-platform behaviour via ad network</p>
+    <p class="wp-explain">Alex searched for "lo-fi playlist for studying" on a connected platform three days ago. The ad network linked this search to Alex's social profile and boosted this content in the feed.</p>
+    <div class="wp-note"><strong>Note:</strong> This is cross-platform signal transfer. Activity on one platform can influence what you see on another if they share an advertising or data network. This is common practice.</div>
+  </div>
+</div>
+
+<!-- Post 4: Green - social graph -->
+<div class="post">
+  <div class="post-top">
+    <div class="post-avatar">GL</div>
+    <div class="post-meta">
+      <div class="post-name">GreenRoutineLife</div>
+      <div class="post-time">Yesterday</div>
+    </div>
+  </div>
+  <div class="post-body">
+    <p class="post-text">Five habits that reduced my household plastic waste by 80 percent. Started with just two of these.</p>
+    <div class="post-actions">
+      <span class="post-action">8.7k likes</span>
+      <span class="post-action">412 comments</span>
+      <span class="post-action">2.1k shares</span>
+    </div>
+  </div>
+  <div class="why-btn-wrap">
+    <label class="why-btn" for="w4">Why am I seeing this?</label>
+  </div>
+  <div class="why-panel" id="p4">
+    <p class="wp-signal">Signal used: Social graph similarity</p>
+    <p class="wp-explain">Three people in Alex's follower network saved this post and two commented on it. The system inferred that if Alex's connections engaged with it, Alex might too. Social proof amplifies distribution.</p>
+    <div class="wp-note"><strong>Note:</strong> Alex has never followed or engaged with sustainability content. The system used the behaviour of people connected to Alex, not Alex's own behaviour. This is collaborative filtering applied to content.</div>
+  </div>
+</div>
+
+<!-- Post 5: Running gear - purchase data -->
+<div class="post">
+  <div class="post-top">
+    <div class="post-avatar">TG</div>
+    <div class="post-meta">
+      <div class="post-name">TrailRunnerGear</div>
+      <div class="post-time">Yesterday</div>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-image">Running Gear</div>
+    <p class="post-text">The best trail running shoes for spring. We tested 12 pairs over 300 miles of terrain.</p>
+    <div class="post-actions">
+      <span class="post-action">2.1k likes</span>
+      <span class="post-action">98 comments</span>
+      <span class="post-action">445 shares</span>
+    </div>
+  </div>
+  <div class="why-btn-wrap">
+    <label class="why-btn" for="w5">Why am I seeing this?</label>
+  </div>
+  <div class="why-panel" id="p5">
+    <p class="wp-signal">Signal used: Purchase history via retail data partner</p>
+    <p class="wp-explain">Alex bought a pair of running shoes from a connected retailer six weeks ago. The retailer shared this purchase category with the platform's ad network, which boosted fitness and gear content in Alex's feed.</p>
+    <div class="wp-note"><strong>Note:</strong> Alex never mentioned running on this platform. The signal came from an offline purchase. Retail purchase data is one of the most commercially valuable data types shared between companies.</div>
+  </div>
+</div>
+
+<!-- Post 6: Study tips - re-engagement -->
+<div class="post">
+  <div class="post-top">
+    <div class="post-avatar">LF</div>
+    <div class="post-meta">
+      <div class="post-name">LearnFocus</div>
+      <div class="post-time">2 days ago</div>
+    </div>
+  </div>
+  <div class="post-body">
+    <p class="post-text">The study technique that helped 40,000 students improve their exam scores. Takes 10 minutes a day.</p>
+    <div class="post-actions">
+      <span class="post-action">14.2k likes</span>
+      <span class="post-action">671 comments</span>
+      <span class="post-action">5.8k shares</span>
+    </div>
+  </div>
+  <div class="why-btn-wrap">
+    <label class="why-btn" for="w6">Why am I seeing this?</label>
+  </div>
+  <div class="why-panel" id="p6">
+    <p class="wp-signal">Signal used: Re-engagement targeting</p>
+    <p class="wp-explain">Alex has not opened the app in 4 days. The system selected high-engagement content with broad appeal to pull Alex back into the feed. This post has strong engagement signals across many user types.</p>
+    <div class="wp-note"><strong>Note:</strong> Re-engagement content is not selected for Alex specifically. It is selected because it works across many users at once. When you return after a break, the first few posts you see are often chosen to maximise the chance you keep scrolling.</div>
+  </div>
+</div>
+
+</body>
+</html>

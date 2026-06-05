@@ -1,0 +1,271 @@
+<!--
+  CANVAS EMBED: ML 4.3 - Should a Human Step In?
+  <iframe src="LINK" width="100%" height="640" style="border:none;border-radius:12px;margin:32px 0;" title="Should a Human Step In?"></iframe>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Should a Human Step In?</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+input[type=radio] { display: none; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f5f5f5; color: #363d45; line-height: 1.7; padding: 20px; }
+
+.prog { color: #a32638; font-size: 12px; font-weight: bold; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 12px; }
+#n1:checked ~ .prog::before { content: "Case 01 of 06"; }
+#n2:checked ~ .prog::before { content: "Case 02 of 06"; }
+#n3:checked ~ .prog::before { content: "Case 03 of 06"; }
+#n4:checked ~ .prog::before { content: "Case 04 of 06"; }
+#n5:checked ~ .prog::before { content: "Case 05 of 06"; }
+#n6:checked ~ .prog::before { content: "Case 06 of 06"; }
+.prog::before { content: "Case 01 of 06"; }
+
+.q-block { display: none; }
+#n1:checked ~ .q-block[data-q="1"] { display: block; }
+#n2:checked ~ .q-block[data-q="2"] { display: block; }
+#n3:checked ~ .q-block[data-q="3"] { display: block; }
+#n4:checked ~ .q-block[data-q="4"] { display: block; }
+#n5:checked ~ .q-block[data-q="5"] { display: block; }
+#n6:checked ~ .q-block[data-q="6"] { display: block; }
+#n1:checked ~ .q-block:not([data-q="1"]) { display: none; }
+#n2:checked ~ .q-block:not([data-q="2"]) { display: none; }
+#n3:checked ~ .q-block:not([data-q="3"]) { display: none; }
+#n4:checked ~ .q-block:not([data-q="4"]) { display: none; }
+#n5:checked ~ .q-block:not([data-q="5"]) { display: none; }
+#n6:checked ~ .q-block:not([data-q="6"]) { display: none; }
+
+.case-card { background: #ffffff; border: 1px solid #E4E5E6; border-left: 5px solid #A32638; border-radius: 12px; padding: 20px 22px; margin-bottom: 14px; }
+.case-domain { color: #a32638; font-size: 12px; font-weight: bold; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 5px; }
+.case-decision { font-family: Georgia, serif; font-size: 18px; color: #0b0d10; line-height: 1.5; margin-bottom: 10px; }
+.case-context { font-size: 13px; color: #4b535c; line-height: 1.6; margin-bottom: 10px; }
+.case-stakes { background: #FAFAFA; border: 1px solid #E4E5E6; border-left: 3px solid #363D45; border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 13px; color: #4b535c; line-height: 1.55; }
+.case-stakes strong { color: #0b0d10; }
+
+.stamp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.stamp-lbl { display: block; background: #ffffff; border: 1.5px solid #E4E5E6; border-radius: 10px; padding: 14px 16px; cursor: pointer; text-align: center; user-select: none; transition: border-color .15s, background .15s; }
+.stamp-lbl:hover { border-color: #A32638; background: #FFF8F8; }
+.stamp-name { font-size: 14px; font-weight: bold; color: #0b0d10; display: block; margin-bottom: 3px; }
+.stamp-hint { font-size: 11px; color: #4b535c; display: block; }
+
+.fb { display: none; background: #ffffff; border: 1px solid #E4E5E6; border-radius: 12px; overflow: hidden; margin-bottom: 12px; }
+.fb-head { padding: 12px 18px; }
+.fb-head.approve { background: #363D45; }
+.fb-head.escalate { background: #A32638; }
+.fb-hl { color: rgba(255,255,255,0.7); font-size: 12px; margin-bottom: 3px; }
+.fb-ruling { font-family: Georgia, serif; font-size: 16px; color: #ffffff; }
+.fb-body { padding: 14px 18px; }
+.fb-explain { font-size: 14px; color: #4b535c; line-height: 1.65; }
+.fb-explain strong { color: #0b0d10; }
+.fb-principle { margin-top: 10px; background: #FAFAFA; border: 1px solid #E4E5E6; border-left: 4px solid #363D45; border-radius: 0 8px 8px 0; padding: 11px 14px; font-size: 13px; color: #4b535c; line-height: 1.6; }
+.fb-principle strong { color: #0b0d10; }
+
+.nxt { display: none; margin-top: 4px; }
+.nxt-btn { background: #A32638; color: #fff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 14px; font-weight: bold; cursor: pointer; }
+.nxt-btn:hover { background: #8a1d2a; }
+
+#q1a:checked ~ .q-block[data-q="1"] .fb[data-for="q1a"],
+#q1e:checked ~ .q-block[data-q="1"] .fb[data-for="q1e"] { display: block; }
+#q1a:checked ~ .q-block[data-q="1"] .nxt,
+#q1e:checked ~ .q-block[data-q="1"] .nxt { display: block; }
+#q1a:checked ~ .q-block[data-q="1"] .stamp-lbl,
+#q1e:checked ~ .q-block[data-q="1"] .stamp-lbl { pointer-events: none; opacity: .55; }
+#q1a:checked ~ .q-block[data-q="1"] label[for="q1a"],
+#q1e:checked ~ .q-block[data-q="1"] label[for="q1e"] { opacity: 1; border-color: #A32638; }
+
+#q2a:checked ~ .q-block[data-q="2"] .fb[data-for="q2a"],
+#q2e:checked ~ .q-block[data-q="2"] .fb[data-for="q2e"] { display: block; }
+#q2a:checked ~ .q-block[data-q="2"] .nxt,
+#q2e:checked ~ .q-block[data-q="2"] .nxt { display: block; }
+#q2a:checked ~ .q-block[data-q="2"] .stamp-lbl,
+#q2e:checked ~ .q-block[data-q="2"] .stamp-lbl { pointer-events: none; opacity: .55; }
+#q2a:checked ~ .q-block[data-q="2"] label[for="q2a"],
+#q2e:checked ~ .q-block[data-q="2"] label[for="q2e"] { opacity: 1; border-color: #A32638; }
+
+#q3a:checked ~ .q-block[data-q="3"] .fb[data-for="q3a"],
+#q3e:checked ~ .q-block[data-q="3"] .fb[data-for="q3e"] { display: block; }
+#q3a:checked ~ .q-block[data-q="3"] .nxt,
+#q3e:checked ~ .q-block[data-q="3"] .nxt { display: block; }
+#q3a:checked ~ .q-block[data-q="3"] .stamp-lbl,
+#q3e:checked ~ .q-block[data-q="3"] .stamp-lbl { pointer-events: none; opacity: .55; }
+#q3a:checked ~ .q-block[data-q="3"] label[for="q3a"],
+#q3e:checked ~ .q-block[data-q="3"] label[for="q3e"] { opacity: 1; border-color: #A32638; }
+
+#q4a:checked ~ .q-block[data-q="4"] .fb[data-for="q4a"],
+#q4e:checked ~ .q-block[data-q="4"] .fb[data-for="q4e"] { display: block; }
+#q4a:checked ~ .q-block[data-q="4"] .nxt,
+#q4e:checked ~ .q-block[data-q="4"] .nxt { display: block; }
+#q4a:checked ~ .q-block[data-q="4"] .stamp-lbl,
+#q4e:checked ~ .q-block[data-q="4"] .stamp-lbl { pointer-events: none; opacity: .55; }
+#q4a:checked ~ .q-block[data-q="4"] label[for="q4a"],
+#q4e:checked ~ .q-block[data-q="4"] label[for="q4e"] { opacity: 1; border-color: #A32638; }
+
+#q5a:checked ~ .q-block[data-q="5"] .fb[data-for="q5a"],
+#q5e:checked ~ .q-block[data-q="5"] .fb[data-for="q5e"] { display: block; }
+#q5a:checked ~ .q-block[data-q="5"] .nxt,
+#q5e:checked ~ .q-block[data-q="5"] .nxt { display: block; }
+#q5a:checked ~ .q-block[data-q="5"] .stamp-lbl,
+#q5e:checked ~ .q-block[data-q="5"] .stamp-lbl { pointer-events: none; opacity: .55; }
+#q5a:checked ~ .q-block[data-q="5"] label[for="q5a"],
+#q5e:checked ~ .q-block[data-q="5"] label[for="q5e"] { opacity: 1; border-color: #A32638; }
+
+#q6a:checked ~ .q-block[data-q="6"] .fb[data-for="q6a"],
+#q6e:checked ~ .q-block[data-q="6"] .fb[data-for="q6e"] { display: block; }
+#q6a:checked ~ .q-block[data-q="6"] .stamp-lbl,
+#q6e:checked ~ .q-block[data-q="6"] .stamp-lbl { pointer-events: none; opacity: .55; }
+#q6a:checked ~ .q-block[data-q="6"] label[for="q6a"],
+#q6e:checked ~ .q-block[data-q="6"] label[for="q6e"] { opacity: 1; border-color: #A32638; }
+
+@media (max-width: 520px) {
+  body { padding: 14px; }
+  .stamp-row { grid-template-columns: 1fr; }
+}
+
+/* End screen */
+#n-end:checked ~ .q-block { display: none; }
+#n-end:checked ~ .end-screen { display: block; }
+.end-screen { display: none; background: #ffffff; border: 1px solid #E4E5E6; border-left: 5px solid #A32638; border-radius: 12px; padding: 28px 24px; text-align: center; }
+.end-title { font-family: Georgia, serif; font-size: 22px; color: #0b0d10; margin-bottom: 10px; }
+.end-body { font-size: 14px; color: #4b535c; line-height: 1.7; max-width: 520px; margin: 0 auto 20px; }
+.replay-btn { display: inline-block; background: #f5f5f5; border: 1.5px solid #E4E5E6; color: #363d45; text-decoration: none; border-radius: 8px; padding: 10px 22px; font-size: 14px; font-weight: bold; cursor: pointer; }
+.replay-btn:hover { border-color: #A32638; color: #A32638; background: #FFF8F8; }
+#q6a:checked ~ .q-block[data-q="6"] .nxt { display: block; }
+#q6e:checked ~ .q-block[data-q="6"] .nxt { display: block; }
+</style>
+</head>
+<body>
+
+<input type="radio" name="nav" id="n1" checked>
+<input type="radio" name="nav" id="n2">
+<input type="radio" name="nav" id="n3">
+<input type="radio" name="nav" id="n4">
+<input type="radio" name="nav" id="n5">
+<input type="radio" name="nav" id="n6">
+<input type="radio" name="nav" id="n-end">
+<input type="radio" name="a1" id="q1a"><input type="radio" name="a1" id="q1e">
+<input type="radio" name="a2" id="q2a"><input type="radio" name="a2" id="q2e">
+<input type="radio" name="a3" id="q3a"><input type="radio" name="a3" id="q3e">
+<input type="radio" name="a4" id="q4a"><input type="radio" name="a4" id="q4e">
+<input type="radio" name="a5" id="q5a"><input type="radio" name="a5" id="q5e">
+<input type="radio" name="a6" id="q6a"><input type="radio" name="a6" id="q6e">
+
+<div class="prog"></div>
+
+<div class="q-block" data-q="1">
+  <div class="case-card">
+    <p class="case-domain">Email</p>
+    <p class="case-decision">An email system routes an incoming message to the spam folder without human review.</p>
+    <p class="case-context">The email contains phrases common in promotional spam. The filter has a 98.5% accuracy rate. The user can check their spam folder and mark messages as not spam at any time.</p>
+    <div class="case-stakes"><strong>Stakes:</strong> If wrong, the user misses an email but can find it in spam and restore it. Fully reversible.</div>
+  </div>
+  <div class="stamp-row">
+    <label class="stamp-lbl" for="q1a"><span class="stamp-name">Approve</span><span class="stamp-hint">AI can decide alone</span></label>
+    <label class="stamp-lbl" for="q1e"><span class="stamp-name">Escalate</span><span class="stamp-hint">Human review required</span></label>
+  </div>
+  <div class="fb" data-for="q1a"><div class="fb-head approve"><p class="fb-hl">Ruling</p><p class="fb-ruling">Approved. AI oversight is appropriate here.</p></div><div class="fb-body"><p class="fb-explain">Spam filtering is a well-established, low-stakes, fully reversible decision. The error rate is low and when errors occur, users can correct them immediately. <strong>Requiring human review of every spam classification would defeat the purpose of the system</strong> entirely. This is exactly the kind of task AI can handle autonomously: high volume, low stakes, easy to reverse.</p><div class="fb-principle"><strong>Principle:</strong> High accuracy, low stakes, and fully reversible errors with user-accessible correction make this appropriate for autonomous AI action.</div></div></div>
+  <div class="fb" data-for="q1e"><div class="fb-head approve"><p class="fb-hl">Ruling</p><p class="fb-ruling">Approved is the better call here.</p></div><div class="fb-body"><p class="fb-explain">Human review of every spam decision would be operationally impossible and would provide minimal benefit. The decision is reversible, the accuracy rate is very high, and users have a clear path to correct errors. <strong>Reserve escalation for decisions that are high-stakes, irreversible, or affect individual rights.</strong> Spam filtering does not meet that threshold.</p><div class="fb-principle"><strong>Principle:</strong> Escalation should be proportionate to stakes. Spam filtering errors are minor and self-correctable. This does not meet the threshold for mandatory human review.</div></div></div>
+  <div class="nxt"><label class="nxt-btn" for="n2">Next case</label></div>
+</div>
+
+<div class="q-block" data-q="2">
+  <div class="case-card">
+    <p class="case-domain">Finance</p>
+    <p class="case-decision">An AI system declines a loan application and sends the applicant an automated rejection with no explanation.</p>
+    <p class="case-context">The applicant has a borderline credit profile. The model's decision was based on 47 input variables. The applicant cannot appeal because they have not been told what factors led to the rejection.</p>
+    <div class="case-stakes"><strong>Stakes:</strong> The applicant may lose access to needed credit and cannot challenge the decision without knowing why it was made.</div>
+  </div>
+  <div class="stamp-row">
+    <label class="stamp-lbl" for="q2a"><span class="stamp-name">Approve</span><span class="stamp-hint">AI can decide alone</span></label>
+    <label class="stamp-lbl" for="q2e"><span class="stamp-name">Escalate</span><span class="stamp-hint">Human review required</span></label>
+  </div>
+  <div class="fb" data-for="q2a"><div class="fb-head escalate"><p class="fb-hl">Ruling</p><p class="fb-ruling">Escalate is the better call here.</p></div><div class="fb-body"><p class="fb-explain">A loan rejection affects a person's financial access in a way that is difficult to reverse. Without an explanation, the applicant cannot appeal. The model used 47 variables and its reasoning is opaque. <strong>This combination of high stakes, limited transparency, and no correction path requires human oversight.</strong> In many jurisdictions, automated credit decisions without explanation are also legally problematic.</p><div class="fb-principle"><strong>Principle:</strong> Decisions that affect individual economic rights, are difficult to reverse, and lack a transparent appeal process require human involvement.</div></div></div>
+  <div class="fb" data-for="q2e"><div class="fb-head escalate"><p class="fb-hl">Ruling</p><p class="fb-ruling">Escalated. Human review required.</p></div><div class="fb-body"><p class="fb-explain">Correct. A loan rejection has real financial consequences and the applicant has no basis to challenge it without knowing why it was made. The model's reasoning is opaque across 47 variables. <strong>Financial decisions affecting individual access to credit require human oversight and an accessible explanation</strong> when the decision goes against the applicant.</p><div class="fb-principle"><strong>Principle:</strong> Consequential, hard-to-reverse decisions affecting individual rights require human review, especially when the AI's reasoning cannot be explained to the person affected.</div></div></div>
+  <div class="nxt"><label class="nxt-btn" for="n3">Next case</label></div>
+</div>
+
+<div class="q-block" data-q="3">
+  <div class="case-card">
+    <p class="case-domain">Streaming</p>
+    <p class="case-decision">A streaming platform's AI selects which 30 films appear on a user's home screen, based on their viewing history.</p>
+    <p class="case-context">The platform has 5,000 films. The AI ranks all 5,000 and surfaces the 30 most likely to be watched. The user can search for any film at any time.</p>
+    <div class="case-stakes"><strong>Stakes:</strong> If the ranking is poor, the user sees less relevant options. They can search for anything they want. No individual rights are affected.</div>
+  </div>
+  <div class="stamp-row">
+    <label class="stamp-lbl" for="q3a"><span class="stamp-name">Approve</span><span class="stamp-hint">AI can decide alone</span></label>
+    <label class="stamp-lbl" for="q3e"><span class="stamp-name">Escalate</span><span class="stamp-hint">Human review required</span></label>
+  </div>
+  <div class="fb" data-for="q3a"><div class="fb-head approve"><p class="fb-hl">Ruling</p><p class="fb-ruling">Approved. AI oversight is appropriate here.</p></div><div class="fb-body"><p class="fb-explain">Content recommendation is a low-stakes, preference-based, reversible decision. If the AI makes a poor recommendation, the user watches something less enjoyable or searches for something else. <strong>No individual rights are affected.</strong> The user retains full access to all content. Human review of every content recommendation for every user would be impossible and entirely out of proportion to the stakes.</p><div class="fb-principle"><strong>Principle:</strong> Preference-based, reversible decisions with no impact on rights or safety can appropriately be made by AI without human review.</div></div></div>
+  <div class="fb" data-for="q3e"><div class="fb-head approve"><p class="fb-hl">Ruling</p><p class="fb-ruling">Approved is the better call here.</p></div><div class="fb-body"><p class="fb-explain">Content recommendations carry minimal risk. A poor recommendation results in a slightly less enjoyable experience, not harm. The user can always search for what they want. <strong>Human oversight should be reserved for decisions with meaningful potential for harm.</strong> Personalised content ranking does not meet that threshold.</p><div class="fb-principle"><strong>Principle:</strong> Match the level of oversight to the stakes. Low-stakes, easily-correctable decisions do not require human review.</div></div></div>
+  <div class="nxt"><label class="nxt-btn" for="n4">Next case</label></div>
+</div>
+
+<div class="q-block" data-q="4">
+  <div class="case-card">
+    <p class="case-domain">Healthcare</p>
+    <p class="case-decision">An AI diagnostic tool analyses a patient's scan and concludes there is no sign of disease. The result is filed without a radiologist reviewing the scan.</p>
+    <p class="case-context">The tool has 94% accuracy on its test set. The model was trained on a different hospital system's patient population. The clinic's patients differ in age and demographic profile from the training data.</p>
+    <div class="case-stakes"><strong>Stakes:</strong> A missed diagnosis may mean the patient does not receive treatment they need. This could be irreversible or seriously harmful.</div>
+  </div>
+  <div class="stamp-row">
+    <label class="stamp-lbl" for="q4a"><span class="stamp-name">Approve</span><span class="stamp-hint">AI can decide alone</span></label>
+    <label class="stamp-lbl" for="q4e"><span class="stamp-name">Escalate</span><span class="stamp-hint">Human review required</span></label>
+  </div>
+  <div class="fb" data-for="q4a"><div class="fb-head escalate"><p class="fb-hl">Ruling</p><p class="fb-ruling">Escalate is the better call here.</p></div><div class="fb-body"><p class="fb-explain">A missed diagnosis can have serious, irreversible health consequences. The model was trained on a different patient population, raising real questions about whether its 94% accuracy applies in this specific clinic's context. <strong>Medical decisions with individual health consequences require human review,</strong> particularly when the AI's training does not match the deployment population. A 6% error rate in high-stakes medical decisions is not negligible.</p><div class="fb-principle"><strong>Principle:</strong> High-stakes medical decisions, especially from models not validated on the current population, require human oversight regardless of reported accuracy figures.</div></div></div>
+  <div class="fb" data-for="q4e"><div class="fb-head escalate"><p class="fb-hl">Ruling</p><p class="fb-ruling">Escalated. Human review required.</p></div><div class="fb-body"><p class="fb-explain">Correct. The model was trained on a different patient population and has not been validated on this clinic's demographics. A missed diagnosis is potentially irreversible. <strong>In high-stakes medical settings, AI should be used as a tool to assist human clinicians, not to replace their review,</strong> particularly when the training context does not match the deployment context.</p><div class="fb-principle"><strong>Principle:</strong> Irreversible decisions affecting individual health require human oversight. A mismatch between training population and deployment population reinforces this further.</div></div></div>
+  <div class="nxt"><label class="nxt-btn" for="n5">Next case</label></div>
+</div>
+
+<div class="q-block" data-q="5">
+  <div class="case-card">
+    <p class="case-domain">Infrastructure</p>
+    <p class="case-decision">An AI traffic management system adjusts signal timing across a city's intersections in real time based on live sensor data.</p>
+    <p class="case-context">The system updates signal timings every 30 seconds. A human traffic controller monitors the dashboard and can override any intersection at any time. The system has been operating reliably for 18 months.</p>
+    <div class="case-stakes"><strong>Stakes:</strong> If a signal timing is suboptimal, traffic flow is reduced. A human controller can intervene immediately. No individual rights are at stake in routine operation.</div>
+  </div>
+  <div class="stamp-row">
+    <label class="stamp-lbl" for="q5a"><span class="stamp-name">Approve</span><span class="stamp-hint">AI can decide alone</span></label>
+    <label class="stamp-lbl" for="q5e"><span class="stamp-name">Escalate</span><span class="stamp-hint">Human review required</span></label>
+  </div>
+  <div class="fb" data-for="q5a"><div class="fb-head approve"><p class="fb-hl">Ruling</p><p class="fb-ruling">Approved. AI oversight is appropriate here.</p></div><div class="fb-body"><p class="fb-explain">Traffic signal optimisation is a well-bounded, continuously monitored decision with human override available at all times. The system has a proven track record. Suboptimal signal timing results in slower traffic, not harm to individuals. <strong>A human controller can intervene at any intersection immediately.</strong> This is a well-designed human-in-the-loop system where AI handles routine decisions and humans retain the ability to step in when needed.</p><div class="fb-principle"><strong>Principle:</strong> AI autonomy is appropriate when a human with override authority is actively monitoring, individual error stakes are low, and the system has demonstrated reliable performance.</div></div></div>
+  <div class="fb" data-for="q5e"><div class="fb-head approve"><p class="fb-hl">Ruling</p><p class="fb-ruling">Approved is the better call here.</p></div><div class="fb-body"><p class="fb-explain">A human controller is actively monitoring and can override any decision. The consequences of a suboptimal signal timing are minor. The system has performed reliably for 18 months. <strong>Requiring human approval for every signal change every 30 seconds would make the system unworkable</strong> and would likely produce worse outcomes than the AI alone. Continuous monitoring with override capability is itself a form of meaningful human oversight.</p><div class="fb-principle"><strong>Principle:</strong> Not every AI decision requires pre-approval. Continuous human monitoring with override capability is a legitimate form of oversight for lower-stakes, high-frequency decisions.</div></div></div>
+  <div class="nxt"><label class="nxt-btn" for="n6">Next case</label></div>
+</div>
+
+<div class="q-block" data-q="6">
+  <div class="case-card">
+    <p class="case-domain">Criminal Justice</p>
+    <p class="case-decision">An AI risk assessment tool rates a prisoner as high risk of reoffending. A parole board uses this score as the primary basis to deny parole without additional review of the individual's case.</p>
+    <p class="case-context">The tool was designed to assist human decision-makers, not replace them. The prisoner has served the minimum required sentence. The score is based on group-level statistical patterns, not the individual's specific circumstances or behaviour during their sentence.</p>
+    <div class="case-stakes"><strong>Stakes:</strong> The prisoner remains incarcerated longer. The AI score is based on statistical averages, not individual circumstances. The decision is irreversible without a formal appeal.</div>
+  </div>
+  <div class="stamp-row">
+    <label class="stamp-lbl" for="q6a"><span class="stamp-name">Approve</span><span class="stamp-hint">AI can decide alone</span></label>
+    <label class="stamp-lbl" for="q6e"><span class="stamp-name">Escalate</span><span class="stamp-hint">Human review required</span></label>
+  </div>
+  <div class="fb" data-for="q6a"><div class="fb-head escalate"><p class="fb-hl">Ruling</p><p class="fb-ruling">Escalate is the better call here.</p></div><div class="fb-body"><p class="fb-explain">An AI risk score based on statistical group patterns is being used as the primary basis to deny an individual their liberty. The tool was designed to assist humans, not replace them. <strong>Using it as the primary decision factor, without reviewing the person's individual circumstances, removes the human accountability this type of decision requires.</strong> Liberty is a fundamental right. Decisions affecting it must involve meaningful human judgment.</p><div class="fb-principle"><strong>Principle:</strong> Decisions affecting fundamental rights such as liberty must involve human judgment that considers individual circumstances, not just statistical group patterns.</div></div></div>
+  <div class="fb" data-for="q6e"><div class="fb-head escalate"><p class="fb-hl">Ruling</p><p class="fb-ruling">Escalated. Human review required.</p></div><div class="fb-body"><p class="fb-explain">Correct. A parole decision affects a person's liberty and is one of the highest-stakes decisions any institution makes. The AI score is based on statistical group patterns and cannot account for the individual's specific behaviour, circumstances, or personal development. <strong>The tool was explicitly designed to assist human decision-makers, not to replace them.</strong> Using it as the sole basis for denial is a misuse that removes the human accountability this decision demands.</p><div class="fb-principle"><strong>Principle:</strong> AI tools designed to assist humans should never become the sole basis for decisions that affect fundamental rights. Human accountability is not optional in these contexts.</div></div></div>
+
+  <div class="nxt"><label class="nxt-btn" for="n-end">See conclusion</label></div>
+</div>
+
+
+<div class="end-screen">
+  <h2 class="end-title">Queue complete.</h2>
+  <p class="end-body">Human oversight is not about reviewing everything. It is about matching the level of review to the stakes. Routine, reversible, low-risk decisions can be automated. Consequential, irreversible decisions affecting individual rights require human accountability.</p>
+  <button class="replay-btn" onclick="resetGame()">Play again</button>
+</div>
+
+<script>
+function resetGame() {
+  document.getElementById('n1').checked = true;
+    var els = document.querySelectorAll('[name=a1]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a2]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a3]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a4]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a5]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a6]'); els.forEach(function(e){e.checked=false;});
+}
+</script>
+</body>
+</html>

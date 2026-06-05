@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Leakage Detective</title>
+<style>*{box-sizing:border-box;}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0d0e10;color:#f1f1f1;line-height:1.6;}
+.wrap{max-width:920px;margin:0 auto;padding:24px 20px 60px;}
+.hero{background:linear-gradient(135deg,#0B0D10 0%,#1f1f1f 50%,#A32638 100%);padding:26px 26px;border-radius:14px;margin-bottom:16px;border:1px solid #2a2a2a;}
+.hero .tag{font-size:12px;color:#f2d6da;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.hero h1{margin:0 0 6px;font-family:Georgia,serif;font-size:30px;color:#fff;line-height:1.14;}
+.hero p{margin:0;opacity:0.92;font-size:14px;max-width:660px;}
+.panel{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:18px 22px;margin-bottom:14px;}
+.stats{display:flex;gap:10px;margin-bottom:14px;}
+.stat{flex:1;background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:10px 14px;text-align:center;}
+.stat .l{font-size:11px;color:#9aa0a6;text-transform:uppercase;letter-spacing:0.05em;}
+.stat .v{font-family:Georgia,serif;font-size:20px;color:#fff;margin-top:2px;}
+.btn{background:#A32638;color:#fff;border:0;padding:10px 22px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:14px;}
+.btn:disabled{background:#444;cursor:not-allowed;}
+.btn:hover:not(:disabled){filter:brightness(1.1);}
+.btn.ghost{background:transparent;color:#c0c4c8;border:1px solid #444;}
+.reveal{background:#0d0e10;border-left:3px solid #ffc800;border-radius:0 10px 10px 0;padding:14px 18px;margin-top:14px;display:none;color:#d8dadd;font-size:14px;line-height:1.65;}
+.reveal.show{display:block;animation:fade 0.3s;}
+.reveal h3{margin:0 0 6px;font-family:Georgia,serif;font-size:18px;color:#fff;}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.final{background:linear-gradient(135deg,#0B0D10,#A32638);border-radius:14px;padding:30px 28px;text-align:center;margin-top:14px;display:none;}
+.final.show{display:block;}
+.final h2{font-family:Georgia,serif;font-size:28px;color:#fff;margin:0 0 6px;}
+.final .big{font-family:Georgia,serif;font-size:56px;color:#fff;line-height:1;margin:6px 0;}
+.final p{color:rgba(255,255,255,0.92);max-width:540px;margin:0 auto 12px;}
+.hidden{display:none!important;}
+.right{color:#2ec850;}
+.wrong{color:#dc3c46;}
+
+.dataset{background:#15171a;border:1px solid #2a2a2a;border-radius:12px;padding:0;margin-bottom:12px;overflow:hidden;}
+.dataset .head{padding:14px 18px;border-bottom:1px solid #2a2a2a;}
+.dataset .head .target{font-size:11px;color:#A32638;text-transform:uppercase;letter-spacing:0.06em;}
+.dataset .head h3{margin:4px 0 0;font-family:Georgia,serif;font-size:18px;color:#fff;}
+.feat-list{padding:0;}
+.feat{padding:12px 18px;border-bottom:1px solid #1f2125;cursor:pointer;display:grid;grid-template-columns:1fr 80px 30px;gap:0;align-items:center;font-size:13px;}
+.feat:last-child{border-bottom:none;}
+.feat:hover{background:#1a1c20;}
+.feat.flagged{background:#2a1d10;border-left:3px solid #ffc800;padding-left:15px;}
+.feat.right{background:#0f2412;}
+.feat.wrong{background:#2a0d10;}
+.feat .name{color:#f1f1f1;font-family:monospace;}
+.feat .note{color:#9aa0a6;font-size:11px;}
+.feat .icon{text-align:right;font-size:16px;}
+.feat.flagged .icon::before{content:"⚠";color:#ffc800;}
+.controls{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:12px 0;}
+</style></head><body>
+<div class="wrap">
+<div class="hero"><div class="tag">Module 2 &middot; Micro-Learning 3.3</div><h1>Leakage Detective</h1><p>Five real datasets. For each one, look at the feature list and click the ones that leak the answer. Leaks are easy to spot when you ask: would I have this at prediction time?</p></div>
+<div class="stats">
+<div class="stat"><div class="l">Case</div><div class="v" id="round">1/5</div></div>
+<div class="stat"><div class="l">Caught</div><div class="v" id="score">0</div></div>
+</div>
+<div id="game"></div>
+<div class="final" id="final"></div>
+</div>
+<script>
+const CASES=[
+ {target:"Will patient be readmitted within 30 days?",task:"Hospital readmission predictor",
+   feats:[{n:"Age",leak:false,note:"available at admission"},{n:"Number of medications at discharge",leak:false,note:"available at discharge"},{n:"Number of follow-up appointments scheduled",leak:true,note:"scheduled AFTER readmission decision"},{n:"Length of stay",leak:false,note:"known at discharge"},{n:"Primary diagnosis",leak:false,note:"known at admission"}],
+   explain:"Follow-up appointments are scheduled in response to the readmission outcome. The model is reading the future. This is the most famous medical AI leakage pattern."},
+ {target:"Will tweet go viral in 24 hours?",task:"Viral tweet predictor",
+   feats:[{n:"Author follower count",leak:false,note:"known at post time"},{n:"Time of day posted",leak:false,note:"known at post time"},{n:"First hour like rate",leak:true,note:"recorded during prediction window"},{n:"Tweet length",leak:false,note:"known at post time"},{n:"Has image",leak:false,note:"known at post time"}],
+   explain:"First-hour likes ARE part of going viral. Using them to predict virality is using the future. The model gets 99%+ in lab and ships at 50%."},
+ {target:"Will student pass the final exam?",task:"Exam pass predictor",
+   feats:[{n:"Homework completion rate",leak:false,note:"available before final"},{n:"Final exam score",leak:true,note:"the answer itself"},{n:"Quiz averages",leak:false,note:"available before final"},{n:"Attendance rate",leak:false,note:"available before final"},{n:"Mid-term grade",leak:false,note:"available before final"}],
+   explain:"The most obvious leak. The label is hiding in plain sight as a feature. Easy to overlook on a 100-column dataset."},
+ {target:"Will customer churn next month?",task:"Churn predictor",
+   feats:[{n:"Months since signup",leak:false,note:"available now"},{n:"Recent support tickets",leak:false,note:"available now"},{n:"Cancellation date",leak:true,note:"the answer"},{n:"Last login",leak:false,note:"available now"},{n:"Plan tier",leak:false,note:"available now"}],
+   explain:"Cancellation date is the outcome. The model now has the answer in the question."},
+ {target:"Predict song popularity from audio",task:"Hit song predictor",
+   feats:[{n:"Tempo (BPM)",leak:false,note:"intrinsic to song"},{n:"Key signature",leak:false,note:"intrinsic"},{n:"Energy score",leak:false,note:"intrinsic"},{n:"Total streams at month 1",leak:true,note:"the answer"},{n:"Genre tags",leak:false,note:"intrinsic"}],
+   explain:"Streams at month 1 IS popularity. The other audio features are intrinsic to the song and were knowable before release. Just drop the streams column."}];
+let state={i:0,score:0,flagged:new Set(),locked:false};
+function render(){
+  if(state.i>=CASES.length)return finish();
+  const c=CASES[state.i];
+  document.getElementById("round").textContent=(state.i+1)+"/"+CASES.length;
+  document.getElementById("score").textContent=state.score;
+  document.getElementById("game").innerHTML=`
+  <div class="dataset"><div class="head"><div class="target">Target</div><h3>${c.target}</h3></div>
+  <div class="feat-list" id="flist"></div></div>
+  <div class="controls"><p style="color:#9aa0a6;font-size:13px;margin:0;">Click each feature you think leaks the answer.</p>
+  <button class="btn" id="lock" onclick="check()">Lock in audit</button></div>
+  <div class="reveal" id="reveal"></div>`;
+  state.flagged=new Set();state.locked=false;renderFeats();
+}
+function renderFeats(){const c=CASES[state.i];document.getElementById("flist").innerHTML=c.feats.map((f,i)=>{
+  const cls=state.flagged.has(i)?"flagged":"";
+  const verdict=state.locked?(f.leak===state.flagged.has(i)?"right":"wrong"):"";
+  return `<div class="feat ${cls} ${verdict}" onclick="toggle(${i})"><div class="name">${f.n}<div class="note">${state.locked?f.note:''}</div></div><div class="note">${state.locked?(f.leak?'LEAK':'OK'):''}</div><div class="icon"></div></div>`;
+}).join("");}
+function toggle(i){if(state.locked)return;if(state.flagged.has(i))state.flagged.delete(i);else state.flagged.add(i);renderFeats();}
+function check(){
+  state.locked=true;
+  const c=CASES[state.i];
+  const leakIdx=c.feats.map((f,i)=>f.leak?i:-1).filter(i=>i>=0);
+  const caught=leakIdx.filter(i=>state.flagged.has(i)).length;
+  const total=leakIdx.length;
+  if(caught===total&&state.flagged.size===total)state.score++;
+  renderFeats();
+  document.getElementById("score").textContent=state.score;
+  document.getElementById("lock").classList.add("hidden");
+  const r=document.getElementById("reveal");
+  r.innerHTML=`<h3>${caught===total&&state.flagged.size===total?"Caught the leak.":"Look again."}</h3><p>${c.explain}</p><div style="text-align:right;margin-top:10px;"><button class="btn" onclick="next()">${state.i+1<CASES.length?'Next case →':'See final'}</button></div>`;
+  r.classList.add("show");
+}
+function next(){state.i++;render();}
+function finish(){document.getElementById("game").classList.add("hidden");const f=document.getElementById("final");f.classList.add("show");
+  f.innerHTML=`<h2>${state.score} / ${CASES.length} leaks caught</h2><p>Any feature that could only have been recorded AFTER the answer is a candidate leak. The cure is to audit every column against one question: "would I have this value at the moment of prediction?"</p><button class="btn" style="background:#fff;color:#A32638;margin-top:8px;" onclick="restart()">Run again</button>`;}
+function restart(){state={i:0,score:0,flagged:new Set(),locked:false};document.getElementById("final").classList.remove("show");document.getElementById("game").classList.remove("hidden");render();}
+render();
+</script>
+</body></html>

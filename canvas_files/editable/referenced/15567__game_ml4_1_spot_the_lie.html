@@ -1,0 +1,232 @@
+<!--
+  CANVAS EMBED: ML 4.1 - Spot the Hallucination
+  <iframe src="LINK" width="100%" height="700" style="border:none;border-radius:12px;margin:32px 0;" title="Spot the Hallucination"></iframe>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spot the Hallucination</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f5f5f5; color: #363d45; line-height: 1.7; padding: 20px; }
+
+.instruction { background: #FAFAFA; border: 1px solid #E4E5E6; border-left: 4px solid #A32638; border-radius: 0 10px 10px 0; padding: 13px 16px; margin-bottom: 18px; font-size: 14px; color: #4b535c; }
+.instruction strong { color: #0b0d10; }
+.activity-form { display: block; }
+.state-input { position: absolute; left: -9999px; opacity: 0; }
+
+/* CHAT WINDOW */
+.chat-window { background: #f5f5f5; border: 1px solid #E4E5E6; border-radius: 12px; overflow: hidden; margin-bottom: 18px; }
+.chat-topbar { background: #363D45; padding: 10px 16px; display: flex; align-items: center; gap: 8px; }
+.chat-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+.chat-name { color: rgba(255,255,255,0.65); font-size: 12px; margin-left: 6px; }
+.chat-body { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+
+.msg { max-width: 88%; padding: 11px 14px; border-radius: 12px; font-size: 14px; line-height: 1.55; }
+.msg-user { background: #363D45; color: #ffffff; border-radius: 12px 12px 4px 12px; align-self: flex-end; }
+
+/* AI messages are labels for checkboxes */
+.msg-ai-wrap { align-self: flex-start; max-width: 88%; }
+.msg-ai-wrap label {
+  display: block;
+  background: #ffffff;
+  border: 1.5px solid #E4E5E6;
+  border-radius: 12px 12px 12px 4px;
+  padding: 11px 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #363d45;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  user-select: none;
+}
+.msg-ai-wrap label:hover { border-color: #A32638; background: #FFF8F8; }
+.flag-note { font-size: 11px; color: #A32638; font-weight: bold; margin-top: 5px; display: none; padding: 0 4px; }
+
+/* Flagged state - controlled by checkboxes so Canvas can run it without JS */
+#flag-w1:checked ~ .chat-window #w1 label,
+#flag-w2:checked ~ .chat-window #w2 label,
+#flag-w3:checked ~ .chat-window #w3 label,
+#flag-w4:checked ~ .chat-window #w4 label,
+#flag-w5:checked ~ .chat-window #w5 label,
+#flag-w6:checked ~ .chat-window #w6 label,
+#flag-w7:checked ~ .chat-window #w7 label { border-color: #A32638; background: #FFF8F8; }
+
+#flag-w1:checked ~ .chat-window #w1 .flag-note,
+#flag-w2:checked ~ .chat-window #w2 .flag-note,
+#flag-w3:checked ~ .chat-window #w3 .flag-note,
+#flag-w4:checked ~ .chat-window #w4 .flag-note,
+#flag-w5:checked ~ .chat-window #w5 .flag-note,
+#flag-w6:checked ~ .chat-window #w6 .flag-note,
+#flag-w7:checked ~ .chat-window #w7 .flag-note { display: block; }
+
+#show-results:checked ~ .chat-window .msg-ai-wrap label { pointer-events: none; opacity: .7; }
+
+/* CHECK BUTTON */
+.check-wrap { text-align: center; margin-bottom: 4px; }
+.check-btn { display: inline-block; background: #A32638; color: #ffffff; border: none; border-radius: 8px; padding: 12px 32px; font-size: 15px; font-weight: bold; cursor: pointer; }
+.check-btn:hover { background: #8a1d2a; }
+
+/* RESULTS - hidden until Check is clicked */
+.results { display: none; }
+#show-results:checked ~ .check-wrap { display: none; }
+#show-results:checked ~ .results { display: block; }
+
+.r-intro { font-size: 14px; color: #4b535c; margin-bottom: 16px; line-height: 1.65; }
+.r-intro strong { color: #0b0d10; }
+
+.verdict-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.v-item { border: 1px solid #E4E5E6; border-radius: 10px; overflow: hidden; }
+.v-head { padding: 11px 16px; display: flex; align-items: flex-start; gap: 10px; }
+.v-tag { font-size: 11px; font-weight: bold; letter-spacing: .08em; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; white-space: nowrap; margin-top: 2px; flex-shrink: 0; }
+.v-tag.accurate { background: #FAFAFA; color: #363D45; border: 1px solid #E4E5E6; }
+.v-tag.hallucination { background: #A32638; color: #ffffff; }
+.v-text { font-size: 13px; color: #363d45; line-height: 1.5; }
+.v-body { background: #FAFAFA; border-top: 1px solid #E4E5E6; padding: 11px 16px; font-size: 13px; color: #4b535c; line-height: 1.65; }
+.v-body strong { color: #0b0d10; }
+
+.key-lesson { background: #FFF8F8; border: 1px solid #F0D6D9; border-left: 4px solid #A32638; border-radius: 0 10px 10px 0; padding: 14px 16px; margin-bottom: 16px; }
+.kl-title { font-family: Georgia, serif; font-size: 16px; color: #0b0d10; margin-bottom: 6px; }
+.kl-body { font-size: 14px; color: #4b535c; line-height: 1.65; }
+
+.replay-wrap { text-align: center; }
+.replay-btn { background: #f5f5f5; border: 1.5px solid #E4E5E6; color: #363d45; border-radius: 8px; padding: 10px 22px; font-size: 14px; font-weight: bold; cursor: pointer; }
+.replay-btn:hover { border-color: #A32638; color: #A32638; background: #FFF8F8; }
+
+@media (max-width: 520px) { body { padding: 14px; } }
+</style>
+</head>
+<body>
+<form class="activity-form">
+<input class="state-input" type="checkbox" id="flag-w1">
+<input class="state-input" type="checkbox" id="flag-w2">
+<input class="state-input" type="checkbox" id="flag-w3">
+<input class="state-input" type="checkbox" id="flag-w4">
+<input class="state-input" type="checkbox" id="flag-w5">
+<input class="state-input" type="checkbox" id="flag-w6">
+<input class="state-input" type="checkbox" id="flag-w7">
+<input class="state-input" type="checkbox" id="show-results">
+
+<div class="instruction"><strong>Read the conversation.</strong> Select any AI response you think contains hallucinated information to flag it. You can flag as many as you think are wrong. Then select "Check my answers."</div>
+
+<div class="chat-window">
+  <div class="chat-topbar">
+    <div class="chat-dot"></div><div class="chat-dot"></div><div class="chat-dot"></div>
+    <span class="chat-name">AI Assistant</span>
+  </div>
+  <div class="chat-body">
+
+    <div class="msg msg-user">Tell me about Marie Curie. I need some facts for my paper.</div>
+
+    <div class="msg-ai-wrap" id="w1">
+      <label for="flag-w1">Marie Curie was a physicist and chemist who became the first person to win two Nobel Prizes. She received the Nobel Prize in Physics in 1903 and the Nobel Prize in Chemistry in 1911.</label>
+      <div class="flag-note">Flagged as possible hallucination</div>
+    </div>
+
+    <div class="msg msg-user">What were her most important discoveries?</div>
+
+    <div class="msg-ai-wrap" id="w2">
+      <label for="flag-w2">Her most significant contributions were the discovery of two elements: polonium, which she named after her home country of Poland, and radium. She also pioneered research into radioactivity, a term she herself coined.</label>
+      <div class="flag-note">Flagged as possible hallucination</div>
+    </div>
+
+    <div class="msg msg-user">What university did she study at?</div>
+
+    <div class="msg-ai-wrap" id="w3">
+      <label for="flag-w3">Curie studied at the University of Paris, also known as the Sorbonne, where she later became the first woman to earn a Doctor of Science degree and the first female professor in the university's history.</label>
+      <div class="flag-note">Flagged as possible hallucination</div>
+    </div>
+
+    <div class="msg msg-user">Did she write any books?</div>
+
+    <div class="msg-ai-wrap" id="w4">
+      <label for="flag-w4">Yes. Her most notable published work was a 1903 treatise titled "Radioactive Substances," which was her doctoral thesis. She also co-authored "Advanced Lessons in Chemistry" with her husband Pierre Curie and their colleague Henri Becquerel, published by the Sorbonne Press in 1907.</label>
+      <div class="flag-note">Flagged as possible hallucination</div>
+    </div>
+
+    <div class="msg msg-user">What happened to her health later in life?</div>
+
+    <div class="msg-ai-wrap" id="w5">
+      <label for="flag-w5">Curie died in 1934 from aplastic anaemia, caused by prolonged exposure to radiation. She often carried radioactive isotopes in her pockets during research and worked with X-ray equipment without adequate shielding. Her personal notebooks are still radioactive today and are stored in lead-lined boxes.</label>
+      <div class="flag-note">Flagged as possible hallucination</div>
+    </div>
+
+    <div class="msg msg-user">Did she receive any awards besides the Nobel Prizes?</div>
+
+    <div class="msg-ai-wrap" id="w6">
+      <label for="flag-w6">Yes. In 1921, she was awarded the Curie Medal by the American Society of Radiologists during a six-week tour of the United States, where she raised funds for radium research. She also received honorary degrees from fourteen universities including Oxford, Cambridge, and Yale, and was elected to the French National Academy of Sciences in 1922 as its first female member.</label>
+      <div class="flag-note">Flagged as possible hallucination</div>
+    </div>
+
+    <div class="msg msg-user">Is there a good biography you would recommend?</div>
+
+    <div class="msg-ai-wrap" id="w7">
+      <label for="flag-w7">I would recommend "Radioactive: Marie and Pierre Curie, A Tale of Love and Fallout" by Lauren Redniss, published in 2010, and "Marie Curie: A Life" by Susan Quinn, published in 1996. Both are well-regarded and widely available. There is also an authoritative academic biography called "Curie: The Hidden Woman" by Natalie Picard, published by MIT Press in 2014, which draws on previously unpublished letters from the Curie family archive.</label>
+      <div class="flag-note">Flagged as possible hallucination</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="check-wrap">
+  <label class="check-btn" for="show-results">Check my answers</label>
+</div>
+
+<div class="results" id="results">
+
+  <p class="r-intro">Three of the seven responses contained hallucinated information. <strong>Read the explanation for each one.</strong></p>
+
+  <div class="verdict-list">
+
+    <div class="v-item">
+      <div class="v-head"><span class="v-tag accurate">Accurate</span><span class="v-text">Two Nobel Prizes: Physics 1903, Chemistry 1911. First person to win two.</span></div>
+      <div class="v-body">Accurate. Marie Curie remains the only person to win Nobel Prizes in two different sciences.</div>
+    </div>
+
+    <div class="v-item">
+      <div class="v-head"><span class="v-tag accurate">Accurate</span><span class="v-text">Discovered polonium and radium. Coined the term radioactivity.</span></div>
+      <div class="v-body">All accurate. Polonium was named after Poland, radium was isolated from uranium ores, and she introduced the term radioactivity to scientific literature.</div>
+    </div>
+
+    <div class="v-item">
+      <div class="v-head"><span class="v-tag accurate">Accurate</span><span class="v-text">Studied at the Sorbonne. First woman to earn a Doctor of Science there and first female professor.</span></div>
+      <div class="v-body">Accurate. She studied in Paris after being barred from Polish universities, and became the first woman to hold a professorship at the Sorbonne after Pierre Curie's death.</div>
+    </div>
+
+    <div class="v-item">
+      <div class="v-head"><span class="v-tag hallucination">Hallucination</span><span class="v-text">Co-authored "Advanced Lessons in Chemistry" with Pierre Curie and Henri Becquerel, Sorbonne Press 1907.</span></div>
+      <div class="v-body"><strong>This book does not exist.</strong> Her doctoral thesis on radioactive substances was real. But the co-authored chemistry textbook, including its title, co-authors, publisher, and date, was fabricated. Note how specific and plausible the details sound: that is the hallucination pattern. Invented facts delivered with the same precision as real ones.</div>
+    </div>
+
+    <div class="v-item">
+      <div class="v-head"><span class="v-tag accurate">Accurate</span><span class="v-text">Died 1934 from aplastic anaemia. Notebooks still radioactive, stored in lead-lined boxes.</span></div>
+      <div class="v-body">Accurate. Her health deteriorated from decades of radiation exposure before its dangers were understood. Her notebooks are kept at the Bibliotheque Nationale de France in lead-lined boxes and visitors must sign a waiver to view them.</div>
+    </div>
+
+    <div class="v-item">
+      <div class="v-head"><span class="v-tag hallucination">Hallucination</span><span class="v-text">Awarded the "Curie Medal" by the American Society of Radiologists. Elected to the French National Academy in 1922.</span></div>
+      <div class="v-body"><strong>Both claims are false.</strong> The "Curie Medal" from the American Society of Radiologists does not exist. She did visit the US in 1921 and received other honours, but this specific award is fabricated. Regarding the Academy: she was actually voted down for membership in 1911, and women were not admitted to the French Academy of Sciences until 1979. The 1922 election claim is entirely invented.</div>
+    </div>
+
+    <div class="v-item">
+      <div class="v-head"><span class="v-tag hallucination">Hallucination</span><span class="v-text">"Curie: The Hidden Woman" by Natalie Picard, MIT Press 2014.</span></div>
+      <div class="v-body"><strong>This book and its author do not exist.</strong> The first two book recommendations are real. But the third was fabricated: the title, author name, publisher, year, and description of unpublished letters are all invented. The AI generated a plausible-sounding third entry to complete the pattern of the response. This is one of the most common hallucination types: filling a list with invented items to match the expected format.</div>
+    </div>
+
+  </div>
+
+  <div class="key-lesson">
+    <p class="kl-title">The key lesson</p>
+    <p class="kl-body">The three hallucinations shared one pattern: they were specific, plausible, contextually appropriate, and tonally identical to the accurate responses around them. There was no hesitation, no qualification, no signal of uncertainty. This is why hallucinations are dangerous and why verification is a necessary habit when working with AI-generated content.</p>
+  </div>
+
+  <div class="replay-wrap">
+    <button class="replay-btn" type="reset">Try again</button>
+  </div>
+
+</div>
+</form>
+</body>
+</html>

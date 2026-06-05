@@ -1,0 +1,94 @@
+MODULE 3 LESSON 1 QUIZ QUESTION BANK
+Lesson 1: Sprint Foundations
+Auto-graded question types only
+Total: 12 points
+
+1. Multiple Choice, 1 point
+Question: A classifier returns three pieces. Which is NOT one of them?
+A. The input
+B. The label drawn from a fixed list
+C. A confidence score between 0 and 1
+D. A new category invented for this input
+Correct answer: D
+
+2. Multiple Choice, 1 point
+Question: What is the difference between a classifier and a generator?
+A. A classifier picks one of a fixed set of categories. A generator creates new content that did not exist before.
+B. There is no difference
+C. Classifiers are slower
+D. Generators are more accurate
+Correct answer: A
+
+3. Multiple Answer, 2 points
+Question: Which of the following are examples of classifiers you might use in a day?
+A. Spam filter
+B. Face unlock
+C. Smart reply suggestions
+D. Photo album auto-tagging by face
+E. A model that writes a new poem
+Correct answer: A, B, C, D
+
+4. Multiple Choice, 1 point
+Question: A model says "Class A, 99% confident" and is wrong. What kind of mistake is this?
+A. The model is being lazy
+B. A confident error that often points to a shortcut the model is exploiting
+C. The user is at fault
+D. The data is incomplete
+Correct answer: B
+
+5. True or False, 1 point
+Question: A classifier can output "I don't know" if its confidence is low.
+Correct answer: False
+
+6. Multiple Choice, 1 point
+Question: Roughly how many samples per class is a reasonable minimum for a working two-class classifier demo?
+A. 3 samples per class
+B. 10 samples per class
+C. 30 samples per class
+D. 1000 samples per class
+Correct answer: C
+
+7. Multiple Choice, 1 point
+Question: When capturing training data, which of the following matters MOST after about 30 samples per class?
+A. Adding even more samples of the same kind
+B. Variety across angles, lighting, and backgrounds
+C. Using a more expensive camera
+D. The order in which photos are taken
+Correct answer: B
+
+8. Multiple Answer, 2 points
+Question: Which of the following are pieces of the five-day sprint workflow used in this module?
+A. Sprint Foundations (Day 1)
+B. Setup and Training (Day 2)
+C. Testing and Mistake Analysis (Day 3)
+D. Iteration and Limits (Day 4)
+E. Forget about the model and start over (Day 5)
+Correct answer: A, B, C, D
+
+9. Multiple Choice, 1 point
+Question: Why is a Model Card the real deliverable of this sprint?
+A. Because the model is impossible to share
+B. Because the Model Card documents what the model can and cannot do, making it usable by others
+C. Because the Model Card is graded
+D. Because the model is too small to be useful
+Correct answer: B
+
+10. True or False, 1 point
+Question: A model that achieves 95% accuracy on its training data is guaranteed to work in the real world.
+Correct answer: False
+
+11. Multiple Choice, 1 point
+Question: When reading a classifier's output, what should you ALWAYS check alongside the label?
+A. The model's age
+B. The confidence score
+C. The size of the model file
+D. The training duration
+Correct answer: B
+
+12. Multiple Choice, 1 point
+Question: Which is a common beginner mistake when starting a classifier project?
+A. Capturing too few samples
+B. Capturing the same kind of photo many times instead of varied conditions
+C. Confusing classification with generation
+D. All of the above
+Correct answer: D

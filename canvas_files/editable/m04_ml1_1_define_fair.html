@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Define Fair</title>
+<style>*{box-sizing:border-box;}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0d0e10;color:#f1f1f1;line-height:1.6;}
+.wrap{max-width:920px;margin:0 auto;padding:24px 20px 60px;}
+.hero{background:linear-gradient(135deg,#0B0D10 0%,#1f1f1f 50%,#A32638 100%);padding:26px 26px;border-radius:14px;margin-bottom:16px;border:1px solid #2a2a2a;}
+.hero .tag{font-size:12px;color:#f2d6da;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.hero h1{margin:0 0 6px;font-family:Georgia,serif;font-size:30px;color:#fff;line-height:1.14;}
+.hero p{margin:0;opacity:0.92;font-size:14px;max-width:660px;}
+.panel{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:18px 22px;margin-bottom:14px;}
+.stats{display:flex;gap:10px;margin-bottom:14px;}
+.stat{flex:1;background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:10px 14px;text-align:center;}
+.stat .l{font-size:11px;color:#9aa0a6;text-transform:uppercase;letter-spacing:0.05em;}
+.stat .v{font-family:Georgia,serif;font-size:20px;color:#fff;margin-top:2px;}
+.btn{background:#A32638;color:#fff;border:0;padding:10px 22px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:14px;}
+.btn:disabled{background:#444;cursor:not-allowed;}
+.btn:hover:not(:disabled){filter:brightness(1.1);}
+.btn.ghost{background:transparent;color:#c0c4c8;border:1px solid #444;}
+.reveal{background:#0d0e10;border-left:3px solid #ffc800;border-radius:0 10px 10px 0;padding:14px 18px;margin-top:14px;display:none;color:#d8dadd;font-size:14px;line-height:1.65;}
+.reveal.show{display:block;}
+.reveal h3{margin:0 0 6px;font-family:Georgia,serif;font-size:18px;color:#fff;}
+.final{background:linear-gradient(135deg,#0B0D10,#A32638);border-radius:14px;padding:30px 28px;text-align:center;margin-top:14px;display:none;}
+.final.show{display:block;}
+.final h2{font-family:Georgia,serif;font-size:28px;color:#fff;margin:0 0 6px;}
+.final .big{font-family:Georgia,serif;font-size:56px;color:#fff;line-height:1;margin:6px 0;}
+.final p{color:rgba(255,255,255,0.92);max-width:540px;margin:0 auto 12px;}
+.hidden{display:none!important;}
+.right{color:#2ec850;}
+.wrong{color:#dc3c46;}
+
+.case-box{background:#15171a;border:1px solid #2a2a2a;border-radius:12px;padding:18px 22px;margin-bottom:12px;}
+.case-box .tag{font-size:11px;color:#A32638;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
+.case-box h2{margin:0 0 8px;font-family:Georgia,serif;font-size:20px;color:#fff;}
+.case-box .scenario{color:#c0c4c8;font-size:14px;line-height:1.65;margin-bottom:14px;}
+.votes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+@media(max-width:640px){.votes{grid-template-columns:1fr;}}
+.vote{background:#1a1c1f;border:2px solid #2a2a2a;border-radius:10px;padding:14px 12px;color:#fff;cursor:pointer;font-family:inherit;font-size:13px;text-align:center;transition:all 0.15s;}
+.vote:hover{border-color:#A32638;}
+.vote.picked-right{border-color:#2ec850;background:#0f2412;}
+.vote.picked-wrong{border-color:#dc3c46;background:#2a0d10;}
+.vote .icon{font-size:24px;display:block;margin-bottom:6px;}
+.vote .name{font-family:Georgia,serif;font-size:16px;}
+.vote .sub{font-size:11px;color:#9aa0a6;margin-top:4px;}
+.actions{display:flex;justify-content:flex-end;margin-top:12px;}
+</style></head><body>
+<div class="wrap">
+<div class="hero"><div class="tag">Module 4 &middot; Micro-Learning 1.1</div><h1>Define Fair</h1><p>Three fairness definitions, five real-world cases. For each case, pick the definition the stakeholders are actually asking for.</p></div>
+<div class="stats">
+<div class="stat"><div class="l">Case</div><div class="v" id="round">1/5</div></div>
+<div class="stat"><div class="l">Correct votes</div><div class="v" id="score">0</div></div>
+</div>
+<div id="game"></div>
+<div class="final" id="final"></div>
+</div>
+<script>
+const CASES=[
+ {tag:"Lending model",story:"A bank tunes a credit model so men and women get approved at the same overall rate, even if it changes some individual outcomes.",verdict:"group",explain:"Group fairness. The bank prioritizes equalized rates between groups, knowingly accepting that some individuals will get a different decision."},
+ {tag:"Medical risk score",story:"A hospital wants two patients with identical symptoms, history, and labs to get the same risk score regardless of which clinic referred them.",verdict:"individual",explain:"Individual fairness. Similar people should get similar predictions, protecting against the clinic-of-referral acting as a proxy."},
+ {tag:"School flagging tool",story:"Parents demand the right to see which features triggered the flag and request a human review of every decision.",verdict:"procedural",explain:"Procedural fairness. The process itself (transparency, explainability, appeal rights) is what is being demanded."},
+ {tag:"Hiring filter",story:"After an audit, the team adjusts the model so applicants from different demographic groups are approved at the same rate, even when individual scores shift.",verdict:"group",explain:"Group fairness again. Equalizing approval rates is the target, and the trade-off (some individual changes) is accepted."},
+ {tag:"Criminal sentencing tool",story:"A defendant's lawyer demands to see which factors most influenced the risk score, so the defense can challenge them in court.",verdict:"procedural",explain:"Procedural fairness. Without the ability to inspect and challenge the model, sentencing tools fail the most basic test of legal fairness."}];
+let state={i:0,score:0,locked:false};
+function render(){
+  if(state.i>=CASES.length)return finish();
+  const c=CASES[state.i];
+  document.getElementById("round").textContent=(state.i+1)+"/"+CASES.length;
+  document.getElementById("score").textContent=state.score;
+  document.getElementById("game").innerHTML=`
+  <div class="case-box"><div class="tag">${c.tag}</div><h2>Which fairness definition is at work?</h2><p class="scenario">${c.story}</p>
+  <div class="votes">
+  <button class="vote" data-v="group" onclick="pick('group')"><span class="icon">⚖</span><span class="name">Group fairness</span><div class="sub">Equal outcomes by group</div></button>
+  <button class="vote" data-v="individual" onclick="pick('individual')"><span class="icon">👤</span><span class="name">Individual fairness</span><div class="sub">Similar people, similar outcomes</div></button>
+  <button class="vote" data-v="procedural" onclick="pick('procedural')"><span class="icon">📜</span><span class="name">Procedural fairness</span><div class="sub">Process is visible and appealable</div></button>
+  </div>
+  <div class="reveal" id="reveal"></div>
+  <div class="actions"><button class="btn hidden" id="next" onclick="next()">Next case →</button></div>
+  </div>`;
+  state.locked=false;
+}
+function pick(v){if(state.locked)return;state.locked=true;const c=CASES[state.i];document.querySelectorAll(".vote").forEach(b=>{if(b.dataset.v===c.verdict)b.classList.add("picked-right");else if(b.dataset.v===v)b.classList.add("picked-wrong");b.disabled=true;b.onclick=null;});if(v===c.verdict)state.score++;document.getElementById("score").textContent=state.score;const r=document.getElementById("reveal");r.innerHTML=`<strong class="${v===c.verdict?'right':'wrong'}">${v===c.verdict?'Correct.':'Not quite.'}</strong> ${c.explain}`;r.classList.add("show");document.getElementById("next").classList.remove("hidden");}
+function next(){state.i++;render();}
+function finish(){document.getElementById("game").classList.add("hidden");const f=document.getElementById("final");f.classList.add("show");f.innerHTML=`<h2>${state.score} / ${CASES.length}</h2><p>Researchers have mathematically proven you cannot satisfy every fairness definition at once. Whoever designs the model is choosing which trade-offs to make.</p><button class="btn" style="background:#fff;color:#A32638;margin-top:8px;" onclick="restart()">Run again</button>`;}
+function restart(){state={i:0,score:0,locked:false};document.getElementById("final").classList.remove("show");document.getElementById("game").classList.remove("hidden");render();}
+render();
+</script>
+</body></html>

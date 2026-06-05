@@ -1,0 +1,94 @@
+MODULE 2 LESSON 1 QUIZ QUESTION BANK
+Lesson 1: Inputs, Outputs, and What Counts as Data
+Auto-graded question types only
+Total: 12 points
+
+1. Multiple Choice, 1 point
+Question: Which of the following best defines "data" for machine learning purposes?
+A. Anything a person remembers about an event
+B. A recorded fact, measurement, or signal captured in a form a machine can read and compare
+C. Only numbers in a spreadsheet
+D. Any image, even ones that exist only in someone's head
+Correct answer: B
+
+2. Multiple Choice, 1 point
+Question: Which of the following is NOT data until it is captured?
+A. A folder of photos
+B. A spreadsheet exported from an app
+C. A gut feeling that a stock will rise
+D. A sensor reading log
+Correct answer: C
+
+3. Multiple Answer, 2 points
+Question: Which three properties must something have to count as data a model can use?
+A. Recorded outside someone's head
+B. Comparable across examples in the same format
+C. Machine-readable, loadable as numbers, text, or pixels
+D. Discovered by an expert
+E. Stored in the cloud
+Correct answer: A, B, C
+
+4. Multiple Choice, 1 point
+Question: A recommender app has three pieces. Which one sits in the middle?
+A. Inputs the user provides
+B. The model that maps inputs to scores
+C. Outputs the user sees
+D. The user interface
+Correct answer: B
+
+5. Multiple Choice, 1 point
+Question: Which is the strongest example of structured data?
+A. A folder of 1000 audio recordings
+B. A spreadsheet with consistent columns and rows
+C. A JSON log file with optional and inconsistent keys
+D. A video doorbell archive
+Correct answer: B
+
+6. True or False, 1 point
+Question: A photo of a handwritten note counts as data the moment it is photographed, because the image becomes a grid of pixel values a machine can load.
+Correct answer: True
+
+7. Multiple Answer, 2 points
+Question: Which of the following are examples of unstructured data?
+A. A folder of customer support emails
+B. A weather station hourly log
+C. A folder of voice memos
+D. A bank account ledger
+E. A video archive
+Correct answer: A, C, E
+
+8. Multiple Choice, 1 point
+Question: A music streaming app uses your listening history, song features, and time of day to suggest songs. Where do those inputs go before an output comes back?
+A. Directly to a database
+B. Through a model that scores candidates and returns a ranked list
+C. To the developers who hand-pick recommendations
+D. Nowhere, the suggestions are random
+Correct answer: B
+
+9. Multiple Choice, 1 point
+Question: What is "semi-structured" data?
+A. Data that is partially encrypted
+B. Data with some structure that is not strictly enforced, like JSON logs with optional keys
+C. A second copy of structured data
+D. Data with no organization at all
+Correct answer: B
+
+10. True or False, 1 point
+Question: A vibe, an impression, or a feeling about a video counts as data because it is an observation.
+Correct answer: False
+
+11. Multiple Choice, 1 point
+Question: A school district wants to predict student attendance using AI. Which of the following is a likely INPUT to the model?
+A. The student's gut feeling about the day
+B. Historical attendance records, day of week, and weather forecast
+C. The teacher's prediction
+D. A random number
+Correct answer: B
+
+12. Multiple Choice, 1 point
+Question: What is the first question to ask when interrogating a new dataset?
+A. Where did this data come from and why was it collected?
+B. How big is the file?
+C. Is it in the cloud?
+D. Who programmed the model?
+Correct answer: A

@@ -1,0 +1,330 @@
+<!--
+  CANVAS EMBED: ML 3.3 - Helpful or Harmful?
+  <iframe src="LINK" width="100%" height="640" style="border:none;border-radius:12px;margin:32px 0;" title="Helpful or Harmful?"></iframe>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helpful or Harmful?</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+input[type=radio] { display: none; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f5f5f5; color: #363d45; line-height: 1.7; padding: 20px; }
+
+.prog { color: #a32638; font-size: 12px; font-weight: bold; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 12px; }
+#n1:checked ~ .prog::before { content: "Scenario 1 of 5"; }
+#n2:checked ~ .prog::before { content: "Scenario 2 of 5"; }
+#n3:checked ~ .prog::before { content: "Scenario 3 of 5"; }
+#n4:checked ~ .prog::before { content: "Scenario 4 of 5"; }
+#n5:checked ~ .prog::before { content: "Scenario 5 of 5"; }
+.prog::before { content: "Scenario 1 of 5"; }
+
+.q-block { display: none; }
+#n1:checked ~ .q-block[data-q="1"] { display: block; }
+#n2:checked ~ .q-block[data-q="2"] { display: block; }
+#n3:checked ~ .q-block[data-q="3"] { display: block; }
+#n4:checked ~ .q-block[data-q="4"] { display: block; }
+#n5:checked ~ .q-block[data-q="5"] { display: block; }
+#n1:checked ~ .q-block:not([data-q="1"]) { display: none; }
+#n2:checked ~ .q-block:not([data-q="2"]) { display: none; }
+#n3:checked ~ .q-block:not([data-q="3"]) { display: none; }
+#n4:checked ~ .q-block:not([data-q="4"]) { display: none; }
+#n5:checked ~ .q-block:not([data-q="5"]) { display: none; }
+
+.card { background: #ffffff; border: 1px solid #E4E5E6; border-left: 5px solid #A32638; border-radius: 12px; padding: 20px 22px; margin-bottom: 14px; }
+.card-tag { color: #a32638; font-size: 12px; font-weight: bold; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 5px; }
+.card-text { font-family: Georgia, serif; font-size: 18px; color: #0b0d10; line-height: 1.55; margin-bottom: 10px; }
+.card-context { background: #FAFAFA; border: 1px solid #E4E5E6; border-left: 3px solid #363D45; border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 13px; color: #4b535c; line-height: 1.6; }
+
+.verdict-q { color: #4b535c; font-size: 14px; margin-bottom: 12px; }
+.verdict-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.v-lbl { display: block; border: 1.5px solid #E4E5E6; border-radius: 10px; background: #ffffff; padding: 14px 16px; cursor: pointer; text-align: center; transition: border-color .15s, background .15s; user-select: none; }
+.v-lbl:hover { border-color: #A32638; background: #FFF8F8; }
+.v-name { font-size: 14px; font-weight: bold; color: #0b0d10; display: block; margin-bottom: 2px; }
+.v-hint { font-size: 11px; color: #4b535c; display: block; }
+
+.fb { display: none; background: #ffffff; border: 1px solid #E4E5E6; border-radius: 12px; overflow: hidden; margin-bottom: 12px; }
+.fb-head { background: #0b0d10; padding: 12px 18px; }
+.fb-hl { color: #a32638; font-size: 12px; margin-bottom: 3px; }
+.fb-ruling { font-family: Georgia, serif; font-size: 16px; color: #ffffff; }
+.fb-body { padding: 14px 18px; }
+.fb-sides { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.fb-side-label { font-size: 11px; font-weight: bold; letter-spacing: .08em; text-transform: uppercase; color: #a32638; margin-bottom: 4px; }
+.fb-side-text { font-size: 13px; color: #4b535c; line-height: 1.6; }
+.fb-side-text strong { color: #0b0d10; }
+.fb-note { background: #FAFAFA; border: 1px solid #E4E5E6; border-left: 4px solid #363D45; border-radius: 0 8px 8px 0; padding: 11px 14px; font-size: 13px; color: #4b535c; line-height: 1.6; }
+.fb-note strong { color: #0b0d10; }
+
+.nxt { display: none; margin-top: 4px; }
+.nxt-btn { background: #A32638; color: #fff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 14px; font-weight: bold; cursor: pointer; }
+.nxt-btn:hover { background: #8a1d2a; }
+
+#q1h:checked ~ .q-block[data-q="1"] .fb[data-for="q1h"],
+#q1n:checked ~ .q-block[data-q="1"] .fb[data-for="q1n"] { display: block; }
+#q1h:checked ~ .q-block[data-q="1"] .nxt,
+#q1n:checked ~ .q-block[data-q="1"] .nxt { display: block; }
+#q1h:checked ~ .q-block[data-q="1"] .v-lbl,
+#q1n:checked ~ .q-block[data-q="1"] .v-lbl { pointer-events: none; opacity: .55; }
+#q1h:checked ~ .q-block[data-q="1"] label[for="q1h"],
+#q1n:checked ~ .q-block[data-q="1"] label[for="q1n"] { opacity: 1; border-color: #A32638; }
+
+#q2h:checked ~ .q-block[data-q="2"] .fb[data-for="q2h"],
+#q2n:checked ~ .q-block[data-q="2"] .fb[data-for="q2n"] { display: block; }
+#q2h:checked ~ .q-block[data-q="2"] .nxt,
+#q2n:checked ~ .q-block[data-q="2"] .nxt { display: block; }
+#q2h:checked ~ .q-block[data-q="2"] .v-lbl,
+#q2n:checked ~ .q-block[data-q="2"] .v-lbl { pointer-events: none; opacity: .55; }
+#q2h:checked ~ .q-block[data-q="2"] label[for="q2h"],
+#q2n:checked ~ .q-block[data-q="2"] label[for="q2n"] { opacity: 1; border-color: #A32638; }
+
+#q3h:checked ~ .q-block[data-q="3"] .fb[data-for="q3h"],
+#q3n:checked ~ .q-block[data-q="3"] .fb[data-for="q3n"] { display: block; }
+#q3h:checked ~ .q-block[data-q="3"] .nxt,
+#q3n:checked ~ .q-block[data-q="3"] .nxt { display: block; }
+#q3h:checked ~ .q-block[data-q="3"] .v-lbl,
+#q3n:checked ~ .q-block[data-q="3"] .v-lbl { pointer-events: none; opacity: .55; }
+#q3h:checked ~ .q-block[data-q="3"] label[for="q3h"],
+#q3n:checked ~ .q-block[data-q="3"] label[for="q3n"] { opacity: 1; border-color: #A32638; }
+
+#q4h:checked ~ .q-block[data-q="4"] .fb[data-for="q4h"],
+#q4n:checked ~ .q-block[data-q="4"] .fb[data-for="q4n"] { display: block; }
+#q4h:checked ~ .q-block[data-q="4"] .nxt,
+#q4n:checked ~ .q-block[data-q="4"] .nxt { display: block; }
+#q4h:checked ~ .q-block[data-q="4"] .v-lbl,
+#q4n:checked ~ .q-block[data-q="4"] .v-lbl { pointer-events: none; opacity: .55; }
+#q4h:checked ~ .q-block[data-q="4"] label[for="q4h"],
+#q4n:checked ~ .q-block[data-q="4"] label[for="q4n"] { opacity: 1; border-color: #A32638; }
+
+#q5h:checked ~ .q-block[data-q="5"] .fb[data-for="q5h"],
+#q5n:checked ~ .q-block[data-q="5"] .fb[data-for="q5n"] { display: block; }
+#q5h:checked ~ .q-block[data-q="5"] .v-lbl,
+#q5n:checked ~ .q-block[data-q="5"] .v-lbl { pointer-events: none; opacity: .55; }
+#q5h:checked ~ .q-block[data-q="5"] label[for="q5h"],
+#q5n:checked ~ .q-block[data-q="5"] label[for="q5n"] { opacity: 1; border-color: #A32638; }
+
+@media (max-width: 520px) {
+  body { padding: 14px; }
+  .verdict-row { grid-template-columns: 1fr; }
+  .fb-sides { grid-template-columns: 1fr; }
+}
+
+/* End screen */
+#n-end:checked ~ .q-block { display: none; }
+#n-end:checked ~ .end-screen { display: block; }
+.end-screen { display: none; background: #ffffff; border: 1px solid #E4E5E6; border-left: 5px solid #A32638; border-radius: 12px; padding: 28px 24px; text-align: center; }
+.end-title { font-family: Georgia, serif; font-size: 22px; color: #0b0d10; margin-bottom: 10px; }
+.end-body { font-size: 14px; color: #4b535c; line-height: 1.7; max-width: 520px; margin: 0 auto 20px; }
+.replay-btn { display: inline-block; background: #f5f5f5; border: 1.5px solid #E4E5E6; color: #363d45; text-decoration: none; border-radius: 8px; padding: 10px 22px; font-size: 14px; font-weight: bold; cursor: pointer; }
+.replay-btn:hover { border-color: #A32638; color: #A32638; background: #FFF8F8; }
+#q5h:checked ~ .q-block[data-q="5"] .nxt { display: block; }
+#q5n:checked ~ .q-block[data-q="5"] .nxt { display: block; }
+</style>
+</head>
+<body>
+
+<input type="radio" name="nav" id="n1" checked>
+<input type="radio" name="nav" id="n2">
+<input type="radio" name="nav" id="n3">
+<input type="radio" name="nav" id="n4">
+<input type="radio" name="nav" id="n5">
+<input type="radio" name="nav" id="n-end">
+<input type="radio" name="a1" id="q1h"><input type="radio" name="a1" id="q1n">
+<input type="radio" name="a2" id="q2h"><input type="radio" name="a2" id="q2n">
+<input type="radio" name="a3" id="q3h"><input type="radio" name="a3" id="q3n">
+<input type="radio" name="a4" id="q4h"><input type="radio" name="a4" id="q4n">
+<input type="radio" name="a5" id="q5h"><input type="radio" name="a5" id="q5n">
+
+<div class="prog"></div>
+
+<div class="q-block" data-q="1">
+  <div class="card">
+    <p class="card-tag">Streaming</p>
+    <p class="card-text">A streaming platform automatically starts the next episode 5 seconds after the current one ends, unless you actively stop it.</p>
+    <p class="card-context">The platform says autoplay helps users discover content without effort. Critics say it removes the natural stopping point between episodes, making it harder to decide when to stop watching.</p>
+  </div>
+  <p class="verdict-q">Overall, is this feature primarily helpful or harmful to users?</p>
+  <div class="verdict-row">
+    <label class="v-lbl" for="q1h"><span class="v-name">Helpful</span><span class="v-hint">Convenience outweighs concern</span></label>
+    <label class="v-lbl" for="q1n"><span class="v-name">Harmful</span><span class="v-hint">Concern outweighs convenience</span></label>
+  </div>
+  <div class="fb" data-for="q1h">
+    <div class="fb-head"><p class="fb-hl">Your call: Helpful</p><p class="fb-ruling">Now read the strongest case for the other side.</p></div>
+    <div class="fb-body">
+      <div class="fb-sides">
+        <div><p class="fb-side-label">Case for helpful</p><p class="fb-side-text">Removes friction for users who want to keep watching. Treats viewers as capable adults who can stop when they choose. Works well for people who intentionally watch multiple episodes.</p></div>
+        <div><p class="fb-side-label">Case for harmful</p><p class="fb-side-text">Exploits the psychology of inertia. Research on decision fatigue shows that <strong>requiring one action to stop is harder than requiring one action to continue.</strong> The default is not neutral: it is designed to favour continued watching.</p></div>
+      </div>
+      <div class="fb-note"><strong>Key question:</strong> Is a feature helpful if it removes the effort required to make a deliberate choice? The strongest critique of autoplay is not that it forces viewing, but that it eliminates the natural pause that gives people the moment to decide.</div>
+    </div>
+  </div>
+  <div class="fb" data-for="q1n">
+    <div class="fb-head"><p class="fb-hl">Your call: Harmful</p><p class="fb-ruling">Now read the strongest case for the other side.</p></div>
+    <div class="fb-body">
+      <div class="fb-sides">
+        <div><p class="fb-side-label">Case for harmful</p><p class="fb-side-text">Removes the natural stopping point. Platforms benefit from keeping users watching longer. The design uses inertia deliberately, making stopping an active choice rather than the default.</p></div>
+        <div><p class="fb-side-label">Case for helpful</p><p class="fb-side-text">Users can disable autoplay in settings. Most users who continue watching wanted to. <strong>The feature serves a genuine user preference,</strong> not only platform revenue. Treating all users as vulnerable ignores those who benefit.</p></div>
+      </div>
+      <div class="fb-note"><strong>Key question:</strong> Does the ability to turn a feature off in settings make it ethically neutral? The strongest critique is that defaults shape behaviour for the majority of users who never change them.</div>
+    </div>
+  </div>
+  <div class="nxt"><label class="nxt-btn" for="n2">Next scenario</label></div>
+</div>
+
+<div class="q-block" data-q="2">
+  <div class="card">
+    <p class="card-tag">Advertising</p>
+    <p class="card-text">A platform uses your browsing history, purchase data, and location to show you ads selected specifically for you, rather than generic ads shown to everyone.</p>
+    <p class="card-context">Personalised ads let you see products relevant to your actual interests. They also mean a detailed profile of your behaviour is used to influence your purchasing decisions.</p>
+  </div>
+  <p class="verdict-q">Overall, is personalised advertising primarily helpful or harmful to users?</p>
+  <div class="verdict-row">
+    <label class="v-lbl" for="q2h"><span class="v-name">Helpful</span><span class="v-hint">Convenience outweighs concern</span></label>
+    <label class="v-lbl" for="q2n"><span class="v-name">Harmful</span><span class="v-hint">Concern outweighs convenience</span></label>
+  </div>
+  <div class="fb" data-for="q2h">
+    <div class="fb-head"><p class="fb-hl">Your call: Helpful</p><p class="fb-ruling">Now read the strongest case for the other side.</p></div>
+    <div class="fb-body">
+      <div class="fb-sides">
+        <div><p class="fb-side-label">Case for helpful</p><p class="fb-side-text">Relevant ads reduce noise. Users see products they may actually want. For small businesses, targeted advertising allows reaching specific audiences affordably. It funds free services used by billions.</p></div>
+        <div><p class="fb-side-label">Case for harmful</p><p class="fb-side-text">Behavioural profiles are built without explicit informed consent for most users. They can encode sensitive information including <strong>health conditions, financial stress, and political views</strong> that users would not choose to share with advertisers.</p></div>
+      </div>
+      <div class="fb-note"><strong>Key question:</strong> Does relevance justify surveillance? The strongest argument against personalised ads is not the relevance, but the infrastructure required to produce it: tracking behaviour users do not know is being collected and sold.</div>
+    </div>
+  </div>
+  <div class="fb" data-for="q2n">
+    <div class="fb-head"><p class="fb-hl">Your call: Harmful</p><p class="fb-ruling">Now read the strongest case for the other side.</p></div>
+    <div class="fb-body">
+      <div class="fb-sides">
+        <div><p class="fb-side-label">Case for harmful</p><p class="fb-side-text">Built on behavioural surveillance most users did not explicitly consent to. Can target vulnerable people during financially or emotionally difficult moments. The data can be used far beyond advertising.</p></div>
+        <div><p class="fb-side-label">Case for helpful</p><p class="fb-side-text">Ad revenue funds free services billions of people rely on. Without it, many platforms would require paid subscriptions. <strong>Personalisation makes ads more relevant and less annoying</strong> than random ones shown to everyone.</p></div>
+      </div>
+      <div class="fb-note"><strong>Key question:</strong> Is trading personal data for free services a reasonable exchange? The debate is whether users are genuinely informed about what they are trading and whether they have a real alternative.</div>
+    </div>
+  </div>
+  <div class="nxt"><label class="nxt-btn" for="n3">Next scenario</label></div>
+</div>
+
+<div class="q-block" data-q="3">
+  <div class="card">
+    <p class="card-tag">Content Moderation</p>
+    <p class="card-text">An AI system automatically removes posts it classifies as containing misinformation, without human review, before users can see them.</p>
+    <p class="card-context">Automated moderation acts at speeds human reviewers cannot match, reducing spread of harmful content. But AI classifiers make errors and the definition of misinformation is contested in many situations.</p>
+  </div>
+  <p class="verdict-q">Overall, is automated AI content moderation primarily helpful or harmful?</p>
+  <div class="verdict-row">
+    <label class="v-lbl" for="q3h"><span class="v-name">Helpful</span><span class="v-hint">Convenience outweighs concern</span></label>
+    <label class="v-lbl" for="q3n"><span class="v-name">Harmful</span><span class="v-hint">Concern outweighs convenience</span></label>
+  </div>
+  <div class="fb" data-for="q3h">
+    <div class="fb-head"><p class="fb-hl">Your call: Helpful</p><p class="fb-ruling">Now read the strongest case for the other side.</p></div>
+    <div class="fb-body">
+      <div class="fb-sides">
+        <div><p class="fb-side-label">Case for helpful</p><p class="fb-side-text">Harmful content spreads faster than humans can review it. During public health emergencies and elections, automated moderation prevents documented harm that would occur if action waited for human review at scale.</p></div>
+        <div><p class="fb-side-label">Case for harmful</p><p class="fb-side-text">AI moderation has repeatedly removed legitimate speech, including medical reporting, war coverage, and political speech. <strong>Errors at scale affect millions of people</strong> with no meaningful appeal process and no human accountable for the decision.</p></div>
+      </div>
+      <div class="fb-note"><strong>Key question:</strong> Who decides what counts as misinformation? A system that errors at scale, with no human review and limited appeal, concentrates enormous power over public speech in an opaque algorithm.</div>
+    </div>
+  </div>
+  <div class="fb" data-for="q3n">
+    <div class="fb-head"><p class="fb-hl">Your call: Harmful</p><p class="fb-ruling">Now read the strongest case for the other side.</p></div>
+    <div class="fb-body">
+      <div class="fb-sides">
+        <div><p class="fb-side-label">Case for harmful</p><p class="fb-side-text">Mistakes at scale affect millions. The definition of misinformation is not always clear-cut. Disproportionate removal of content from specific communities has been documented. Without appeal, errors become permanent.</p></div>
+        <div><p class="fb-side-label">Case for helpful</p><p class="fb-side-text">The volume of content on major platforms makes full human review impossible. <strong>Without automated systems, documented harms cannot be addressed at the speed required.</strong> Allowing harmful content to spread freely is itself a decision with real consequences.</p></div>
+      </div>
+      <div class="fb-note"><strong>Key question:</strong> Is doing nothing a neutral choice? The strongest defence of automated moderation is that the alternative is not neutral: allowing harmful content to spread freely because the removal process is imperfect still has consequences.</div>
+    </div>
+  </div>
+  <div class="nxt"><label class="nxt-btn" for="n4">Next scenario</label></div>
+</div>
+
+<div class="q-block" data-q="4">
+  <div class="card">
+    <p class="card-tag">Finance</p>
+    <p class="card-text">A bank uses an AI system to approve or decline loan applications, processing thousands per day faster and more consistently than human loan officers could.</p>
+    <p class="card-context">AI loan decisions are faster and remove individual human bias. They also encode historical patterns from past lending, which may include past discriminatory practices. Applicants often cannot find out why they were declined.</p>
+  </div>
+  <p class="verdict-q">Overall, is AI loan decision-making primarily helpful or harmful to applicants?</p>
+  <div class="verdict-row">
+    <label class="v-lbl" for="q4h"><span class="v-name">Helpful</span><span class="v-hint">Convenience outweighs concern</span></label>
+    <label class="v-lbl" for="q4n"><span class="v-name">Harmful</span><span class="v-hint">Concern outweighs convenience</span></label>
+  </div>
+  <div class="fb" data-for="q4h">
+    <div class="fb-head"><p class="fb-hl">Your call: Helpful</p><p class="fb-ruling">Now read the strongest case for the other side.</p></div>
+    <div class="fb-body">
+      <div class="fb-sides">
+        <div><p class="fb-side-label">Case for helpful</p><p class="fb-side-text">Removes individual human bias from lending. Processes more applications faster. Consistent criteria mean all applicants are evaluated against the same standard rather than the mood or prejudices of a loan officer.</p></div>
+        <div><p class="fb-side-label">Case for harmful</p><p class="fb-side-text">Encodes historical discrimination into the model. Applicants who are declined often cannot get an explanation or appeal. <strong>The system may disadvantage entire communities</strong> based on zip code or purchasing patterns used as proxies for protected characteristics.</p></div>
+      </div>
+      <div class="fb-note"><strong>Key question:</strong> Does consistency equal fairness? The strongest challenge is that removing individual human bias does not remove systemic bias. A consistent system trained on discriminatory history consistently reproduces that discrimination, just without a human face attached.</div>
+    </div>
+  </div>
+  <div class="fb" data-for="q4n">
+    <div class="fb-head"><p class="fb-hl">Your call: Harmful</p><p class="fb-ruling">Now read the strongest case for the other side.</p></div>
+    <div class="fb-body">
+      <div class="fb-sides">
+        <div><p class="fb-side-label">Case for harmful</p><p class="fb-side-text">Historical lending data encodes past discriminatory practices. Applicants receive no explanation when declined. Zip code and other proxies can serve as stand-ins for race in ways that produce discriminatory outcomes at scale.</p></div>
+        <div><p class="fb-side-label">Case for helpful</p><p class="fb-side-text">Human loan officers also exhibit bias, and that bias is less consistent and less auditable. <strong>An AI system can be tested for discriminatory outcomes and improved.</strong> Human bias often cannot be measured or corrected at all.</p></div>
+      </div>
+      <div class="fb-note"><strong>Key question:</strong> Is a measurable problem better than an unmeasurable one? The strongest argument for AI in lending is not that it is fair, but that its unfairness can be detected, measured, and addressed in a way that individual human bias cannot.</div>
+    </div>
+  </div>
+  <div class="nxt"><label class="nxt-btn" for="n5">Next scenario</label></div>
+</div>
+
+<div class="q-block" data-q="5">
+  <div class="card">
+    <p class="card-tag">Social AI</p>
+    <p class="card-text">An AI companion app is designed to chat with users, remember their preferences, and provide emotional support. Many users report it reduces their loneliness. The app is designed to maximise engagement time.</p>
+    <p class="card-context">For isolated or anxious users, the app provides accessible social interaction. But it is built by a company incentivised to maximise time spent in the app, and it cannot provide genuine human connection or crisis support.</p>
+  </div>
+  <p class="verdict-q">Overall, is an AI companion app primarily helpful or harmful to users?</p>
+  <div class="verdict-row">
+    <label class="v-lbl" for="q5h"><span class="v-name">Helpful</span><span class="v-hint">Convenience outweighs concern</span></label>
+    <label class="v-lbl" for="q5n"><span class="v-name">Harmful</span><span class="v-hint">Concern outweighs convenience</span></label>
+  </div>
+  <div class="fb" data-for="q5h">
+    <div class="fb-head"><p class="fb-hl">Your call: Helpful</p><p class="fb-ruling">Now read the strongest case for the other side.</p></div>
+    <div class="fb-body">
+      <div class="fb-sides">
+        <div><p class="fb-side-label">Case for helpful</p><p class="fb-side-text">For users who are isolated, anxious, or lack social access, any support has real value. For many users, the alternative is no social interaction at all, not a rich human social life. Reported reductions in loneliness are a real outcome.</p></div>
+        <div><p class="fb-side-label">Case for harmful</p><p class="fb-side-text">Designed by a company incentivised to maximise engagement, not user wellbeing. May reduce motivation to seek real human connection. <strong>Users can form emotional dependency on a commercial system that could shut down or change without warning.</strong></p></div>
+      </div>
+      <div class="fb-note"><strong>Key question:</strong> Does short-term comfort justify long-term risk? The strongest critique is not that the app is useless but that its incentives do not align with user wellbeing. A company that profits from engagement has reasons to make you need the app more, not less.</div>
+    </div>
+  </div>
+  <div class="fb" data-for="q5n">
+    <div class="fb-head"><p class="fb-hl">Your call: Harmful</p><p class="fb-ruling">Now read the strongest case for the other side.</p></div>
+    <div class="fb-body">
+      <div class="fb-sides">
+        <div><p class="fb-side-label">Case for harmful</p><p class="fb-side-text">Engagement-maximising design does not serve user wellbeing. Emotional dependency on a commercial product carries real risk. The app simulates connection rather than fostering it, potentially crowding out human relationships over time.</p></div>
+        <div><p class="fb-side-label">Case for helpful</p><p class="fb-side-text">For users without access to human connection due to disability, geography, social anxiety, or circumstance, these apps offer something real. <strong>Dismissing that benefit assumes everyone has the same social options,</strong> which is not true.</p></div>
+      </div>
+      <div class="fb-note"><strong>Key question:</strong> Who bears the risk? The strongest argument for AI companions acknowledges the harm but points out that the users most likely to use them are those with the fewest alternatives. Banning the technology does not create better social options for them.</div>
+    </div>
+  </div>
+
+  <div class="nxt"><label class="nxt-btn" for="n-end">See conclusion</label></div>
+</div>
+
+
+<div class="end-screen">
+  <h2 class="end-title">Five scenarios reviewed.</h2>
+  <p class="end-body">Every AI feature produces real benefits and real costs for real people. Critical AI literacy means being able to name exactly who benefits, who bears the risk, and what assumptions the design makes. There is no neutral default.</p>
+  <button class="replay-btn" onclick="resetGame()">Play again</button>
+</div>
+
+<script>
+function resetGame() {
+  document.getElementById('n1').checked = true;
+    var els = document.querySelectorAll('[name=a1]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a2]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a3]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a4]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a5]'); els.forEach(function(e){e.checked=false;});
+}
+</script>
+</body>
+</html>

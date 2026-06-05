@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>More Data Helps?</title>
+<style>
+*{box-sizing:border-box;}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0d0e10;color:#f1f1f1;line-height:1.6;}
+.wrap{max-width:880px;margin:0 auto;padding:28px 22px 60px;}
+.hero{background:linear-gradient(135deg,#0B0D10 0%,#1f1f1f 50%,#A32638 100%);padding:30px 28px;border-radius:14px;margin-bottom:16px;border:1px solid #2a2a2a;}
+.hero .tag{font-size:12px;color:#f2d6da;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.hero h1{margin:0 0 8px;font-family:Georgia,serif;font-size:32px;color:#fff;}
+.hero p{margin:0;opacity:0.92;font-size:14px;max-width:680px;}
+.lab{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:26px;margin-bottom:14px;}
+.lab h2{margin:0 0 6px;font-family:Georgia,serif;font-size:20px;color:#fff;}
+.lab .sub{font-size:13px;color:#9aa0a6;margin-bottom:18px;}
+.curve-wrap{background:#0d0e10;border-radius:12px;padding:16px;margin-bottom:16px;}
+.curve-svg{width:100%;height:240px;display:block;}
+.controls{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.controls label{font-size:13px;color:#c0c4c8;min-width:120px;}
+.slider{flex:1;-webkit-appearance:none;appearance:none;height:8px;border-radius:99px;background:linear-gradient(90deg,#dc3c46,#ffc800,#2ec850);outline:none;}
+.slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid #A32638;cursor:pointer;}
+.slider::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid #A32638;cursor:pointer;}
+.controls .num{width:60px;text-align:center;font-family:Georgia,serif;font-size:22px;color:#fff;}
+.dial{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;background:#0d0e10;padding:14px;border-radius:10px;margin-bottom:14px;text-align:center;}
+.dial > div .l{font-size:11px;color:#9aa0a6;text-transform:uppercase;letter-spacing:0.05em;}
+.dial > div .v{font-family:Georgia,serif;font-size:26px;color:#fff;margin-top:2px;}
+.dial > div .v.zone-steep{color:#dc3c46;}
+.dial > div .v.zone-help{color:#ffc800;}
+.dial > div .v.zone-flat{color:#2ec850;}
+.tip{background:#0d0e10;border-left:3px solid #ffc800;border-radius:0 8px 8px 0;padding:12px 16px;font-size:14px;color:#d8dadd;line-height:1.65;}
+.tip strong{color:#fff;}
+.scenarios{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:22px 24px;}
+.scenarios h2{margin:0 0 6px;font-family:Georgia,serif;font-size:18px;color:#fff;}
+.scenarios .ssub{font-size:13px;color:#9aa0a6;margin-bottom:14px;}
+.scenario-card{background:#0d0e10;border:1px solid #2a2a2a;border-radius:10px;padding:14px 18px;margin-bottom:10px;}
+.scenario-card .qtag{font-size:11px;color:#A32638;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;}
+.scenario-card .q{font-size:14px;color:#fff;margin-bottom:10px;line-height:1.5;}
+.choices{display:flex;gap:8px;flex-wrap:wrap;}
+.choices button{background:#1a1c1f;border:2px solid #2a2a2a;border-radius:8px;padding:8px 14px;color:#fff;cursor:pointer;font-family:inherit;font-size:13px;transition:border-color 0.15s;}
+.choices button:hover:not(.locked){border-color:#A32638;}
+.choices button.picked-right{border-color:#2ec850;background:#0f2412;}
+.choices button.picked-wrong{border-color:#dc3c46;background:#2a0d10;}
+.scenario-card .a{font-size:13px;color:#d8dadd;margin-top:8px;line-height:1.6;display:none;}
+.scenario-card .a.show{display:block;}
+.scenario-card .a strong{color:#fff;}
+</style></head><body>
+<div class="wrap">
+<div class="hero">
+<div class="tag">Module 3 · Micro-Learning 4.3</div>
+<h1>More Data Helps?</h1>
+<p>Adding samples to a model produces diminishing returns. Slide the dial and watch the accuracy curve. Then try the scenarios below: each one asks where to spend your next hour of work, given where you already are on the curve.</p>
+</div>
+<div class="lab">
+<h2>Interactive curve</h2>
+<div class="sub">Slide to change samples per class. Watch where you are on the curve.</div>
+<div class="curve-wrap">
+<svg class="curve-svg" viewBox="0 0 600 240" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#A32638" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#A32638" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <line x1="40" y1="220" x2="580" y2="220" stroke="#444" stroke-width="1"/>
+  <line x1="40" y1="20" x2="40" y2="220" stroke="#444" stroke-width="1"/>
+  <text x="40" y="232" fill="#9aa0a6" font-size="10">0</text>
+  <text x="200" y="232" fill="#9aa0a6" font-size="10">30</text>
+  <text x="360" y="232" fill="#9aa0a6" font-size="10">100</text>
+  <text x="520" y="232" fill="#9aa0a6" font-size="10">500</text>
+  <text x="300" y="244" fill="#9aa0a6" font-size="11" text-anchor="middle">Samples per class →</text>
+  <text x="22" y="120" fill="#9aa0a6" font-size="10" transform="rotate(-90,22,120)">Accuracy</text>
+  <text x="22" y="220" fill="#9aa0a6" font-size="10">0%</text>
+  <text x="22" y="20" fill="#9aa0a6" font-size="10">100%</text>
+
+  <path id="curve-fill" fill="url(#grad)" d=""/>
+  <path id="curve" stroke="#A32638" stroke-width="3" fill="none" d=""/>
+  <circle id="point" cx="40" cy="220" r="7" fill="#fff" stroke="#A32638" stroke-width="3"/>
+</svg>
+</div>
+<div class="controls">
+<label for="slider">Samples per class</label>
+<input type="range" class="slider" id="slider" min="0" max="500" value="0" oninput="onSlide()">
+<div class="num" id="num">0</div>
+</div>
+<div class="dial">
+<div><div class="l">Accuracy</div><div class="v" id="acc">50%</div></div>
+<div><div class="l">Zone</div><div class="v" id="zone">Empty</div></div>
+<div><div class="l">Gain per sample</div><div class="v" id="gain">-</div></div>
+</div>
+<div class="tip" id="tip"><strong>Slide the dial →</strong> See what happens to accuracy as you add samples per class.</div>
+</div>
+
+<div class="scenarios">
+<h2>Apply the curve</h2>
+<div class="ssub">Three scenarios. For each, pick the move that gets the biggest accuracy gain per hour of work.</div>
+
+<div class="scenario-card" id="s1">
+<div class="qtag">Scenario 1</div>
+<div class="q">Your model has 8 samples per class. You have one hour. What's the best use of it?</div>
+<div class="choices">
+<button onclick="answer(1,'a')" id="s1-a">Add 30 more samples</button>
+<button onclick="answer(1,'b')" id="s1-b">Add 100 more samples</button>
+<button onclick="answer(1,'c')" id="s1-c">Re-photograph existing samples for variety</button>
+</div>
+<div class="a" id="a1"><strong>Best answer: Add 30 more samples.</strong> You're in the steep zone (8 samples is below the floor). Pure volume buys you the most accuracy from here. Variety matters more later. 100 samples is overkill for this stage and harder to capture in an hour.</div>
+</div>
+
+<div class="scenario-card" id="s2">
+<div class="qtag">Scenario 2</div>
+<div class="q">Your model has 50 samples per class. Accuracy stalled at 85%. What's the best move?</div>
+<div class="choices">
+<button onclick="answer(2,'a')" id="s2-a">Add 200 more samples like the ones you have</button>
+<button onclick="answer(2,'b')" id="s2-b">Capture 10 samples of conditions you haven't covered</button>
+<button onclick="answer(2,'c')" id="s2-c">Retrain with the existing samples</button>
+</div>
+<div class="a" id="a2"><strong>Best answer: 10 targeted samples in new conditions.</strong> You're in the helpful zone. Adding 200 similar samples teaches the model nothing new. 10 samples covering an angle or lighting it hasn't seen will move the needle far more.</div>
+</div>
+
+<div class="scenario-card" id="s3">
+<div class="qtag">Scenario 3</div>
+<div class="q">Your model has 200 samples per class. Accuracy is 91%. The confusion matrix shows it's failing on dim-lit photos. What now?</div>
+<div class="choices">
+<button onclick="answer(3,'a')" id="s3-a">Add 500 more samples in the same lighting you already have</button>
+<button onclick="answer(3,'b')" id="s3-b">Add 15-20 dim-lit samples targeting the specific failure</button>
+<button onclick="answer(3,'c')" id="s3-c">Accept 91% and move on</button>
+</div>
+<div class="a" id="a3"><strong>Best answer: 15-20 targeted dim-lit samples.</strong> You're well into the flat zone. Volume buys you almost nothing now. Targeted samples that fix a specific failure are worth 10x what raw volume is worth from here.</div>
+</div>
+</div>
+</div>
+<script>
+function curveY(x) {
+  // x is samples per class (0..500). Map to accuracy ~ 0.5..0.95 with log curve.
+  if (x <= 0) return 0.5;
+  const acc = 0.5 + 0.45 * Math.log(1 + x) / Math.log(501);
+  return Math.min(0.95, acc);
+}
+function pixelX(samples) { return 40 + (samples / 500) * 540; }
+function pixelY(acc) { return 220 - (acc - 0.5) / 0.45 * 200; }
+
+function drawCurve() {
+  let d = '';
+  let fillD = '';
+  for (let s = 0; s <= 500; s += 5) {
+    const x = pixelX(s);
+    const y = pixelY(curveY(s));
+    d += (s === 0 ? 'M' : 'L') + x + ' ' + y + ' ';
+  }
+  document.getElementById('curve').setAttribute('d', d);
+  fillD = d + ` L 580 220 L 40 220 Z`;
+  document.getElementById('curve-fill').setAttribute('d', fillD);
+}
+
+function onSlide() {
+  const s = +document.getElementById('slider').value;
+  document.getElementById('num').textContent = s;
+  const acc = curveY(s);
+  const accPct = Math.round(acc*100);
+  document.getElementById('acc').textContent = accPct+'%';
+  document.getElementById('point').setAttribute('cx', pixelX(s));
+  document.getElementById('point').setAttribute('cy', pixelY(acc));
+
+  // Zone label
+  let zone, zClass;
+  if (s === 0) { zone = 'Empty'; zClass = ''; }
+  else if (s < 30) { zone = 'Steep'; zClass = 'zone-steep'; }
+  else if (s < 100) { zone = 'Helpful'; zClass = 'zone-help'; }
+  else { zone = 'Flat'; zClass = 'zone-flat'; }
+  const zEl = document.getElementById('zone');
+  zEl.className = 'v ' + zClass;
+  zEl.textContent = zone;
+
+  // Marginal gain: derivative-like estimate
+  const next = curveY(s+1);
+  const gain = ((next - acc) * 100).toFixed(2);
+  document.getElementById('gain').textContent = `+${gain}%`;
+
+  // Tip
+  let tip;
+  if (s === 0) tip = "<strong>No data yet.</strong> The model can only guess. Adding even 5 samples will jump accuracy fast.";
+  else if (s < 30) tip = "<strong>Steep zone.</strong> Every sample is worth a lot. Keep adding.";
+  else if (s < 100) tip = "<strong>Helpful zone.</strong> Gains are real but smaller. Variety matters more than raw count here.";
+  else tip = "<strong>Flat zone.</strong> Volume is barely moving the needle. Targeted samples that fix specific weaknesses are now the only thing that meaningfully helps.";
+  document.getElementById('tip').innerHTML = tip;
+}
+
+function answer(scenario, choice) {
+  const right = { 1: 'a', 2: 'b', 3: 'b' };
+  ['a','b','c'].forEach(c => {
+    const btn = document.getElementById(`s${scenario}-${c}`);
+    btn.classList.add('locked');
+    btn.onclick = null;
+  });
+  document.getElementById(`s${scenario}-${right[scenario]}`).classList.add('picked-right');
+  if (choice !== right[scenario]) document.getElementById(`s${scenario}-${choice}`).classList.add('picked-wrong');
+  document.getElementById(`a${scenario}`).classList.add('show');
+}
+
+drawCurve();
+onSlide();
+</script></body></html>

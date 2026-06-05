@@ -1,0 +1,151 @@
+MODULE 2 QUIZ QUESTION BANK
+Auto-graded question types only
+Total: 25 points
+
+1. Multiple Choice, 1 point
+Question: Which best defines a feature in machine learning?
+A. The model architecture
+B. A column the model uses as input to make a prediction
+C. The training algorithm
+D. The dataset's file format
+Correct answer: B
+
+2. Multiple Choice, 1 point
+Question: Which best defines a label?
+A. A tag a user gives to a post
+B. The answer the model is trying to predict for each training example
+C. The data file's name
+D. The version of the model
+Correct answer: B
+
+3. Multiple Answer, 2 points
+Question: Which of the following count as data?
+A. A spreadsheet of 500 grades
+B. Your gut feeling that a stock will rise
+C. A folder of 1000 photos
+D. An unrecorded conversation
+E. A YouTube watch history file
+Correct answer: A, C, E
+
+4. Multiple Choice, 1 point
+Question: Structured data is best described as:
+A. Data that fits in rows and columns with a consistent schema
+B. Data with no organization
+C. Audio and video files
+D. Encrypted data
+Correct answer: A
+
+5. True or False, 1 point
+Question: A model that scores 99% on its training set is always a good model.
+Correct answer: False
+
+6. Multiple Choice, 1 point
+Question: What is data leakage?
+A. A privacy breach
+B. When the model accidentally gets information during training that would not exist at prediction time
+C. When data spills out of a database
+D. When the training data is encrypted
+Correct answer: B
+
+7. Multiple Choice, 1 point
+Question: Which set is touched exactly once, at the very end?
+A. Training set
+B. Validation set
+C. Test set
+D. The full dataset
+Correct answer: C
+
+8. Multiple Answer, 2 points
+Question: Which are valid reasons to use feature engineering?
+A. Raw timestamps are hard to learn from directly
+B. Categorical data needs to be numerically encoded
+C. Combining columns can produce a stronger signal
+D. To make the spreadsheet look prettier
+E. To intentionally hide the data
+Correct answer: A, B, C
+
+9. Multiple Choice, 1 point
+Question: A model has 99% training accuracy and 60% test accuracy. The most likely problem is:
+A. Underfitting
+B. Overfitting (the model memorized)
+C. The test set is corrupted
+D. The model is too small
+Correct answer: B
+
+10. True or False, 1 point
+Question: Removing the column 'race' from a dataset eliminates racial bias from the model.
+Correct answer: False
+
+11. Multiple Choice, 1 point
+Question: Which is a likely proxy variable for race in a US lending model?
+A. Account creation date
+B. Zip code
+C. Whether the applicant uses Apple or Android
+D. Whether the applicant has a checking account
+Correct answer: B
+
+12. Multiple Choice, 1 point
+Question: Which best describes 'label bias'?
+A. The labels are encrypted
+B. Labelers consistently applied wrong or biased labels, which the model then learns as truth
+C. The labels are missing from some rows
+D. Two labelers labeled the same row
+Correct answer: B
+
+13. Multiple Answer, 2 points
+Question: Which of the following are entry points for bias in a data pipeline?
+A. Collection (who got measured)
+B. Labels (who decided the answer)
+C. Sampling (which rows were used)
+D. Design (which features were chosen)
+E. The model's color scheme
+Correct answer: A, B, C, D
+
+14. Multiple Choice, 1 point
+Question: A model that performs much better on its training data than on fresh data is:
+A. Generalizing
+B. Underfitting
+C. Overfitting
+D. Calibrated
+Correct answer: C
+
+15. True or False, 1 point
+Question: A face recognition model trained mostly on lighter-skinned faces will likely perform worse on darker-skinned faces.
+Correct answer: True
+
+16. Multiple Choice, 1 point
+Question: What is the validation set used for?
+A. Training the model
+B. The final accuracy report
+C. Choosing between model versions and tuning hyperparameters
+D. None of the above
+Correct answer: C
+
+17. Multiple Choice, 1 point
+Question: The phrase 'garbage in, garbage out' means:
+A. The model's output is always garbage
+B. The model's quality cannot exceed the quality of its training data
+C. AI is unreliable in general
+D. Models always produce useless predictions
+Correct answer: B
+
+18. Multiple Answer, 2 points
+Question: Which are signs of suspicious labels in a dataset?
+A. A single labeler did most of the work
+B. Workers labeled under strict speed pressure
+C. Two labelers disagreed and the conflict was never resolved
+D. The labels were applied by multiple expert labelers with clear guidelines
+E. The data came from a vetted research source
+Correct answer: A, B, C
+
+19. Multiple Choice, 1 point
+Question: 'Hour of day' derived from a timestamp is an example of:
+A. A label
+B. An engineered feature
+C. A model architecture
+D. Data leakage
+Correct answer: B
+
+20. True or False, 1 point
+Question: It is safe to compute scaling statistics (like the mean of a feature) using both the training set and the test set together.
+Correct answer: False

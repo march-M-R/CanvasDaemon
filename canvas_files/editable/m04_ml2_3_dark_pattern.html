@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dark Pattern Detective</title>
+<style>*{box-sizing:border-box;}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0d0e10;color:#f1f1f1;line-height:1.6;}
+.wrap{max-width:920px;margin:0 auto;padding:24px 20px 60px;}
+.hero{background:linear-gradient(135deg,#0B0D10 0%,#1f1f1f 50%,#A32638 100%);padding:26px 26px;border-radius:14px;margin-bottom:16px;border:1px solid #2a2a2a;}
+.hero .tag{font-size:12px;color:#f2d6da;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.hero h1{margin:0 0 6px;font-family:Georgia,serif;font-size:30px;color:#fff;line-height:1.14;}
+.hero p{margin:0;opacity:0.92;font-size:14px;max-width:660px;}
+.panel{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:18px 22px;margin-bottom:14px;}
+.stats{display:flex;gap:10px;margin-bottom:14px;}
+.stat{flex:1;background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:10px 14px;text-align:center;}
+.stat .l{font-size:11px;color:#9aa0a6;text-transform:uppercase;letter-spacing:0.05em;}
+.stat .v{font-family:Georgia,serif;font-size:20px;color:#fff;margin-top:2px;}
+.btn{background:#A32638;color:#fff;border:0;padding:10px 22px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:14px;}
+.btn:disabled{background:#444;cursor:not-allowed;}
+.btn:hover:not(:disabled){filter:brightness(1.1);}
+.btn.ghost{background:transparent;color:#c0c4c8;border:1px solid #444;}
+.reveal{background:#0d0e10;border-left:3px solid #ffc800;border-radius:0 10px 10px 0;padding:14px 18px;margin-top:14px;display:none;color:#d8dadd;font-size:14px;line-height:1.65;}
+.reveal.show{display:block;}
+.reveal h3{margin:0 0 6px;font-family:Georgia,serif;font-size:18px;color:#fff;}
+.final{background:linear-gradient(135deg,#0B0D10,#A32638);border-radius:14px;padding:30px 28px;text-align:center;margin-top:14px;display:none;}
+.final.show{display:block;}
+.final h2{font-family:Georgia,serif;font-size:28px;color:#fff;margin:0 0 6px;}
+.final .big{font-family:Georgia,serif;font-size:56px;color:#fff;line-height:1;margin:6px 0;}
+.final p{color:rgba(255,255,255,0.92);max-width:540px;margin:0 auto 12px;}
+.hidden{display:none!important;}
+.right{color:#2ec850;}
+.wrong{color:#dc3c46;}
+
+.ui{background:#fff;color:#222;border-radius:12px;overflow:hidden;border:1px solid #2a2a2a;margin-bottom:14px;}
+.ui .topbar{background:#262A31;color:#fff;padding:10px 16px;font-size:13px;display:flex;align-items:center;gap:8px;}
+.ui .topbar .dot{width:11px;height:11px;border-radius:50%;background:#A32638;}
+.ui .body{padding:24px;}
+.ui h4{margin:0 0 12px;font-family:Georgia,serif;color:#0b0d10;font-size:22px;}
+.ui p{margin:8px 0;font-size:14px;color:#363d45;}
+.ui .hot{position:relative;display:inline-block;padding:8px 14px;border-radius:6px;font-size:14px;cursor:pointer;border:2px solid transparent;}
+.ui .hot:hover{outline:2px dashed #A32638;}
+.ui .hot.picked-right{outline:2px solid #2ec850;background:rgba(46,200,80,0.18)!important;}
+.ui .hot.picked-wrong{outline:2px solid #dc3c46;background:rgba(220,60,70,0.18)!important;}
+.tag{font-size:11px;color:#A32638;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.actions{display:flex;justify-content:flex-end;margin-top:12px;}
+</style></head><body>
+<div class="wrap">
+<div class="hero"><div class="tag">Module 4 &middot; Micro-Learning 2.3</div><h1>Dark Pattern Detective</h1><p>Four mock UI screens. Each one hides a different dark pattern. Click the element you think is doing the manipulation, then see which named pattern it is.</p></div>
+<div class="stats">
+<div class="stat"><div class="l">UI</div><div class="v" id="round">1/4</div></div>
+<div class="stat"><div class="l">Patterns spotted</div><div class="v" id="score">0</div></div>
+</div>
+<p style="color:#9aa0a6;font-size:13px;margin:0 0 12px;">Each mock UI screen has one dark pattern hidden as a visual element. Click the element you think is the dark pattern.</p>
+<div id="game"></div>
+<div class="final" id="final"></div>
+</div>
+<script>
+const UIS=[
+ {kind:"Newsletter signup",pattern:"confirmshaming",render:`<h4>Subscribe to our newsletter</h4><p>Get weekly tips delivered to your inbox.</p><p><span class="hot" data-h="email" style="background:#eee;">Email address</span></p><p><button class="hot" data-h="subscribe" style="background:#A32638;color:#fff;font-weight:600;">Subscribe</button> <span class="hot" data-h="decline" style="color:#888;font-size:12px;">No thanks, I prefer not improving my life</span></p>`,explain:"Confirmshaming. The decline option is worded to make the user feel bad. The right choice is to make 'No thanks' a neutral, equal-weight button."},
+ {kind:"Account deletion",pattern:"roach-motel",render:`<h4>We're sorry to see you go</h4><p>To delete your account, please complete the following 7 steps:</p><p><span class="hot" data-h="step1">Step 1: Read this 4-page explanation of what you'll lose</span></p><p><span class="hot" data-h="step2">Step 2: Verify your identity via mailed letter (7-14 days)</span></p><p><span class="hot" data-h="cancel" style="background:#A32638;color:#fff;">Cancel deletion and stay</span></p>`,explain:"Roach motel: easy to sign up, hard to leave. The 7-step deletion process plus the dominant 'Cancel deletion' button is the dark pattern. Real deletion should be one click."},
+ {kind:"Cookie consent",pattern:"misdirection",render:`<h4>We value your privacy</h4><p>We and 432 advertising partners use cookies to personalize content and ads.</p><p><button class="hot" data-h="accept-all" style="background:#A32638;color:#fff;font-weight:700;font-size:16px;padding:12px 24px;">Accept All</button></p><p><span class="hot" data-h="manage" style="color:#888;font-size:11px;text-decoration:underline;">manage preferences</span></p>`,explain:"Misdirection via visual weight. The 'Accept All' button is huge and bright. The 'manage preferences' link is gray, small, and visually demoted. Real choice would put both options at equal weight."},
+ {kind:"App permission",pattern:"privacy-zuckering",render:`<h4>Get the most out of GameApp</h4><p>Allow GameApp to access:</p><p><span class="hot" data-h="contacts">📞 Your contacts (recommended)</span></p><p><span class="hot" data-h="location">📍 Your location (recommended)</span></p><p><span class="hot" data-h="recommended" style="background:#0066ff;color:#fff;font-weight:600;">Allow all (recommended)</span> <span class="hot" data-h="customize" style="color:#888;">Customize</span></p>`,explain:"Privacy zuckering. The single 'Allow all' button bundles unrelated permissions and is the default action. None of these permissions are necessary for a game to function. The customize option exists but is visually discouraged."}];
+let state={i:0,score:0,locked:false};
+function render(){if(state.i>=UIS.length)return finish();const u=UIS[state.i];document.getElementById("round").textContent=(state.i+1)+"/"+UIS.length;document.getElementById("score").textContent=state.score;document.getElementById("game").innerHTML=`<div class="ui"><div class="topbar"><div class="dot"></div><span>${u.kind}</span></div><div class="body">${u.render}</div></div><div class="reveal" id="reveal"></div><div class="actions"><button class="btn hidden" id="next" onclick="next()">Next UI →</button></div>`;document.querySelectorAll(".hot").forEach(h=>h.onclick=()=>pick(h.dataset.h));state.locked=false;}
+function pick(h){if(state.locked)return;state.locked=true;const u=UIS[state.i];const correctIds={confirmshaming:"decline","roach-motel":"cancel",misdirection:"accept-all","privacy-zuckering":"recommended"};const correctId=correctIds[u.pattern];document.querySelectorAll(".hot").forEach(el=>{if(el.dataset.h===correctId)el.classList.add("picked-right");else if(el.dataset.h===h)el.classList.add("picked-wrong");el.style.cursor="default";});if(h===correctId)state.score++;document.getElementById("score").textContent=state.score;const r=document.getElementById("reveal");r.innerHTML=`<strong class="${h===correctId?'right':'wrong'}">${h===correctId?'Correct.':'Not quite.'}</strong> ${u.explain}`;r.classList.add("show");document.getElementById("next").classList.remove("hidden");}
+function next(){state.i++;render();}
+function finish(){document.getElementById("game").classList.add("hidden");const f=document.getElementById("final");f.classList.add("show");f.innerHTML=`<h2>${state.score} / ${UIS.length}</h2><p>Four common dark patterns: confirmshaming, roach motel, misdirection, privacy zuckering. They appear in different products but follow the same template: make the user-friendly choice harder to find than the company-friendly one.</p><button class="btn" style="background:#fff;color:#A32638;margin-top:8px;" onclick="restart()">Run again</button>`;}
+function restart(){state={i:0,score:0,locked:false};document.getElementById("final").classList.remove("show");document.getElementById("game").classList.remove("hidden");render();}
+render();
+</script>
+</body></html>

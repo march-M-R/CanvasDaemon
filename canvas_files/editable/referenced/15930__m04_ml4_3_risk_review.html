@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Risk Review Builder</title>
+<style>*{box-sizing:border-box;}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0d0e10;color:#f1f1f1;line-height:1.6;}
+.wrap{max-width:920px;margin:0 auto;padding:24px 20px 60px;}
+.hero{background:linear-gradient(135deg,#0B0D10 0%,#1f1f1f 50%,#A32638 100%);padding:26px 26px;border-radius:14px;margin-bottom:16px;border:1px solid #2a2a2a;}
+.hero .tag{font-size:12px;color:#f2d6da;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.hero h1{margin:0 0 6px;font-family:Georgia,serif;font-size:30px;color:#fff;line-height:1.14;}
+.hero p{margin:0;opacity:0.92;font-size:14px;max-width:660px;}
+.panel{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:18px 22px;margin-bottom:14px;}
+.stats{display:flex;gap:10px;margin-bottom:14px;}
+.stat{flex:1;background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:10px 14px;text-align:center;}
+.stat .l{font-size:11px;color:#9aa0a6;text-transform:uppercase;letter-spacing:0.05em;}
+.stat .v{font-family:Georgia,serif;font-size:20px;color:#fff;margin-top:2px;}
+.btn{background:#A32638;color:#fff;border:0;padding:10px 22px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:14px;}
+.btn:disabled{background:#444;cursor:not-allowed;}
+.btn:hover:not(:disabled){filter:brightness(1.1);}
+.btn.ghost{background:transparent;color:#c0c4c8;border:1px solid #444;}
+.reveal{background:#0d0e10;border-left:3px solid #ffc800;border-radius:0 10px 10px 0;padding:14px 18px;margin-top:14px;display:none;color:#d8dadd;font-size:14px;line-height:1.65;}
+.reveal.show{display:block;}
+.reveal h3{margin:0 0 6px;font-family:Georgia,serif;font-size:18px;color:#fff;}
+.final{background:linear-gradient(135deg,#0B0D10,#A32638);border-radius:14px;padding:30px 28px;text-align:center;margin-top:14px;display:none;}
+.final.show{display:block;}
+.final h2{font-family:Georgia,serif;font-size:28px;color:#fff;margin:0 0 6px;}
+.final .big{font-family:Georgia,serif;font-size:56px;color:#fff;line-height:1;margin:6px 0;}
+.final p{color:rgba(255,255,255,0.92);max-width:540px;margin:0 auto 12px;}
+.hidden{display:none!important;}
+.right{color:#2ec850;}
+.wrong{color:#dc3c46;}
+
+.step{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:18px 22px;margin-bottom:12px;}
+.step .num{display:inline-block;background:#A32638;color:#fff;font-family:Georgia,serif;font-size:12px;padding:3px 10px;border-radius:99px;margin-bottom:8px;}
+.step h2{margin:0 0 6px;font-family:Georgia,serif;font-size:19px;color:#fff;}
+.step .sub{font-size:13px;color:#9aa0a6;margin-bottom:12px;line-height:1.6;}
+.field{margin-bottom:10px;}
+.field label{display:block;font-size:12px;color:#c0c4c8;margin-bottom:5px;font-weight:600;}
+.field input,.field textarea,.field select{width:100%;background:#0d0e10;border:1px solid #2a2a2a;color:#fff;padding:9px 12px;font-family:inherit;font-size:13px;border-radius:8px;}
+.field textarea{min-height:55px;resize:vertical;}
+.field input:focus,.field textarea:focus,.field select:focus{outline:0;border-color:#A32638;}
+.actions{display:flex;justify-content:space-between;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.card-out{background:#0d0e10;border:1px solid #A32638;border-radius:14px;padding:24px;margin-top:14px;}
+.card-out .title{font-family:Georgia,serif;font-size:22px;color:#ffc800;margin-bottom:12px;text-align:center;}
+.row{background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:12px 16px;margin-bottom:8px;}
+.row.warn{border-left:3px solid #ffc800;}
+.row .lbl{font-size:11px;color:#A32638;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px;}
+.row .val{font-size:13px;color:#fff;line-height:1.55;}
+.empty{color:#7a7e84;font-style:italic;font-size:12px;}
+</style></head><body>
+<div class="wrap">
+<div class="hero"><div class="tag">Module 4 &middot; Micro-Learning 4.3</div><h1>Risk Review Builder</h1><p>Walk through a 5-step AI risk review: system, affected groups, top three risks, three mitigations, deploy verdict. Download the Risk Review Card at the end.</p></div>
+<div class="step">
+<span class="num">Step 1</span>
+<h2>System under review</h2>
+<p class="sub">Name the AI system you are reviewing. Be specific, not categorical.</p>
+<div class="field"><label>System name</label><input type="text" id="sys" placeholder="e.g., Resume-screener-v2 for a retail company"></div>
+<div class="field"><label>What does it do?</label><input type="text" id="purpose" placeholder="e.g., Auto-rank job applicants for retail manager roles"></div>
+<div class="field"><label>Stakes tier</label><select id="tier"><option value="">Pick...</option><option value="low">Low (personal/hobby)</option><option value="med">Medium (customer feature)</option><option value="high">High (safety/legal/financial)</option></select></div>
+</div>
+
+<div class="step">
+<span class="num">Step 2</span>
+<h2>Affected groups</h2>
+<p class="sub">Who is affected by this system, especially groups who might experience it differently?</p>
+<div class="field"><label>Primary affected group</label><input type="text" id="g1" placeholder="e.g., Job applicants applying for retail manager roles"></div>
+<div class="field"><label>Group most at risk of harm</label><input type="text" id="g2" placeholder="e.g., Applicants with non-traditional career paths or career gaps"></div>
+</div>
+
+<div class="step">
+<span class="num">Step 3</span>
+<h2>Top three risks</h2>
+<p class="sub">For each risk, name the specific harm and which group bears it.</p>
+<div class="field"><label>Risk 1</label><input type="text" id="r1" placeholder="e.g., Model penalizes career gaps, disproportionately affecting women returning from caregiving"></div>
+<div class="field"><label>Risk 2</label><input type="text" id="r2" placeholder="e.g., Auto-rejection emails give no actionable feedback for improvement"></div>
+<div class="field"><label>Risk 3</label><input type="text" id="r3" placeholder="e.g., Decisions cannot be appealed by the applicant"></div>
+</div>
+
+<div class="step">
+<span class="num">Step 4</span>
+<h2>Mitigations</h2>
+<p class="sub">Name one specific mitigation per risk above. Not 'review the model.' Something concrete.</p>
+<div class="field"><label>Mitigation for Risk 1</label><input type="text" id="m1" placeholder="e.g., Remove 'career gap' as a feature; audit per-group approval rates monthly"></div>
+<div class="field"><label>Mitigation for Risk 2</label><input type="text" id="m2" placeholder="e.g., Send applicants the top 3 factors that affected their score"></div>
+<div class="field"><label>Mitigation for Risk 3</label><input type="text" id="m3" placeholder="e.g., Provide a human-review request link on every rejection email"></div>
+</div>
+
+<div class="step">
+<span class="num">Step 5</span>
+<h2>Deploy verdict</h2>
+<div class="field"><label>Should this system deploy as-is?</label><select id="verdict"><option value="">Pick...</option><option value="yes">Yes, deploy as designed</option><option value="conditional">Conditional, with the mitigations above in place</option><option value="no">No, do not deploy until major redesign</option></select></div>
+<div class="field"><label>One-sentence rationale</label><textarea id="rationale" placeholder="e.g., Conditional deploy because the mitigations above are tractable but the model would cause documented harm without them."></textarea></div>
+</div>
+
+<div class="actions">
+<button class="btn ghost" onclick="resetAll()">Reset</button>
+<button class="btn" onclick="buildCard()">Build Risk Review Card</button>
+</div>
+
+<div id="out" style="display:none;">
+<div class="card-out" id="card">
+<div class="title" id="cTitle">AI Risk Review</div>
+<div class="row"><div class="lbl">System</div><div class="val" id="cSys"></div></div>
+<div class="row"><div class="lbl">Purpose</div><div class="val" id="cPurpose"></div></div>
+<div class="row"><div class="lbl">Stakes tier</div><div class="val" id="cTier"></div></div>
+<div class="row"><div class="lbl">Affected groups</div><div class="val" id="cGroups"></div></div>
+<div class="row warn"><div class="lbl">Risks identified</div><div class="val" id="cRisks"></div></div>
+<div class="row warn"><div class="lbl">Mitigations</div><div class="val" id="cMits"></div></div>
+<div class="row" style="border-left:3px solid #ffc800;"><div class="lbl" style="color:#ffc800;">Verdict</div><div class="val" id="cVerdict"></div></div>
+</div>
+<div class="actions"><button class="btn ghost" onclick="document.getElementById('out').style.display='none';">Edit answers</button><button class="btn" onclick="download()">Download as HTML</button></div>
+</div>
+
+</div>
+<script>
+function val(id){return document.getElementById(id).value.trim();}
+function selText(id){const e=document.getElementById(id);return e.options[e.selectedIndex]?.text||"";}
+function resetAll(){["sys","purpose","tier","g1","g2","r1","r2","r3","m1","m2","m3","verdict","rationale"].forEach(id=>{document.getElementById(id).value="";});document.getElementById("out").style.display="none";}
+function buildCard(){
+ const sys=val("sys")||"(unnamed)";
+ const purpose=val("purpose")||"(no purpose given)";
+ const tier=selText("tier")||"(not chosen)";
+ const groups=[val("g1"),val("g2")].filter(x=>x);
+ const risks=[val("r1"),val("r2"),val("r3")].filter(x=>x);
+ const mits=[val("m1"),val("m2"),val("m3")].filter(x=>x);
+ const verdict=selText("verdict")||"(not chosen)";
+ const rationale=val("rationale")||"(no rationale)";
+ document.getElementById("cTitle").textContent="Risk Review: "+sys;
+ document.getElementById("cSys").textContent=sys;
+ document.getElementById("cPurpose").textContent=purpose;
+ document.getElementById("cTier").textContent=tier;
+ document.getElementById("cGroups").innerHTML=groups.length?groups.map(g=>`<p style="margin:4px 0;">&middot; ${escapeHtml(g)}</p>`).join(""):'<span class="empty">No groups listed.</span>';
+ document.getElementById("cRisks").innerHTML=risks.length?risks.map((r,i)=>`<p style="margin:5px 0;"><strong>Risk ${i+1}:</strong> ${escapeHtml(r)}</p>`).join(""):'<span class="empty">No risks listed.</span>';
+ document.getElementById("cMits").innerHTML=mits.length?mits.map((m,i)=>`<p style="margin:5px 0;"><strong>Mitigation ${i+1}:</strong> ${escapeHtml(m)}</p>`).join(""):'<span class="empty">No mitigations listed.</span>';
+ document.getElementById("cVerdict").innerHTML=`<strong>${escapeHtml(verdict)}.</strong> ${escapeHtml(rationale)}`;
+ document.getElementById("out").style.display="block";
+ document.getElementById("out").scrollIntoView({behavior:"smooth"});
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c]));}
+function download(){
+ const card=document.getElementById("card");
+ const css="<style>body{font-family:Arial;background:#0d0e10;color:#f1f1f1;padding:30px;}.card-out{background:#0d0e10;border:1px solid #A32638;border-radius:14px;padding:24px;max-width:720px;margin:0 auto;}.title{font-family:Georgia,serif;font-size:22px;color:#ffc800;margin-bottom:12px;text-align:center;}.row{background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:12px 16px;margin-bottom:8px;}.row.warn{border-left:3px solid #ffc800;}.lbl{font-size:11px;color:#A32638;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px;}.val{font-size:13px;color:#fff;line-height:1.55;}</style>";
+ const html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+document.getElementById("cTitle").textContent+'</title>'+css+'</head><body>'+card.outerHTML+'</body></html>';
+ const blob=new Blob([html],{type:"text/html"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");a.href=url;a.download=(val("sys").replace(/[^a-z0-9]+/gi,"_").toLowerCase()||"system")+"_risk_review.html";
+ document.body.appendChild(a);a.click();setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},100);
+}
+</script>
+</body></html>

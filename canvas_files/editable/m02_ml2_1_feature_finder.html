@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Feature Finder</title>
+<style>*{box-sizing:border-box;}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0d0e10;color:#f1f1f1;line-height:1.6;}
+.wrap{max-width:920px;margin:0 auto;padding:24px 20px 60px;}
+.hero{background:linear-gradient(135deg,#0B0D10 0%,#1f1f1f 50%,#A32638 100%);padding:26px 26px;border-radius:14px;margin-bottom:16px;border:1px solid #2a2a2a;}
+.hero .tag{font-size:12px;color:#f2d6da;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.hero h1{margin:0 0 6px;font-family:Georgia,serif;font-size:30px;color:#fff;line-height:1.14;}
+.hero p{margin:0;opacity:0.92;font-size:14px;max-width:660px;}
+.panel{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:18px 22px;margin-bottom:14px;}
+.stats{display:flex;gap:10px;margin-bottom:14px;}
+.stat{flex:1;background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:10px 14px;text-align:center;}
+.stat .l{font-size:11px;color:#9aa0a6;text-transform:uppercase;letter-spacing:0.05em;}
+.stat .v{font-family:Georgia,serif;font-size:20px;color:#fff;margin-top:2px;}
+.btn{background:#A32638;color:#fff;border:0;padding:10px 22px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:14px;}
+.btn:disabled{background:#444;cursor:not-allowed;}
+.btn:hover:not(:disabled){filter:brightness(1.1);}
+.btn.ghost{background:transparent;color:#c0c4c8;border:1px solid #444;}
+.reveal{background:#0d0e10;border-left:3px solid #ffc800;border-radius:0 10px 10px 0;padding:14px 18px;margin-top:14px;display:none;color:#d8dadd;font-size:14px;line-height:1.65;}
+.reveal.show{display:block;animation:fade 0.3s;}
+.reveal h3{margin:0 0 6px;font-family:Georgia,serif;font-size:18px;color:#fff;}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.final{background:linear-gradient(135deg,#0B0D10,#A32638);border-radius:14px;padding:30px 28px;text-align:center;margin-top:14px;display:none;}
+.final.show{display:block;}
+.final h2{font-family:Georgia,serif;font-size:28px;color:#fff;margin:0 0 6px;}
+.final .big{font-family:Georgia,serif;font-size:56px;color:#fff;line-height:1;margin:6px 0;}
+.final p{color:rgba(255,255,255,0.92);max-width:540px;margin:0 auto 12px;}
+.hidden{display:none!important;}
+.right{color:#2ec850;}
+.wrong{color:#dc3c46;}
+
+.task-picker{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.task-btn{background:#15171a;border:2px solid #2a2a2a;border-radius:99px;padding:8px 16px;color:#fff;cursor:pointer;font-family:inherit;font-size:13px;}
+.task-btn:hover{border-color:#A32638;}
+.task-btn.active{background:#A32638;border-color:#A32638;}
+.feats{background:#15171a;border:1px solid #2a2a2a;border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+.feats h4{margin:0 0 10px;font-size:13px;color:#9aa0a6;text-transform:uppercase;letter-spacing:0.05em;}
+.feat-row{display:flex;align-items:center;gap:10px;margin-bottom:6px;cursor:pointer;padding:6px;border-radius:6px;}
+.feat-row:hover{background:#0d0e10;}
+.feat-row input{transform:scale(1.2);accent-color:#A32638;}
+.feat-row .name{font-size:13px;color:#f1f1f1;flex:1;}
+.feat-row.signal .tag{background:#0f2412;color:#2ec850;}
+.feat-row.noise .tag{background:#2a0d10;color:#dc3c46;}
+.feat-row.proxy .tag{background:#2a1d10;color:#ffc800;}
+.feat-row .tag{font-size:10px;padding:2px 8px;border-radius:99px;text-transform:uppercase;letter-spacing:0.05em;opacity:0;transition:opacity 0.3s;}
+.feat-row.revealed .tag{opacity:1;}
+.accuracy{background:#15171a;border:1px solid #2a2a2a;border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+.accuracy h4{margin:0 0 8px;font-size:13px;color:#9aa0a6;text-transform:uppercase;letter-spacing:0.05em;}
+.bar-wrap{background:#0d0e10;border-radius:99px;height:24px;overflow:hidden;}
+.bar{background:linear-gradient(90deg,#dc3c46,#ffc800,#2ec850);height:100%;border-radius:99px;transition:width 0.3s;display:flex;align-items:center;justify-content:flex-end;padding-right:12px;color:#fff;font-size:12px;font-weight:600;}
+.controls{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;}
+</style></head><body>
+<div class="wrap">
+<div class="hero"><div class="tag">Module 2 &middot; Micro-Learning 2.1</div><h1>Feature Finder</h1><p>Pick a prediction task, then toggle which features the model uses. Watch the accuracy bar move. Strong features carry signal. Noise features do not. Some look helpful but are proxies you should not use.</p></div>
+<div class="task-picker" id="tasks"></div>
+<div class="feats"><h4>Toggle which features the model uses</h4><div id="featlist"></div></div>
+<div class="accuracy"><h4>Predicted accuracy (estimated)</h4><div class="bar-wrap"><div class="bar" id="bar" style="width:0%;">0%</div></div></div>
+<div class="controls">
+<button class="btn ghost" onclick="resetFeats()">Reset</button>
+<button class="btn" onclick="revealAll()">Reveal feature roles</button>
+</div>
+<div class="reveal" id="reveal"></div>
+</div>
+<script>
+const TASKS={
+ spam:{name:"Predict whether email is spam",feats:[
+   {n:"Sender reputation",t:"signal",w:35},
+   {n:"Subject line keywords",t:"signal",w:30},
+   {n:"Email length",t:"signal",w:10},
+   {n:"User's first name",t:"noise",w:-15},
+   {n:"Time of day arrived",t:"signal",w:5},
+   {n:"Recipient's age",t:"proxy",w:-10}]},
+ churn:{name:"Predict customer churn",feats:[
+   {n:"Months since last login",t:"signal",w:30},
+   {n:"Support tickets opened",t:"signal",w:25},
+   {n:"Account age",t:"signal",w:15},
+   {n:"Day they signed up",t:"noise",w:-5},
+   {n:"Zip code",t:"proxy",w:-15},
+   {n:"Recent price changes",t:"signal",w:20}]},
+ grades:{name:"Predict whether student passes a course",feats:[
+   {n:"Homework completion rate",t:"signal",w:40},
+   {n:"Attendance rate",t:"signal",w:25},
+   {n:"Time spent on practice quizzes",t:"signal",w:15},
+   {n:"Eye color",t:"noise",w:-20},
+   {n:"Day course meets",t:"noise",w:-5},
+   {n:"Parents' education level",t:"proxy",w:-15}]}};
+let active=null,on={},revealed=false;
+function renderTasks(){document.getElementById("tasks").innerHTML=Object.keys(TASKS).map(k=>`<button class="task-btn ${k===active?'active':''}" onclick="pick('${k}')">${TASKS[k].name}</button>`).join("");}
+function pick(k){active=k;on={};revealed=false;document.getElementById("reveal").classList.remove("show");renderFeats();updateBar();renderTasks();}
+function renderFeats(){if(!active)return;const t=TASKS[active];
+  document.getElementById("featlist").innerHTML=t.feats.map((f,i)=>{const checked=on[i]?"checked":"";const cls=revealed?f.t:"";return `<label class="feat-row ${cls} ${revealed?'revealed':''}" onclick="event.stopPropagation();"><input type="checkbox" ${checked} onchange="toggle(${i})"><span class="name">${f.n}</span><span class="tag">${revealed?f.t:''}</span></label>`;}).join("");}
+function toggle(i){on[i]=!on[i];updateBar();}
+function updateBar(){if(!active)return;const t=TASKS[active];let s=50;Object.keys(on).forEach(i=>{if(on[i])s+=t.feats[i].w;});s=Math.max(20,Math.min(95,s));document.getElementById("bar").style.width=s+"%";document.getElementById("bar").textContent=s+"%";}
+function resetFeats(){on={};revealed=false;document.getElementById("reveal").classList.remove("show");renderFeats();updateBar();}
+function revealAll(){if(!active)return;revealed=true;const t=TASKS[active];renderFeats();
+  const sigOn=Object.keys(on).filter(i=>on[i]&&t.feats[i].t==="signal").length;
+  const noiseOn=Object.keys(on).filter(i=>on[i]&&t.feats[i].t==="noise").length;
+  const proxyOn=Object.keys(on).filter(i=>on[i]&&t.feats[i].t==="proxy").length;
+  const r=document.getElementById("reveal");
+  r.innerHTML=`<h3>Feature roles revealed.</h3><p><strong style="color:#2ec850;">Signal (${sigOn} on):</strong> features mechanically related to the target. Keep them.</p><p><strong style="color:#dc3c46;">Noise (${noiseOn} on):</strong> unrelated features that add randomness. Drop them.</p><p><strong style="color:#ffc800;">Proxy (${proxyOn} on):</strong> features correlated with protected attributes. Drop them even if they boost accuracy.</p><p style="margin-top:10px;">A strong model uses signal features only. Toggling on noise can raise apparent accuracy by accident, but the model will not generalize.</p>`;
+  r.classList.add("show");}
+renderTasks();
+</script>
+</body></html>

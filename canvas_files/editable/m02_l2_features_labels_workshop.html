@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Features and Labels Workshop</title>
+<style>
+*{box-sizing:border-box;}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0d0e10;color:#f1f1f1;line-height:1.6;}
+.wrap{max-width:1020px;margin:0 auto;padding:28px 22px 70px;}
+.hero{background:linear-gradient(135deg,#0B0D10 0%,#1f1f1f 50%,#A32638 100%);padding:34px 30px;border-radius:16px;margin-bottom:18px;border:1px solid #2a2a2a;}
+.hero .tag{font-size:12px;color:#ffc800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
+.hero h1{margin:0 0 10px;font-family:Georgia,serif;font-size:34px;color:#fff;line-height:1.14;}
+.hero p{margin:0;opacity:0.92;font-size:14px;max-width:760px;line-height:1.7;}
+.step{background:#15171a;border:1px solid #2a2a2a;border-radius:14px;padding:22px 24px;margin-bottom:16px;}
+.step .num{display:inline-block;background:#A32638;color:#fff;font-family:Georgia,serif;font-size:14px;padding:4px 12px;border-radius:99px;margin-bottom:10px;}
+.step h2{margin:0 0 6px;font-family:Georgia,serif;font-size:22px;color:#fff;}
+.step .sub{font-size:13px;color:#9aa0a6;margin-bottom:14px;line-height:1.6;}
+.field{margin-bottom:12px;}
+.field label{display:block;font-size:13px;color:#c0c4c8;margin-bottom:6px;font-weight:600;}
+.field input,.field textarea,.field select{width:100%;background:#0d0e10;border:1px solid #2a2a2a;color:#fff;padding:10px 12px;font-family:inherit;font-size:14px;border-radius:8px;}
+.field textarea{min-height:60px;resize:vertical;}
+.field input:focus,.field textarea:focus,.field select:focus{outline:0;border-color:#A32638;}
+.field .hint{font-size:12px;color:#7a7e84;margin-top:4px;}
+.table-wrap{overflow-x:auto;margin-bottom:12px;}
+table.ds{width:100%;border-collapse:collapse;background:#0d0e10;border:1px solid #2a2a2a;border-radius:8px;overflow:hidden;font-size:13px;}
+table.ds th{background:#1a1c1f;color:#9aa0a6;text-align:left;padding:10px;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;}
+table.ds td{padding:8px 10px;border-top:1px solid #1f2125;color:#d8dadd;}
+table.ds td.editable{background:#15171a;}
+table.ds td.editable select,table.ds td.editable input{width:100%;background:transparent;border:none;color:#fff;font-family:inherit;font-size:13px;padding:4px;}
+table.ds td.editable select:focus,table.ds td.editable input:focus{outline:1px solid #A32638;border-radius:4px;}
+.feature-tag{display:inline-block;background:rgba(46,200,80,0.18);border:1px solid #2ec850;color:#a8e8c0;padding:2px 8px;border-radius:99px;font-size:11px;margin:2px;}
+.note-tag{display:inline-block;background:rgba(163,38,56,0.18);border:1px solid #A32638;color:#f4d7dc;padding:2px 8px;border-radius:99px;font-size:11px;margin:2px;}
+.btn{background:#A32638;color:#fff;border:0;padding:11px 22px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:14px;}
+.btn:hover{filter:brightness(1.1);}
+.btn.ghost{background:transparent;color:#c0c4c8;border:1px solid #444;}
+.actions{display:flex;justify-content:space-between;gap:10px;margin-top:16px;flex-wrap:wrap;}
+.worksheet{background:#0d0e10;border:1px solid #A32638;border-radius:14px;padding:28px 28px;margin-top:16px;}
+.worksheet .title{font-family:Georgia,serif;font-size:24px;color:#ffc800;margin-bottom:14px;text-align:center;}
+.worksheet .meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+@media(max-width:600px){.worksheet .meta{grid-template-columns:1fr;}}
+.worksheet .block{background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:14px 16px;}
+.worksheet .block .lbl{font-size:11px;color:#A32638;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
+.worksheet .block .val{font-size:14px;color:#fff;line-height:1.55;}
+.empty{color:#7a7e84;font-style:italic;font-size:12px;}
+</style></head><body>
+<div class="wrap">
+<div class="hero">
+<div class="tag">Module 2 Lesson 2 &middot; Big Activity</div>
+<h1>Features and Labels Workshop</h1>
+<p>Below is a small dataset of 6 example student-record-style rows. Your job: name the prediction target, choose three features that carry signal, label each row, and submit a one-page Features and Labels Worksheet you can save to your portfolio. The worksheet is the deliverable. The grading rubric is below.</p>
+</div>
+
+<div class="step">
+<span class="num">Step 1</span>
+<h2>Define the prediction target</h2>
+<p class="sub">What is the model trying to predict? Write a one-sentence target. Example: "Predict whether a student will complete a course on time."</p>
+<div class="field"><label>Prediction target</label><input type="text" id="target" placeholder="e.g., Predict whether a student will complete the course on time"></div>
+<div class="field"><label>Why does this matter?</label><textarea id="why" placeholder="One or two sentences. Who benefits when the model is right?"></textarea></div>
+</div>
+
+<div class="step">
+<span class="num">Step 2</span>
+<h2>Pick three features</h2>
+<p class="sub">From the columns below, pick three you think carry signal. Then write one sentence explaining why each one helps the model.</p>
+<div class="field"><label>Available columns</label>
+<div>
+<span class="feature-tag">homework_completion_rate</span>
+<span class="feature-tag">avg_quiz_score</span>
+<span class="feature-tag">attendance_rate</span>
+<span class="feature-tag">forum_posts_per_week</span>
+<span class="feature-tag">days_since_last_login</span>
+<span class="note-tag">eye_color</span>
+<span class="note-tag">zip_code</span>
+<span class="note-tag">student_id</span>
+</div>
+<div class="hint">Green tags are likely-useful columns. Red tags are noise, proxies, or unethical to use.</div>
+</div>
+<div class="field"><label>Feature 1 + why it helps</label>
+<input type="text" id="f1" placeholder="Feature name"><textarea id="f1why" placeholder="One sentence: why does this carry signal for your target?" style="margin-top:6px;"></textarea>
+</div>
+<div class="field"><label>Feature 2 + why it helps</label>
+<input type="text" id="f2" placeholder="Feature name"><textarea id="f2why" placeholder="One sentence: why does this carry signal?" style="margin-top:6px;"></textarea>
+</div>
+<div class="field"><label>Feature 3 + why it helps</label>
+<input type="text" id="f3" placeholder="Feature name"><textarea id="f3why" placeholder="One sentence: why does this carry signal?" style="margin-top:6px;"></textarea>
+</div>
+</div>
+
+<div class="step">
+<span class="num">Step 3</span>
+<h2>Label each row</h2>
+<p class="sub">Six rows of student-record-style data. Pick the label for each based on your target. The data is fictional. You decide whether each student should be predicted as "on track" or "at risk".</p>
+<div class="table-wrap">
+<table class="ds">
+<thead><tr><th>row</th><th>homework_completion</th><th>avg_quiz_score</th><th>attendance_rate</th><th>forum_posts</th><th>days_since_login</th><th>YOUR LABEL</th></tr></thead>
+<tbody id="rows"></tbody>
+</table>
+</div>
+<div class="hint" style="margin-top:8px;">There is no single correct label. Make a defensible decision per row based on your target. Differences between students are intentional.</div>
+</div>
+
+<div class="step">
+<span class="num">Step 4</span>
+<h2>Name one bias risk in your labels</h2>
+<p class="sub">Even with a small dataset, your labeling choices reflect assumptions. Name one risk: a kind of student your labels might misclassify, a missing column that would change your decisions, or a proxy that snuck in.</p>
+<div class="field"><label>Bias risk in your labels</label><textarea id="bias" placeholder="One or two sentences. Be specific about who or what your labels might miss."></textarea></div>
+</div>
+
+<div class="actions">
+<button class="btn ghost" onclick="resetAll()">Reset</button>
+<button class="btn" onclick="buildWorksheet()">Build Worksheet</button>
+</div>
+
+<div id="out" style="display:none;">
+<div class="worksheet" id="ws">
+<div class="title" id="wTitle">Features and Labels Worksheet</div>
+<div class="meta">
+<div class="block"><div class="lbl">Prediction Target</div><div class="val" id="wTarget"></div></div>
+<div class="block"><div class="lbl">Why It Matters</div><div class="val" id="wWhy"></div></div>
+</div>
+<div class="block" style="margin-bottom:12px;"><div class="lbl">Features Selected</div><div class="val" id="wFeats"></div></div>
+<div class="block" style="margin-bottom:12px;"><div class="lbl">Row Labels</div><div class="val" id="wRows"></div></div>
+<div class="block" style="border-left:3px solid #ffc800;"><div class="lbl" style="color:#ffc800;">Known Bias Risk</div><div class="val" id="wBias"></div></div>
+</div>
+<div class="actions"><button class="btn ghost" onclick="document.getElementById('out').style.display='none';">Edit answers</button><button class="btn" onclick="download()">Download as HTML</button></div>
+</div>
+
+<div class="step" style="border-top:3px solid #ffc800;">
+<h2 style="color:#ffc800;">Grading rubric</h2>
+<table class="ds" style="margin-top:8px;">
+<thead><tr><th>Component</th><th>Points</th><th>Criteria</th></tr></thead>
+<tbody>
+<tr><td><strong>Target definition</strong></td><td>2</td><td>One specific, testable sentence. Names who benefits.</td></tr>
+<tr><td><strong>Feature selection</strong></td><td>4</td><td>3 features picked from the green-tag list, each with a clear one-sentence justification.</td></tr>
+<tr><td><strong>Row labels</strong></td><td>3</td><td>All 6 rows labeled. No blanks.</td></tr>
+<tr><td><strong>Bias risk</strong></td><td>2</td><td>Names a specific risk in your label choices, not a generic statement.</td></tr>
+<tr><td><strong>Worksheet download</strong></td><td>1</td><td>Worksheet HTML saved to portfolio.</td></tr>
+</tbody>
+</table>
+<p class="hint" style="margin-top:10px;">Submit the downloaded worksheet HTML in Canvas as your Lesson 2 deliverable.</p>
+</div>
+
+</div>
+<script>
+const ROWS=[
+ {hw:"95%",quiz:"88",att:"96%",forum:"4",login:"1"},
+ {hw:"40%",quiz:"55",att:"60%",forum:"0",login:"14"},
+ {hw:"78%",quiz:"71",att:"82%",forum:"2",login:"3"},
+ {hw:"100%",quiz:"94",att:"100%",forum:"6",login:"0"},
+ {hw:"22%",quiz:"48",att:"45%",forum:"0",login:"30"},
+ {hw:"65%",quiz:"70",att:"75%",forum:"1",login:"5"}
+];
+let labels={};
+function renderRows(){
+  document.getElementById("rows").innerHTML=ROWS.map((r,i)=>`<tr><td>#${i+1}</td><td>${r.hw}</td><td>${r.quiz}</td><td>${r.att}</td><td>${r.forum}</td><td>${r.login}</td>
+  <td class="editable"><select onchange="setLabel(${i},this.value)"><option value="">pick...</option><option ${labels[i]==='on_track'?'selected':''} value="on_track">on_track</option><option ${labels[i]==='at_risk'?'selected':''} value="at_risk">at_risk</option></select></td></tr>`).join("");
+}
+function setLabel(i,v){labels[i]=v;}
+function val(id){return document.getElementById(id).value.trim();}
+function resetAll(){
+  ["target","why","f1","f1why","f2","f2why","f3","f3why","bias"].forEach(id=>document.getElementById(id).value="");
+  labels={};renderRows();document.getElementById("out").style.display="none";
+}
+function buildWorksheet(){
+  const tgt=val("target")||"(missing)";
+  const why=val("why")||"(missing)";
+  const feats=[
+    {n:val("f1"),y:val("f1why")},
+    {n:val("f2"),y:val("f2why")},
+    {n:val("f3"),y:val("f3why")}
+  ].filter(f=>f.n);
+  const bias=val("bias")||"(not named)";
+  document.getElementById("wTitle").textContent=tgt;
+  document.getElementById("wTarget").textContent=tgt;
+  document.getElementById("wWhy").textContent=why;
+  document.getElementById("wFeats").innerHTML=feats.length?feats.map(f=>`<p style="margin:6px 0;"><strong>${escapeHtml(f.n)}</strong>${f.y?' &middot; '+escapeHtml(f.y):''}</p>`).join(""):'<span class="empty">No features listed.</span>';
+  const rowLabels=ROWS.map((r,i)=>`Row ${i+1}: ${labels[i]||'(unlabeled)'}`).join(" &middot; ");
+  document.getElementById("wRows").textContent=rowLabels;
+  document.getElementById("wBias").textContent=bias;
+  document.getElementById("out").style.display="block";
+  document.getElementById("out").scrollIntoView({behavior:"smooth"});
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c]));}
+function download(){
+  const card=document.getElementById("ws");
+  const css="<style>body{font-family:Arial;background:#0d0e10;color:#f1f1f1;padding:30px;}.worksheet{background:#0d0e10;border:1px solid #A32638;border-radius:14px;padding:28px;max-width:760px;margin:0 auto;}.title{font-family:Georgia,serif;font-size:24px;color:#ffc800;margin-bottom:14px;text-align:center;}.meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}.block{background:#15171a;border:1px solid #2a2a2a;border-radius:10px;padding:14px 16px;}.lbl{font-size:11px;color:#A32638;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}.val{font-size:14px;color:#fff;line-height:1.55;}</style>";
+  const html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+document.getElementById("wTitle").textContent+'</title>'+css+'</head><body>'+card.outerHTML+'</body></html>';
+  const blob=new Blob([html],{type:"text/html"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");a.href=url;a.download=(document.getElementById("wTitle").textContent.replace(/[^a-z0-9]+/gi,"_").toLowerCase()||"worksheet")+"_features_labels.html";
+  document.body.appendChild(a);a.click();setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},100);
+}
+renderRows();
+</script>
+</body></html>

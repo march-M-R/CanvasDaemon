@@ -1,0 +1,291 @@
+<!--
+  CANVAS EMBED: ML 4.2 - Who Did the Data Miss?
+  <iframe src="LINK" width="100%" height="640" style="border:none;border-radius:12px;margin:32px 0;" title="Who Did the Data Miss?"></iframe>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who Did the Data Miss?</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+input[type=radio] { display: none; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f5f5f5; color: #363d45; line-height: 1.7; padding: 20px; }
+
+.prog { color: #a32638; font-size: 12px; font-weight: bold; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 12px; }
+#n1:checked ~ .prog::before { content: "Case 1 of 4"; }
+#n2:checked ~ .prog::before { content: "Case 2 of 4"; }
+#n3:checked ~ .prog::before { content: "Case 3 of 4"; }
+#n4:checked ~ .prog::before { content: "Case 4 of 4"; }
+.prog::before { content: "Case 1 of 4"; }
+
+.q-block { display: none; }
+#n1:checked ~ .q-block[data-q="1"] { display: block; }
+#n2:checked ~ .q-block[data-q="2"] { display: block; }
+#n3:checked ~ .q-block[data-q="3"] { display: block; }
+#n4:checked ~ .q-block[data-q="4"] { display: block; }
+#n1:checked ~ .q-block:not([data-q="1"]) { display: none; }
+#n2:checked ~ .q-block:not([data-q="2"]) { display: none; }
+#n3:checked ~ .q-block:not([data-q="3"]) { display: none; }
+#n4:checked ~ .q-block:not([data-q="4"]) { display: none; }
+
+.ref { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 18px; }
+.ref-card { background: #ffffff; border: 1px solid #E4E5E6; border-top: 3px solid #A32638; border-radius: 10px; padding: 12px 14px; }
+.ref-name { font-size: 13px; font-weight: bold; color: #0b0d10; margin-bottom: 3px; }
+.ref-desc { font-size: 12px; color: #4b535c; line-height: 1.5; }
+
+.headline-card { background: #0b0d10; border-radius: 12px; padding: 18px 20px; margin-bottom: 14px; }
+.hl-tag { color: #a32638; font-size: 11px; font-weight: bold; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+.hl-text { font-family: Georgia, serif; font-size: 19px; color: #ffffff; line-height: 1.4; margin-bottom: 8px; }
+.hl-source { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+.evidence { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.ev-item { background: #ffffff; border: 1px solid #E4E5E6; border-left: 4px solid #363D45; border-radius: 0 8px 8px 0; padding: 11px 14px; }
+.ev-label { font-size: 11px; font-weight: bold; letter-spacing: .08em; text-transform: uppercase; color: #363D45; margin-bottom: 3px; }
+.ev-text { font-size: 13px; color: #4b535c; line-height: 1.6; }
+
+.bias-q { color: #4b535c; font-size: 14px; margin-bottom: 12px; }
+.bias-choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
+.bc-lbl { display: block; background: #ffffff; border: 1.5px solid #E4E5E6; border-radius: 10px; padding: 12px 14px; cursor: pointer; user-select: none; transition: border-color .15s, background .15s; }
+.bc-lbl:hover { border-color: #A32638; background: #FFF8F8; }
+.bc-name { font-size: 13px; font-weight: bold; color: #0b0d10; display: block; margin-bottom: 2px; }
+.bc-hint { font-size: 11px; color: #4b535c; display: block; }
+
+.fb { display: none; background: #ffffff; border: 1px solid #E4E5E6; border-radius: 12px; overflow: hidden; margin-bottom: 12px; }
+.fb-head { background: #0b0d10; padding: 12px 18px; }
+.fb-hl { color: #a32638; font-size: 11px; margin-bottom: 3px; }
+.fb-ruling { font-family: Georgia, serif; font-size: 16px; color: #ffffff; }
+.fb-body { padding: 14px 18px; }
+.fb-tag { display: inline-block; background: #A32638; color: #ffffff; font-size: 11px; font-weight: bold; padding: 2px 10px; border-radius: 4px; letter-spacing: .06em; margin-bottom: 8px; }
+.fb-explain { font-size: 14px; color: #4b535c; line-height: 1.65; }
+.fb-explain strong { color: #0b0d10; }
+
+.nxt { display: none; margin-top: 4px; }
+.nxt-btn { background: #A32638; color: #fff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 14px; font-weight: bold; cursor: pointer; }
+.nxt-btn:hover { background: #8a1d2a; }
+
+#q1a:checked ~ .q-block[data-q="1"] .fb[data-for="q1a"],
+#q1b:checked ~ .q-block[data-q="1"] .fb[data-for="q1b"],
+#q1c:checked ~ .q-block[data-q="1"] .fb[data-for="q1c"],
+#q1d:checked ~ .q-block[data-q="1"] .fb[data-for="q1d"] { display: block; }
+#q1a:checked ~ .q-block[data-q="1"] .nxt,
+#q1b:checked ~ .q-block[data-q="1"] .nxt,
+#q1c:checked ~ .q-block[data-q="1"] .nxt,
+#q1d:checked ~ .q-block[data-q="1"] .nxt { display: block; }
+#q1a:checked ~ .q-block[data-q="1"] .bc-lbl,
+#q1b:checked ~ .q-block[data-q="1"] .bc-lbl,
+#q1c:checked ~ .q-block[data-q="1"] .bc-lbl,
+#q1d:checked ~ .q-block[data-q="1"] .bc-lbl { pointer-events: none; opacity: .55; }
+#q1a:checked ~ .q-block[data-q="1"] label[for="q1a"],
+#q1b:checked ~ .q-block[data-q="1"] label[for="q1b"],
+#q1c:checked ~ .q-block[data-q="1"] label[for="q1c"],
+#q1d:checked ~ .q-block[data-q="1"] label[for="q1d"] { opacity: 1; border-color: #A32638; }
+
+#q2a:checked ~ .q-block[data-q="2"] .fb[data-for="q2a"],
+#q2b:checked ~ .q-block[data-q="2"] .fb[data-for="q2b"],
+#q2c:checked ~ .q-block[data-q="2"] .fb[data-for="q2c"],
+#q2d:checked ~ .q-block[data-q="2"] .fb[data-for="q2d"] { display: block; }
+#q2a:checked ~ .q-block[data-q="2"] .nxt,
+#q2b:checked ~ .q-block[data-q="2"] .nxt,
+#q2c:checked ~ .q-block[data-q="2"] .nxt,
+#q2d:checked ~ .q-block[data-q="2"] .nxt { display: block; }
+#q2a:checked ~ .q-block[data-q="2"] .bc-lbl,
+#q2b:checked ~ .q-block[data-q="2"] .bc-lbl,
+#q2c:checked ~ .q-block[data-q="2"] .bc-lbl,
+#q2d:checked ~ .q-block[data-q="2"] .bc-lbl { pointer-events: none; opacity: .55; }
+#q2a:checked ~ .q-block[data-q="2"] label[for="q2a"],
+#q2b:checked ~ .q-block[data-q="2"] label[for="q2b"],
+#q2c:checked ~ .q-block[data-q="2"] label[for="q2c"],
+#q2d:checked ~ .q-block[data-q="2"] label[for="q2d"] { opacity: 1; border-color: #A32638; }
+
+#q3a:checked ~ .q-block[data-q="3"] .fb[data-for="q3a"],
+#q3b:checked ~ .q-block[data-q="3"] .fb[data-for="q3b"],
+#q3c:checked ~ .q-block[data-q="3"] .fb[data-for="q3c"],
+#q3d:checked ~ .q-block[data-q="3"] .fb[data-for="q3d"] { display: block; }
+#q3a:checked ~ .q-block[data-q="3"] .nxt,
+#q3b:checked ~ .q-block[data-q="3"] .nxt,
+#q3c:checked ~ .q-block[data-q="3"] .nxt,
+#q3d:checked ~ .q-block[data-q="3"] .nxt { display: block; }
+#q3a:checked ~ .q-block[data-q="3"] .bc-lbl,
+#q3b:checked ~ .q-block[data-q="3"] .bc-lbl,
+#q3c:checked ~ .q-block[data-q="3"] .bc-lbl,
+#q3d:checked ~ .q-block[data-q="3"] .bc-lbl { pointer-events: none; opacity: .55; }
+#q3a:checked ~ .q-block[data-q="3"] label[for="q3a"],
+#q3b:checked ~ .q-block[data-q="3"] label[for="q3b"],
+#q3c:checked ~ .q-block[data-q="3"] label[for="q3c"],
+#q3d:checked ~ .q-block[data-q="3"] label[for="q3d"] { opacity: 1; border-color: #A32638; }
+
+#q4a:checked ~ .q-block[data-q="4"] .fb[data-for="q4a"],
+#q4b:checked ~ .q-block[data-q="4"] .fb[data-for="q4b"],
+#q4c:checked ~ .q-block[data-q="4"] .fb[data-for="q4c"],
+#q4d:checked ~ .q-block[data-q="4"] .fb[data-for="q4d"] { display: block; }
+#q4a:checked ~ .q-block[data-q="4"] .bc-lbl,
+#q4b:checked ~ .q-block[data-q="4"] .bc-lbl,
+#q4c:checked ~ .q-block[data-q="4"] .bc-lbl,
+#q4d:checked ~ .q-block[data-q="4"] .bc-lbl { pointer-events: none; opacity: .55; }
+#q4a:checked ~ .q-block[data-q="4"] label[for="q4a"],
+#q4b:checked ~ .q-block[data-q="4"] label[for="q4b"],
+#q4c:checked ~ .q-block[data-q="4"] label[for="q4c"],
+#q4d:checked ~ .q-block[data-q="4"] label[for="q4d"] { opacity: 1; border-color: #A32638; }
+
+@media (max-width: 520px) {
+  body { padding: 14px; }
+  .ref { grid-template-columns: 1fr; }
+  .bias-choices { grid-template-columns: 1fr; }
+}
+
+/* End screen */
+#n-end:checked ~ .q-block { display: none; }
+#n-end:checked ~ .end-screen { display: block; }
+.end-screen { display: none; background: #ffffff; border: 1px solid #E4E5E6; border-left: 5px solid #A32638; border-radius: 12px; padding: 28px 24px; text-align: center; }
+.end-title { font-family: Georgia, serif; font-size: 22px; color: #0b0d10; margin-bottom: 10px; }
+.end-body { font-size: 14px; color: #4b535c; line-height: 1.7; max-width: 520px; margin: 0 auto 20px; }
+.replay-btn { display: inline-block; background: #f5f5f5; border: 1.5px solid #E4E5E6; color: #363d45; text-decoration: none; border-radius: 8px; padding: 10px 22px; font-size: 14px; font-weight: bold; cursor: pointer; }
+.replay-btn:hover { border-color: #A32638; color: #A32638; background: #FFF8F8; }
+#q4a:checked ~ .q-block[data-q="4"] .nxt { display: block; }
+#q4b:checked ~ .q-block[data-q="4"] .nxt { display: block; }
+#q4c:checked ~ .q-block[data-q="4"] .nxt { display: block; }
+#q4d:checked ~ .q-block[data-q="4"] .nxt { display: block; }
+</style>
+</head>
+<body>
+
+<input type="radio" name="nav" id="n1" checked>
+<input type="radio" name="nav" id="n2">
+<input type="radio" name="nav" id="n3">
+<input type="radio" name="nav" id="n4">
+<input type="radio" name="nav" id="n-end">
+<input type="radio" name="a1" id="q1a"><input type="radio" name="a1" id="q1b"><input type="radio" name="a1" id="q1c"><input type="radio" name="a1" id="q1d">
+<input type="radio" name="a2" id="q2a"><input type="radio" name="a2" id="q2b"><input type="radio" name="a2" id="q2c"><input type="radio" name="a2" id="q2d">
+<input type="radio" name="a3" id="q3a"><input type="radio" name="a3" id="q3b"><input type="radio" name="a3" id="q3c"><input type="radio" name="a3" id="q3d">
+<input type="radio" name="a4" id="q4a"><input type="radio" name="a4" id="q4b"><input type="radio" name="a4" id="q4c"><input type="radio" name="a4" id="q4d">
+
+<div class="ref">
+  <div class="ref-card"><p class="ref-name">Historical bias</p><p class="ref-desc">Training data reflects past human decisions that were themselves biased. The model learns and reproduces those patterns.</p></div>
+  <div class="ref-card"><p class="ref-name">Representation bias</p><p class="ref-desc">Certain groups are underrepresented or absent in training data. The model performs worse for those groups.</p></div>
+  <div class="ref-card"><p class="ref-name">Measurement bias</p><p class="ref-desc">The data used is a poor proxy for what the model should actually predict. The label does not match the real goal.</p></div>
+  <div class="ref-card"><p class="ref-name">Deployment bias</p><p class="ref-desc">The model is used in a context it was not designed for. Conditions differ from the training environment.</p></div>
+</div>
+
+<div class="prog"></div>
+
+<div class="q-block" data-q="1">
+  <div class="headline-card">
+    <p class="hl-tag">Documented incident</p>
+    <p class="hl-text">Amazon scrapped an AI hiring tool after finding it penalised resumes that included the word "women's"</p>
+    <p class="hl-source">Reuters, 2018</p>
+  </div>
+  <div class="evidence">
+    <div class="ev-item"><p class="ev-label">Evidence 1</p><p class="ev-text">The model was trained on resumes submitted to Amazon over a ten-year period, the majority of which came from men, reflecting the gender composition of the technology industry at the time.</p></div>
+    <div class="ev-item"><p class="ev-label">Evidence 2</p><p class="ev-text">The model learned to penalise terms associated with women, including graduates of all-women's colleges and members of women's chess clubs, because those patterns were underrepresented in successful historical hires.</p></div>
+    <div class="ev-item"><p class="ev-label">Evidence 3</p><p class="ev-text">Amazon did not set out to build a biased system. The model learned the pattern from the data it was given. The past hiring decisions encoded into training data reflected an industry that had historically hired fewer women.</p></div>
+  </div>
+  <p class="bias-q">Which type of bias most directly caused this failure?</p>
+  <div class="bias-choices">
+    <label class="bc-lbl" for="q1a"><span class="bc-name">Historical bias</span><span class="bc-hint">Learned from discriminatory past decisions</span></label>
+    <label class="bc-lbl" for="q1b"><span class="bc-name">Representation bias</span><span class="bc-hint">Groups missing from training data</span></label>
+    <label class="bc-lbl" for="q1c"><span class="bc-name">Measurement bias</span><span class="bc-hint">Wrong proxy for the actual goal</span></label>
+    <label class="bc-lbl" for="q1d"><span class="bc-name">Deployment bias</span><span class="bc-hint">Used outside its intended context</span></label>
+  </div>
+  <div class="fb" data-for="q1a"><div class="fb-head"><p class="fb-hl">Correct</p><p class="fb-ruling">Historical bias.</p></div><div class="fb-body"><div class="fb-tag">Historical bias</div><p class="fb-explain">The model was trained on a decade of hiring decisions made by humans who hired predominantly men. Those decisions encoded the gender imbalance of the tech industry into the training data. <strong>The model did not invent the bias: it learned it from patterns in past human choices.</strong> This is the defining characteristic of historical bias: the data accurately reflects the past, but the past itself was not equitable.</p></div></div>
+  <div class="fb" data-for="q1b"><div class="fb-head"><p class="fb-hl">Partially correct</p><p class="fb-ruling">Close, but historical bias is the better fit.</p></div><div class="fb-body"><div class="fb-tag">Historical bias</div><p class="fb-explain">Women were underrepresented in the training data, which is a form of representation bias. But the deeper cause is why they were underrepresented: <strong>historically discriminatory hiring patterns in the tech industry.</strong> The model learned from decisions that reflected past human bias. Both types are present, but historical bias is the root cause.</p></div></div>
+  <div class="fb" data-for="q1c"><div class="fb-head"><p class="fb-hl">Not quite</p><p class="fb-ruling">Historical bias is the better fit.</p></div><div class="fb-body"><div class="fb-tag">Historical bias</div><p class="fb-explain">Measurement bias would mean the label used in training was a poor proxy for the actual goal. Here the label was "successful hire" and the goal was the same thing. The problem is not a mismatch between proxy and goal: <strong>it is that the historical definition of "successful hire" was shaped by discriminatory patterns.</strong> That is historical bias.</p></div></div>
+  <div class="fb" data-for="q1d"><div class="fb-head"><p class="fb-hl">Not quite</p><p class="fb-ruling">Historical bias is the better fit.</p></div><div class="fb-body"><div class="fb-tag">Historical bias</div><p class="fb-explain">Deployment bias would mean the model was used in a different context from its training environment. Amazon deployed this model in the same domain it was trained on: hiring at Amazon. <strong>The bias existed within the training data itself,</strong> not in where the model was deployed.</p></div></div>
+  <div class="nxt"><label class="nxt-btn" for="n2">Next case</label></div>
+</div>
+
+<div class="q-block" data-q="2">
+  <div class="headline-card">
+    <p class="hl-tag">Documented incident</p>
+    <p class="hl-text">Study finds pulse oximeters overestimate blood oxygen levels in patients with darker skin, delaying treatment</p>
+    <p class="hl-source">New England Journal of Medicine, 2020</p>
+  </div>
+  <div class="evidence">
+    <div class="ev-item"><p class="ev-label">Evidence 1</p><p class="ev-text">Pulse oximeters use light transmitted through the finger to estimate blood oxygen. The devices and calibration algorithms were developed and tested primarily on people with lighter skin tones.</p></div>
+    <div class="ev-item"><p class="ev-label">Evidence 2</p><p class="ev-text">Patients with darker skin were nearly three times as likely to have dangerously low oxygen levels that the device showed as normal. These patients received delayed treatment as a result.</p></div>
+    <div class="ev-item"><p class="ev-label">Evidence 3</p><p class="ev-text">The algorithm was calibrated on data that did not include adequate representation of darker skin tones. It performed well for the populations it was calibrated on and poorly for others.</p></div>
+  </div>
+  <p class="bias-q">Which type of bias most directly caused this failure?</p>
+  <div class="bias-choices">
+    <label class="bc-lbl" for="q2a"><span class="bc-name">Historical bias</span><span class="bc-hint">Learned from discriminatory past decisions</span></label>
+    <label class="bc-lbl" for="q2b"><span class="bc-name">Representation bias</span><span class="bc-hint">Groups missing from training data</span></label>
+    <label class="bc-lbl" for="q2c"><span class="bc-name">Measurement bias</span><span class="bc-hint">Wrong proxy for the actual goal</span></label>
+    <label class="bc-lbl" for="q2d"><span class="bc-name">Deployment bias</span><span class="bc-hint">Used outside its intended context</span></label>
+  </div>
+  <div class="fb" data-for="q2a"><div class="fb-head"><p class="fb-hl">Not quite</p><p class="fb-ruling">Representation bias is the better fit.</p></div><div class="fb-body"><div class="fb-tag">Representation bias</div><p class="fb-explain">Historical bias involves learning from past discriminatory decisions. The oximeter algorithm was not trained on biased decisions about patients: <strong>it was calibrated on data that simply did not include adequate representation of all skin tones.</strong> The failure is about who was in the training data, not what past decisions the model learned from.</p></div></div>
+  <div class="fb" data-for="q2b"><div class="fb-head"><p class="fb-hl">Correct</p><p class="fb-ruling">Representation bias.</p></div><div class="fb-body"><div class="fb-tag">Representation bias</div><p class="fb-explain">The calibration data did not include sufficient representation of darker skin tones. The model therefore learned to measure oxygen accurately for people who were in the training data and inaccurately for those who were not. <strong>When training data does not reflect the full population the system will be used on, the model will fail for the missing groups.</strong> This is representation bias.</p></div></div>
+  <div class="fb" data-for="q2c"><div class="fb-head"><p class="fb-hl">Not quite</p><p class="fb-ruling">Representation bias is the better fit.</p></div><div class="fb-body"><div class="fb-tag">Representation bias</div><p class="fb-explain">Measurement bias would mean the metric used in training was a poor proxy for the actual goal. The oximeter was measuring the right thing: blood oxygen. <strong>The problem is not what was measured but whose data it was calibrated on.</strong> That is representation bias, not measurement bias.</p></div></div>
+  <div class="fb" data-for="q2d"><div class="fb-head"><p class="fb-hl">Partially relevant</p><p class="fb-ruling">Representation bias is the primary cause.</p></div><div class="fb-body"><div class="fb-tag">Representation bias</div><p class="fb-explain">Deployment bias would apply if the device was used somewhere its designers never intended. But the oximeter was used exactly as intended: in clinical settings to measure blood oxygen. <strong>The failure existed in the calibration data,</strong> not in where the device was used.</p></div></div>
+  <div class="nxt"><label class="nxt-btn" for="n3">Next case</label></div>
+</div>
+
+<div class="q-block" data-q="3">
+  <div class="headline-card">
+    <p class="hl-tag">Documented incident</p>
+    <p class="hl-text">Risk assessment tool used in US courts predicts Black defendants as higher risk of reoffending at twice the rate it mislabels white defendants</p>
+    <p class="hl-source">ProPublica, 2016</p>
+  </div>
+  <div class="evidence">
+    <div class="ev-item"><p class="ev-label">Evidence 1</p><p class="ev-text">The COMPAS tool was designed to predict the likelihood of a defendant reoffending. Judges used its scores to inform sentencing and parole decisions.</p></div>
+    <div class="ev-item"><p class="ev-label">Evidence 2</p><p class="ev-text">The tool used prior arrest records as a key input. In the United States, Black individuals are arrested at higher rates than white individuals for similar behaviour, due to decades of disproportionate policing in certain communities.</p></div>
+    <div class="ev-item"><p class="ev-label">Evidence 3</p><p class="ev-text">By using arrest rates as a proxy for likelihood of future criminal behaviour, the model learned and amplified policing patterns, not actual reoffending rates. The two are not the same measure.</p></div>
+  </div>
+  <p class="bias-q">Which type of bias most directly caused this failure?</p>
+  <div class="bias-choices">
+    <label class="bc-lbl" for="q3a"><span class="bc-name">Historical bias</span><span class="bc-hint">Learned from discriminatory past decisions</span></label>
+    <label class="bc-lbl" for="q3b"><span class="bc-name">Representation bias</span><span class="bc-hint">Groups missing from training data</span></label>
+    <label class="bc-lbl" for="q3c"><span class="bc-name">Measurement bias</span><span class="bc-hint">Wrong proxy for the actual goal</span></label>
+    <label class="bc-lbl" for="q3d"><span class="bc-name">Deployment bias</span><span class="bc-hint">Used outside its intended context</span></label>
+  </div>
+  <div class="fb" data-for="q3a"><div class="fb-head"><p class="fb-hl">Partially correct</p><p class="fb-ruling">Measurement bias is the more precise answer.</p></div><div class="fb-body"><div class="fb-tag">Measurement bias</div><p class="fb-explain">Historical bias contributed: past policing patterns shaped the arrest data. But the more precise diagnosis is measurement bias. <strong>The model used arrest rates as a proxy for reoffending likelihood, and those two things are not the same.</strong> Arrest rates reflect who gets policed, not who commits crime. Using the wrong measurement is the core design failure.</p></div></div>
+  <div class="fb" data-for="q3b"><div class="fb-head"><p class="fb-hl">Not quite</p><p class="fb-ruling">Measurement bias is the better fit.</p></div><div class="fb-body"><div class="fb-tag">Measurement bias</div><p class="fb-explain">All groups were represented in the training data. The problem is not who was missing but <strong>what was being measured: arrest records were used as a proxy for reoffending risk, but arrest rates are shaped by policing patterns, not only by behaviour.</strong> Using the wrong proxy is measurement bias.</p></div></div>
+  <div class="fb" data-for="q3c"><div class="fb-head"><p class="fb-hl">Correct</p><p class="fb-ruling">Measurement bias.</p></div><div class="fb-body"><div class="fb-tag">Measurement bias</div><p class="fb-explain">The model was trying to predict reoffending, but it was trained using arrest records as its primary signal. <strong>Arrest rates are a poor proxy for actual reoffending rates because they reflect who gets policed as much as who commits crime.</strong> By treating arrests as equivalent to criminal behaviour, the model inherited the racial disparities embedded in policing patterns. This is measurement bias: a flawed proxy for the actual construct you want to measure.</p></div></div>
+  <div class="fb" data-for="q3d"><div class="fb-head"><p class="fb-hl">Not quite</p><p class="fb-ruling">Measurement bias is the better fit.</p></div><div class="fb-body"><div class="fb-tag">Measurement bias</div><p class="fb-explain">The tool was designed for and used in criminal courts, which is its intended context. Deployment bias would mean it was used somewhere it was not designed for. <strong>The failure existed in the design itself: specifically in the choice of arrest records as the measurement of risk.</strong></p></div></div>
+  <div class="nxt"><label class="nxt-btn" for="n4">Next case</label></div>
+</div>
+
+<div class="q-block" data-q="4">
+  <div class="headline-card">
+    <p class="hl-tag">Documented pattern</p>
+    <p class="hl-text">AI skin cancer detection tool trained on hospital patient images underperforms significantly when deployed in rural clinic settings</p>
+    <p class="hl-source">Pattern documented across multiple dermatology AI studies, 2019 to 2023</p>
+  </div>
+  <div class="evidence">
+    <div class="ev-item"><p class="ev-label">Evidence 1</p><p class="ev-text">The model was trained on high-resolution images taken with professional dermatoscopes in controlled hospital lighting. It achieved over 90% accuracy on its test set, which came from the same hospital system.</p></div>
+    <div class="ev-item"><p class="ev-label">Evidence 2</p><p class="ev-text">When deployed in rural clinics, photos were taken with smartphones in variable lighting by clinicians with less training in image capture. Accuracy dropped below 70% in these settings.</p></div>
+    <div class="ev-item"><p class="ev-label">Evidence 3</p><p class="ev-text">The training population was predominantly patients from urban academic medical centres. Rural patients have different sun exposure patterns, skin conditions, and disease presentations that were not represented in the training data.</p></div>
+  </div>
+  <p class="bias-q">Which type of bias most directly caused this failure?</p>
+  <div class="bias-choices">
+    <label class="bc-lbl" for="q4a"><span class="bc-name">Historical bias</span><span class="bc-hint">Learned from discriminatory past decisions</span></label>
+    <label class="bc-lbl" for="q4b"><span class="bc-name">Representation bias</span><span class="bc-hint">Groups missing from training data</span></label>
+    <label class="bc-lbl" for="q4c"><span class="bc-name">Measurement bias</span><span class="bc-hint">Wrong proxy for the actual goal</span></label>
+    <label class="bc-lbl" for="q4d"><span class="bc-name">Deployment bias</span><span class="bc-hint">Used outside its intended context</span></label>
+  </div>
+  <div class="fb" data-for="q4a"><div class="fb-head"><p class="fb-hl">Not quite</p><p class="fb-ruling">Deployment bias is the primary cause.</p></div><div class="fb-body"><div class="fb-tag">Deployment bias</div><p class="fb-explain">Historical bias involves learning from past discriminatory decisions. This model was not trained on biased past decisions: <strong>it performed well for the population it was trained on.</strong> The failure occurred when it was used in a different setting with a different population and different image conditions. That is deployment bias.</p></div></div>
+  <div class="fb" data-for="q4b"><div class="fb-head"><p class="fb-hl">Partially correct</p><p class="fb-ruling">Deployment bias is the primary cause.</p></div><div class="fb-body"><div class="fb-tag">Deployment bias</div><p class="fb-explain">Rural patients were underrepresented in training, which is representation bias. But the defining characteristic here is the full mismatch between training and deployment: <strong>different equipment, different lighting, different patient population, different disease presentations.</strong> That combination of environmental mismatches defines deployment bias.</p></div></div>
+  <div class="fb" data-for="q4c"><div class="fb-head"><p class="fb-hl">Not quite</p><p class="fb-ruling">Deployment bias is the primary cause.</p></div><div class="fb-body"><div class="fb-tag">Deployment bias</div><p class="fb-explain">Measurement bias would mean the label used in training was a poor proxy for the actual goal. The model was correctly trained to identify skin cancer, which is the right goal. <strong>The failure is not in what was measured but in where and on whom the model was used.</strong></p></div></div>
+  <div class="fb" data-for="q4d"><div class="fb-head"><p class="fb-hl">Correct</p><p class="fb-ruling">Deployment bias.</p></div><div class="fb-body"><div class="fb-tag">Deployment bias</div><p class="fb-explain">The model performed well in the environment it was trained for: controlled hospital settings with professional equipment and urban patients. When deployed in rural clinics with smartphone cameras, variable lighting, and a different demographic, <strong>the conditions it encountered were entirely outside its training distribution.</strong> A model that performs well in its training context but fails when applied to a different real-world setting is the definition of deployment bias.</p></div></div>
+
+  <div class="nxt"><label class="nxt-btn" for="n-end">See conclusion</label></div>
+</div>
+
+
+<div class="end-screen">
+  <h2 class="end-title">Four cases examined.</h2>
+  <p class="end-body">Bias always has a cause: what data was collected, whose data was included, what was measured, and where the model was used. Naming the type of bias is the first step to addressing it.</p>
+  <button class="replay-btn" onclick="resetGame()">Play again</button>
+</div>
+
+<script>
+function resetGame() {
+  document.getElementById('n1').checked = true;
+    var els = document.querySelectorAll('[name=a1]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a2]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a3]'); els.forEach(function(e){e.checked=false;});
+  var els = document.querySelectorAll('[name=a4]'); els.forEach(function(e){e.checked=false;});
+}
+</script>
+</body>
+</html>

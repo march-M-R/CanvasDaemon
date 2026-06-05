@@ -1,0 +1,86 @@
+module_name,module_position,item_position,page_title,canvas_page_url,local_file
+Course Homepage,1,1,Welcome to the course,welcome-to-the-course,welcome-to-the-course__welcome-to-the-course.html
+Course Homepage,1,2,Course Roadmap,course-roadmap,course-roadmap__course-roadmap.html
+Course Homepage,1,3,How this course works,how-this-course-works,how-this-course-works__how-this-course-works.html
+Module 1: AI Hidden in Plain Sight ,2,1,M01: AI Hidden in Plain Sight — Module Overview,m01-ai-hidden-in-plain-sight-module-overview,m01-ai-hidden-in-plain-sight-module-overview__m01-ai-hidden-in-plain-sight-module-overview.html
+Module 1: AI Hidden in Plain Sight ,2,3,Lesson 1 - What is artificial intelligence?,lesson-1-what-is-artificial-intelligence,lesson-1-what-is-artificial-intelligence__lesson-1-what-is-artificial-intelligence.html
+Module 1: AI Hidden in Plain Sight ,2,4,Micro Learning 1.1,micro-learning-1-dot-1,micro-learning-1-1__micro-learning-1-dot-1.html
+Module 1: AI Hidden in Plain Sight ,2,5,Micro learning 1.2,micro-learning-1-dot-2,micro-learning-1-2__micro-learning-1-dot-2.html
+Module 1: AI Hidden in Plain Sight ,2,6,Micro Learning 1.3,micro-learning-1-dot-3,micro-learning-1-3__micro-learning-1-dot-3.html
+Module 1: AI Hidden in Plain Sight ,2,7,Lesson 2  The Evolution of Artificial Intelligence,lesson-2-the-evolution-of-artificial-intelligence,lesson-2-the-evolution-of-artificial-intelligence__lesson-2-the-evolution-of-artificial-intelligence.html
+Module 1: AI Hidden in Plain Sight ,2,8,Micro Learning 2.1,micro-learning-2-dot-1-2,micro-learning-2-1__micro-learning-2-dot-1-2.html
+Module 1: AI Hidden in Plain Sight ,2,9,Micro Learning 2.2,micro-learning-2-dot-2,micro-learning-2-2__micro-learning-2-dot-2.html
+Module 1: AI Hidden in Plain Sight ,2,10,Micro Learning 2.3,micro-learning-2-dot-3,micro-learning-2-3__micro-learning-2-dot-3.html
+Module 1: AI Hidden in Plain Sight ,2,11,lesson 3,lesson-3,lesson-3__lesson-3.html
+Module 1: AI Hidden in Plain Sight ,2,12,micro learning 3.1,micro-learning-3-dot-1,micro-learning-3-1__micro-learning-3-dot-1.html
+Module 1: AI Hidden in Plain Sight ,2,13,micro learning 3.2,micro-learning-3-dot-2,micro-learning-3-2__micro-learning-3-dot-2.html
+Module 1: AI Hidden in Plain Sight ,2,14,micro learning 3.3,micro-learning-3-dot-3,micro-learning-3-3__micro-learning-3-dot-3.html
+Module 1: AI Hidden in Plain Sight ,2,15,Lesson 4,lesson-4,lesson-4__lesson-4.html
+Module 1: AI Hidden in Plain Sight ,2,16,Micro Learning 4.1,micro-learning-4-dot-1,micro-learning-4-1__micro-learning-4-dot-1.html
+Module 1: AI Hidden in Plain Sight ,2,17,Micro Learning 4.2,micro-learning-4-dot-2,micro-learning-4-2__micro-learning-4-dot-2.html
+Module 1: AI Hidden in Plain Sight ,2,18,Micro Learning 4.3,micro-learning-4-dot-3,micro-learning-4-3__micro-learning-4-dot-3.html
+Module 1: AI Hidden in Plain Sight ,2,19,Course_Introduction,course-introduction-2,course-introduction__course-introduction-2.html
+Module 1: AI Hidden in Plain Sight ,2,20,Classify ,classify,classify__classify.html
+Module 1: AI Hidden in Plain Sight ,2,21,Summary,summary-2,summary__summary-2.html
+Module 1: AI Hidden in Plain Sight ,2,23,Course Introduction,course-introduction,course-introduction__course-introduction.html
+Module 1: AI Hidden in Plain Sight ,2,24,Module 1 Introduction,m01-introduction,module-1-introduction__m01-introduction.html
+Module 1: AI Hidden in Plain Sight ,2,25,Lesson 1 Practice: AI or Not AI?,m01-l1-practice-ai-or-not-ai,lesson-1-practice-ai-or-not-ai__m01-l1-practice-ai-or-not-ai.html
+Module 1: AI Hidden in Plain Sight ,2,27,deck,deck,deck__deck.html
+Module 2: How AI Learns from Data,3,1,M2 Overview,m02-overview-4,m2-overview__m02-overview-4.html
+Module 2: How AI Learns from Data,3,2,M2 Opening Discussion,m02-discussion-4,m2-opening-discussion__m02-discussion-4.html
+Module 2: How AI Learns from Data,3,3,M2 Lesson 1,m02-l1-4,m2-lesson-1__m02-l1-4.html
+Module 2: How AI Learns from Data,3,4,M2 Lesson 1 - Micro 1.1,m02-l1-ml-1-4,m2-lesson-1-micro-1-1__m02-l1-ml-1-4.html
+Module 2: How AI Learns from Data,3,5,M2 Lesson 1 - Micro 1.2,m02-l1-ml-2-4,m2-lesson-1-micro-1-2__m02-l1-ml-2-4.html
+Module 2: How AI Learns from Data,3,6,M2 Lesson 1 - Micro 1.3,m02-l1-ml-3-4,m2-lesson-1-micro-1-3__m02-l1-ml-3-4.html
+Module 2: How AI Learns from Data,3,7,M2 Lesson 2,m02-l2-4,m2-lesson-2__m02-l2-4.html
+Module 2: How AI Learns from Data,3,8,M2 Lesson 2 - Micro 2.1,m02-l2-ml-1-4,m2-lesson-2-micro-2-1__m02-l2-ml-1-4.html
+Module 2: How AI Learns from Data,3,9,M2 Lesson 2 - Micro 2.2,m02-l2-ml-2-4,m2-lesson-2-micro-2-2__m02-l2-ml-2-4.html
+Module 2: How AI Learns from Data,3,10,M2 Lesson 2 - Micro 2.3,m02-l2-ml-3-4,m2-lesson-2-micro-2-3__m02-l2-ml-3-4.html
+Module 2: How AI Learns from Data,3,11,M2 Lesson 3,m02-l3-4,m2-lesson-3__m02-l3-4.html
+Module 2: How AI Learns from Data,3,12,M2 Lesson 3 - Micro 3.1,m02-l3-ml-1-4,m2-lesson-3-micro-3-1__m02-l3-ml-1-4.html
+Module 2: How AI Learns from Data,3,13,M2 Lesson 3 - Micro 3.2,m02-l3-ml-2-4,m2-lesson-3-micro-3-2__m02-l3-ml-2-4.html
+Module 2: How AI Learns from Data,3,14,M2 Lesson 3 - Micro 3.3,m02-l3-ml-3-4,m2-lesson-3-micro-3-3__m02-l3-ml-3-4.html
+Module 2: How AI Learns from Data,3,15,M2 Lesson 4,m02-l4-4,m2-lesson-4__m02-l4-4.html
+Module 2: How AI Learns from Data,3,16,M2 Lesson 4 - Micro 4.1,m02-l4-ml-1-4,m2-lesson-4-micro-4-1__m02-l4-ml-1-4.html
+Module 2: How AI Learns from Data,3,17,M2 Lesson 4 - Micro 4.2,m02-l4-ml-2-4,m2-lesson-4-micro-4-2__m02-l4-ml-2-4.html
+Module 2: How AI Learns from Data,3,18,M2 Lesson 4 - Micro 4.3,m02-l4-ml-3-4,m2-lesson-4-micro-4-3__m02-l4-ml-3-4.html
+Module 2: How AI Learns from Data,3,19,M2 Progress Checklist,m02-checklist-4,m2-progress-checklist__m02-checklist-4.html
+Module 3: No-Code AI Lab,4,1,M3 Overview,m03-overview-9,m3-overview__m03-overview-9.html
+Module 3: No-Code AI Lab,4,2,M3 Opening Discussion,m03-discussion-9,m3-opening-discussion__m03-discussion-9.html
+Module 3: No-Code AI Lab,4,3,M3 Lesson 1,m03-l1-7,m3-lesson-1__m03-l1-7.html
+Module 3: No-Code AI Lab,4,4,M3 Lesson 1 - Micro 1.1,m03-l1-ml-1-7,m3-lesson-1-micro-1-1__m03-l1-ml-1-7.html
+Module 3: No-Code AI Lab,4,5,M3 Lesson 1 - Micro 1.2,m03-l1-ml-2-7,m3-lesson-1-micro-1-2__m03-l1-ml-2-7.html
+Module 3: No-Code AI Lab,4,6,M3 Lesson 1 - Micro 1.3,m03-l1-ml-3-7,m3-lesson-1-micro-1-3__m03-l1-ml-3-7.html
+Module 3: No-Code AI Lab,4,7,M3 Lesson 2,m03-l2-7,m3-lesson-2__m03-l2-7.html
+Module 3: No-Code AI Lab,4,8,M3 L2 Assignment - Teachable Machine Sprint,m03-l2-assignment-2,m3-l2-assignment-teachable-machine-sprint__m03-l2-assignment-2.html
+Module 3: No-Code AI Lab,4,9,M3 Lesson 2 - Micro 2.1,m03-l2-ml-1-7,m3-lesson-2-micro-2-1__m03-l2-ml-1-7.html
+Module 3: No-Code AI Lab,4,10,M3 Lesson 2 - Micro 2.2,m03-l2-ml-2-7,m3-lesson-2-micro-2-2__m03-l2-ml-2-7.html
+Module 3: No-Code AI Lab,4,11,M3 Lesson 2 - Micro 2.3,m03-l2-ml-3-7,m3-lesson-2-micro-2-3__m03-l2-ml-3-7.html
+Module 3: No-Code AI Lab,4,12,M3 Lesson 3,m03-l3-7,m3-lesson-3__m03-l3-7.html
+Module 3: No-Code AI Lab,4,13,M3 Lesson 3 - Micro 3.1,m03-l3-ml-1-7,m3-lesson-3-micro-3-1__m03-l3-ml-1-7.html
+Module 3: No-Code AI Lab,4,14,M3 Lesson 3 - Micro 3.2,m03-l3-ml-2-7,m3-lesson-3-micro-3-2__m03-l3-ml-2-7.html
+Module 3: No-Code AI Lab,4,15,M3 Lesson 3 - Micro 3.3,m03-l3-ml-3-7,m3-lesson-3-micro-3-3__m03-l3-ml-3-7.html
+Module 3: No-Code AI Lab,4,16,M3 Lesson 4,m03-l4-7,m3-lesson-4__m03-l4-7.html
+Module 3: No-Code AI Lab,4,17,M3 Lesson 4 - Micro 4.1,m03-l4-ml-1-7,m3-lesson-4-micro-4-1__m03-l4-ml-1-7.html
+Module 3: No-Code AI Lab,4,18,M3 Lesson 4 - Micro 4.2,m03-l4-ml-2-7,m3-lesson-4-micro-4-2__m03-l4-ml-2-7.html
+Module 3: No-Code AI Lab,4,19,M3 Lesson 4 - Micro 4.3,m03-l4-ml-3-7,m3-lesson-4-micro-4-3__m03-l4-ml-3-7.html
+Module 3: No-Code AI Lab,4,20,M3 Progress Checklist,m03-checklist-7,m3-progress-checklist__m03-checklist-7.html
+"Module 4: AI Ethics, Bias, and Safety",5,1,M4 Overview,m04-overview-6,m4-overview__m04-overview-6.html
+"Module 4: AI Ethics, Bias, and Safety",5,2,M4 Opening Discussion,m04-discussion-6,m4-opening-discussion__m04-discussion-6.html
+"Module 4: AI Ethics, Bias, and Safety",5,3,M4 Lesson 1,m04-l1-4,m4-lesson-1__m04-l1-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,4,M4 Lesson 1 - Micro 1.1,m04-l1-ml-1-4,m4-lesson-1-micro-1-1__m04-l1-ml-1-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,5,M4 Lesson 1 - Micro 1.2,m04-l1-ml-2-4,m4-lesson-1-micro-1-2__m04-l1-ml-2-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,6,M4 Lesson 1 - Micro 1.3,m04-l1-ml-3-4,m4-lesson-1-micro-1-3__m04-l1-ml-3-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,7,M4 Lesson 2,m04-l2-4,m4-lesson-2__m04-l2-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,8,M4 Lesson 2 - Micro 2.1,m04-l2-ml-1-4,m4-lesson-2-micro-2-1__m04-l2-ml-1-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,9,M4 Lesson 2 - Micro 2.2,m04-l2-ml-2-4,m4-lesson-2-micro-2-2__m04-l2-ml-2-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,10,M4 Lesson 2 - Micro 2.3,m04-l2-ml-3-4,m4-lesson-2-micro-2-3__m04-l2-ml-3-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,11,M4 Lesson 3,m04-l3-4,m4-lesson-3__m04-l3-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,12,M4 Lesson 3 - Micro 3.1,m04-l3-ml-1-4,m4-lesson-3-micro-3-1__m04-l3-ml-1-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,13,M4 Lesson 3 - Micro 3.2,m04-l3-ml-2-4,m4-lesson-3-micro-3-2__m04-l3-ml-2-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,14,M4 Lesson 3 - Micro 3.3,m04-l3-ml-3-4,m4-lesson-3-micro-3-3__m04-l3-ml-3-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,15,M4 Lesson 4,m04-l4-4,m4-lesson-4__m04-l4-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,16,M4 Lesson 4 - Micro 4.1,m04-l4-ml-1-4,m4-lesson-4-micro-4-1__m04-l4-ml-1-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,17,M4 Lesson 4 - Micro 4.2,m04-l4-ml-2-4,m4-lesson-4-micro-4-2__m04-l4-ml-2-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,18,M4 Lesson 4 - Micro 4.3,m04-l4-ml-3-4,m4-lesson-4-micro-4-3__m04-l4-ml-3-4.html
+"Module 4: AI Ethics, Bias, and Safety",5,19,M4 Progress Checklist,m04-checklist-4,m4-progress-checklist__m04-checklist-4.html

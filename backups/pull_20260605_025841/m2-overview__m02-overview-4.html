@@ -1,0 +1,114 @@
+
+
+<div style="max-width: 1200px; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; background: #f6f7f8; color: #363d45; line-height: 1.7;">
+<div style="background: linear-gradient(135deg, #0B0D10 0%, #111318 54%, #A32638 100%); background-position: center; padding: 64px 60px 58px; color: #ffffff;">
+<div style="max-width: 1000px; margin: 0 auto;">
+<table style="width: 100%; border-collapse: collapse;" role="presentation"><tbody><tr>
+<td style="vertical-align: middle; width: 64%; padding-right: 44px;">
+<p style="margin: 0 0 14px; color: #f2d6da; font-size: 15px;">Module 2 of 18 · Phase 1: Concepts and Intuition</p>
+<div style="border-left: 4px solid #A32638; padding-left: 28px;">
+<h1 style="margin: 0 0 18px; font-family: Georgia, 'Times New Roman', serif; font-size: 54px; line-height: 1.06; color: #ffffff;">How AI Learns from Data</h1>
+<p style="margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: 20px; font-style: italic; line-height: 1.7; color: rgba(255,255,255,0.92); max-width: 720px;">If two students teach an AI with different examples, will the AI learn the same thing?</p>
+</div>
+</td>
+<td style="vertical-align: middle; width: 36%;">
+<div style="background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.24); border-radius: 12px; padding: 22px;">
+<p style="margin: 0 0 14px; color: #f2d6da; font-size: 15px;">At a glance</p>
+<table style="width: 100%; border-collapse: collapse;" role="presentation"><tbody>
+<tr><td style="padding: 0 0 14px; border-bottom: 1px solid rgba(255,255,255,0.20);"><p style="margin: 0; font-family: Georgia, serif; font-size: 30px; color: #fff;">4</p><p style="margin: 0; font-size: 15px; color: rgba(255,255,255,0.90);">Lessons</p></td>
+<td style="padding: 0 0 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.20);"><p style="margin: 0; font-family: Georgia, serif; font-size: 30px; color: #fff;">12</p><p style="margin: 0; font-size: 15px; color: rgba(255,255,255,0.90);">Micro-Learnings</p></td></tr>
+<tr><td colspan="2" style="padding: 16px 0 0;"><p style="margin: 0; font-family: Georgia, serif; font-size: 30px; color: #fff;">5</p><p style="margin: 0; font-size: 15px; color: rgba(255,255,255,0.90);">Estimated hours</p></td></tr>
+</tbody></table>
+</div>
+</td>
+</tr></tbody></table>
+</div>
+</div>
+<div style="background: #A32638; padding: 24px 60px;">
+<div style="max-width: 1000px; margin: 0 auto;">
+<p style="margin: 0; color: #ffffff; font-family: Georgia, 'Times New Roman', serif; font-size: 24px; line-height: 1.45;">By the end of this module, you will be able to read any AI system as a data pipeline: inputs, features, labels, outputs, and the failure modes hidden in each step.</p>
+</div>
+</div>
+<div style="background: #ffffff; padding: 56px 60px 0;">
+<div style="max-width: 1000px; margin: 0 auto;">
+<table style="width: 100%; border-collapse: collapse;" role="presentation"><tbody><tr>
+<td style="width: 40%; vertical-align: top; padding-right: 38px;">
+<p style="margin: 0 0 8px; color: #a32638; font-size: 15px;">Module Mindset</p>
+<h2 style="margin: 0 0 14px; font-family: Georgia, 'Times New Roman', serif; font-size: 34px; color: #0b0d10; line-height: 1.18;">Data is the lesson the model learns.</h2>
+<p style="margin: 0; color: #4b535c; font-size: 15px; line-height: 1.75;">This module is about what AI actually learns from. Spoiler: it is not magic. It is data, in a specific form, captured for a specific reason, with all the gaps that implies. Knowing the data is knowing the model.</p>
+</td>
+<td style="width: 60%; vertical-align: top;">
+<div style="border: 1px solid #E4E5E6; border-radius: 10px; height: 260px; background: linear-gradient(135deg, #0B0D10 0%, #1a1d22 55%, #A32638 100%);"></div>
+</td>
+</tr></tbody></table>
+</div>
+</div>
+<div style="background: #ffffff; padding: 56px 60px 0;">
+<div style="max-width: 1000px; margin: 0 auto;">
+<p style="margin: 0 0 8px; color: #a32638; font-size: 15px;">Learning Outcomes</p>
+<h2 style="margin: 0 0 26px; font-family: Georgia, 'Times New Roman', serif; font-size: 34px; color: #0b0d10; line-height: 1.18;">What you will be able to do</h2>
+<table role="presentation" style="width: 100%; border-collapse: collapse;"><tbody>
+<tr>
+<td style="width: 33.33%; vertical-align: top; padding: 0 10px 0 0;"><div style="background: #FAFAFA; border: 1px solid #E4E5E6; border-top: 4px solid #A32638; border-radius: 8px; padding: 22px; height: 100%;"><p style="margin: 0 0 8px; color: #a32638; font-size: 15px;">Outcome 1</p><p style="margin: 0; color: #363d45; font-size: 15px; line-height: 1.7;">Read any AI feature as an input/output system and name what data it uses.</p></div></td>
+<td style="width: 33.33%; vertical-align: top; padding: 0 10px;"><div style="background: #FAFAFA; border: 1px solid #E4E5E6; border-top: 4px solid #363D45; border-radius: 8px; padding: 22px; height: 100%;"><p style="margin: 0 0 8px; color: #363d45; font-size: 15px;">Outcome 2</p><p style="margin: 0; color: #363d45; font-size: 15px; line-height: 1.7;">Distinguish structured from unstructured data and estimate cleanup costs.</p></div></td>
+<td style="width: 33.33%; vertical-align: top; padding: 0 0 0 10px;"><div style="background: #FAFAFA; border: 1px solid #E4E5E6; border-top: 4px solid #A32638; border-radius: 8px; padding: 22px; height: 100%;"><p style="margin: 0 0 8px; color: #a32638; font-size: 15px;">Outcome 3</p><p style="margin: 0; color: #363d45; font-size: 15px; line-height: 1.7;">Pick the right features and audit labels for noise, bias, and disagreement.</p></div></td>
+</tr>
+<tr>
+<td style="width: 33.33%; vertical-align: top; padding: 18px 10px 0 0;"><div style="background: #FAFAFA; border: 1px solid #E4E5E6; border-top: 4px solid #363D45; border-radius: 8px; padding: 22px; height: 100%;"><p style="margin: 0 0 8px; color: #363d45; font-size: 15px;">Outcome 4</p><p style="margin: 0; color: #363d45; font-size: 15px; line-height: 1.7;">Explain the train/validation/test split and spot common data leakage patterns.</p></div></td>
+<td style="width: 33.33%; vertical-align: top; padding: 18px 10px 0;"><div style="background: #FAFAFA; border: 1px solid #E4E5E6; border-top: 4px solid #A32638; border-radius: 8px; padding: 22px; height: 100%;"><p style="margin: 0 0 8px; color: #a32638; font-size: 15px;">Outcome 5</p><p style="margin: 0; color: #363d45; font-size: 15px; line-height: 1.7;">Trace AI failures back to their data source, from collection to labels to deployment.</p></div></td>
+<td style="width: 33.33%; vertical-align: top; padding: 18px 0 0 10px;"><div style="background: #0B0D10; border: 1px solid #0B0D10; border-radius: 8px; padding: 22px; height: 100%;"><p style="margin: 0 0 8px; color: #f2d6da; font-size: 15px;">Module Goal</p><p style="margin: 0; color: rgba(255,255,255,0.90); font-size: 15px; line-height: 1.7;">Build a one-page Data System Diagram of a real AI system, with features, labels, and known weaknesses.</p></div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div style="background: #f7f7f7; margin-top: 58px; padding: 56px 60px; border-top: 1px solid #E4E5E6; border-bottom: 1px solid #E4E5E6;">
+<div style="max-width: 1000px; margin: 0 auto;">
+<p style="margin: 0 0 8px; color: #a32638; font-size: 15px;">Module Roadmap</p>
+<h2 style="margin: 0 0 10px; font-family: Georgia, 'Times New Roman', serif; font-size: 34px; color: #0b0d10; line-height: 1.18;">Your learning journey</h2>
+<p style="margin: 0 0 28px; color: #4b535c; font-size: 15px; line-height: 1.75; max-width: 820px;">Four lessons. Each one focuses on one stage of the data pipeline. Complete them in order, because each one builds on the vocabulary of the last.</p>
+<table role="presentation" style="width: 100%; border-collapse: collapse;"><tbody><tr>
+<td style="width: 20%; vertical-align: top; padding: 0 8px 0 0;"><div style="background: #ffffff; border: 1px solid #E4E5E6; border-radius: 8px; padding: 20px; min-height: 216px;"><p style="margin: 0 0 10px; font-family: Georgia, serif; font-size: 30px; color: #a32638;">1</p><h3 style="margin: 0 0 10px; font-family: Georgia, serif; font-size: 21px; color: #0b0d10; line-height: 1.2;">Inputs &amp; Data</h3><p style="margin: 0; color: #4b535c; font-size: 15px; line-height: 1.65;">What counts as data. Structured vs unstructured. Inputs and outputs of an app.</p></div></td>
+<td style="width: 20%; vertical-align: top; padding: 0 8px;"><div style="background: #ffffff; border: 1px solid #E4E5E6; border-radius: 8px; padding: 20px; min-height: 216px;"><p style="margin: 0 0 10px; font-family: Georgia, serif; font-size: 30px; color: #363D45;">2</p><h3 style="margin: 0 0 10px; font-family: Georgia, serif; font-size: 21px; color: #0b0d10; line-height: 1.2;">Features &amp; Labels</h3><p style="margin: 0; color: #4b535c; font-size: 15px; line-height: 1.65;">The two things a supervised model actually sees, and how each can fail.</p></div></td>
+<td style="width: 20%; vertical-align: top; padding: 0 8px;"><div style="background: #ffffff; border: 1px solid #E4E5E6; border-radius: 8px; padding: 20px; min-height: 216px;"><p style="margin: 0 0 10px; font-family: Georgia, serif; font-size: 30px; color: #a32638;">3</p><h3 style="margin: 0 0 10px; font-family: Georgia, serif; font-size: 21px; color: #0b0d10; line-height: 1.2;">Train &amp; Test</h3><p style="margin: 0; color: #4b535c; font-size: 15px; line-height: 1.65;">Memorize or learn? The three sets, and the data-leakage trap.</p></div></td>
+<td style="width: 20%; vertical-align: top; padding: 0 8px;"><div style="background: #ffffff; border: 1px solid #E4E5E6; border-radius: 8px; padding: 20px; min-height: 216px;"><p style="margin: 0 0 10px; font-family: Georgia, serif; font-size: 30px; color: #363D45;">4</p><h3 style="margin: 0 0 10px; font-family: Georgia, serif; font-size: 21px; color: #0b0d10; line-height: 1.2;">Why It Fails</h3><p style="margin: 0; color: #4b535c; font-size: 15px; line-height: 1.65;">Garbage in, garbage out. Bias entry points. Suspicious labels.</p></div></td>
+<td style="width: 20%; vertical-align: top; padding: 0 0 0 8px;"><div style="background: #0B0D10; border: 1px solid #0B0D10; border-radius: 8px; padding: 20px; min-height: 216px;"><p style="margin: 0 0 10px; font-family: Georgia, serif; font-size: 30px; color: #f2d6da;">5</p><h3 style="margin: 0 0 10px; font-family: Georgia, serif; font-size: 21px; color: #ffffff; line-height: 1.2;">System Diagram</h3><p style="margin: 0; color: rgba(255,255,255,0.90); font-size: 15px; line-height: 1.65;">Build a one-page Data System Diagram of a real AI feature.</p></div></td>
+</tr></tbody></table>
+</div>
+</div>
+<div style="background: #ffffff; padding: 56px 60px 0;">
+<div style="max-width: 1000px; margin: 0 auto;">
+<p style="margin: 0 0 8px; color: #a32638; font-size: 15px;">Your Module Checklist</p>
+<h2 style="margin: 0 0 14px; font-family: Georgia, 'Times New Roman', serif; font-size: 34px; color: #0b0d10; line-height: 1.18;">Track your progress</h2>
+<div style="background: #FAFAFA; border: 1px solid #E4E5E6; border-left: 5px solid #A32638; border-radius: 8px; padding: 28px 30px;">
+<table role="presentation" style="width: 100%; border-collapse: collapse;"><tbody><tr>
+<td style="vertical-align: middle; padding-right: 28px;">
+<p style="margin: 0 0 8px; color: #a32638; font-size: 15px;">Embedded Progress Tool</p>
+<h3 style="margin: 0 0 10px; font-family: Georgia, 'Times New Roman', serif; font-size: 26px; color: #0b0d10; line-height: 1.2;">Module 2 Progress Checklist</h3>
+<p style="margin: 0; color: #363d45; font-size: 15px; line-height: 1.75;">Open the checklist to track lessons, micros, and the Data System Diagram.</p>
+</td>
+<td style="vertical-align: middle; width: 240px; text-align: center;"><a style="display: inline-block; background: #A32638; color: #ffffff; text-decoration: none; padding: 13px 20px; border-radius: 6px; font-size: 15px;" href="https://sit-online.instructure.com/courses/226/pages/m02-checklist-4" data-api-endpoint="https://sit-online.instructure.com/api/v1/courses/226/pages/m02-checklist-4" data-api-returntype="Page">Open Checklist</a>
+<p style="margin: 10px 0 0; color: #4b535c; font-size: 15px;">Opens as a course page</p>
+</td>
+</tr></tbody></table>
+</div>
+</div>
+</div>
+<div style="background: #0B0D10; padding: 44px 60px; color: #ffffff;">
+<div style="max-width: 1000px; margin: 0 auto;">
+<table role="presentation" style="width: 100%; border-collapse: collapse;"><tbody><tr>
+<td style="vertical-align: middle; padding-right: 28px;">
+<p style="margin: 0 0 8px; color: #f2d6da; font-size: 15px;">Ready to Begin</p>
+<h2 style="margin: 0 0 10px; font-family: Georgia, 'Times New Roman', serif; font-size: 32px; color: #ffffff; line-height: 1.2;">Start with the opening discussion.</h2>
+<p style="margin: 0; color: rgba(255,255,255,0.90); font-size: 15px; line-height: 1.7;">Then move into Lesson 1 on inputs, outputs, and what counts as data.</p>
+</td>
+<td style="vertical-align: middle; width: 260px; text-align: right;">
+<a style="display: inline-block; background: #A32638; color: #ffffff; text-decoration: none; padding: 13px 20px; border-radius: 6px; font-size: 15px;" href="https://sit-online.instructure.com/courses/226/pages/m02-discussion-4" data-api-endpoint="https://sit-online.instructure.com/api/v1/courses/226/pages/m02-discussion-4" data-api-returntype="Page">Module 2 Starts Here</a>
+</td>
+</tr></tbody></table>
+</div>
+</div>
+
+<div style="border-top: 1px solid #E4E5E6; padding: 22px 60px; text-align: center; background: #ffffff;">
+<p style="margin: 0; font-size: 15px; color: #4b535c;">Stevens Institute of Technology · College of Professional Education · Introduction to Applied AI · M02: How AI Learns from Data</p>
+</div>
+</div>

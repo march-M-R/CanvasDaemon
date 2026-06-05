@@ -1,0 +1,22 @@
+COURSE INVENTORY SUMMARY
+========================
+
+Course ID: 226
+Base URL: https://sit-online.instructure.com
+
+Total Canvas pages pulled:
+401
+
+Pages used in Modules:
+85
+
+Pages not used in Modules:
+316
+
+Duplicate page titles:
+59
+
+Reports created:
+- reports/used_module_pages.csv
+- reports/unused_pages.txt
+- reports/duplicate_titles.txt

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.2 — Coding assistant ground rules
+
+- Added shared ground rules for coding assistants to `AGENTS.md`, `CLAUDE.md`, Copilot/Cursor instructions, the AI-helper guide, handbook, and process guide.
+- Linked the rules from README so teammates know how helpers should behave in this repo.
+
 ## 0.3.1 — Single handbook source
 
 - Removed the old `CanvasDaemon_Runbook.html` so the current handbook lives only in `docs/HANDBOOK.md` and `docs/HANDBOOK.html`.

@@ -6,6 +6,9 @@ This is the **V1 maintenance update (0.2.0)**. It keeps the established course c
 
 ## Handbook
 
+Ground rules for coding assistants are documented in `AGENTS.md` and `docs/AI_HELPER_GUIDE.md`. They cover Canvas write safety, generated files, asset uploads, reviews, testing, and human approval for content accuracy.
+
+
 Start with the setup guide if you are configuring CanvasDaemon for the first time, then use the teammate handbook for the full navigation, workflow, and script guide:
 
 - [Setup guide — Markdown](docs/SETUP.md)

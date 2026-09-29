@@ -1,3 +1,4 @@
+from canvas_runtime import add_write_flags, authorize
 import os
 import json
 import argparse
@@ -5,8 +6,8 @@ import mimetypes
 import webbrowser
 from pathlib import Path
 
-import requests
-from dotenv import load_dotenv
+from canvas_runtime import requests
+from canvas_runtime import load_dotenv
 
 load_dotenv()
 
@@ -23,10 +24,8 @@ HEADERS = {
 
 
 def check_env():
-    if not BASE_URL or not TOKEN or not COURSE_ID:
-        raise RuntimeError(
-            "Missing .env values. Required: CANVAS_BASE_URL, CANVAS_TOKEN, COURSE_ID"
-        )
+    from canvas_runtime import validate_config
+    validate_config(BASE_URL, TOKEN, COURSE_ID)
 
 
 def load_preview_config():
@@ -36,7 +35,8 @@ def load_preview_config():
             "Run: python scripts/setup_preview_environment.py"
         )
 
-    return json.loads(PREVIEW_CONFIG_PATH.read_text(encoding="utf-8"))
+    from canvas_runtime import bound
+    return bound(json.loads(PREVIEW_CONFIG_PATH.read_text(encoding="utf-8")), BASE_URL, COURSE_ID)
 
 
 def resolve_local_file(path_text):
@@ -74,41 +74,9 @@ def start_upload(file_path, folder_path):
     return response.json()
 
 
-def upload_binary(file_path, upload_info):
-    upload_url = upload_info["upload_url"]
-    upload_params = upload_info["upload_params"]
-
-    with file_path.open("rb") as f:
-        files = {
-            "file": (
-                file_path.name,
-                f,
-                guess_content_type(file_path)
-            )
-        }
-
-        response = requests.post(
-            upload_url,
-            data=upload_params,
-            files=files,
-            allow_redirects=True
-        )
-
-    response.raise_for_status()
-
-    try:
-        return response.json()
-    except Exception:
-        location = response.headers.get("Location")
-
-        if location:
-            final_response = requests.get(location, headers=HEADERS)
-            final_response.raise_for_status()
-            return final_response.json()
-
-        raise RuntimeError(
-            "Upload completed but Canvas did not return JSON."
-        )
+def upload_binary(file_path, upload_info, canvas_name=None):
+    from canvas_runtime import upload_binary as transfer
+    return transfer(file_path, upload_info, BASE_URL, HEADERS, canvas_name)
 
 
 def upload_preview_asset(file_path, folder_path):
@@ -126,7 +94,8 @@ def build_canvas_api_endpoint(file_id):
 
 def build_asset_embed_html(uploaded_file, local_file):
     file_id = uploaded_file.get("id")
-    filename = uploaded_file.get("filename") or local_file.name
+    from html import escape
+    filename = escape(uploaded_file.get("filename") or local_file.name, quote=True)
 
     content_type = (
         uploaded_file.get("content-type")
@@ -197,6 +166,11 @@ def build_preview_page_body(local_file, uploaded_file):
 def update_preview_page(preview_page_url, html_body):
     url = f"{BASE_URL}/api/v1/courses/{COURSE_ID}/pages/{preview_page_url}"
 
+    current = requests.get(url, headers=HEADERS)
+    current.raise_for_status()
+    if current.json().get("published"):
+        raise ValueError("Refusing to overwrite a published preview page.")
+
     payload = {
         "wiki_page[body]": html_body,
         "wiki_page[published]": "false"
@@ -208,8 +182,6 @@ def update_preview_page(preview_page_url, html_body):
 
 
 def main():
-    check_env()
-
     parser = argparse.ArgumentParser(
         description="Upload a local asset to Canvas preview assets and preview only the embedded part inside Canvas."
     )
@@ -225,7 +197,9 @@ def main():
         help="Do not open the Canvas preview page"
     )
 
+    add_write_flags(parser)
     args = parser.parse_args()
+    check_env()
 
     config = load_preview_config()
 
@@ -234,6 +208,9 @@ def main():
     preview_folder = config.get("preview_asset_folder", "CanvasDaemon Preview Assets")
 
     local_file = resolve_local_file(args.file_path)
+
+    if not authorize(args, BASE_URL, COURSE_ID):
+        return
 
     print(f"Uploading preview asset: {local_file}")
     uploaded_file = upload_preview_asset(local_file, preview_folder)

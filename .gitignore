@@ -25,3 +25,11 @@ pages/canvasdaemon-preview-page__canvasdaemon-preview-page.html
 # Downloaded Canvas assets
 
 canvas_files/
+
+# Local secrets and runtime files
+.env.*
+!.env.example
+.audit-venv/
+*.egg-info/
+__pycache__/
+.pytest_cache/

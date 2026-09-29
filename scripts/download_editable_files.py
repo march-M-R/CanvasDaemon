@@ -2,8 +2,8 @@ import os
 import json
 from pathlib import Path
 
-import requests
-from dotenv import load_dotenv
+from canvas_runtime import requests
+from canvas_runtime import load_dotenv
 
 load_dotenv()
 
@@ -48,10 +48,8 @@ def safe_filename(name):
 
 
 def download_file(url, destination):
-    response = requests.get(url, headers=HEADERS)
-    response.raise_for_status()
-
-    destination.write_bytes(response.content)
+    from canvas_runtime import download
+    destination.write_bytes(download(url, HEADERS))
 
 
 def main():

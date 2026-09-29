@@ -2,8 +2,8 @@ import os
 import json
 from pathlib import Path
 
-import requests
-from dotenv import load_dotenv
+from canvas_runtime import requests
+from canvas_runtime import load_dotenv
 
 load_dotenv()
 
@@ -24,10 +24,8 @@ PREVIEW_PAGE_URL = "canvasdaemon-preview-page"
 
 
 def check_env():
-    if not BASE_URL or not TOKEN or not COURSE_ID:
-        raise RuntimeError(
-            "Missing .env values. Required: CANVAS_BASE_URL, CANVAS_TOKEN, COURSE_ID"
-        )
+    from canvas_runtime import validate_config
+    validate_config(BASE_URL, TOKEN, COURSE_ID)
 
 
 def get_page(page_url):
@@ -95,10 +93,19 @@ def save_config(page, local_filename):
 
 
 def main():
+    import argparse
+    from canvas_runtime import add_write_flags, authorize
+    parser = argparse.ArgumentParser(description="Set up an unpublished Canvas preview page")
+    add_write_flags(parser)
+    args = parser.parse_args()
     check_env()
+    if not authorize(args, BASE_URL, COURSE_ID):
+        return
 
     page = get_page(PREVIEW_PAGE_URL)
 
+    if page and page.get("published"):
+        raise ValueError("The preview page is published. Unpublish it in Canvas before reuse.")
     if page:
         print("Preview page already exists.")
     else:

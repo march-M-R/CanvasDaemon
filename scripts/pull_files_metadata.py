@@ -3,8 +3,8 @@ import json
 import csv
 from pathlib import Path
 
-import requests
-from dotenv import load_dotenv
+from canvas_runtime import requests
+from canvas_runtime import load_dotenv
 
 load_dotenv()
 
@@ -25,16 +25,18 @@ HEADERS = {
 
 
 def check_env():
-    if not BASE_URL or not TOKEN or not COURSE_ID:
-        raise RuntimeError(
-            "Missing .env values. Required: CANVAS_BASE_URL, CANVAS_TOKEN, COURSE_ID"
-        )
+    from canvas_runtime import validate_config
+    validate_config(BASE_URL, TOKEN, COURSE_ID)
 
 
 def canvas_get_all(url, params=None):
     results = []
 
+    seen_urls = set()
     while url:
+        if url in seen_urls:
+            raise RuntimeError("Canvas repeated a pagination URL.")
+        seen_urls.add(url)
         response = requests.get(url, headers=HEADERS, params=params)
         response.raise_for_status()
 

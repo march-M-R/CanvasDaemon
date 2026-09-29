@@ -1,12 +1,14 @@
+from canvas_runtime import authorize
 import os
 import json
 import argparse
 import difflib
+import csv
 from pathlib import Path
 from datetime import datetime
 
-import requests
-from dotenv import load_dotenv
+from canvas_runtime import requests
+from canvas_runtime import load_dotenv
 
 load_dotenv()
 
@@ -17,6 +19,7 @@ COURSE_ID = os.getenv("COURSE_ID")
 ROOT_DIR = Path(__file__).resolve().parents[1]
 BACKUPS_DIR = ROOT_DIR / "backups"
 MANIFEST_PATH = ROOT_DIR / "manifest.json"
+USED_MODULE_PAGES_PATH = ROOT_DIR / "reports" / "pages" / "used_module_pages.csv"
 
 HEADERS = {
     "Authorization": f"Bearer {TOKEN}"
@@ -24,10 +27,8 @@ HEADERS = {
 
 
 def check_env():
-    if not BASE_URL or not TOKEN or not COURSE_ID:
-        raise RuntimeError(
-            "Missing .env values. Required: CANVAS_BASE_URL, CANVAS_TOKEN, COURSE_ID"
-        )
+    from canvas_runtime import validate_config
+    validate_config(BASE_URL, TOKEN, COURSE_ID)
 
 
 def load_manifest():
@@ -35,6 +36,25 @@ def load_manifest():
         raise FileNotFoundError("manifest.json not found. Run pull_pages.py first.")
 
     return json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+
+
+def find_active_module_page(filename):
+    if not USED_MODULE_PAGES_PATH.exists():
+        return None
+
+    with USED_MODULE_PAGES_PATH.open("r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            local_file = row.get("local_file", "")
+            if local_file.endswith(filename):
+                html_file = local_file if "/" in local_file else f"pages/{local_file}"
+                return {
+                    "title": row.get("page_title", ""),
+                    "canvas_url": row["canvas_page_url"],
+                    "html_file": html_file,
+                }
+
+    return None
 
 
 def get_canvas_page(page_url):
@@ -68,58 +88,57 @@ def show_diff(canvas_html, local_html):
 
 
 def main():
-    check_env()
-
-    parser = argparse.ArgumentParser()
+    from canvas_runtime import bound, body_hash, save_json
+    parser = argparse.ArgumentParser(description="Diff and safely update a Canvas page.")
     parser.add_argument("filename", help="HTML filename from pages/")
-    parser.add_argument("--apply", action="store_true", help="Actually push to Canvas")
-    parser.add_argument("--no-diff", action="store_true", help="Skip diff output")
-
+    parser.add_argument("--apply", action="store_true")
+    parser.add_argument("--confirm-course", help="Required with --apply")
+    parser.add_argument("--no-diff", action="store_true")
     args = parser.parse_args()
-
-    manifest = load_manifest()
-
-    if args.filename not in manifest["pages"]:
-        raise ValueError(
-            f"File not found in manifest.json: {args.filename}"
-        )
-
-    page_info = manifest["pages"][args.filename]
-    page_url = page_info["canvas_url"]
-    local_path = ROOT_DIR / page_info["html_file"]
-
-    local_html = local_path.read_text(encoding="utf-8")
-
-    canvas_page = get_canvas_page(page_url)
-    canvas_html = canvas_page.get("body") or ""
-
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    backup_dir = BACKUPS_DIR / f"pre_push_{timestamp}"
-    backup_dir.mkdir(parents=True, exist_ok=True)
-
-    backup_file = backup_dir / args.filename
-    backup_file.write_text(canvas_html, encoding="utf-8")
-
-    print(f"Page title: {canvas_page.get('title')}")
-    print(f"Canvas URL key: {page_url}")
-    print(f"Local file: {local_path}")
-    print(f"Backup saved: {backup_file}")
-
+    check_env()
+    if Path(args.filename).name != args.filename:
+        raise ValueError("Pass a plain filename from pages/.")
+    manifest = bound(load_manifest(), BASE_URL, COURSE_ID)
+    info = manifest["pages"].get(args.filename) or find_active_module_page(args.filename)
+    if not info:
+        raise ValueError("Page not found in the manifest or active inventory.")
+    path = (ROOT_DIR / info["html_file"]).resolve()
+    if ROOT_DIR.resolve() not in path.parents:
+        raise ValueError("Manifest file points outside this checkout.")
+    local_html = path.read_text(encoding="utf-8")
+    current = get_canvas_page(info["canvas_url"])
+    old = current.get("body") or ""
+    print(f"Page: {current.get('title')} ({info['canvas_url']})")
     if not args.no_diff:
-        print("\nDiff preview:\n")
-        show_diff(canvas_html, local_html)
-
-    if not args.apply:
-        print("\nDRY RUN ONLY. Nothing was pushed.")
-        print("To push for real:")
-        print(f'python scripts/push_page.py "{args.filename}" --apply')
+        show_diff(old, local_html)
+    if not authorize(args, BASE_URL, COURSE_ID):
         return
-
-    updated_page = update_canvas_page(page_url, local_html)
-
-    print("\nPushed successfully.")
-    print(f"Updated page: {updated_page.get('title')}")
-    print(f"Updated at: {updated_page.get('updated_at')}")
+    if info.get("body_sha256"):
+        if body_hash(old) != info["body_sha256"]:
+            raise ValueError("Canvas changed since pull. Preserve local edits and merge with a fresh pull.")
+    elif info.get("last_canvas_update"):
+        if current.get("updated_at") != info["last_canvas_update"]:
+            raise ValueError("Canvas changed since pull. Preserve local edits and merge first.")
+    else:
+        raise ValueError("No conflict baseline. Preserve local edits and pull this page before applying.")
+    if old == local_html:
+        print("No changes to push.")
+        return
+    folder = BACKUPS_DIR / ("pre_push_" + datetime.now().strftime("%Y%m%d_%H%M%S_%f"))
+    folder.mkdir(parents=True)
+    (folder / args.filename).write_text(old, encoding="utf-8")
+    save_json(folder / "page.json", current)
+    updated = update_canvas_page(info["canvas_url"], local_html)
+    # Preserve the authored file. Canvas sanitization is reported, never silently accepted.
+    returned_body = updated.get("body")
+    if returned_body is None:
+        returned_body = get_canvas_page(info["canvas_url"]).get("body") or ""
+    info.update({"body_sha256": body_hash(returned_body), "last_canvas_update": updated.get("updated_at")})
+    manifest["pages"][args.filename] = info
+    save_json(MANIFEST_PATH, manifest)
+    if returned_body != local_html:
+        print("Canvas adjusted the HTML. Inspect the Canvas rendering before continuing.")
+    print(f"Updated {info['canvas_url']}; previous body saved in {folder}.")
 
 
 if __name__ == "__main__":

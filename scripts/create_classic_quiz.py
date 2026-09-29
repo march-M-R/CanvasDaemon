@@ -1,3 +1,4 @@
+from canvas_runtime import add_write_flags, authorize
 import os
 import json
 import csv
@@ -5,8 +6,8 @@ import argparse
 from pathlib import Path
 from datetime import datetime
 
-import requests
-from dotenv import load_dotenv
+from canvas_runtime import requests
+from canvas_runtime import load_dotenv
 
 load_dotenv()
 
@@ -26,10 +27,8 @@ HEADERS = {
 
 
 def check_env():
-    if not BASE_URL or not TOKEN or not COURSE_ID:
-        raise RuntimeError(
-            "Missing .env values. Required: CANVAS_BASE_URL, CANVAS_TOKEN, COURSE_ID"
-        )
+    from canvas_runtime import validate_config
+    validate_config(BASE_URL, TOKEN, COURSE_ID)
 
 
 def load_quiz_bank(path):
@@ -114,26 +113,17 @@ def build_question_text(question):
             )
         )
 
-    metadata_bits = []
+    # Objective, difficulty, and tags are authoring metadata. They must not be
+    # rendered in the student-facing prompt because they can reveal the skill or
+    # terminology the question is asking students to identify.
 
-    if question.get("objective"):
-        metadata_bits.append(f"<strong>Objective:</strong> {question['objective']}")
-
-    if question.get("difficulty"):
-        metadata_bits.append(f"<strong>Difficulty:</strong> {question['difficulty']}")
-
-    if question.get("tags"):
-        tags = ", ".join(question["tags"])
-        metadata_bits.append(f"<strong>Tags:</strong> {tags}")
-
-    if metadata_bits:
-        parts.append(
-            '<div style="font-size: 0.9em; color: #555; margin-bottom: 12px;">'
-            + "<br>".join(metadata_bits)
-            + "</div>"
-        )
-
-    parts.append(f"<p>{question['question_text']}</p>")
+    question_text = question["question_text"]
+    # Some quiz questions contain real code blocks. Avoid placing block-level
+    # HTML inside a paragraph because Canvas may flatten or repair it badly.
+    if any(tag in question_text.lower() for tag in ("<pre", "<div", "<table", "<p")):
+        parts.append(question_text)
+    else:
+        parts.append(f"<p>{question_text}</p>")
 
     return "\n".join(parts)
 
@@ -145,7 +135,7 @@ def create_quiz(quiz_bank):
         "quiz[title]": quiz_bank["title"],
         "quiz[description]": quiz_bank.get("description", ""),
         "quiz[quiz_type]": quiz_bank.get("quiz_type", "assignment"),
-        "quiz[published]": str(quiz_bank.get("published", False)).lower(),
+        "quiz[published]": "false",
         "quiz[shuffle_answers]": str(quiz_bank.get("shuffle_answers", True)).lower(),
         "quiz[allowed_attempts]": quiz_bank.get("allowed_attempts", 1),
         "quiz[scoring_policy]": quiz_bank.get("scoring_policy", "keep_highest"),
@@ -163,22 +153,28 @@ def create_quiz(quiz_bank):
         payload["quiz[hide_results]"] = quiz_bank["hide_results"]
 
     response = requests.post(url, headers=HEADERS, data=payload)
-    response.raise_for_status()
+    if not response.ok:
+        raise RuntimeError(
+            f"Canvas quiz creation failed (HTTP {response.status_code})."
+        )
     return response.json()
 
 
 def build_answers_for_multiple_choice(question):
+    choices = question.get("choices", question.get("answers", []))
     return [
         {
             "text": choice["text"],
             "weight": 100 if choice.get("correct") else 0
         }
-        for choice in question["choices"]
+        for choice in choices
     ]
 
 
 def build_answers_for_true_false(question):
-    correct = bool(question["correct"])
+    if not isinstance(question.get("correct"), bool):
+        raise ValueError("true_false correct must be a JSON boolean.")
+    correct = question["correct"]
 
     return [
         {
@@ -193,12 +189,13 @@ def build_answers_for_true_false(question):
 
 
 def build_answers_for_multiple_answers(question):
+    choices = question.get("choices", question.get("answers", []))
     return [
         {
             "text": choice["text"],
             "weight": 100 if choice.get("correct") else 0
         }
-        for choice in question["choices"]
+        for choice in choices
     ]
 
 
@@ -210,6 +207,22 @@ def build_answers_for_fill_blank(question):
         }
         for answer in question["answers"]
     ]
+
+
+def build_answers_for_likert_5(question):
+    labels = question.get(
+        "labels",
+        [
+            "1 — Strongly disagree / very poor",
+            "2 — Disagree / needs work",
+            "3 — Neutral / okay",
+            "4 — Agree / good",
+            "5 — Strongly agree / excellent",
+        ],
+    )
+    if len(labels) != 5:
+        raise ValueError("likert_5 questions must provide exactly five labels")
+    return [{"text": label, "weight": 0} for label in labels]
 
 
 def build_canvas_question(question):
@@ -230,6 +243,14 @@ def build_canvas_question(question):
     elif qtype == "fill_blank":
         canvas_type = "short_answer_question"
         answers = build_answers_for_fill_blank(question)
+
+    elif qtype == "essay":
+        canvas_type = "essay_question"
+        answers = []
+
+    elif qtype == "likert_5":
+        canvas_type = "multiple_choice_question"
+        answers = build_answers_for_likert_5(question)
 
     else:
         raise ValueError(f"Unsupported question type: {qtype}")
@@ -262,7 +283,10 @@ def add_question(quiz_id, question):
     }
 
     response = requests.post(url, headers=HEADERS, json=payload)
-    response.raise_for_status()
+    if not response.ok:
+        raise RuntimeError(
+            f"Canvas question creation failed (HTTP {response.status_code})."
+        )
     return response.json()
 
 
@@ -302,19 +326,53 @@ def append_quiz_report(quiz, quiz_bank_path, quiz_bank, question_count):
         })
 
 
-def main():
-    check_env()
+def validate_quiz_bank(bank):
+    if not isinstance(bank.get("title"), str) or not bank["title"].strip():
+        raise ValueError("Quiz requires a title.")
+    if not isinstance(bank.get("questions"), list) or not bank["questions"]:
+        raise ValueError("Quiz requires at least one question.")
+    for question in bank["questions"]:
+        if not isinstance(question.get("question_text"), str) or not question["question_text"].strip():
+            raise ValueError("Each question requires question_text.")
+        points = question.get("points_possible", 1)
+        if isinstance(points, bool) or not isinstance(points, (int, float)) or points < 0:
+            raise ValueError("Question points must be nonnegative numbers.")
+        kind = question.get("type")
+        if kind in ("multiple_choice", "multiple_answers"):
+            choices = question.get("choices", question.get("answers", []))
+            if (len(choices) < 2 or any(not isinstance(c.get("text"), str) or not c["text"].strip()
+                    or not isinstance(c.get("correct"), bool) for c in choices)):
+                raise ValueError("Choices need text and a JSON boolean correct flag.")
+            count = sum(c["correct"] for c in choices)
+            if (kind == "multiple_choice" and count != 1) or (kind == "multiple_answers" and count < 1):
+                raise ValueError("Invalid number of correct answers.")
+        if kind == "fill_blank" and (not question.get("answers") or any(not isinstance(a, str) or not a.strip() for a in question["answers"])):
+            raise ValueError("fill_blank needs nonempty accepted answer strings.")
+        if kind == "likert_5" and points != 0:
+            raise ValueError("likert_5 is a survey item and must use points_possible: 0.")
+        build_canvas_question(question)  # Validate every type and referenced asset before creating the quiz.
 
+
+def main():
     parser = argparse.ArgumentParser(
         description="Create an unpublished Classic Canvas Quiz from JSON."
     )
     parser.add_argument("quiz_json", help="Path to quiz bank JSON file")
+    add_write_flags(parser)
     args = parser.parse_args()
+    check_env()
 
     quiz_bank = load_quiz_bank(args.quiz_json)
+    validate_quiz_bank(quiz_bank)
+    print(f"Plan: create unpublished quiz {quiz_bank['title']!r} with {len(quiz_bank['questions'])} questions.")
+
+    if not authorize(args, BASE_URL, COURSE_ID):
+        return
 
     quiz = create_quiz(quiz_bank)
     quiz_id = quiz["id"]
+    from canvas_runtime import save_json
+    save_json(QUIZ_REPORTS_DIR / f"created-{quiz_id}.json", {"quiz": quiz, "source": args.quiz_json, "status": "questions-pending"})
 
     print("\nCreated Classic Quiz")
     print("=" * 80)
@@ -337,6 +395,7 @@ def main():
         question_count=len(questions)
     )
 
+    save_json(QUIZ_REPORTS_DIR / f"created-{quiz_id}.json", {"quiz": quiz, "source": args.quiz_json, "status": "complete", "question_count": len(questions)})
     print("\nDone.")
     print(f"Questions added: {len(questions)}")
     print(f"Report updated: {CLASSIC_QUIZZES_CSV}")

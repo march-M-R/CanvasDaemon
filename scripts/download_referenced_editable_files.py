@@ -3,7 +3,7 @@ import json
 import re
 from pathlib import Path
 
-import requests
+from canvas_runtime import requests
 from bs4 import BeautifulSoup
 
 ROOT_DIR = Path(__file__).resolve().parents[1]

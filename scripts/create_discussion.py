@@ -1,11 +1,12 @@
+from canvas_runtime import authorize
 import os
 import csv
 import argparse
 from pathlib import Path
 from datetime import datetime
 
-import requests
-from dotenv import load_dotenv
+from canvas_runtime import requests
+from canvas_runtime import load_dotenv
 
 load_dotenv()
 
@@ -23,16 +24,18 @@ HEADERS = {
 
 
 def check_env():
-    if not BASE_URL or not TOKEN or not COURSE_ID:
-        raise RuntimeError(
-            "Missing .env values. Required: CANVAS_BASE_URL, CANVAS_TOKEN, COURSE_ID"
-        )
+    from canvas_runtime import validate_config
+    validate_config(BASE_URL, TOKEN, COURSE_ID)
 
 
 def canvas_get_all(url, params=None):
     results = []
 
+    seen_urls = set()
     while url:
+        if url in seen_urls:
+            raise RuntimeError("Canvas repeated a pagination URL.")
+        seen_urls.add(url)
         response = requests.get(url, headers=HEADERS, params=params)
         response.raise_for_status()
 
@@ -170,8 +173,6 @@ def print_plan(args, module, message):
 
 
 def main():
-    check_env()
-
     parser = argparse.ArgumentParser(
         description="Create a Canvas discussion topic and optionally add it to a module."
     )
@@ -216,7 +217,11 @@ def main():
         help="Actually create the discussion in Canvas. Without this, dry-run only."
     )
 
+    parser.add_argument("--confirm-course", help="Required with --apply; must equal COURSE_ID")
     args = parser.parse_args()
+    check_env()
+    if args.apply:
+        authorize(args, BASE_URL, COURSE_ID)
 
     if args.message and args.message_file:
         raise ValueError("Use either --message or --message-file, not both.")
@@ -244,7 +249,7 @@ def main():
             example += f" --discussion-type {args.discussion_type}"
         if args.indent:
             example += f" --indent {args.indent}"
-        print(example + " --apply")
+        print(example + f" --apply --confirm-course {COURSE_ID}")
         return
 
     discussion = create_discussion_topic(
@@ -254,6 +259,9 @@ def main():
         discussion_type=args.discussion_type,
         require_initial_post=args.require_initial_post
     )
+
+    from canvas_runtime import save_json
+    save_json(DISCUSSION_REPORTS_DIR / f"created-{discussion['id']}.json", discussion)
 
     module_item = None
     if module:

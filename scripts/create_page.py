@@ -1,3 +1,4 @@
+from canvas_runtime import add_write_flags, authorize
 import os
 import json
 import argparse
@@ -5,8 +6,8 @@ import re
 from pathlib import Path
 from datetime import datetime
 
-import requests
-from dotenv import load_dotenv
+from canvas_runtime import requests
+from canvas_runtime import load_dotenv
 
 load_dotenv()
 
@@ -24,10 +25,8 @@ HEADERS = {
 
 
 def check_env():
-    if not BASE_URL or not TOKEN or not COURSE_ID:
-        raise RuntimeError(
-            "Missing .env values. Required: CANVAS_BASE_URL, CANVAS_TOKEN, COURSE_ID"
-        )
+    from canvas_runtime import validate_config
+    validate_config(BASE_URL, TOKEN, COURSE_ID)
 
 
 def safe_filename(text):
@@ -39,13 +38,15 @@ def safe_filename(text):
 
 def load_manifest():
     if not MANIFEST_PATH.exists():
-        raise FileNotFoundError("manifest.json not found. Run pull_pages.py first.")
+        return {"course_id": COURSE_ID, "base_url": BASE_URL, "pages": {}}
 
-    return json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    from canvas_runtime import bound
+    return bound(json.loads(MANIFEST_PATH.read_text(encoding="utf-8")), BASE_URL, COURSE_ID)
 
 
 def save_manifest(manifest):
-    MANIFEST_PATH.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    from canvas_runtime import save_json
+    save_json(MANIFEST_PATH, manifest)
 
 
 def create_canvas_page(title, body, published=False):
@@ -70,8 +71,6 @@ def create_canvas_page(title, body, published=False):
 
 
 def main():
-    check_env()
-
     parser = argparse.ArgumentParser(description="Create a new Canvas page safely.")
     parser.add_argument("title", help="New Canvas page title")
     parser.add_argument(
@@ -84,7 +83,9 @@ def main():
         help="Publish the page immediately"
     )
 
+    add_write_flags(parser)
     args = parser.parse_args()
+    check_env()
 
     if args.body_file:
         body_path = Path(args.body_file)
@@ -92,9 +93,13 @@ def main():
             raise FileNotFoundError(f"Body file not found: {body_path}")
         body = body_path.read_text(encoding="utf-8")
     else:
-        body = f"<h2>{args.title}</h2>\n<p>New page created by CanvasDaemon.</p>"
+        from html import escape
+        body = f"<h2>{escape(args.title)}</h2>\n<p>New page created by CanvasDaemon.</p>"
 
     manifest = load_manifest()
+
+    if not authorize(args, BASE_URL, COURSE_ID):
+        return
 
     created_page = create_canvas_page(
         title=args.title,
@@ -106,11 +111,14 @@ def main():
     title = created_page["title"]
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-    filename = f"{safe_filename(title)}__{page_url}.html"
+    filename = f"{safe_filename(title)}__{safe_filename(page_url)}.html"
     local_path = PAGES_DIR / filename
+    PAGES_DIR.mkdir(parents=True, exist_ok=True)
     local_path.write_text(created_page.get("body") or body, encoding="utf-8")
 
+    from canvas_runtime import body_hash
     manifest["pages"][filename] = {
+        "body_sha256": body_hash(created_page.get("body") or body),
         "title": title,
         "canvas_url": page_url,
         "page_id": created_page.get("page_id"),

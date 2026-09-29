@@ -4,8 +4,8 @@ import re
 from pathlib import Path
 from datetime import datetime
 
-import requests
-from dotenv import load_dotenv
+from canvas_runtime import requests
+from canvas_runtime import load_dotenv
 
 load_dotenv()
 
@@ -21,13 +21,19 @@ MANIFEST_PATH = ROOT_DIR / "manifest.json"
 HEADERS = {
     "Authorization": f"Bearer {TOKEN}"
 }
+TIMEOUT = (10, 25)
+
+
+def request_with_retry(method, url, **kwargs):
+    # The caller can rerun a failed read; never silently retry a write.
+    response = requests.request(method, url, timeout=TIMEOUT, **kwargs)
+    response.raise_for_status()
+    return response
 
 
 def check_env():
-    if not BASE_URL or not TOKEN or not COURSE_ID:
-        raise RuntimeError(
-            "Missing .env values. Required: CANVAS_BASE_URL, CANVAS_TOKEN, COURSE_ID"
-        )
+    from canvas_runtime import validate_config
+    validate_config(BASE_URL, TOKEN, COURSE_ID)
 
 
 def safe_filename(text):
@@ -35,7 +41,7 @@ def safe_filename(text):
     Converts a Canvas page title/url into a safe local filename.
 
     Example:
-    'M01: AI Hidden in Plain Sight — Module Overview'
+    'M01: AI Hidden in Plain Sight - Module Overview'
     becomes:
     'm01-ai-hidden-in-plain-sight-module-overview'
     """
@@ -59,9 +65,12 @@ def get_all_pages():
     url = f"{BASE_URL}/api/v1/courses/{COURSE_ID}/pages"
     params = {"per_page": 100}
 
+    seen_urls = set()
     while url:
-        response = requests.get(url, headers=HEADERS, params=params)
-        response.raise_for_status()
+        if url in seen_urls:
+            raise RuntimeError("Canvas repeated a pagination URL.")
+        seen_urls.add(url)
+        response = request_with_retry("GET", url, headers=HEADERS, params=params)
 
         all_pages.extend(response.json())
 
@@ -83,67 +92,52 @@ def get_page_details(page_url):
     """
     url = f"{BASE_URL}/api/v1/courses/{COURSE_ID}/pages/{page_url}"
 
-    response = requests.get(url, headers=HEADERS)
-    response.raise_for_status()
-
+    response = request_with_retry("GET", url, headers=HEADERS)
     return response.json()
 
 
 def main():
+    import argparse
+    from canvas_runtime import bound, body_hash, save_json
+    parser = argparse.ArgumentParser(description="Pull Canvas pages, preserving unpushed local work.")
+    parser.add_argument("--overwrite-local", action="store_true", help="Explicitly replace edited local pages after backing them up")
+    args = parser.parse_args()
     check_env()
-
+    previous = bound(json.loads(MANIFEST_PATH.read_text()), BASE_URL, COURSE_ID) if MANIFEST_PATH.exists() else {"pages": {}}
+    incoming = []
+    by_url = {v["canvas_url"]: (k, v) for k, v in previous["pages"].items()}
+    for page in get_all_pages():
+        details = get_page_details(page["url"])
+        title, body = details.get("title", "Untitled Page"), details.get("body") or ""
+        default_name = f"{safe_filename(title)}__{safe_filename(page['url'])}.html"
+        filename, old = by_url.get(page["url"], (default_name, {}))
+        if Path(filename).name != filename:
+            raise ValueError("Manifest filenames must be plain filenames.")
+        path = PAGES_DIR / filename
+        if path.exists() and not args.overwrite_local:
+            baseline = old.get("body_sha256")
+            local_body = path.read_text(encoding="utf-8")
+            if (baseline and body_hash(local_body) != baseline) or (not baseline and local_body != body):
+                raise ValueError(f"Local edits in {filename}. Preserve/merge them, or use --overwrite-local for a backed-up replacement.")
+        incoming.append((filename, details, body))
+    # All downloads and conflict checks succeed before replacing any local content.
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+    backup_dir = BACKUPS_DIR / f"pre_pull_{timestamp}"
+    backup_dir.mkdir(parents=True)
+    if MANIFEST_PATH.exists():
+        (backup_dir / "manifest.json").write_bytes(MANIFEST_PATH.read_bytes())
     PAGES_DIR.mkdir(exist_ok=True)
-    BACKUPS_DIR.mkdir(exist_ok=True)
-
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    backup_run_dir = BACKUPS_DIR / f"pull_{timestamp}"
-    backup_run_dir.mkdir(exist_ok=True)
-
-    pages = get_all_pages()
-
-    print(f"Found {len(pages)} Canvas pages.")
-
-    manifest = {
-        "course_id": COURSE_ID,
-        "base_url": BASE_URL,
-        "pulled_at": timestamp,
-        "pages": {}
-    }
-
-    for index, page in enumerate(pages, start=1):
-        page_url = page["url"]
-        page_details = get_page_details(page_url)
-
-        title = page_details.get("title", "Untitled Page")
-        body = page_details.get("body") or ""
-
-        filename = f"{safe_filename(title)}__{page_url}.html"
-
-        local_path = PAGES_DIR / filename
-        backup_path = backup_run_dir / filename
-
-        local_path.write_text(body, encoding="utf-8")
-        backup_path.write_text(body, encoding="utf-8")
-
-        manifest["pages"][filename] = {
-            "title": title,
-            "canvas_url": page_url,
-            "page_id": page_details.get("page_id"),
-            "html_file": f"pages/{filename}",
-            "last_canvas_update": page_details.get("updated_at")
-        }
-
-        print(f"[{index}/{len(pages)}] Pulled: {title}")
-
-    MANIFEST_PATH.write_text(
-        json.dumps(manifest, indent=2),
-        encoding="utf-8"
-    )
-
-    print("\nPull complete.")
-    print(f"Local pages saved in: {PAGES_DIR}")
-    print(f"Backup copy saved in: {backup_run_dir}")
-    print(f"Manifest saved to: {MANIFEST_PATH}")
+    manifest = {"course_id": COURSE_ID, "base_url": BASE_URL, "pulled_at": timestamp, "pages": {}}
+    for filename, details, body in incoming:
+        path = PAGES_DIR / filename
+        if path.exists():
+            (backup_dir / filename).write_bytes(path.read_bytes())
+        path.write_text(body, encoding="utf-8")
+        manifest["pages"][filename] = {"title": details["title"], "canvas_url": details["url"],
+            "page_id": details.get("page_id"), "html_file": "pages/" + filename,
+            "last_canvas_update": details.get("updated_at"), "body_sha256": body_hash(body)}
+    save_json(MANIFEST_PATH, manifest)
+    print(f"Pulled {len(incoming)} pages. Previous local files backed up in {backup_dir}.")
 
 
 if __name__ == "__main__":

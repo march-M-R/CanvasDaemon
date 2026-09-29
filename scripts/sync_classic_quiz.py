@@ -1,3 +1,4 @@
+from canvas_runtime import authorize
 import os
 import json
 import csv
@@ -5,8 +6,8 @@ import argparse
 from pathlib import Path
 from datetime import datetime
 
-import requests
-from dotenv import load_dotenv
+from canvas_runtime import requests
+from canvas_runtime import load_dotenv
 
 load_dotenv()
 
@@ -26,10 +27,8 @@ HEADERS = {
 
 
 def check_env():
-    if not BASE_URL or not TOKEN or not COURSE_ID:
-        raise RuntimeError(
-            "Missing .env values. Required: CANVAS_BASE_URL, CANVAS_TOKEN, COURSE_ID"
-        )
+    from canvas_runtime import validate_config
+    validate_config(BASE_URL, TOKEN, COURSE_ID)
 
 
 def load_quiz_bank(path):
@@ -44,7 +43,11 @@ def load_quiz_bank(path):
 def canvas_get_all(url, params=None):
     results = []
 
+    seen_urls = set()
     while url:
+        if url in seen_urls:
+            raise RuntimeError("Canvas repeated a pagination URL.")
+        seen_urls.add(url)
         response = requests.get(url, headers=HEADERS, params=params)
         response.raise_for_status()
 
@@ -77,11 +80,15 @@ def build_quiz_payload(quiz_bank):
         "quiz[title]": quiz_bank["title"],
         "quiz[description]": quiz_bank.get("description", ""),
         "quiz[quiz_type]": quiz_bank.get("quiz_type", "assignment"),
-        "quiz[published]": str(quiz_bank.get("published", False)).lower(),
         "quiz[shuffle_answers]": str(quiz_bank.get("shuffle_answers", True)).lower(),
         "quiz[allowed_attempts]": quiz_bank.get("allowed_attempts", 1),
         "quiz[scoring_policy]": quiz_bank.get("scoring_policy", "keep_highest"),
     }
+
+    if "published" in quiz_bank:
+        if not isinstance(quiz_bank["published"], bool):
+            raise ValueError("published must be a JSON boolean.")
+        payload["quiz[published]"] = str(quiz_bank["published"]).lower()
 
     if quiz_bank.get("time_limit") is not None:
         payload["quiz[time_limit]"] = quiz_bank["time_limit"]
@@ -99,7 +106,7 @@ def build_quiz_payload(quiz_bank):
 
 def create_quiz(quiz_bank):
     url = f"{BASE_URL}/api/v1/courses/{COURSE_ID}/quizzes"
-    response = requests.post(url, headers=HEADERS, data=build_quiz_payload(quiz_bank))
+    response = requests.post(url, headers=HEADERS, data={**build_quiz_payload(quiz_bank), "quiz[published]": "false"})
     response.raise_for_status()
     return response.json()
 
@@ -156,8 +163,6 @@ def print_planned_payload(quiz_bank):
 
 
 def main():
-    check_env()
-
     parser = argparse.ArgumentParser(
         description="Sync Classic Canvas Quiz settings from JSON. Dry-run by default."
     )
@@ -173,7 +178,11 @@ def main():
         help="Actually create/update the quiz settings in Canvas"
     )
 
+    parser.add_argument("--confirm-course", help="Required with --apply; must equal COURSE_ID")
     args = parser.parse_args()
+    check_env()
+    if args.apply:
+        authorize(args, BASE_URL, COURSE_ID)
 
     quiz_bank = load_quiz_bank(args.quiz_json)
     title = quiz_bank["title"]
@@ -197,7 +206,7 @@ def main():
         if not args.apply:
             print("\nDRY RUN ONLY. Nothing was created.")
             print("To apply:")
-            print(f'python scripts/sync_classic_quiz.py "{args.quiz_json}" --apply')
+            print(f'python scripts/sync_classic_quiz.py "{args.quiz_json}" --apply --confirm-course {COURSE_ID}')
             append_sync_log(
                 action="dry_run_create",
                 quiz_id="",
@@ -233,7 +242,7 @@ def main():
     if not args.apply:
         print("\nDRY RUN ONLY. Nothing was updated.")
         print("To apply:")
-        print(f'python scripts/sync_classic_quiz.py "{args.quiz_json}" --apply')
+        print(f'python scripts/sync_classic_quiz.py "{args.quiz_json}" --apply --confirm-course {COURSE_ID}')
 
         append_sync_log(
             action="dry_run_update_settings",
@@ -244,6 +253,8 @@ def main():
         )
         return
 
+    from canvas_runtime import save_json
+    save_json(ROOT_DIR / "backups" / ("quiz-settings-" + str(quiz_id) + "-" + datetime.now().strftime("%Y%m%d%H%M%S%f") + ".json"), quiz)
     updated = update_quiz(quiz_id, quiz_bank)
 
     print("\nUpdated quiz settings successfully.")

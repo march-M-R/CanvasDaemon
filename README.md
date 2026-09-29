@@ -1,112 +1,101 @@
 # CanvasDaemon
 
-Canvas LMS automation toolkit for curriculum teams, instructional designers, and AI-assisted course development.
+Canvas LMS automation for curriculum teams. Edit course content locally, review it in Canvas, and apply deliberate changes using the existing scripts.
 
-CanvasDaemon provides a local-first workflow for building, previewing, and managing Canvas content safely.
+This is the **V1 maintenance update (0.2.0)**. It keeps the established course content and visual style. The separate V2 experiment and its new example imagery are not part of this release.
 
-## Core Workflow
+## Setup
 
-```text
-Edit Locally
-      ↓
-Preview in Canvas
-      ↓
-Validate Rendering
-      ↓
-Push to Production
+Use Python 3.10 or newer with a current OpenSSL build. From this repository:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+cp .env.example .env
 ```
 
-## Features
+On Windows, use `py -m venv .venv` and `.venv\Scripts\Activate.ps1`; copy `.env.example` to `.env` in your editor. Set your Canvas HTTPS origin, personal token, and course ID locally. Never paste tokens into chat or commit them. Explicit shell variables take precedence over this checkout's `.env`; a parent folder's `.env` is not discovered.
 
-### Page Management
-
-* Pull Canvas pages into local files
-* Search active module pages
-* Search all pages
-* Safe page updates
-* Automatic backups before push
-* Dry-run deployment workflow
-
-### Asset Management
-
-* Pull Canvas file inventory
-* Search Canvas assets
-* Download referenced editable files
-* Canvas-native asset preview
-
-### Quiz Management
-
-* Create Classic Quizzes from JSON
-* Inventory existing quizzes
-* Search quizzes
-* Synchronize quiz settings
-* Version-control quiz definitions
-
-### Preview Environment
-
-CanvasDaemon includes a dedicated Canvas preview system.
-
-```text
-Local HTML
-      ↓
-Preview Page
-      ↓
-Actual Canvas Rendering
+```bash
+python scripts/test_canvas.py
 ```
 
-This makes it possible to validate Canvas behavior before updating production pages.
+Check the printed course name and ID before continuing. This command is read-only.
 
-## Major Components
+## Daily page workflow
 
-### Pages
+```bash
+python scripts/pull_pages.py
+python scripts/course_inventory.py
+python scripts/find_page.py "lesson title"
+python scripts/push_page.py "your-page-filename.html"
+python scripts/push_page.py "your-page-filename.html" --apply --confirm-course 12345
+```
 
-* pull_pages.py
-* find_page.py
-* find_any_page.py
-* push_page.py
-* push_module_page.py
+Replace `12345` with your configured course ID. Edit the file identified in `manifest.json` before running `push_page.py`.
 
-### Assets
+Pull downloads and checks all pages before replacing local files. Unpushed edits stop the pull. Preserve and merge those edits; use `--overwrite-local` only when you deliberately want a backed-up replacement. Backups now contain the **previous local content**, not another copy of the newly downloaded content.
 
-* pull_files_metadata.py
-* find_asset.py
-* download_referenced_editable_files.py
+Push displays a diff, detects remote changes since pull, and backs up the live page before writing. An update preserves publication status, so changing an already-published page is immediately student-facing. Older manifests use the last Canvas update timestamp until a successful pull/push records a body hash. Entries with no baseline must be pulled before applying.
 
-### Quizzes
+## Every Canvas write is explicit
 
-* create_classic_quiz.py
-* find_quiz.py
-* sync_classic_quiz.py
+All write entrypoints default to a dry run. Apply requires both `--apply` and `--confirm-course ID`. This is an intentional command-line change from earlier V1 scripts.
 
-### Preview System
+```bash
+python scripts/create_page.py "Lesson title" --body-file lesson.html
+python scripts/create_page.py "Lesson title" --body-file lesson.html --apply --confirm-course 12345
+python scripts/add_page_to_module.py "your-page-filename.html" "Module title" --apply --confirm-course 12345
+python scripts/upload_canvas_file.py assets/image.png --rename --apply --confirm-course 12345
+python scripts/create_classic_quiz.py quiz_banks/example.json --apply --confirm-course 12345
+python scripts/create_discussion.py "Discussion title" --message-file discussion.html --apply --confirm-course 12345
+```
 
-* setup_preview_environment.py
-* preview_page_in_canvas.py
-* preview_asset_in_canvas.py
+Commands validate configuration even in dry-run mode; they may read Canvas to resolve existing resources. Create operations can still produce duplicates if rerun after an uncertain network failure. Inspect Canvas first. Quiz/discussion creation records the new identity before subsequent steps so partial completion can be investigated. Reattaching the same page to a module is a no-op.
 
-## Documentation
+Uploads retain the original overwrite behavior unless `--rename` is supplied. Folder IDs are checked against the configured course. Upload storage receives no Canvas token; only validated Canvas confirmation URLs receive it.
 
-Open:
+## Canvas previews
 
-CanvasDaemon_Runbook.html
+```bash
+python scripts/setup_preview_environment.py --apply --confirm-course 12345
+python scripts/preview_page_in_canvas.py "your-page-filename.html" --apply --confirm-course 12345
+python scripts/preview_asset_in_canvas.py assets/image.png --apply --confirm-course 12345
+```
 
-for the complete interactive project guide.
+Omit the two apply flags to inspect without writing. Preview configuration is bound to its course, and a published preview page is protected from overwrite. Use `--no-open` to avoid opening a browser. Actual Canvas rendering and student access still require review.
 
-## Current Version
+## Available scripts
 
-v0.1.0
+| Workflow | Scripts |
+|---|---|
+| Read and find pages | `pull_pages.py`, `list_pages.py`, `list_module_pages.py`, `course_inventory.py`, `find_page.py`, `find_any_page.py` |
+| Create/update pages | `create_page.py`, `push_page.py`, `push_module_page.py`, `add_page_to_module.py` |
+| Files and images | `pull_files_metadata.py`, `find_asset.py`, `upload_canvas_file.py`, `download_editable_files.py`, `download_referenced_editable_files.py` |
+| Classic Quizzes | `create_classic_quiz.py`, `pull_classic_quizzes.py`, `find_quiz.py`, `sync_classic_quiz.py` |
+| Discussions | `create_discussion.py` |
+| Video inventory | `discover_panopto.py` extracts Panopto references from local pages; it does not create videos |
+| Previews | `setup_preview_environment.py`, `preview_page_in_canvas.py`, `preview_asset_in_canvas.py` |
 
-Implemented:
+`sync_classic_quiz.py` synchronizes **settings only**, not questions. It preserves publication status when `published` is omitted; an explicitly supplied value changes it. New quizzes are always created unpublished. Creation supports multiple choice, true/false, multiple answer, short answer, essay, and zero-point five-option survey items using the existing JSON format. New Quizzes are not supported. Review keys, points, feedback, and student-facing rendering before publication.
 
-* Page automation
-* Asset automation
-* Quiz automation
-* Canvas preview environment
-* Inventory and reporting workflows
+## Working on another course
 
-Planned:
+The repository still contains the original course's content and mappings. For another course, create a separate working folder and copy **only** `scripts/`, `requirements.txt`, `.env.example`, and this README into it. Create your own `.env` there, run the connection check, then pull your course. Do not copy `manifest.json`, `asset_manifest.json`, `preview_config.json`, tokens, or the original course assets. Keep one folder per course and coordinate module ownership with teammates.
 
-* Quiz question synchronization
-* Panopto integration
-* Unified daemon CLI
-* Web interface
+Existing image assets and visual-production references remain the style source for this course. This maintenance release does not generate or replace illustrations. Use approved source artwork and the appropriate brand guidance when producing new content.
+
+## Tests and maintenance
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+Tests use temporary files and mocked HTTP responses. They do not contact Canvas. CI runs the same checks. This release has not been validated by writing to a live course.
+
+See [CHANGELOG.md](CHANGELOG.md) for migration details and [docs/V1_MAINTENANCE.md](docs/V1_MAINTENANCE.md) for limitations and recovery. The older [HTML runbook](CanvasDaemon_Runbook.html) remains useful background; this README takes precedence for command flags.
+
+## Credential history
+
+The real `.env` was tracked in earlier commits. This update removes it from the current tree and supplies `.env.example`; it does **not** erase earlier history. The repository owner must revoke/rotate any token that reached GitHub. No token values are printed or redistributed by this maintenance update.

@@ -1,28 +1,19 @@
+"""Read-only connection check; importing this module never contacts Canvas."""
 import os
-from dotenv import load_dotenv
-import requests
+from canvas_runtime import load_dotenv, requests, validate_config
 
-load_dotenv()
 
-BASE_URL = os.getenv("CANVAS_BASE_URL")
-TOKEN = os.getenv("CANVAS_TOKEN")
-COURSE_ID = os.getenv("COURSE_ID")
-
-headers = {
-    "Authorization": f"Bearer {TOKEN}"
-}
-
-url = f"{BASE_URL}/api/v1/courses/{COURSE_ID}"
-
-response = requests.get(url, headers=headers)
-
-print("Status Code:", response.status_code)
-
-if response.ok:
+def main():
+    load_dotenv()
+    base, token, course = os.getenv("CANVAS_BASE_URL", "").rstrip("/"), os.getenv("CANVAS_TOKEN"), os.getenv("COURSE_ID")
+    validate_config(base, token, course)
+    response = requests.get(f"{base}/api/v1/courses/{course}", headers={"Authorization": f"Bearer {token}"})
+    response.raise_for_status()
     data = response.json()
+    if str(data["id"]) != course:
+        raise ValueError("Unexpected course identity from Canvas.")
+    print(f"Connected: {data['name']} (course {data['id']})")
 
-    print("\nConnected Successfully")
-    print("Course Name:", data["name"])
-    print("Course ID:", data["id"])
-else:
-    print(response.text)
+
+if __name__ == "__main__":
+    main()

@@ -45,6 +45,7 @@ def main():
         help="Actually push to Canvas"
     )
 
+    parser.add_argument("--confirm-course", help="Required with --apply")
     args = parser.parse_args()
 
     if not USED_PAGES_CSV.exists():
@@ -78,6 +79,8 @@ def main():
 
     if args.apply:
         cmd.append("--apply")
+        if args.confirm_course:
+            cmd.extend(["--confirm-course", args.confirm_course])
 
     subprocess.run(cmd, check=True)
 

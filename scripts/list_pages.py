@@ -1,33 +1,14 @@
-import os
-from dotenv import load_dotenv
-import requests
+"""List every page, including paginated results; read-only."""
+from pull_pages import check_env, get_all_pages
 
-load_dotenv()
 
-BASE_URL = os.getenv("CANVAS_BASE_URL")
-TOKEN = os.getenv("CANVAS_TOKEN")
-COURSE_ID = os.getenv("COURSE_ID")
+def main():
+    check_env()
+    pages = get_all_pages()
+    print(f"Found {len(pages)} pages")
+    for page in pages:
+        print(f"{page['title']}\n  {page['url']}")
 
-headers = {
-    "Authorization": f"Bearer {TOKEN}"
-}
 
-url = f"{BASE_URL}/api/v1/courses/{COURSE_ID}/pages"
-
-response = requests.get(
-    url,
-    headers=headers,
-    params={"per_page": 100}
-)
-
-print("Status:", response.status_code)
-
-pages = response.json()
-
-print(f"\nFound {len(pages)} pages\n")
-
-for page in pages:
-    print(
-        f"Title: {page['title']}\n"
-        f"URL: {page['url']}\n"
-    )
+if __name__ == "__main__":
+    main()

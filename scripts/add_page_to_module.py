@@ -1,10 +1,11 @@
+from canvas_runtime import add_write_flags, authorize
 import os
 import json
 import argparse
 from pathlib import Path
 
-import requests
-from dotenv import load_dotenv
+from canvas_runtime import requests
+from canvas_runtime import load_dotenv
 
 load_dotenv()
 
@@ -21,16 +22,18 @@ HEADERS = {
 
 
 def check_env():
-    if not BASE_URL or not TOKEN or not COURSE_ID:
-        raise RuntimeError(
-            "Missing .env values. Required: CANVAS_BASE_URL, CANVAS_TOKEN, COURSE_ID"
-        )
+    from canvas_runtime import validate_config
+    validate_config(BASE_URL, TOKEN, COURSE_ID)
 
 
 def canvas_get_all(url, params=None):
     results = []
 
+    seen_urls = set()
     while url:
+        if url in seen_urls:
+            raise RuntimeError("Canvas repeated a pagination URL.")
+        seen_urls.add(url)
         response = requests.get(url, headers=HEADERS, params=params)
         response.raise_for_status()
 
@@ -46,7 +49,8 @@ def load_manifest():
     if not MANIFEST_PATH.exists():
         raise FileNotFoundError("manifest.json not found. Run pull_pages.py first.")
 
-    return json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    from canvas_runtime import bound
+    return bound(json.loads(MANIFEST_PATH.read_text(encoding="utf-8")), BASE_URL, COURSE_ID)
 
 
 def find_page_in_manifest(filename):
@@ -85,6 +89,11 @@ def find_module_by_name(module_name):
 def add_page_to_module(module_id, page_title, page_url, indent=0):
     url = f"{BASE_URL}/api/v1/courses/{COURSE_ID}/modules/{module_id}/items"
 
+    for item in canvas_get_all(url):
+        if item.get("type") == "Page" and item.get("page_url") == page_url:
+            print("Page already belongs to this module.")
+            return item
+
     payload = {
         "module_item[type]": "Page",
         "module_item[title]": page_title,
@@ -99,8 +108,6 @@ def add_page_to_module(module_id, page_title, page_url, indent=0):
 
 
 def main():
-    check_env()
-
     parser = argparse.ArgumentParser(
         description="Add an existing Canvas page to a Canvas Module."
     )
@@ -108,13 +115,18 @@ def main():
     parser.add_argument("module", help="Module name or partial module name")
     parser.add_argument("--indent", type=int, default=0, help="Module item indent level")
 
+    add_write_flags(parser)
     args = parser.parse_args()
+    check_env()
 
     page_info = find_page_in_manifest(args.filename)
     page_title = page_info["title"]
     page_url = page_info["canvas_url"]
 
     module = find_module_by_name(args.module)
+
+    if not authorize(args, BASE_URL, COURSE_ID):
+        return
 
     created_item = add_page_to_module(
         module_id=module["id"],

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.4 — Process guide
+
+- Added `docs/PROCESS_GUIDE.md` and `docs/PROCESS_GUIDE.html` documenting the full repo cleanup and toolkit preparation process.
+- Linked the process guide from `README.md` for teammates and future maintainers.
+
 ## 0.2.3 — AI helper and page asset workflow
 
 - Added repo instructions for AI coding helpers through `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, `.cursor/rules/canvasdaemon.mdc`, and `docs/AI_HELPER_GUIDE.md`.

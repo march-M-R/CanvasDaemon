@@ -14,6 +14,8 @@ Start with the setup guide if you are configuring CanvasDaemon for the first tim
 - [Handbook — HTML](docs/HANDBOOK.html)
 - [AI helper guide — Markdown](docs/AI_HELPER_GUIDE.md)
 - [AI helper guide — HTML](docs/AI_HELPER_GUIDE.html)
+- [Process guide — Markdown](docs/PROCESS_GUIDE.md)
+- [Process guide — HTML](docs/PROCESS_GUIDE.html)
 
 ## Setup
 

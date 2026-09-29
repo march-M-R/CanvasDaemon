@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CanvasDaemon AI Helper Guide</title>
+<style>
+:root{--ink:#172033;--muted:#5b667a;--line:#d9e0ea;--bg:#f7f9fc;--card:#fff;--accent:#9d1535;--accent2:#004b7a;}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif} a{color:var(--accent2)}
+.layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:28px;max-width:1240px;margin:0 auto;padding:28px}
+nav{position:sticky;top:20px;align-self:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 8px 24px rgba(23,32,51,.06);max-height:calc(100vh - 40px);overflow:auto}
+nav h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px} nav ul{list-style:none;margin:0;padding:0} nav li{margin:7px 0} nav .toc-3{margin-left:12px;font-size:14px}
+main{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:38px;box-shadow:0 12px 30px rgba(23,32,51,.07)}
+h1{font-size:38px;line-height:1.15;margin-top:0;color:var(--accent)} h2{margin-top:34px;border-top:1px solid var(--line);padding-top:24px} h3{margin-top:24px}
+code{background:#eef3f8;border:1px solid #d9e3ee;border-radius:5px;padding:.1em .35em} pre{background:#101828;color:#eef4ff;border-radius:12px;padding:16px;overflow:auto} pre code{background:transparent;border:0;padding:0;color:inherit}
+table{border-collapse:collapse;width:100%;margin:18px 0;display:block;overflow:auto} th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top} th{background:#f0f4f8}
+li{margin:5px 0} p{margin:12px 0}
+@media(max-width:850px){.layout{display:block;padding:14px} nav{position:static;margin-bottom:16px;max-height:none} main{padding:24px} h1{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav><h2>AI Helper Guide</h2><ul><li class="toc-2"><a href="#start-every-work-session-by-getting-changes-first">Start Every Work Session by Getting Changes First</a></li>
+<li class="toc-2"><a href="#repository-boundaries">Repository Boundaries</a></li>
+<li class="toc-2"><a href="#where-things-go">Where Things Go</a></li>
+<li class="toc-2"><a href="#required-canvas-write-pattern">Required Canvas Write Pattern</a></li>
+<li class="toc-2"><a href="#page-workflow">Page Workflow</a></li>
+<li class="toc-2"><a href="#asset-workflow">Asset Workflow</a></li>
+<li class="toc-2"><a href="#module-workflow">Module Workflow</a></li>
+<li class="toc-2"><a href="#template-workflow">Template Workflow</a></li>
+<li class="toc-2"><a href="#testing-before-sharing-changes">Testing Before Sharing Changes</a></li>
+<li class="toc-2"><a href="#good-helper-behavior">Good Helper Behavior</a></li></ul></nav>
+<main>
+<h1 id="ai-helper-guide-for-canvasdaemon">AI Helper Guide for CanvasDaemon</h1>
+<p>This file tells coding assistants such as Codex, GitHub Copilot, Cursor, Claude Code, and similar tools how to work in this repository safely.</p>
+<h2 id="start-every-work-session-by-getting-changes-first">Start Every Work Session by Getting Changes First</h2>
+<p>Before editing repository files, get the latest GitHub changes:</p>
+<pre><code>git pull --ff-only</code></pre>
+<p>If the branch has local work, inspect it before pulling:</p>
+<pre><code>git status --short --branch
+git diff --stat</code></pre>
+<p>Before editing live Canvas content, get the latest Canvas state:</p>
+<pre><code>python scripts/test_canvas.py
+python scripts/pull_pages.py
+python scripts/pull_files_metadata.py
+python scripts/course_inventory.py</code></pre>
+<p><code>push_page.py</code> also checks whether Canvas changed since the last pull and refuses to overwrite stale content. If it refuses, pull fresh content, merge carefully, preview again, and only then push.</p>
+<h2 id="repository-boundaries">Repository Boundaries</h2>
+<p>This GitHub repo is the reusable toolkit. Do not commit course-specific generated output.</p>
+<p>Commit these when useful:</p>
+<ul>
+<li><code>scripts/</code></li>
+<li><code>tests/</code></li>
+<li><code>docs/</code></li>
+<li><code>examples/templates/</code></li>
+<li><code>.env.example</code></li>
+<li><code>README.md</code></li>
+<li><code>CHANGELOG.md</code></li>
+</ul>
+<p>Do not commit these:</p>
+<ul>
+<li><code>.env</code></li>
+<li><code>.venv/</code></li>
+<li><code>pages/</code></li>
+<li><code>manifest.json</code></li>
+<li><code>backups/</code></li>
+<li><code>reports/</code></li>
+<li><code>canvas_files/</code></li>
+<li><code>asset_manifest.json</code></li>
+<li><code>preview_config.json</code></li>
+</ul>
+<h2 id="where-things-go">Where Things Go</h2>
+<p>Use this organization for course work:</p>
+<table><thead><tr><th>Item</th><th>Local Location</th><th>Canvas Destination</th></tr></thead><tbody>
+<tr><td>Page HTML pulled from Canvas</td><td><code>pages/</code></td><td>Canvas Pages</td></tr>
+<tr><td>New reusable page template</td><td><code>examples/templates/pages/</code></td><td>Do not push unchanged</td></tr>
+<tr><td>Course images and media before upload</td><td><code>assets/</code> or course-specific subfolders under <code>assets/</code></td><td>Canvas Files</td></tr>
+<tr><td>Embedded activities such as standalone HTML widgets</td><td><code>assets/activities/&lt;module&gt;/</code> locally</td><td>Canvas Files, then embedded by URL</td></tr>
+<tr><td>Quiz banks</td><td><code>quiz_banks/</code></td><td>Classic Quizzes through <code>create_classic_quiz.py</code></td></tr>
+<tr><td>Local reports and generated rewritten pages</td><td><code>reports/</code></td><td>Not committed</td></tr>
+<tr><td>Downloaded Canvas files</td><td><code>canvas_files/</code></td><td>Not committed</td></tr>
+</tbody></table>
+<p>Use descriptive filenames. Prefer stable names such as <code>m03-neural-network-card-sort.html</code> or <code>m05-training-data-example.png</code> over generic names such as <code>image1.png</code>.</p>
+<h2 id="required-canvas-write-pattern">Required Canvas Write Pattern</h2>
+<p>Every script that writes to Canvas must require:</p>
+<pre><code>--apply --confirm-course COURSE_ID</code></pre>
+<p>Without those flags, commands must be dry runs or refuse to write. Do not add a new Canvas-writing script unless it uses <code>add_write_flags(parser)</code> and <code>authorize(args, BASE_URL, COURSE_ID)</code> from <code>scripts/canvas_runtime.py</code>.</p>
+<h2 id="page-workflow">Page Workflow</h2>
+<p>1. Pull pages before editing:</p>
+<p>   <code></code>`bash</p>
+<p>   python scripts/pull_pages.py</p>
+<p>   <code></code>`</p>
+<p>2. Edit the local page in <code>pages/</code>.</p>
+<p>3. If the page references local assets, prepare those assets:</p>
+<p>   <code></code>`bash</p>
+<p>   python scripts/prepare_page_assets.py pages/example.html</p>
+<p>   python scripts/prepare_page_assets.py pages/example.html --apply --confirm-course 12345</p>
+<p>   <code></code>`</p>
+<p>   The dry run lists local assets. The apply run uploads assets to Canvas Files and writes a Canvas-linked copy in <code>reports/prepared_pages/</code> by default.</p>
+<p>4. Preview the page in Canvas:</p>
+<p>   <code></code>`bash</p>
+<p>   python scripts/preview_page_in_canvas.py reports/prepared_pages/example.html --apply --confirm-course 12345</p>
+<p>   <code></code>`</p>
+<p>5. Push only after review:</p>
+<p>   <code></code>`bash</p>
+<p>   python scripts/push_page.py example.html --diff</p>
+<p>   python scripts/push_page.py example.html --apply --confirm-course 12345</p>
+<p>   <code></code>`</p>
+<p>If using the rewritten page from <code>reports/prepared_pages/</code>, copy the reviewed HTML back into the matching <code>pages/</code> file deliberately before pushing.</p>
+<h2 id="asset-workflow">Asset Workflow</h2>
+<p>Use Canvas Files for images, downloadable files, and embedded HTML activities. Do not assume a local <code>src=&quot;assets/...&quot;</code> path will work for students after the page is pushed to Canvas.</p>
+<p>For one file:</p>
+<pre><code>python scripts/upload_canvas_file.py assets/image.png --folder &quot;CanvasDaemon/module-03&quot; --apply --confirm-course 12345
+python scripts/pull_files_metadata.py
+python scripts/find_asset.py &quot;image.png&quot;</code></pre>
+<p>For every local file referenced by one page:</p>
+<pre><code>python scripts/prepare_page_assets.py pages/example.html
+python scripts/prepare_page_assets.py pages/example.html --folder &quot;CanvasDaemon/module-03&quot; --apply --confirm-course 12345</code></pre>
+<p>Then preview the rewritten HTML. Use <code>--rename</code> when you do not want to overwrite a matching Canvas filename.</p>
+<h2 id="module-workflow">Module Workflow</h2>
+<p>Create missing modules before adding pages:</p>
+<pre><code>python scripts/create_module.py &quot;Module 3: Building AI Systems&quot;
+python scripts/create_module.py &quot;Module 3: Building AI Systems&quot; --position 3 --apply --confirm-course 12345</code></pre>
+<p>Attach an existing page to a module:</p>
+<pre><code>python scripts/add_page_to_module.py &quot;page-filename.html&quot; &quot;Module 3&quot; --apply --confirm-course 12345</code></pre>
+<h2 id="template-workflow">Template Workflow</h2>
+<p>Use <code>examples/templates/</code> as patterns, not as pages to push unchanged. Replace:</p>
+<ul>
+<li>course title and module title</li>
+<li>dates, completion claims, and grading language</li>
+<li>Canvas links</li>
+<li>Panopto or video links</li>
+<li>image references</li>
+<li>embedded activity links</li>
+<li>institution-specific instructions</li>
+</ul>
+<p>Use <code>examples/templates/assets/m2_1_1_examples_patterns.png</code> as the high-school visual style reference for new illustrations.</p>
+<h2 id="testing-before-sharing-changes">Testing Before Sharing Changes</h2>
+<p>Run offline tests before committing toolkit changes:</p>
+<pre><code>python -m unittest discover -s tests -v</code></pre>
+<p>If you add or change a Canvas-writing script, add or update tests showing dry-run behavior and confirmation behavior.</p>
+<h2 id="good-helper-behavior">Good Helper Behavior</h2>
+<p>A helper should:</p>
+<ul>
+<li>Read <code>README.md</code>, <code>docs/SETUP.md</code>, <code>docs/HANDBOOK.md</code>, and this file before major edits.</li>
+<li>Pull GitHub changes before editing when network access is available.</li>
+<li>Pull Canvas pages and file metadata before touching live course content.</li>
+<li>Keep generated course files out of Git.</li>
+<li>Preview in Canvas before pushing production pages.</li>
+<li>Preserve the explicit write-confirmation guardrails.</li>
+<li>Explain exactly which files changed and which tests were run.</li>
+</ul>
+</main>
+</div>
+</body>
+</html>

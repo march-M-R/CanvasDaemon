@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.3 — AI helper and page asset workflow
+
+- Added repo instructions for AI coding helpers through `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, `.cursor/rules/canvasdaemon.mdc`, and `docs/AI_HELPER_GUIDE.md`.
+- Added `scripts/prepare_page_assets.py` to find local asset references in a page, upload those assets to Canvas Files, and write a Canvas-linked HTML copy.
+- Added regression tests for page asset collection and link rewriting.
+- Updated README, setup guide, and handbook to include the AI-helper and asset-preparation workflows.
+
 ## 0.2.2 — Module creation workflow
 
 - Added `scripts/create_module.py` for guarded Canvas module creation with dry-run default, duplicate-name protection, optional position, publishing, unlock date, sequential progress, and prerequisite module IDs.

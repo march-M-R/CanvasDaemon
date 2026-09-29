@@ -12,6 +12,8 @@ Start with the setup guide if you are configuring CanvasDaemon for the first tim
 - [Setup guide — HTML](docs/SETUP.html)
 - [Handbook — Markdown](docs/HANDBOOK.md)
 - [Handbook — HTML](docs/HANDBOOK.html)
+- [AI helper guide — Markdown](docs/AI_HELPER_GUIDE.md)
+- [AI helper guide — HTML](docs/AI_HELPER_GUIDE.html)
 
 ## Setup
 
@@ -81,7 +83,7 @@ Omit the two apply flags to inspect without writing. Preview configuration is bo
 |---|---|
 | Read and find pages | `pull_pages.py`, `list_pages.py`, `list_module_pages.py`, `course_inventory.py`, `find_page.py`, `find_any_page.py` |
 | Create/update pages and modules | `create_module.py`, `create_page.py`, `push_page.py`, `push_module_page.py`, `add_page_to_module.py` |
-| Files and images | `pull_files_metadata.py`, `find_asset.py`, `upload_canvas_file.py`, `download_editable_files.py`, `download_referenced_editable_files.py` |
+| Files and images | `pull_files_metadata.py`, `find_asset.py`, `upload_canvas_file.py`, `prepare_page_assets.py`, `download_editable_files.py`, `download_referenced_editable_files.py` |
 | Classic Quizzes | `create_classic_quiz.py`, `pull_classic_quizzes.py`, `find_quiz.py`, `sync_classic_quiz.py` |
 | Discussions | `create_discussion.py` |
 | Video inventory | `discover_panopto.py` extracts Panopto references from local pages; it does not create videos |

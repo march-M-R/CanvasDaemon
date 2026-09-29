@@ -207,6 +207,8 @@ examples/templates/assets/m2_1_1_examples_patterns.png
 
 Use it as the guide for new course illustrations: high-school setting, student-facing, warm, concrete, story-based, and tied to the learning concept. Avoid abstract futuristic dashboard imagery unless the page truly needs that mood.
 
+For coding assistants, use [AI Helper Guide](AI_HELPER_GUIDE.md) as the repo-specific instruction source.
+
 ## Module Workflows
 
 Create a module when you are building a new course shell or adding a new unit:
@@ -577,6 +579,7 @@ When adapting templates for another course, replace Panopto links and iframes wi
 | `pull_files_metadata.py` | Pulls Canvas file metadata. | No |
 | `find_asset.py` | Searches local file metadata. | No |
 | `upload_canvas_file.py` | Uploads a local file to Canvas Files. | Yes, only with `--apply --confirm-course` |
+| `prepare_page_assets.py` | Finds local page asset references, uploads them, and writes Canvas-linked HTML. | Yes, only with `--apply --confirm-course` |
 | `preview_asset_in_canvas.py` | Uploads/previews a local asset in Canvas. | Yes, only with `--apply --confirm-course` |
 | `download_editable_files.py` | Downloads editable Canvas files. | No |
 | `download_referenced_editable_files.py` | Downloads editable files referenced by pages. | No |

@@ -223,6 +223,7 @@ These files are either private, generated, or course-specific.
 - Run `python scripts/test_canvas.py`.
 - Pull pages with `python scripts/pull_pages.py`.
 - Create missing modules with `python scripts/create_module.py`.
+- For pages with local images or activities, run `python scripts/prepare_page_assets.py pages/example.html` before preview/push.
 - Set up preview with `setup_preview_environment.py`.
 - Preview before pushing.
 - Push only with `--apply --confirm-course COURSE_ID`.

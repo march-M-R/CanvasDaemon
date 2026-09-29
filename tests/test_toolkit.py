@@ -18,6 +18,7 @@ import upload_canvas_file as upload
 import preview_page_in_canvas as preview
 import add_page_to_module as placement
 import create_module as modules
+import prepare_page_assets as page_assets
 
 
 class RuntimeTests(unittest.TestCase):
@@ -179,6 +180,31 @@ class ContentTests(unittest.TestCase):
         get.return_value.json.return_value={'published':True}
         with self.assertRaises(ValueError):preview.update_preview_page('preview','body')
         put.assert_not_called()
+
+    def test_prepare_page_assets_collects_local_references(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            page_dir=root/'pages'; asset_dir=root/'assets'
+            page_dir.mkdir(); asset_dir.mkdir()
+            (asset_dir/'image.png').write_bytes(b'png')
+            page=page_dir/'lesson.html'
+            page.write_text('<img src="../assets/image.png"><a href="https://example.test/x">x</a><a href="#section">jump</a>')
+            with patch.object(page_assets,'ROOT_DIR',root):
+                refs=page_assets.collect_local_assets(page)
+            self.assertEqual(len(refs),1)
+            self.assertEqual(refs[0]['path'],(asset_dir/'image.png').resolve())
+
+    def test_prepare_page_assets_rewrites_references(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            page=root/'lesson.html'; asset=root/'image.png'
+            asset.write_bytes(b'png')
+            page.write_text('<img src="image.png"><iframe src="activity.html?x=1#part"></iframe>')
+            (root/'activity.html').write_text('<p>activity</p>')
+            replacements={'image.png':'https://canvas.example.test/files/1/download','activity.html?x=1#part':'https://canvas.example.test/files/2/download?x=1#part'}
+            html=page_assets.rewrite_html(page,replacements)
+            self.assertIn('https://canvas.example.test/files/1/download',html)
+            self.assertIn('https://canvas.example.test/files/2/download?x=1#part',html)
 
 
 class AdditionalRegressionTests(unittest.TestCase):

@@ -211,6 +211,7 @@ python scripts/push_module_page.py &quot;filename.html&quot; --apply --confirm-c
 <p>The image style reference is:</p>
 <pre><code>examples/templates/assets/m2_1_1_examples_patterns.png</code></pre>
 <p>Use it as the guide for new course illustrations: high-school setting, student-facing, warm, concrete, story-based, and tied to the learning concept. Avoid abstract futuristic dashboard imagery unless the page truly needs that mood.</p>
+<p>For coding assistants, use <a href="AI_HELPER_GUIDE.md">AI Helper Guide</a> as the repo-specific instruction source.</p>
 <h2 id="module-workflows">Module Workflows</h2>
 <p>Create a module when you are building a new course shell or adding a new unit:</p>
 <pre><code>python scripts/create_module.py &quot;Module 3: Building AI Systems&quot;</code></pre>
@@ -363,6 +364,7 @@ python scripts/push_module_page.py &quot;filename.html&quot; --apply --confirm-c
 <tr><td><code>pull_files_metadata.py</code></td><td>Pulls Canvas file metadata.</td><td>No</td></tr>
 <tr><td><code>find_asset.py</code></td><td>Searches local file metadata.</td><td>No</td></tr>
 <tr><td><code>upload_canvas_file.py</code></td><td>Uploads a local file to Canvas Files.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
+<tr><td><code>prepare_page_assets.py</code></td><td>Finds local page asset references, uploads them, and writes Canvas-linked HTML.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
 <tr><td><code>preview_asset_in_canvas.py</code></td><td>Uploads/previews a local asset in Canvas.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
 <tr><td><code>download_editable_files.py</code></td><td>Downloads editable Canvas files.</td><td>No</td></tr>
 <tr><td><code>download_referenced_editable_files.py</code></td><td>Downloads editable files referenced by pages.</td><td>No</td></tr>

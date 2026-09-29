@@ -16,8 +16,9 @@
 <li class="toc-2"><a href="#process-12-guide-ai-coding-helpers">Process 12: Guide AI Coding Helpers</a></li>
 <li class="toc-2"><a href="#process-13-keep-every-canvas-write-guarded">Process 13: Keep Every Canvas Write Guarded</a></li>
 <li class="toc-2"><a href="#process-14-run-a-detailed-readiness-audit">Process 14: Run a Detailed Readiness Audit</a></li>
-<li class="toc-2"><a href="#process-15-run-tests-before-sharing">Process 15: Run Tests Before Sharing</a></li>
-<li class="toc-2"><a href="#process-16-commit-and-push-a-toolkit-change">Process 16: Commit and Push a Toolkit Change</a></li>
+<li class="toc-2"><a href="#process-15-run-the-consolidated-review-checklist">Process 15: Run the Consolidated Review Checklist</a></li>
+<li class="toc-2"><a href="#process-16-run-tests-before-sharing">Process 16: Run Tests Before Sharing</a></li>
+<li class="toc-2"><a href="#process-17-commit-and-push-a-toolkit-change">Process 17: Commit and Push a Toolkit Change</a></li>
 <li class="toc-2"><a href="#current-share-ready-state">Current Share-Ready State</a></li></ul></nav><main>
 <h1 id="canvasdaemon-process-guide">CanvasDaemon Process Guide</h1>
 <p>This guide documents the decisions and workflows that turned CanvasDaemon from a course-specific working repo into a reusable toolkit teammates can use with Codex, Copilot, Cursor, Claude Code, or another coding helper.</p>
@@ -236,7 +237,13 @@ python scripts/sync_classic_quiz.py quiz_banks/example.json --apply --confirm-co
 <pre><code>reports/audit/</code></pre>
 <p>Use this stricter mode if warnings should fail the command:</p>
 <pre><code>python scripts/audit_course_readiness.py --fail-on-warning</code></pre>
-<h2 id="process-15-run-tests-before-sharing">Process 15: Run Tests Before Sharing</h2>
+<h2 id="process-15-run-the-consolidated-review-checklist">Process 15: Run the Consolidated Review Checklist</h2>
+<p>Run one command to consolidate the manual review checks from the toolkit cleanup process:</p>
+<pre><code>python scripts/review_course_toolkit.py --check-history --include-tests</code></pre>
+<p>This checks Git cleanliness, forbidden tracked files, optional <code>.env</code> history, required documentation, AI-helper files, required scripts, README links, template library completeness, image-style reference, write-safety gates, the detailed readiness audit, and offline tests. Reports are written under:</p>
+<pre><code>reports/review/</code></pre>
+<p>Use <code>--fail-on-warning</code> for stricter handoff reviews.</p>
+<h2 id="process-16-run-tests-before-sharing">Process 16: Run Tests Before Sharing</h2>
 <p>Run:</p>
 <pre><code>python -m unittest discover -s tests -v</code></pre>
 <p>The test suite is offline and uses mocked Canvas responses. It verifies core safety behavior such as:</p>
@@ -251,7 +258,7 @@ python scripts/sync_classic_quiz.py quiz_banks/example.json --apply --confirm-co
 <li>upload callback scoping</li>
 <li>quiz validation</li>
 </ul>
-<h2 id="process-16-commit-and-push-a-toolkit-change">Process 16: Commit and Push a Toolkit Change</h2>
+<h2 id="process-17-commit-and-push-a-toolkit-change">Process 17: Commit and Push a Toolkit Change</h2>
 <p>Review changes:</p>
 <pre><code>git status --short --branch
 git diff --stat
@@ -278,6 +285,7 @@ git log -1 --oneline</code></pre>
 <li>Canvas preview workflows</li>
 <li>asset upload and page asset preparation workflows</li>
 <li>detailed local readiness audit reports</li>
+<li>consolidated toolkit review reports</li>
 <li>Classic Quiz and discussion workflows</li>
 <li>offline regression tests</li>
 </ul>

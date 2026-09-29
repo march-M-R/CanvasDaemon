@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.6 — Consolidated review checklist
+
+- Added `scripts/review_course_toolkit.py`, a consolidated review script for share-readiness checks across Git state, tracked-file safety, optional `.env` history, docs, AI-helper instructions, scripts, templates, image reference, write guards, readiness audit, and optional tests.
+- Added regression tests and documented the review checklist in README, handbook, AI-helper guide, and process guide.
+
 ## 0.2.5 — Readiness audit
 
 - Added `scripts/audit_course_readiness.py`, a read-only local audit for repo state, manifests, pages, local assets, placeholder links, image alt text, template files, and script safety gates.

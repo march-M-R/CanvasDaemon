@@ -396,7 +396,23 @@ Use this stricter mode if warnings should fail the command:
 python scripts/audit_course_readiness.py --fail-on-warning
 ```
 
-## Process 15: Run Tests Before Sharing
+## Process 15: Run the Consolidated Review Checklist
+
+Run one command to consolidate the manual review checks from the toolkit cleanup process:
+
+```bash
+python scripts/review_course_toolkit.py --check-history --include-tests
+```
+
+This checks Git cleanliness, forbidden tracked files, optional `.env` history, required documentation, AI-helper files, required scripts, README links, template library completeness, image-style reference, write-safety gates, the detailed readiness audit, and offline tests. Reports are written under:
+
+```text
+reports/review/
+```
+
+Use `--fail-on-warning` for stricter handoff reviews.
+
+## Process 16: Run Tests Before Sharing
 
 Run:
 
@@ -416,7 +432,7 @@ The test suite is offline and uses mocked Canvas responses. It verifies core saf
 - upload callback scoping
 - quiz validation
 
-## Process 16: Commit and Push a Toolkit Change
+## Process 17: Commit and Push a Toolkit Change
 
 Review changes:
 
@@ -465,6 +481,7 @@ The repo is now designed to be shared as a reusable course-building toolkit. It 
 - Canvas preview workflows
 - asset upload and page asset preparation workflows
 - detailed local readiness audit reports
+- consolidated toolkit review reports
 - Classic Quiz and discussion workflows
 - offline regression tests
 

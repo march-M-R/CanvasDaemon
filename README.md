@@ -83,7 +83,7 @@ Omit the two apply flags to inspect without writing. Preview configuration is bo
 
 | Workflow | Scripts |
 |---|---|
-| Read, find, and audit pages | `pull_pages.py`, `list_pages.py`, `list_module_pages.py`, `course_inventory.py`, `audit_course_readiness.py`, `find_page.py`, `find_any_page.py` |
+| Read, find, audit, and review | `pull_pages.py`, `list_pages.py`, `list_module_pages.py`, `course_inventory.py`, `audit_course_readiness.py`, `review_course_toolkit.py`, `find_page.py`, `find_any_page.py` |
 | Create/update pages and modules | `create_module.py`, `create_page.py`, `push_page.py`, `push_module_page.py`, `add_page_to_module.py` |
 | Files and images | `pull_files_metadata.py`, `find_asset.py`, `upload_canvas_file.py`, `prepare_page_assets.py`, `download_editable_files.py`, `download_referenced_editable_files.py` |
 | Classic Quizzes | `create_classic_quiz.py`, `pull_classic_quizzes.py`, `find_quiz.py`, `sync_classic_quiz.py` |
@@ -102,6 +102,12 @@ The approved reference patterns live in [`examples/templates/`](examples/templat
 Use `examples/templates/assets/m2_1_1_examples_patterns.png` as the image-style reference for new high-school course illustrations. The intended style is student-facing, classroom/story based, concrete, warm, and concept-driven. Replace videos, Canvas links, activity assets, and completion claims before publishing to a different course.
 
 ## Tests and maintenance
+
+Run the consolidated review checklist before sharing the toolkit or after broad helper edits:
+
+```bash
+python scripts/review_course_toolkit.py --check-history --include-tests
+```
 
 Run a detailed read-only readiness audit when preparing a course workspace:
 

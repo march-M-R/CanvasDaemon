@@ -19,10 +19,11 @@ CanvasDaemon lets you work locally, preview deliberately, and write to Canvas on
 11. [Classic Quiz Workflows](#classic-quiz-workflows)
 12. [Panopto and Video Inventory](#panopto-and-video-inventory)
 13. [Detailed Readiness Audit](#detailed-readiness-audit)
-14. [Script Reference](#script-reference)
-15. [Safety Rules](#safety-rules)
-16. [Recovery and Troubleshooting](#recovery-and-troubleshooting)
-17. [Recommended Team Practices](#recommended-team-practices)
+14. [Consolidated Review Checklist](#consolidated-review-checklist)
+15. [Script Reference](#script-reference)
+16. [Safety Rules](#safety-rules)
+17. [Recovery and Troubleshooting](#recovery-and-troubleshooting)
+18. [Recommended Team Practices](#recommended-team-practices)
 
 ## What CanvasDaemon Can Do
 
@@ -578,6 +579,25 @@ reports/audit/local_asset_references.csv
 
 Use `--fail-on-warning` if you want the command to exit nonzero on warnings in CI or a stricter review pass. The audit is local and read-only; it does not contact Canvas.
 
+## Consolidated Review Checklist
+
+Run the consolidated review when you want one command that captures the manual review questions used while preparing this repo for teammates:
+
+```bash
+python scripts/review_course_toolkit.py --check-history --include-tests
+```
+
+The review checks Git status, forbidden tracked files, optional `.env` history, required docs, AI-helper instruction files, required scripts, README links, the approved template set, the image-style reference, Canvas write-safety gates, the detailed readiness audit, and optional offline tests. It writes:
+
+```text
+reports/review/toolkit_review_summary.md
+reports/review/toolkit_review_findings.csv
+reports/review/toolkit_review.json
+reports/review/course_readiness/
+```
+
+Use this before sharing the repository, after broad AI-helper edits, or before telling teammates the toolkit is ready.
+
 ## Script Reference
 
 | Script | What It Does | Writes to Canvas? |
@@ -588,6 +608,7 @@ Use `--fail-on-warning` if you want the command to exit nonzero on warnings in C
 | `list_module_pages.py` | Lists pages attached to modules. | No |
 | `course_inventory.py` | Builds active/unused page reports. | No |
 | `audit_course_readiness.py` | Runs a local readiness audit and writes detailed reports. | No |
+| `review_course_toolkit.py` | Runs the consolidated share-readiness review checklist. | No |
 | `find_page.py` | Searches active module pages. | No |
 | `find_any_page.py` | Searches all pulled pages. | No |
 | `push_page.py` | Diffs and updates a Canvas page. | Yes, only with `--apply --confirm-course` |

@@ -20,6 +20,7 @@ import add_page_to_module as placement
 import create_module as modules
 import prepare_page_assets as page_assets
 import audit_course_readiness as readiness
+import review_course_toolkit as toolkit_review
 
 
 class RuntimeTests(unittest.TestCase):
@@ -226,6 +227,28 @@ class ContentTests(unittest.TestCase):
             with patch.object(readiness,'ROOT_DIR',root):
                 findings=readiness.audit_script_safety()
             self.assertTrue(any(f['category']=='script_safety' and f['severity']=='error' for f in findings))
+
+    def test_toolkit_review_detects_template_metadata_problem(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            metadata_dir=root/'examples'/'templates'/'metadata'
+            metadata_dir.mkdir(parents=True)
+            (metadata_dir/'template-library.json').write_text('{"approved_count": 1, "templates": []}')
+            rows=toolkit_review.check_template_library(root)
+            self.assertTrue(any(row['status']=='fail' for row in rows))
+
+    def test_toolkit_review_detects_forbidden_tracked_path_from_git_output(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            def fake_git(_root,args,timeout=30):
+                if args[:2] == ['status','--short']:
+                    return '## main...origin/main\n', ''
+                if args == ['ls-files']:
+                    return 'README.md\n.env\npages/example.html\n', ''
+                return '', ''
+            with patch.object(toolkit_review,'run_git',side_effect=fake_git):
+                rows=toolkit_review.check_git_clean_and_tracked(root)
+            self.assertTrue(any(row['status']=='fail' and row['check']=='git_tracked_files' for row in rows))
 
 
 class AdditionalRegressionTests(unittest.TestCase):

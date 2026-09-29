@@ -50,6 +50,26 @@ COURSE_SPECIFIC_PATTERNS = [
     r"Gemini",
 ]
 
+ACCURACY_REVIEW_ITEMS = [
+    ("learning_objectives", "Learning objectives/outcomes match the module and page purpose."),
+    ("concept_accuracy", "Definitions, explanations, examples, and analogies are technically accurate."),
+    ("ai_tool_behavior", "Descriptions of AI tools, models, limitations, hallucinations, privacy, or bias are current and accurate."),
+    ("instructions_match_activity", "Student instructions match the embedded activity, notebook, quiz, discussion, or assignment students actually see."),
+    ("answers_and_feedback", "Quiz answers, feedback, scoring language, and review explanations are correct."),
+    ("links_and_videos_content", "Linked videos, Panopto embeds, external resources, and downloadable files match the lesson content."),
+    ("student_level", "Language, examples, and cognitive load fit high-school learners."),
+    ("course_sequence", "Prerequisites, module numbers, next steps, and completion claims match the actual course sequence."),
+    ("access_and_policy", "Access requirements, tool policies, academic integrity guidance, and privacy notes are accurate for the target course."),
+    ("human_final_review", "A human reviewer has previewed this page in Canvas and approved it for students."),
+]
+
+ACCURACY_TRIGGER_PATTERNS = [
+    (re.compile(r"\b(correct answer|answer:|feedback|points?|score|mastery|quiz)\b", re.I), "assessment or answer language needs accuracy review"),
+    (re.compile(r"\b(should|must|required|submit|due|complete|completion|grade|graded)\b", re.I), "requirement or completion language needs course-policy review"),
+    (re.compile(r"\b(LLM|large language model|AI|machine learning|model|training data|hallucination|bias|privacy)\b", re.I), "AI concept language needs technical accuracy review"),
+    (re.compile(r"\b(Panopto|Colab|Gemini|Canvas|Google Drive|notebook)\b", re.I), "tool or platform instruction needs live-access review"),
+]
+
 
 def is_local_reference(value):
     if not value or value.startswith("#"):
@@ -188,6 +208,37 @@ def audit_page(path, root):
     return findings
 
 
+def accuracy_review_rows(paths, root):
+    rows = []
+    for path in paths:
+        rel = str(path.relative_to(root)) if path.is_relative_to(root) else str(path)
+        raw = path.read_text(encoding="utf-8", errors="replace")
+        soup = BeautifulSoup(raw, "html.parser")
+        visible_text = text_content(BeautifulSoup(raw, "html.parser"))
+        heading = ""
+        h1 = soup.find("h1")
+        title = soup.find("title")
+        if h1:
+            heading = h1.get_text(" ", strip=True)
+        elif title:
+            heading = title.get_text(" ", strip=True)
+        triggers = [label for pattern, label in ACCURACY_TRIGGER_PATTERNS if pattern.search(visible_text)]
+        if not triggers:
+            triggers = ["general page accuracy review"]
+        for key, prompt in ACCURACY_REVIEW_ITEMS:
+            rows.append({
+                "file": rel,
+                "page_title": heading,
+                "review_item": key,
+                "review_prompt": prompt,
+                "suggested_focus": "; ".join(triggers),
+                "status": "needs human review",
+                "reviewer": "",
+                "notes": "",
+            })
+    return rows
+
+
 def summarize_by_page(findings):
     rows = defaultdict(lambda: Counter())
     for item in findings:
@@ -198,12 +249,15 @@ def summarize_by_page(findings):
     ]
 
 
-def write_reports(findings, pages_inspected):
+def write_reports(findings, pages_inspected, accuracy_rows=None):
+    accuracy_rows = accuracy_rows or []
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     findings_csv = REPORT_DIR / "course_content_findings.csv"
     findings_json = REPORT_DIR / "course_content_findings.json"
     page_summary_csv = REPORT_DIR / "course_content_page_summary.csv"
     summary_md = REPORT_DIR / "course_content_review_summary.md"
+    accuracy_csv = REPORT_DIR / "content_accuracy_checklist.csv"
+    accuracy_md = REPORT_DIR / "content_accuracy_checklist.md"
 
     with findings_csv.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=["severity", "category", "file", "line", "message", "snippet"])
@@ -222,6 +276,23 @@ def write_reports(findings, pages_inspected):
         "findings": findings,
     }
     findings_json.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+
+    with accuracy_csv.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=["file", "page_title", "review_item", "review_prompt", "suggested_focus", "status", "reviewer", "notes"])
+        writer.writeheader()
+        writer.writerows(accuracy_rows)
+
+    accuracy_lines = [
+        "# Content Accuracy Checklist",
+        "",
+        "This checklist is intentionally human-reviewed. The script can flag likely review areas, but it cannot prove technical correctness, course alignment, policy accuracy, or whether an answer key is right.",
+        "",
+        "| File | Page Title | Review Item | Prompt | Suggested Focus | Status | Reviewer | Notes |",
+        "|---|---|---|---|---|---|---|---|",
+    ]
+    for row in accuracy_rows:
+        accuracy_lines.append("| " + " | ".join(str(row.get(col, "")).replace("|", "/") for col in ["file", "page_title", "review_item", "review_prompt", "suggested_focus", "status", "reviewer", "notes"]) + " |")
+    accuracy_md.write_text("\n".join(accuracy_lines) + "\n", encoding="utf-8")
 
     page_rows = summarize_by_page(findings)
     with page_summary_csv.open("w", newline="", encoding="utf-8") as f:
@@ -248,6 +319,7 @@ def write_reports(findings, pages_inspected):
         "- fixed-width layout risks for mobile review",
         "- Panopto/video embeds that need student-access checks",
         "- course-specific terms that should be verified when adapting to another course",
+        "- a human content-accuracy checklist for objectives, concepts, AI/tool claims, activity instructions, answer keys, links/videos, level, sequencing, policy, and final Canvas approval",
         "",
         "## Highest priority findings",
         "",
@@ -266,9 +338,11 @@ def write_reports(findings, pages_inspected):
         f"- `{findings_csv.relative_to(ROOT_DIR)}`",
         f"- `{findings_json.relative_to(ROOT_DIR)}`",
         f"- `{page_summary_csv.relative_to(ROOT_DIR)}`",
+        f"- `{accuracy_csv.relative_to(ROOT_DIR)}`",
+        f"- `{accuracy_md.relative_to(ROOT_DIR)}`",
     ])
     summary_md.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    return summary_md, findings_csv, findings_json, page_summary_csv, payload["summary"]
+    return summary_md, findings_csv, findings_json, page_summary_csv, accuracy_csv, accuracy_md, payload["summary"]
 
 
 def main():
@@ -283,7 +357,8 @@ def main():
     for page in pages:
         findings.extend(audit_page(page.resolve(), ROOT_DIR))
 
-    reports = write_reports(findings, len(pages))
+    accuracy_rows = accuracy_review_rows([page.resolve() for page in pages], ROOT_DIR)
+    reports = write_reports(findings, len(pages), accuracy_rows)
     summary = reports[-1]
     print("Course content review complete.")
     print(f"Pages inspected: {summary['pages_inspected']}")

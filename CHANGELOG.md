@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.8 — Content accuracy checklist
+
+- Extended `scripts/review_course_content.py` to generate `content_accuracy_checklist.csv` and `.md` for human review of learning objectives, technical accuracy, AI/tool claims, activities, answer keys, linked resources, student level, course sequence, policy/access language, and final Canvas approval.
+- Added regression coverage and updated docs to distinguish automated checks from required human content-accuracy review.
+
 ## 0.2.7 — Course content review
 
 - Added `scripts/review_course_content.py`, a local read-only review script for student-facing page checks such as internal notes, placeholders, encoding artifacts, link issues, missing alt text, iframe titles, local asset upload needs, mobile layout risks, and Panopto/student-access review markers.

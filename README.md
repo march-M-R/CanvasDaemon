@@ -103,7 +103,7 @@ Use `examples/templates/assets/m2_1_1_examples_patterns.png` as the image-style 
 
 ## Tests and maintenance
 
-Run the student-facing course content review after pulling or editing course pages:
+Run the student-facing course content review after pulling or editing course pages. It produces automated findings and a human content-accuracy checklist:
 
 ```bash
 python scripts/review_course_content.py

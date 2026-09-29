@@ -274,6 +274,19 @@ class ContentTests(unittest.TestCase):
                 findings=content_review.audit_page(page.resolve(),root)
             self.assertFalse([f for f in findings if f['severity'] in {'error','warning'}])
 
+    def test_course_content_review_generates_accuracy_checklist(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            page=root/'lesson.html'
+            page.write_text('<title>Quiz Review</title><h1>Quiz Review</h1><p>The correct answer explains how an AI model can hallucinate when training data and prompts are incomplete. Students must submit the Canvas quiz after watching the Panopto video.</p>')
+            with patch.object(content_review,'ROOT_DIR',root):
+                rows=content_review.accuracy_review_rows([page.resolve()],root)
+            self.assertEqual(len(rows),len(content_review.ACCURACY_REVIEW_ITEMS))
+            focus=' '.join(row['suggested_focus'] for row in rows)
+            self.assertIn('assessment or answer language',focus)
+            self.assertIn('AI concept language',focus)
+            self.assertTrue(all(row['status']=='needs human review' for row in rows))
+
 
 class AdditionalRegressionTests(unittest.TestCase):
     def test_parent_environment_file_is_not_discovered(self):

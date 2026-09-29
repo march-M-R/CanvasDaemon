@@ -234,7 +234,7 @@ python scripts/sync_classic_quiz.py quiz_banks/example.json --apply --confirm-co
 <h2 id="process-14-run-student-facing-course-content-review">Process 14: Run Student-Facing Course Content Review</h2>
 <p>Run this after pulling pages, after broad course edits, and before a major preview/push pass:</p>
 <pre><code>python scripts/review_course_content.py</code></pre>
-<p>This consolidates the manual course review checks: internal notes, placeholders, TODO/FIXME/DRAFT text, encoding artifacts, placeholder or empty links, missing alt text, missing iframe titles, local assets that still need Canvas upload, missing local assets, mobile layout risks, Panopto/student-access review markers, and course-specific terms to verify when adapting a page. Reports are written under:</p>
+<p>This consolidates the manual course review checks: internal notes, placeholders, TODO/FIXME/DRAFT text, encoding artifacts, placeholder or empty links, missing alt text, missing iframe titles, local assets that still need Canvas upload, missing local assets, mobile layout risks, Panopto/student-access review markers, and course-specific terms to verify when adapting a page. It also creates a human content-accuracy checklist for objectives, technical explanations, AI/tool claims, activity instructions, answer keys, links/videos, student level, course sequence, access/policy language, and final Canvas approval. Reports are written under:</p>
 <pre><code>reports/course_review/</code></pre>
 <p>Use <code>--fail-on-warning</code> when warnings should block the handoff.</p>
 <h2 id="process-15-run-a-detailed-readiness-audit">Process 15: Run a Detailed Readiness Audit</h2>

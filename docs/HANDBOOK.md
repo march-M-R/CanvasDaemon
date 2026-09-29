@@ -571,6 +571,8 @@ python scripts/review_course_content.py
 
 This is the consolidated version of the course review checks used while building the course. It looks for internal notes, placeholders, TODO/FIXME/DRAFT text, mojibake, placeholder links, empty links, insecure links, missing image alt text, missing iframe titles, local images/activities/files that still need Canvas upload, missing local assets, fixed-width mobile layout risks, Panopto/video embeds that need student-access checks, and course-specific terms that should be verified when adapting a page.
 
+It also generates a human content-accuracy checklist for objectives, technical explanations, AI/tool claims, activity instructions, answer keys, linked resources, student level, course sequence, access/policy language, and final Canvas approval. The script can identify likely review areas, but a human reviewer must confirm correctness.
+
 It writes:
 
 ```text
@@ -578,6 +580,8 @@ reports/course_review/course_content_review_summary.md
 reports/course_review/course_content_findings.csv
 reports/course_review/course_content_findings.json
 reports/course_review/course_content_page_summary.csv
+reports/course_review/content_accuracy_checklist.csv
+reports/course_review/content_accuracy_checklist.md
 ```
 
 Use `--fail-on-warning` for a stricter review pass. The script is local and read-only; it does not contact Canvas.

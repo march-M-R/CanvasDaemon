@@ -21,6 +21,7 @@ import create_module as modules
 import prepare_page_assets as page_assets
 import audit_course_readiness as readiness
 import review_course_toolkit as toolkit_review
+import review_course_content as content_review
 
 
 class RuntimeTests(unittest.TestCase):
@@ -249,6 +250,29 @@ class ContentTests(unittest.TestCase):
             with patch.object(toolkit_review,'run_git',side_effect=fake_git):
                 rows=toolkit_review.check_git_clean_and_tracked(root)
             self.assertTrue(any(row['status']=='fail' and row['check']=='git_tracked_files' for row in rows))
+
+    def test_course_content_review_detects_student_facing_issues(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            page=root/'lesson.html'
+            page.write_text('<h1>Lesson</h1><p>TODO replace this before students see it Ã</p><a href="#">go</a><img src="missing.png"><iframe src="activity.html"></iframe>')
+            with patch.object(content_review,'ROOT_DIR',root):
+                findings=content_review.audit_page(page.resolve(),root)
+            categories={f['category'] for f in findings}
+            self.assertIn('internal_notes',categories)
+            self.assertIn('encoding',categories)
+            self.assertIn('links',categories)
+            self.assertIn('accessibility',categories)
+            self.assertIn('assets',categories)
+
+    def test_course_content_review_accepts_clean_basic_page(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            page=root/'lesson.html'
+            page.write_text('<title>Lesson</title><h1>Lesson</h1><p>This page has enough student-facing explanation to avoid the short-page warning and gives learners clear context for the activity. Students can understand what to do, why the task matters, what evidence to inspect, and how to check their work before continuing to the next step in the lesson.</p><img src="https://canvas.example.test/files/1/download" alt="Students sorting examples"></img><a href="https://example.test" rel="noopener" target="_blank">Open resource</a>')
+            with patch.object(content_review,'ROOT_DIR',root):
+                findings=content_review.audit_page(page.resolve(),root)
+            self.assertFalse([f for f in findings if f['severity'] in {'error','warning'}])
 
 
 class AdditionalRegressionTests(unittest.TestCase):

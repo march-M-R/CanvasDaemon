@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.7 — Course content review
+
+- Added `scripts/review_course_content.py`, a local read-only review script for student-facing page checks such as internal notes, placeholders, encoding artifacts, link issues, missing alt text, iframe titles, local asset upload needs, mobile layout risks, and Panopto/student-access review markers.
+- Added regression tests and documented the content review in README, handbook, AI-helper guide, and process guide.
+
 ## 0.2.6 — Consolidated review checklist
 
 - Added `scripts/review_course_toolkit.py`, a consolidated review script for share-readiness checks across Git state, tracked-file safety, optional `.env` history, docs, AI-helper instructions, scripts, templates, image reference, write guards, readiness audit, and optional tests.

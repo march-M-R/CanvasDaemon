@@ -376,7 +376,23 @@ This means a script only writes when the command includes both:
 
 If someone forgets the flags, the command stays a dry run or refuses to write. If the course ID is wrong, the command refuses to write.
 
-## Process 14: Run a Detailed Readiness Audit
+## Process 14: Run Student-Facing Course Content Review
+
+Run this after pulling pages, after broad course edits, and before a major preview/push pass:
+
+```bash
+python scripts/review_course_content.py
+```
+
+This consolidates the manual course review checks: internal notes, placeholders, TODO/FIXME/DRAFT text, encoding artifacts, placeholder or empty links, missing alt text, missing iframe titles, local assets that still need Canvas upload, missing local assets, mobile layout risks, Panopto/student-access review markers, and course-specific terms to verify when adapting a page. Reports are written under:
+
+```text
+reports/course_review/
+```
+
+Use `--fail-on-warning` when warnings should block the handoff.
+
+## Process 15: Run a Detailed Readiness Audit
 
 Run the local audit before a major Canvas push, before handing a course workspace to another teammate, or after a coding helper makes broad edits:
 
@@ -396,7 +412,7 @@ Use this stricter mode if warnings should fail the command:
 python scripts/audit_course_readiness.py --fail-on-warning
 ```
 
-## Process 15: Run the Consolidated Review Checklist
+## Process 16: Run the Consolidated Review Checklist
 
 Run one command to consolidate the manual review checks from the toolkit cleanup process:
 
@@ -412,7 +428,7 @@ reports/review/
 
 Use `--fail-on-warning` for stricter handoff reviews.
 
-## Process 16: Run Tests Before Sharing
+## Process 17: Run Tests Before Sharing
 
 Run:
 
@@ -432,7 +448,7 @@ The test suite is offline and uses mocked Canvas responses. It verifies core saf
 - upload callback scoping
 - quiz validation
 
-## Process 17: Commit and Push a Toolkit Change
+## Process 18: Commit and Push a Toolkit Change
 
 Review changes:
 
@@ -480,6 +496,7 @@ The repo is now designed to be shared as a reusable course-building toolkit. It 
 - page creation and push workflows
 - Canvas preview workflows
 - asset upload and page asset preparation workflows
+- student-facing course content review reports
 - detailed local readiness audit reports
 - consolidated toolkit review reports
 - Classic Quiz and discussion workflows

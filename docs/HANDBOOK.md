@@ -18,12 +18,13 @@ CanvasDaemon lets you work locally, preview deliberately, and write to Canvas on
 10. [Discussion Workflows](#discussion-workflows)
 11. [Classic Quiz Workflows](#classic-quiz-workflows)
 12. [Panopto and Video Inventory](#panopto-and-video-inventory)
-13. [Detailed Readiness Audit](#detailed-readiness-audit)
-14. [Consolidated Review Checklist](#consolidated-review-checklist)
-15. [Script Reference](#script-reference)
-16. [Safety Rules](#safety-rules)
-17. [Recovery and Troubleshooting](#recovery-and-troubleshooting)
-18. [Recommended Team Practices](#recommended-team-practices)
+13. [Student-Facing Course Content Review](#student-facing-course-content-review)
+14. [Detailed Readiness Audit](#detailed-readiness-audit)
+15. [Consolidated Review Checklist](#consolidated-review-checklist)
+16. [Script Reference](#script-reference)
+17. [Safety Rules](#safety-rules)
+18. [Recovery and Troubleshooting](#recovery-and-troubleshooting)
+19. [Recommended Team Practices](#recommended-team-practices)
 
 ## What CanvasDaemon Can Do
 
@@ -560,6 +561,27 @@ This writes `panopto_manifest.json` and a report. It does not create, upload, or
 
 When adapting templates for another course, replace Panopto links and iframes with the new course videos.
 
+## Student-Facing Course Content Review
+
+Run this after pulling pages, after broad edits, or before a Canvas preview/push pass:
+
+```bash
+python scripts/review_course_content.py
+```
+
+This is the consolidated version of the course review checks used while building the course. It looks for internal notes, placeholders, TODO/FIXME/DRAFT text, mojibake, placeholder links, empty links, insecure links, missing image alt text, missing iframe titles, local images/activities/files that still need Canvas upload, missing local assets, fixed-width mobile layout risks, Panopto/video embeds that need student-access checks, and course-specific terms that should be verified when adapting a page.
+
+It writes:
+
+```text
+reports/course_review/course_content_review_summary.md
+reports/course_review/course_content_findings.csv
+reports/course_review/course_content_findings.json
+reports/course_review/course_content_page_summary.csv
+```
+
+Use `--fail-on-warning` for a stricter review pass. The script is local and read-only; it does not contact Canvas.
+
 ## Detailed Readiness Audit
 
 Run the read-only audit before sharing a course workspace, before major Canvas pushes, or when a coding helper has made many changes:
@@ -608,6 +630,7 @@ Use this before sharing the repository, after broad AI-helper edits, or before t
 | `list_module_pages.py` | Lists pages attached to modules. | No |
 | `course_inventory.py` | Builds active/unused page reports. | No |
 | `audit_course_readiness.py` | Runs a local readiness audit and writes detailed reports. | No |
+| `review_course_content.py` | Runs student-facing course page content review checks. | No |
 | `review_course_toolkit.py` | Runs the consolidated share-readiness review checklist. | No |
 | `find_page.py` | Searches active module pages. | No |
 | `find_any_page.py` | Searches all pulled pages. | No |

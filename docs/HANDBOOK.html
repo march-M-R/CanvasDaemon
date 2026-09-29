@@ -30,6 +30,7 @@
 <li class="toc-3"><a href="#find-a-quiz">Find a Quiz</a></li>
 <li class="toc-3"><a href="#sync-quiz-settings">Sync Quiz Settings</a></li>
 <li class="toc-2"><a href="#panopto-and-video-inventory">Panopto and Video Inventory</a></li>
+<li class="toc-2"><a href="#student-facing-course-content-review">Student-Facing Course Content Review</a></li>
 <li class="toc-2"><a href="#detailed-readiness-audit">Detailed Readiness Audit</a></li>
 <li class="toc-2"><a href="#consolidated-review-checklist">Consolidated Review Checklist</a></li>
 <li class="toc-2"><a href="#script-reference">Script Reference</a></li>
@@ -60,12 +61,13 @@
 <p>10. <a href="#discussion-workflows">Discussion Workflows</a></p>
 <p>11. <a href="#classic-quiz-workflows">Classic Quiz Workflows</a></p>
 <p>12. <a href="#panopto-and-video-inventory">Panopto and Video Inventory</a></p>
-<p>13. <a href="#detailed-readiness-audit">Detailed Readiness Audit</a></p>
-<p>14. <a href="#consolidated-review-checklist">Consolidated Review Checklist</a></p>
-<p>15. <a href="#script-reference">Script Reference</a></p>
-<p>16. <a href="#safety-rules">Safety Rules</a></p>
-<p>17. <a href="#recovery-and-troubleshooting">Recovery and Troubleshooting</a></p>
-<p>18. <a href="#recommended-team-practices">Recommended Team Practices</a></p>
+<p>13. <a href="#student-facing-course-content-review">Student-Facing Course Content Review</a></p>
+<p>14. <a href="#detailed-readiness-audit">Detailed Readiness Audit</a></p>
+<p>15. <a href="#consolidated-review-checklist">Consolidated Review Checklist</a></p>
+<p>16. <a href="#script-reference">Script Reference</a></p>
+<p>17. <a href="#safety-rules">Safety Rules</a></p>
+<p>18. <a href="#recovery-and-troubleshooting">Recovery and Troubleshooting</a></p>
+<p>19. <a href="#recommended-team-practices">Recommended Team Practices</a></p>
 <h2 id="what-canvasdaemon-can-do">What CanvasDaemon Can Do</h2>
 <p>CanvasDaemon supports a local-first workflow for Canvas course production. It can:</p>
 <ul>
@@ -329,6 +331,16 @@ python scripts/push_module_page.py &quot;filename.html&quot; --apply --confirm-c
 <pre><code>python scripts/discover_panopto.py</code></pre>
 <p>This writes <code>panopto_manifest.json</code> and a report. It does not create, upload, or edit videos.</p>
 <p>When adapting templates for another course, replace Panopto links and iframes with the new course videos.</p>
+<h2 id="student-facing-course-content-review">Student-Facing Course Content Review</h2>
+<p>Run this after pulling pages, after broad edits, or before a Canvas preview/push pass:</p>
+<pre><code>python scripts/review_course_content.py</code></pre>
+<p>This is the consolidated version of the course review checks used while building the course. It looks for internal notes, placeholders, TODO/FIXME/DRAFT text, mojibake, placeholder links, empty links, insecure links, missing image alt text, missing iframe titles, local images/activities/files that still need Canvas upload, missing local assets, fixed-width mobile layout risks, Panopto/video embeds that need student-access checks, and course-specific terms that should be verified when adapting a page.</p>
+<p>It writes:</p>
+<pre><code>reports/course_review/course_content_review_summary.md
+reports/course_review/course_content_findings.csv
+reports/course_review/course_content_findings.json
+reports/course_review/course_content_page_summary.csv</code></pre>
+<p>Use <code>--fail-on-warning</code> for a stricter review pass. The script is local and read-only; it does not contact Canvas.</p>
 <h2 id="detailed-readiness-audit">Detailed Readiness Audit</h2>
 <p>Run the read-only audit before sharing a course workspace, before major Canvas pushes, or when a coding helper has made many changes:</p>
 <pre><code>python scripts/audit_course_readiness.py</code></pre>
@@ -355,6 +367,7 @@ reports/review/course_readiness/</code></pre>
 <tr><td><code>list_module_pages.py</code></td><td>Lists pages attached to modules.</td><td>No</td></tr>
 <tr><td><code>course_inventory.py</code></td><td>Builds active/unused page reports.</td><td>No</td></tr>
 <tr><td><code>audit_course_readiness.py</code></td><td>Runs a local readiness audit and writes detailed reports.</td><td>No</td></tr>
+<tr><td><code>review_course_content.py</code></td><td>Runs student-facing course page content review checks.</td><td>No</td></tr>
 <tr><td><code>review_course_toolkit.py</code></td><td>Runs the consolidated share-readiness review checklist.</td><td>No</td></tr>
 <tr><td><code>find_page.py</code></td><td>Searches active module pages.</td><td>No</td></tr>
 <tr><td><code>find_any_page.py</code></td><td>Searches all pulled pages.</td><td>No</td></tr>

@@ -24,6 +24,7 @@ python scripts/test_canvas.py
 python scripts/pull_pages.py
 python scripts/pull_files_metadata.py
 python scripts/course_inventory.py
+python scripts/review_course_content.py
 python scripts/audit_course_readiness.py
 python scripts/review_course_toolkit.py --check-history
 ```

@@ -4,6 +4,15 @@ Canvas LMS automation for curriculum teams. Edit course content locally, review 
 
 This is the **V1 maintenance update (0.2.0)**. It keeps the established course content and visual style. The separate V2 experiment and its new example imagery are not part of this release.
 
+## Handbook
+
+Start with the setup guide if you are configuring CanvasDaemon for the first time, then use the teammate handbook for the full navigation, workflow, and script guide:
+
+- [Setup guide — Markdown](docs/SETUP.md)
+- [Setup guide — HTML](docs/SETUP.html)
+- [Handbook — Markdown](docs/HANDBOOK.md)
+- [Handbook — HTML](docs/HANDBOOK.html)
+
 ## Setup
 
 Use Python 3.10 or newer with a current OpenSSL build. From this repository:
@@ -96,7 +105,7 @@ python -m unittest discover -s tests -v
 
 Tests use temporary files and mocked HTTP responses. They do not contact Canvas. CI runs the same checks. This release has not been validated by writing to a live course.
 
-See [CHANGELOG.md](CHANGELOG.md) for migration details and [docs/V1_MAINTENANCE.md](docs/V1_MAINTENANCE.md) for limitations and recovery. The older [HTML runbook](CanvasDaemon_Runbook.html) remains useful background; this README takes precedence for command flags.
+See [CHANGELOG.md](CHANGELOG.md) for migration details, [docs/HANDBOOK.md](docs/HANDBOOK.md) for the full teammate guide, and [docs/V1_MAINTENANCE.md](docs/V1_MAINTENANCE.md) for limitations and recovery. The older [HTML runbook](CanvasDaemon_Runbook.html) remains useful background; the handbook and README take precedence for command flags.
 
 ## Credential history
 

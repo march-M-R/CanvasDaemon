@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1 — Teammate handbook
+
+- Add a detailed teammate handbook in Markdown and HTML.
+- Document setup, repository navigation, template use, page workflows, file/image workflows, preview workflows, discussions, Classic Quizzes, Panopto discovery, script capabilities, safety rules, recovery, and team practices.
+- Link the handbook from the README.
+
 ## 0.2.0 — V1 maintenance
 
 - Preserve existing script entrypoints, course content, and course imagery.
@@ -14,7 +20,7 @@
 - Preserve quiz publication status on settings updates unless explicitly specified; create new quizzes unpublished.
 - Avoid duplicate page placements and protect published preview pages.
 - Add dependencies, environment example, regression tests, and CI.
-- Remove the tracked `.env` from the current tree. Historical credentials still require owner remediation.
+- Remove the tracked `.env` from the current tree. The public branch history was later rewritten to remove the exposed `.env` from earlier commits.
 
 ### Migration
 

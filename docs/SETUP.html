@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CanvasDaemon Setup Guide</title>
+<style>
+:root{--ink:#172033;--muted:#5b667a;--line:#d9e0ea;--bg:#f7f9fc;--card:#fff;--accent:#9d1535;--accent2:#004b7a;}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif} a{color:var(--accent2)}
+.layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:28px;max-width:1180px;margin:0 auto;padding:28px}
+nav{position:sticky;top:20px;align-self:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 8px 24px rgba(23,32,51,.06)}
+nav h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px} nav ul{list-style:none;margin:0;padding:0} nav li{margin:7px 0} nav .toc-3{margin-left:12px;font-size:14px}
+main{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:38px;box-shadow:0 12px 30px rgba(23,32,51,.07)}
+h1{font-size:38px;line-height:1.15;margin-top:0;color:var(--accent)} h2{margin-top:34px;border-top:1px solid var(--line);padding-top:24px} h3{margin-top:24px}
+code{background:#eef3f8;border:1px solid #d9e3ee;border-radius:5px;padding:.1em .35em} pre{background:#101828;color:#eef4ff;border-radius:12px;padding:16px;overflow:auto} pre code{background:transparent;border:0;padding:0;color:inherit}
+li{margin:5px 0} p{margin:12px 0}
+@media(max-width:850px){.layout{display:block;padding:14px} nav{position:static;margin-bottom:16px} main{padding:24px} h1{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav><h2>Setup Guide</h2><ul><li class="toc-2"><a href="#what-you-need-before-you-start">What You Need Before You Start</a></li>
+<li class="toc-2"><a href="#1-clone-the-repository">1. Clone the Repository</a></li>
+<li class="toc-2"><a href="#2-create-a-python-virtual-environment">2. Create a Python Virtual Environment</a></li>
+<li class="toc-2"><a href="#3-install-dependencies">3. Install Dependencies</a></li>
+<li class="toc-2"><a href="#4-create-your-private-env-file">4. Create Your Private `.env` File</a></li>
+<li class="toc-2"><a href="#5-get-a-canvas-api-token">5. Get a Canvas API Token</a></li>
+<li class="toc-2"><a href="#6-test-the-canvas-connection">6. Test the Canvas Connection</a></li>
+<li class="toc-2"><a href="#7-pull-the-current-course-pages">7. Pull the Current Course Pages</a></li>
+<li class="toc-2"><a href="#8-set-up-a-canvas-preview-page">8. Set Up a Canvas Preview Page</a></li>
+<li class="toc-2"><a href="#9-preview-a-local-page">9. Preview a Local Page</a></li>
+<li class="toc-2"><a href="#10-push-a-page-only-after-review">10. Push a Page Only After Review</a></li>
+<li class="toc-2"><a href="#11-use-the-template-library">11. Use the Template Library</a></li>
+<li class="toc-2"><a href="#12-run-local-tests">12. Run Local Tests</a></li>
+<li class="toc-2"><a href="#13-keep-secrets-and-generated-files-out-of-git">13. Keep Secrets and Generated Files Out of Git</a></li>
+<li class="toc-2"><a href="#quick-setup-checklist">Quick Setup Checklist</a></li></ul></nav>
+<main>
+<h1 id="canvasdaemon-setup-guide">CanvasDaemon Setup Guide</h1>
+<p>Use this guide when setting up CanvasDaemon for the first time on a new computer or for a new Canvas course. The setup is local-first: each teammate keeps their own Canvas token and course ID in a private <code>.env</code> file, then uses the shared scripts and templates from the repository.</p>
+<h2 id="what-you-need-before-you-start">What You Need Before You Start</h2>
+<p>You need:</p>
+<ul>
+<li>Access to the GitHub repository.</li>
+<li>Python 3.10 or newer.</li>
+<li>A Canvas account with permission to edit the target course.</li>
+<li>A Canvas API token.</li>
+<li>The Canvas course ID for the course you want to work on.</li>
+</ul>
+<p>Your Canvas API token and <code>.env</code> file are private. Do not share them and do not commit them to GitHub.</p>
+<h2 id="1-clone-the-repository">1. Clone the Repository</h2>
+<pre><code>git clone https://github.com/march-M-R/CanvasDaemon.git
+cd CanvasDaemon</code></pre>
+<p>If you already have the repository, update it before starting new work:</p>
+<pre><code>git pull</code></pre>
+<h2 id="2-create-a-python-virtual-environment">2. Create a Python Virtual Environment</h2>
+<p>On macOS or Linux:</p>
+<pre><code>python3 -m venv .venv
+source .venv/bin/activate</code></pre>
+<p>On Windows PowerShell:</p>
+<pre><code>py -m venv .venv
+.venv\Scripts\Activate.ps1</code></pre>
+<p>When the virtual environment is active, your terminal prompt usually shows <code>(.venv)</code>.</p>
+<h2 id="3-install-dependencies">3. Install Dependencies</h2>
+<pre><code>python -m pip install -r requirements.txt</code></pre>
+<p>If installation fails, check that your virtual environment is active and that your Python version is 3.10 or newer.</p>
+<h2 id="4-create-your-private-env-file">4. Create Your Private <code>.env</code> File</h2>
+<p>Copy the example environment file:</p>
+<pre><code>cp .env.example .env</code></pre>
+<p>On Windows PowerShell, use:</p>
+<pre><code>Copy-Item .env.example .env</code></pre>
+<p>Open <code>.env</code> and fill in your Canvas information:</p>
+<pre><code>CANVAS_BASE_URL=https://your-institution.instructure.com
+CANVAS_TOKEN=your-local-token
+COURSE_ID=12345</code></pre>
+<p>Use the course ID from the Canvas course URL. If the URL contains <code>/courses/12345</code>, then your <code>COURSE_ID</code> is <code>12345</code>.</p>
+<h2 id="5-get-a-canvas-api-token">5. Get a Canvas API Token</h2>
+<p>In Canvas, go to your account settings and create a new access token. Copy it into <code>CANVAS_TOKEN</code> in your <code>.env</code> file.</p>
+<p>Treat this token like a password. If you accidentally expose it, delete the token in Canvas and create a new one.</p>
+<h2 id="6-test-the-canvas-connection">6. Test the Canvas Connection</h2>
+<p>Run the read-only connection check:</p>
+<pre><code>python scripts/test_canvas.py</code></pre>
+<p>Confirm that the printed Canvas course name and course ID match the course you intend to edit. Do not continue to write commands until this is correct.</p>
+<h2 id="7-pull-the-current-course-pages">7. Pull the Current Course Pages</h2>
+<p>After the connection test passes, pull the Canvas pages into local files:</p>
+<pre><code>python scripts/pull_pages.py</code></pre>
+<p>This creates local generated files such as:</p>
+<ul>
+<li><code>pages/</code></li>
+<li><code>manifest.json</code></li>
+<li><code>backups/</code></li>
+</ul>
+<p>These are working files for your computer. They are ignored by Git and should not be committed.</p>
+<h2 id="8-set-up-a-canvas-preview-page">8. Set Up a Canvas Preview Page</h2>
+<p>Create or reuse a dedicated preview page before pushing changes to real course pages:</p>
+<pre><code>python scripts/setup_preview_environment.py --apply --confirm-course 12345</code></pre>
+<p>Replace <code>12345</code> with your actual course ID. This script creates <code>preview_config.json</code>, which tells the preview scripts where to send draft previews.</p>
+<h2 id="9-preview-a-local-page">9. Preview a Local Page</h2>
+<p>Preview a local HTML page in Canvas before updating production content:</p>
+<pre><code>python scripts/preview_page_in_canvas.py pages/example.html --apply --confirm-course 12345</code></pre>
+<p>Open the preview page in Canvas and check layout, links, images, mobile behavior, and student readability.</p>
+<h2 id="10-push-a-page-only-after-review">10. Push a Page Only After Review</h2>
+<p>When a page is ready, compare it first:</p>
+<pre><code>python scripts/push_page.py pages/example.html --diff</code></pre>
+<p>Then push with explicit course confirmation:</p>
+<pre><code>python scripts/push_page.py pages/example.html --apply --confirm-course 12345</code></pre>
+<p>The write scripts require <code>--apply</code> and <code>--confirm-course</code> so you do not accidentally update the wrong course.</p>
+<h2 id="11-use-the-template-library">11. Use the Template Library</h2>
+<p>Reusable reference examples live in:</p>
+<pre><code>examples/templates/</code></pre>
+<p>Start with <code>examples/templates/README.md</code> to see the approved examples for:</p>
+<ul>
+<li>Course welcome page</li>
+<li>Course roadmap</li>
+<li>Resource hub</li>
+<li>Module overview</li>
+<li>Main lesson</li>
+<li>Microlearning page</li>
+<li>Embedded mini activity</li>
+<li>Tool setup guide</li>
+<li>Opening discussion</li>
+<li>Module summary</li>
+<li>Progress checklist</li>
+<li>Quiz answer review</li>
+<li>Image style reference</li>
+</ul>
+<p>Use these examples as patterns when creating course pages for a new class.</p>
+<h2 id="12-run-local-tests">12. Run Local Tests</h2>
+<p>Before sharing changes with teammates, run the offline test suite:</p>
+<pre><code>python -m unittest discover -s tests -v</code></pre>
+<p>These tests do not contact Canvas. They check script behavior that can be validated locally.</p>
+<h2 id="13-keep-secrets-and-generated-files-out-of-git">13. Keep Secrets and Generated Files Out of Git</h2>
+<p>Do not commit:</p>
+<ul>
+<li><code>.env</code></li>
+<li><code>.venv/</code></li>
+<li><code>pages/</code></li>
+<li><code>manifest.json</code></li>
+<li><code>backups/</code></li>
+<li><code>reports/</code></li>
+<li><code>canvas_files/</code></li>
+<li><code>asset_manifest.json</code></li>
+<li><code>preview_config.json</code></li>
+</ul>
+<p>These files are either private, generated, or course-specific.</p>
+<h2 id="quick-setup-checklist">Quick Setup Checklist</h2>
+<ul>
+<li>Clone the repo.</li>
+<li>Create and activate <code>.venv</code>.</li>
+<li>Install <code>requirements.txt</code>.</li>
+<li>Copy <code>.env.example</code> to <code>.env</code>.</li>
+<li>Add <code>CANVAS_BASE_URL</code>, <code>CANVAS_TOKEN</code>, and <code>COURSE_ID</code>.</li>
+<li>Run <code>python scripts/test_canvas.py</code>.</li>
+<li>Pull pages with <code>python scripts/pull_pages.py</code>.</li>
+<li>Set up preview with <code>setup_preview_environment.py</code>.</li>
+<li>Preview before pushing.</li>
+<li>Push only with <code>--apply --confirm-course COURSE_ID</code>.</li>
+</ul>
+</main>
+</div>
+</body>
+</html>

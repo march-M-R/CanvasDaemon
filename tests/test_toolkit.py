@@ -17,6 +17,7 @@ import create_classic_quiz as quiz
 import upload_canvas_file as upload
 import preview_page_in_canvas as preview
 import add_page_to_module as placement
+import create_module as modules
 
 
 class RuntimeTests(unittest.TestCase):
@@ -145,6 +146,32 @@ class ContentTests(unittest.TestCase):
     def test_repeated_module_attachment_is_noop(self,post,inventory):
         item={'id':1,'type':'Page','page_url':'lesson'};inventory.return_value=[item]
         self.assertEqual(placement.add_page_to_module(3,'Lesson','lesson'),item);post.assert_not_called()
+
+    @patch.object(modules,'list_modules')
+    @patch.object(modules.requests,'post')
+    def test_existing_module_is_not_recreated(self,post,inventory):
+        inventory.return_value=[{'id':3,'name':'Module 1','position':1}]
+        with patch.object(sys,'argv',['create_module','module 1','--apply','--confirm-course','123']):modules.main()
+        post.assert_not_called()
+
+    @patch.object(modules,'list_modules',return_value=[])
+    @patch.object(modules.requests,'post')
+    def test_create_module_dry_run_never_writes(self,post,inventory):
+        with patch.object(sys,'argv',['create_module','Module 2','--position','2']):modules.main()
+        post.assert_not_called()
+
+    @patch.object(modules,'list_modules',return_value=[])
+    @patch.object(modules.requests,'post')
+    def test_create_module_payload(self,post,inventory):
+        response=Mock();response.json.return_value={'id':4,'name':'Module 2','position':2,'published':False};response.links={}
+        post.return_value=response
+        with patch.object(sys,'argv',['create_module','Module 2','--position','2','--require-sequential-progress','--prerequisite-module-id','1','--apply','--confirm-course','123']):modules.main()
+        payload=post.call_args.kwargs['data']
+        self.assertEqual(payload['module[name]'],'Module 2')
+        self.assertEqual(payload['module[position]'],2)
+        self.assertEqual(payload['module[published]'],'false')
+        self.assertEqual(payload['module[require_sequential_progress]'],'true')
+        self.assertEqual(payload['module[prerequisite_module_ids][]'],['1'])
 
     @patch.object(preview.requests,'get')
     @patch.object(preview.requests,'put')

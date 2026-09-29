@@ -119,7 +119,23 @@ python scripts/setup_preview_environment.py --apply --confirm-course 12345
 
 Replace `12345` with your actual course ID. This script creates `preview_config.json`, which tells the preview scripts where to send draft previews.
 
-## 9. Preview a Local Page
+## 9. Create a Module When Building a New Course
+
+If your Canvas course does not already have the module you need, create it first:
+
+```bash
+python scripts/create_module.py "Module 1: Course Foundations"
+```
+
+This is a dry run. To actually create the module in Canvas, add explicit confirmation:
+
+```bash
+python scripts/create_module.py "Module 1: Course Foundations" --position 1 --apply --confirm-course 12345
+```
+
+Replace `12345` with your actual course ID. After creating the module, use `create_page.py` and `add_page_to_module.py` to add course content.
+
+## 10. Preview a Local Page
 
 Preview a local HTML page in Canvas before updating production content:
 
@@ -129,7 +145,7 @@ python scripts/preview_page_in_canvas.py pages/example.html --apply --confirm-co
 
 Open the preview page in Canvas and check layout, links, images, mobile behavior, and student readability.
 
-## 10. Push a Page Only After Review
+## 11. Push a Page Only After Review
 
 When a page is ready, compare it first:
 
@@ -145,7 +161,7 @@ python scripts/push_page.py pages/example.html --apply --confirm-course 12345
 
 The write scripts require `--apply` and `--confirm-course` so you do not accidentally update the wrong course.
 
-## 11. Use the Template Library
+## 12. Use the Template Library
 
 Reusable reference examples live in:
 
@@ -171,7 +187,7 @@ Start with `examples/templates/README.md` to see the approved examples for:
 
 Use these examples as patterns when creating course pages for a new class.
 
-## 12. Run Local Tests
+## 13. Run Local Tests
 
 Before sharing changes with teammates, run the offline test suite:
 
@@ -181,7 +197,7 @@ python -m unittest discover -s tests -v
 
 These tests do not contact Canvas. They check script behavior that can be validated locally.
 
-## 13. Keep Secrets and Generated Files Out of Git
+## 14. Keep Secrets and Generated Files Out of Git
 
 Do not commit:
 
@@ -206,6 +222,7 @@ These files are either private, generated, or course-specific.
 - Add `CANVAS_BASE_URL`, `CANVAS_TOKEN`, and `COURSE_ID`.
 - Run `python scripts/test_canvas.py`.
 - Pull pages with `python scripts/pull_pages.py`.
+- Create missing modules with `python scripts/create_module.py`.
 - Set up preview with `setup_preview_environment.py`.
 - Preview before pushing.
 - Push only with `--apply --confirm-course COURSE_ID`.

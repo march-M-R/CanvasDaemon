@@ -11,16 +11,17 @@ CanvasDaemon lets you work locally, preview deliberately, and write to Canvas on
 3. [First-Time Setup](#first-time-setup)
 4. [The Daily Workflow](#the-daily-workflow)
 5. [Using the Template Reference Library](#using-the-template-reference-library)
-6. [Page Workflows](#page-workflows)
-7. [Canvas File and Image Workflows](#canvas-file-and-image-workflows)
-8. [Preview Workflows](#preview-workflows)
-9. [Discussion Workflows](#discussion-workflows)
-10. [Classic Quiz Workflows](#classic-quiz-workflows)
-11. [Panopto and Video Inventory](#panopto-and-video-inventory)
-12. [Script Reference](#script-reference)
-13. [Safety Rules](#safety-rules)
-14. [Recovery and Troubleshooting](#recovery-and-troubleshooting)
-15. [Recommended Team Practices](#recommended-team-practices)
+6. [Module Workflows](#module-workflows)
+7. [Page Workflows](#page-workflows)
+8. [Canvas File and Image Workflows](#canvas-file-and-image-workflows)
+9. [Preview Workflows](#preview-workflows)
+10. [Discussion Workflows](#discussion-workflows)
+11. [Classic Quiz Workflows](#classic-quiz-workflows)
+12. [Panopto and Video Inventory](#panopto-and-video-inventory)
+13. [Script Reference](#script-reference)
+14. [Safety Rules](#safety-rules)
+15. [Recovery and Troubleshooting](#recovery-and-troubleshooting)
+16. [Recommended Team Practices](#recommended-team-practices)
 
 ## What CanvasDaemon Can Do
 
@@ -32,6 +33,7 @@ CanvasDaemon supports a local-first workflow for Canvas course production. It ca
 - Inventory which pages are used in modules and which ones appear unused.
 - Diff local edits against Canvas before writing.
 - Push page updates back to Canvas with backups and explicit confirmation.
+- Create new Canvas modules.
 - Create new Canvas pages from local HTML.
 - Add existing pages to Canvas modules.
 - Set up and use a dedicated Canvas preview page.
@@ -204,6 +206,30 @@ examples/templates/assets/m2_1_1_examples_patterns.png
 ```
 
 Use it as the guide for new course illustrations: high-school setting, student-facing, warm, concrete, story-based, and tied to the learning concept. Avoid abstract futuristic dashboard imagery unless the page truly needs that mood.
+
+## Module Workflows
+
+Create a module when you are building a new course shell or adding a new unit:
+
+```bash
+python scripts/create_module.py "Module 3: Building AI Systems"
+```
+
+The default command is a dry run. To write to Canvas, confirm the course explicitly:
+
+```bash
+python scripts/create_module.py "Module 3: Building AI Systems" --position 3 --apply --confirm-course 12345
+```
+
+Useful options:
+
+```bash
+python scripts/create_module.py "Module 4: Responsible AI" --published --apply --confirm-course 12345
+python scripts/create_module.py "Module 5: Model Evaluation" --prerequisite-module-id 123 --apply --confirm-course 12345
+python scripts/create_module.py "Module 6: Final Project" --unlock-at 2026-10-01T09:00:00-04:00 --apply --confirm-course 12345
+```
+
+The script checks for an exact existing module name before creating a new one. After the module exists, create or pull pages and attach them with `add_page_to_module.py`.
 
 ## Page Workflows
 
@@ -543,6 +569,7 @@ When adapting templates for another course, replace Panopto links and iframes wi
 | `find_any_page.py` | Searches all pulled pages. | No |
 | `push_page.py` | Diffs and updates a Canvas page. | Yes, only with `--apply --confirm-course` |
 | `push_module_page.py` | Pushes a page verified as module-active. | Yes, only with `--apply --confirm-course` |
+| `create_module.py` | Creates a new Canvas module. | Yes, only with `--apply --confirm-course` |
 | `create_page.py` | Creates a new Canvas page. | Yes, only with `--apply --confirm-course` |
 | `add_page_to_module.py` | Adds an existing page to a Canvas module. | Yes, only with `--apply --confirm-course` |
 | `setup_preview_environment.py` | Creates/reuses a dedicated Canvas preview page. | Yes, only with `--apply --confirm-course` |

@@ -7,14 +7,15 @@
 <style>
 :root{--ink:#172033;--muted:#5b667a;--line:#d9e0ea;--bg:#f7f9fc;--card:#fff;--accent:#9d1535;--accent2:#004b7a;}
 *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif} a{color:var(--accent2)}
-.layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:28px;max-width:1180px;margin:0 auto;padding:28px}
-nav{position:sticky;top:20px;align-self:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 8px 24px rgba(23,32,51,.06)}
+.layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:28px;max-width:1240px;margin:0 auto;padding:28px}
+nav{position:sticky;top:20px;align-self:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 8px 24px rgba(23,32,51,.06);max-height:calc(100vh - 40px);overflow:auto}
 nav h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px} nav ul{list-style:none;margin:0;padding:0} nav li{margin:7px 0} nav .toc-3{margin-left:12px;font-size:14px}
 main{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:38px;box-shadow:0 12px 30px rgba(23,32,51,.07)}
 h1{font-size:38px;line-height:1.15;margin-top:0;color:var(--accent)} h2{margin-top:34px;border-top:1px solid var(--line);padding-top:24px} h3{margin-top:24px}
 code{background:#eef3f8;border:1px solid #d9e3ee;border-radius:5px;padding:.1em .35em} pre{background:#101828;color:#eef4ff;border-radius:12px;padding:16px;overflow:auto} pre code{background:transparent;border:0;padding:0;color:inherit}
+table{border-collapse:collapse;width:100%;margin:18px 0;display:block;overflow:auto} th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top} th{background:#f0f4f8}
 li{margin:5px 0} p{margin:12px 0}
-@media(max-width:850px){.layout{display:block;padding:14px} nav{position:static;margin-bottom:16px} main{padding:24px} h1{font-size:30px}}
+@media(max-width:850px){.layout{display:block;padding:14px} nav{position:static;margin-bottom:16px;max-height:none} main{padding:24px} h1{font-size:30px}}
 </style>
 </head>
 <body>
@@ -28,11 +29,12 @@ li{margin:5px 0} p{margin:12px 0}
 <li class="toc-2"><a href="#6-test-the-canvas-connection">6. Test the Canvas Connection</a></li>
 <li class="toc-2"><a href="#7-pull-the-current-course-pages">7. Pull the Current Course Pages</a></li>
 <li class="toc-2"><a href="#8-set-up-a-canvas-preview-page">8. Set Up a Canvas Preview Page</a></li>
-<li class="toc-2"><a href="#9-preview-a-local-page">9. Preview a Local Page</a></li>
-<li class="toc-2"><a href="#10-push-a-page-only-after-review">10. Push a Page Only After Review</a></li>
-<li class="toc-2"><a href="#11-use-the-template-library">11. Use the Template Library</a></li>
-<li class="toc-2"><a href="#12-run-local-tests">12. Run Local Tests</a></li>
-<li class="toc-2"><a href="#13-keep-secrets-and-generated-files-out-of-git">13. Keep Secrets and Generated Files Out of Git</a></li>
+<li class="toc-2"><a href="#9-create-a-module-when-building-a-new-course">9. Create a Module When Building a New Course</a></li>
+<li class="toc-2"><a href="#10-preview-a-local-page">10. Preview a Local Page</a></li>
+<li class="toc-2"><a href="#11-push-a-page-only-after-review">11. Push a Page Only After Review</a></li>
+<li class="toc-2"><a href="#12-use-the-template-library">12. Use the Template Library</a></li>
+<li class="toc-2"><a href="#13-run-local-tests">13. Run Local Tests</a></li>
+<li class="toc-2"><a href="#14-keep-secrets-and-generated-files-out-of-git">14. Keep Secrets and Generated Files Out of Git</a></li>
 <li class="toc-2"><a href="#quick-setup-checklist">Quick Setup Checklist</a></li></ul></nav>
 <main>
 <h1 id="canvasdaemon-setup-guide">CanvasDaemon Setup Guide</h1>
@@ -94,17 +96,23 @@ COURSE_ID=12345</code></pre>
 <p>Create or reuse a dedicated preview page before pushing changes to real course pages:</p>
 <pre><code>python scripts/setup_preview_environment.py --apply --confirm-course 12345</code></pre>
 <p>Replace <code>12345</code> with your actual course ID. This script creates <code>preview_config.json</code>, which tells the preview scripts where to send draft previews.</p>
-<h2 id="9-preview-a-local-page">9. Preview a Local Page</h2>
+<h2 id="9-create-a-module-when-building-a-new-course">9. Create a Module When Building a New Course</h2>
+<p>If your Canvas course does not already have the module you need, create it first:</p>
+<pre><code>python scripts/create_module.py &quot;Module 1: Course Foundations&quot;</code></pre>
+<p>This is a dry run. To actually create the module in Canvas, add explicit confirmation:</p>
+<pre><code>python scripts/create_module.py &quot;Module 1: Course Foundations&quot; --position 1 --apply --confirm-course 12345</code></pre>
+<p>Replace <code>12345</code> with your actual course ID. After creating the module, use <code>create_page.py</code> and <code>add_page_to_module.py</code> to add course content.</p>
+<h2 id="10-preview-a-local-page">10. Preview a Local Page</h2>
 <p>Preview a local HTML page in Canvas before updating production content:</p>
 <pre><code>python scripts/preview_page_in_canvas.py pages/example.html --apply --confirm-course 12345</code></pre>
 <p>Open the preview page in Canvas and check layout, links, images, mobile behavior, and student readability.</p>
-<h2 id="10-push-a-page-only-after-review">10. Push a Page Only After Review</h2>
+<h2 id="11-push-a-page-only-after-review">11. Push a Page Only After Review</h2>
 <p>When a page is ready, compare it first:</p>
 <pre><code>python scripts/push_page.py pages/example.html --diff</code></pre>
 <p>Then push with explicit course confirmation:</p>
 <pre><code>python scripts/push_page.py pages/example.html --apply --confirm-course 12345</code></pre>
 <p>The write scripts require <code>--apply</code> and <code>--confirm-course</code> so you do not accidentally update the wrong course.</p>
-<h2 id="11-use-the-template-library">11. Use the Template Library</h2>
+<h2 id="12-use-the-template-library">12. Use the Template Library</h2>
 <p>Reusable reference examples live in:</p>
 <pre><code>examples/templates/</code></pre>
 <p>Start with <code>examples/templates/README.md</code> to see the approved examples for:</p>
@@ -124,11 +132,11 @@ COURSE_ID=12345</code></pre>
 <li>Image style reference</li>
 </ul>
 <p>Use these examples as patterns when creating course pages for a new class.</p>
-<h2 id="12-run-local-tests">12. Run Local Tests</h2>
+<h2 id="13-run-local-tests">13. Run Local Tests</h2>
 <p>Before sharing changes with teammates, run the offline test suite:</p>
 <pre><code>python -m unittest discover -s tests -v</code></pre>
 <p>These tests do not contact Canvas. They check script behavior that can be validated locally.</p>
-<h2 id="13-keep-secrets-and-generated-files-out-of-git">13. Keep Secrets and Generated Files Out of Git</h2>
+<h2 id="14-keep-secrets-and-generated-files-out-of-git">14. Keep Secrets and Generated Files Out of Git</h2>
 <p>Do not commit:</p>
 <ul>
 <li><code>.env</code></li>
@@ -151,6 +159,7 @@ COURSE_ID=12345</code></pre>
 <li>Add <code>CANVAS_BASE_URL</code>, <code>CANVAS_TOKEN</code>, and <code>COURSE_ID</code>.</li>
 <li>Run <code>python scripts/test_canvas.py</code>.</li>
 <li>Pull pages with <code>python scripts/pull_pages.py</code>.</li>
+<li>Create missing modules with <code>python scripts/create_module.py</code>.</li>
 <li>Set up preview with <code>setup_preview_environment.py</code>.</li>
 <li>Preview before pushing.</li>
 <li>Push only with <code>--apply --confirm-course COURSE_ID</code>.</li>

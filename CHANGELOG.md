@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2 — Module creation workflow
+
+- Added `scripts/create_module.py` for guarded Canvas module creation with dry-run default, duplicate-name protection, optional position, publishing, unlock date, sequential progress, and prerequisite module IDs.
+- Added regression tests for module creation dry runs, duplicate detection, and payload construction.
+- Updated README, setup guide, and handbook to document module creation.
+
 ## 0.2.1 — Teammate handbook
 
 - Add a detailed teammate handbook in Markdown and HTML.

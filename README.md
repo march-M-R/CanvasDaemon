@@ -80,7 +80,7 @@ Omit the two apply flags to inspect without writing. Preview configuration is bo
 | Workflow | Scripts |
 |---|---|
 | Read and find pages | `pull_pages.py`, `list_pages.py`, `list_module_pages.py`, `course_inventory.py`, `find_page.py`, `find_any_page.py` |
-| Create/update pages | `create_page.py`, `push_page.py`, `push_module_page.py`, `add_page_to_module.py` |
+| Create/update pages and modules | `create_module.py`, `create_page.py`, `push_page.py`, `push_module_page.py`, `add_page_to_module.py` |
 | Files and images | `pull_files_metadata.py`, `find_asset.py`, `upload_canvas_file.py`, `download_editable_files.py`, `download_referenced_editable_files.py` |
 | Classic Quizzes | `create_classic_quiz.py`, `pull_classic_quizzes.py`, `find_quiz.py`, `sync_classic_quiz.py` |
 | Discussions | `create_discussion.py` |

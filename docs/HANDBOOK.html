@@ -5,72 +5,83 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CanvasDaemon Handbook</title>
 <style>
-:root{--ink:#16181d;--muted:#606876;--line:#e6e8ee;--soft:#f7f8fb;--brand:#a32638;--code:#0f1720;--link:#8f1f31}*{box-sizing:border-box}body{margin:0;color:var(--ink);font:16px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#fff}header{background:linear-gradient(135deg,#101217,#2a1118);color:#fff;padding:56px 28px}header .inner{max-width:1120px;margin:0 auto}header p{max-width:780px;color:#e8dfe2;font-size:18px}main{max-width:1120px;margin:0 auto;padding:32px 28px 72px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:36px}.toc{position:sticky;top:18px;align-self:start;border:1px solid var(--line);border-radius:10px;padding:16px;background:var(--soft);max-height:calc(100vh - 36px);overflow:auto}.toc strong{display:block;margin-bottom:8px}.toc a{display:block;color:var(--link);text-decoration:none;padding:5px 0}.toc .toc-level-3{padding-left:14px;font-size:14px;color:#445}article{min-width:0}h1{font-size:46px;line-height:1.05;margin:0 0 16px}h2{font-size:30px;line-height:1.2;margin:46px 0 12px;border-top:1px solid var(--line);padding-top:28px}h3{font-size:22px;margin:32px 0 10px}p{margin:12px 0}a{color:var(--link)}code{background:#eef0f4;border:1px solid #d8dce4;border-radius:5px;padding:1px 5px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}pre{background:var(--code);color:#f5f7fb;border-radius:10px;padding:16px;overflow:auto}pre code{background:transparent;border:0;color:inherit;padding:0}table{border-collapse:collapse;width:100%;margin:16px 0 24px;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}th{background:#f2f3f6}ul,ol{padding-left:26px}li{margin:5px 0}.note{background:#fff8e6;border-left:4px solid #cc9a06;padding:12px 14px;margin:18px 0}@media(max-width:860px){main{display:block}.toc{position:static;max-height:none;margin-bottom:26px}h1{font-size:36px}header{padding:40px 22px}main{padding:24px 20px 56px}}
+:root{--ink:#172033;--muted:#5b667a;--line:#d9e0ea;--bg:#f7f9fc;--card:#fff;--accent:#9d1535;--accent2:#004b7a;}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif} a{color:var(--accent2)}
+.layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:28px;max-width:1240px;margin:0 auto;padding:28px}
+nav{position:sticky;top:20px;align-self:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 8px 24px rgba(23,32,51,.06);max-height:calc(100vh - 40px);overflow:auto}
+nav h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px} nav ul{list-style:none;margin:0;padding:0} nav li{margin:7px 0} nav .toc-3{margin-left:12px;font-size:14px}
+main{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:38px;box-shadow:0 12px 30px rgba(23,32,51,.07)}
+h1{font-size:38px;line-height:1.15;margin-top:0;color:var(--accent)} h2{margin-top:34px;border-top:1px solid var(--line);padding-top:24px} h3{margin-top:24px}
+code{background:#eef3f8;border:1px solid #d9e3ee;border-radius:5px;padding:.1em .35em} pre{background:#101828;color:#eef4ff;border-radius:12px;padding:16px;overflow:auto} pre code{background:transparent;border:0;padding:0;color:inherit}
+table{border-collapse:collapse;width:100%;margin:18px 0;display:block;overflow:auto} th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top} th{background:#f0f4f8}
+li{margin:5px 0} p{margin:12px 0}
+@media(max-width:850px){.layout{display:block;padding:14px} nav{position:static;margin-bottom:16px;max-height:none} main{padding:24px} h1{font-size:30px}}
 </style>
 </head>
 <body>
-<header><div class="inner"><h1>CanvasDaemon Handbook</h1><p>A practical setup, navigation, and script guide for teammates building Canvas courses with the reusable CanvasDaemon toolkit.</p></div></header>
-<main><nav class="toc"><strong>Contents</strong><a class="toc-level-2" href="#table-of-contents">Table of Contents</a>
-<a class="toc-level-2" href="#what-canvasdaemon-can-do">What CanvasDaemon Can Do</a>
-<a class="toc-level-2" href="#how-the-repository-is-organized">How the Repository Is Organized</a>
-<a class="toc-level-2" href="#first-time-setup">First-Time Setup</a>
-<a class="toc-level-2" href="#the-daily-workflow">The Daily Workflow</a>
-<a class="toc-level-2" href="#using-the-template-reference-library">Using the Template Reference Library</a>
-<a class="toc-level-2" href="#page-workflows">Page Workflows</a>
-<a class="toc-level-3" href="#pull-pages">Pull Pages</a>
-<a class="toc-level-3" href="#inventory-the-course">Inventory the Course</a>
-<a class="toc-level-3" href="#find-a-page">Find a Page</a>
-<a class="toc-level-3" href="#edit-a-page">Edit a Page</a>
-<a class="toc-level-3" href="#preview-a-page-in-canvas">Preview a Page in Canvas</a>
-<a class="toc-level-3" href="#push-a-page">Push a Page</a>
-<a class="toc-level-3" href="#create-a-new-page">Create a New Page</a>
-<a class="toc-level-3" href="#add-a-page-to-a-module">Add a Page to a Module</a>
-<a class="toc-level-2" href="#canvas-file-and-image-workflows">Canvas File and Image Workflows</a>
-<a class="toc-level-3" href="#pull-file-metadata">Pull File Metadata</a>
-<a class="toc-level-3" href="#find-assets">Find Assets</a>
-<a class="toc-level-3" href="#upload-a-file">Upload a File</a>
-<a class="toc-level-3" href="#download-editable-files">Download Editable Files</a>
-<a class="toc-level-2" href="#preview-workflows">Preview Workflows</a>
-<a class="toc-level-2" href="#discussion-workflows">Discussion Workflows</a>
-<a class="toc-level-2" href="#classic-quiz-workflows">Classic Quiz Workflows</a>
-<a class="toc-level-3" href="#create-a-quiz">Create a Quiz</a>
-<a class="toc-level-3" href="#inventory-quizzes">Inventory Quizzes</a>
-<a class="toc-level-3" href="#find-a-quiz">Find a Quiz</a>
-<a class="toc-level-3" href="#sync-quiz-settings">Sync Quiz Settings</a>
-<a class="toc-level-2" href="#panopto-and-video-inventory">Panopto and Video Inventory</a>
-<a class="toc-level-2" href="#script-reference">Script Reference</a>
-<a class="toc-level-2" href="#safety-rules">Safety Rules</a>
-<a class="toc-level-2" href="#recovery-and-troubleshooting">Recovery and Troubleshooting</a>
-<a class="toc-level-3" href="#my-pull-stopped-because-of-local-edits">“My pull stopped because of local edits”</a>
-<a class="toc-level-3" href="#canvas-changed-since-my-last-pull">“Canvas changed since my last pull”</a>
-<a class="toc-level-3" href="#a-create-command-timed-out">“A create command timed out”</a>
-<a class="toc-level-3" href="#the-preview-page-is-published">“The preview page is published”</a>
-<a class="toc-level-3" href="#the-asset-previewupload-changed-an-existing-file">“The asset preview/upload changed an existing file”</a>
-<a class="toc-level-3" href="#a-page-looks-different-in-canvas-than-locally">“A page looks different in Canvas than locally”</a>
-<a class="toc-level-3" href="#the-repo-does-not-contain-pages-anymore">“The repo does not contain pages anymore”</a>
-<a class="toc-level-2" href="#recommended-team-practices">Recommended Team Practices</a>
-<a class="toc-level-2" href="#quick-start-checklist">Quick Start Checklist</a></nav><article>
+<div class="layout">
+<nav><h2>Handbook</h2><ul><li class="toc-2"><a href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-2"><a href="#what-canvasdaemon-can-do">What CanvasDaemon Can Do</a></li>
+<li class="toc-2"><a href="#how-the-repository-is-organized">How the Repository Is Organized</a></li>
+<li class="toc-2"><a href="#first-time-setup">First-Time Setup</a></li>
+<li class="toc-2"><a href="#the-daily-workflow">The Daily Workflow</a></li>
+<li class="toc-2"><a href="#using-the-template-reference-library">Using the Template Reference Library</a></li>
+<li class="toc-2"><a href="#module-workflows">Module Workflows</a></li>
+<li class="toc-2"><a href="#page-workflows">Page Workflows</a></li>
+<li class="toc-3"><a href="#pull-pages">Pull Pages</a></li>
+<li class="toc-3"><a href="#inventory-the-course">Inventory the Course</a></li>
+<li class="toc-3"><a href="#find-a-page">Find a Page</a></li>
+<li class="toc-3"><a href="#edit-a-page">Edit a Page</a></li>
+<li class="toc-3"><a href="#preview-a-page-in-canvas">Preview a Page in Canvas</a></li>
+<li class="toc-3"><a href="#push-a-page">Push a Page</a></li>
+<li class="toc-3"><a href="#create-a-new-page">Create a New Page</a></li>
+<li class="toc-3"><a href="#add-a-page-to-a-module">Add a Page to a Module</a></li>
+<li class="toc-2"><a href="#canvas-file-and-image-workflows">Canvas File and Image Workflows</a></li>
+<li class="toc-3"><a href="#pull-file-metadata">Pull File Metadata</a></li>
+<li class="toc-3"><a href="#find-assets">Find Assets</a></li>
+<li class="toc-3"><a href="#upload-a-file">Upload a File</a></li>
+<li class="toc-3"><a href="#download-editable-files">Download Editable Files</a></li>
+<li class="toc-2"><a href="#preview-workflows">Preview Workflows</a></li>
+<li class="toc-2"><a href="#discussion-workflows">Discussion Workflows</a></li>
+<li class="toc-2"><a href="#classic-quiz-workflows">Classic Quiz Workflows</a></li>
+<li class="toc-3"><a href="#create-a-quiz">Create a Quiz</a></li>
+<li class="toc-3"><a href="#inventory-quizzes">Inventory Quizzes</a></li>
+<li class="toc-3"><a href="#find-a-quiz">Find a Quiz</a></li>
+<li class="toc-3"><a href="#sync-quiz-settings">Sync Quiz Settings</a></li>
+<li class="toc-2"><a href="#panopto-and-video-inventory">Panopto and Video Inventory</a></li>
+<li class="toc-2"><a href="#script-reference">Script Reference</a></li>
+<li class="toc-2"><a href="#safety-rules">Safety Rules</a></li>
+<li class="toc-2"><a href="#recovery-and-troubleshooting">Recovery and Troubleshooting</a></li>
+<li class="toc-3"><a href="#my-pull-stopped-because-of-local-edits">“My pull stopped because of local edits”</a></li>
+<li class="toc-3"><a href="#canvas-changed-since-my-last-pull">“Canvas changed since my last pull”</a></li>
+<li class="toc-3"><a href="#a-create-command-timed-out">“A create command timed out”</a></li>
+<li class="toc-3"><a href="#the-preview-page-is-published">“The preview page is published”</a></li>
+<li class="toc-3"><a href="#the-asset-previewupload-changed-an-existing-file">“The asset preview/upload changed an existing file”</a></li>
+<li class="toc-3"><a href="#a-page-looks-different-in-canvas-than-locally">“A page looks different in Canvas than locally”</a></li>
+<li class="toc-3"><a href="#the-repo-does-not-contain-pages-anymore">“The repo does not contain pages anymore”</a></li>
+<li class="toc-2"><a href="#recommended-team-practices">Recommended Team Practices</a></li>
+<li class="toc-2"><a href="#quick-start-checklist">Quick Start Checklist</a></li></ul></nav>
+<main>
 <h1 id="canvasdaemon-handbook">CanvasDaemon Handbook</h1>
 <p>This handbook explains how to use CanvasDaemon as a reusable course-building toolkit. It is written for teammates who want to build or maintain their own Canvas courses using the same workflow, scripts, and approved reference templates.</p>
 <p>CanvasDaemon lets you work locally, preview deliberately, and write to Canvas only when you are ready. The safest habit is simple: pull the course into a local workspace, edit files locally, preview in Canvas, then push with explicit confirmation.</p>
 <h2 id="table-of-contents">Table of Contents</h2>
-<ol>
-<li><a href="#what-canvasdaemon-can-do">What CanvasDaemon Can Do</a></li>
-<li><a href="#how-the-repository-is-organized">How the Repository Is Organized</a></li>
-<li><a href="#first-time-setup">First-Time Setup</a></li>
-<li><a href="#the-daily-workflow">The Daily Workflow</a></li>
-<li><a href="#using-the-template-reference-library">Using the Template Reference Library</a></li>
-<li><a href="#page-workflows">Page Workflows</a></li>
-<li><a href="#canvas-file-and-image-workflows">Canvas File and Image Workflows</a></li>
-<li><a href="#preview-workflows">Preview Workflows</a></li>
-<li><a href="#discussion-workflows">Discussion Workflows</a></li>
-<li><a href="#classic-quiz-workflows">Classic Quiz Workflows</a></li>
-<li><a href="#panopto-and-video-inventory">Panopto and Video Inventory</a></li>
-<li><a href="#script-reference">Script Reference</a></li>
-<li><a href="#safety-rules">Safety Rules</a></li>
-<li><a href="#recovery-and-troubleshooting">Recovery and Troubleshooting</a></li>
-<li><a href="#recommended-team-practices">Recommended Team Practices</a></li>
-</ol>
+<p>1. <a href="#what-canvasdaemon-can-do">What CanvasDaemon Can Do</a></p>
+<p>2. <a href="#how-the-repository-is-organized">How the Repository Is Organized</a></p>
+<p>3. <a href="#first-time-setup">First-Time Setup</a></p>
+<p>4. <a href="#the-daily-workflow">The Daily Workflow</a></p>
+<p>5. <a href="#using-the-template-reference-library">Using the Template Reference Library</a></p>
+<p>6. <a href="#module-workflows">Module Workflows</a></p>
+<p>7. <a href="#page-workflows">Page Workflows</a></p>
+<p>8. <a href="#canvas-file-and-image-workflows">Canvas File and Image Workflows</a></p>
+<p>9. <a href="#preview-workflows">Preview Workflows</a></p>
+<p>10. <a href="#discussion-workflows">Discussion Workflows</a></p>
+<p>11. <a href="#classic-quiz-workflows">Classic Quiz Workflows</a></p>
+<p>12. <a href="#panopto-and-video-inventory">Panopto and Video Inventory</a></p>
+<p>13. <a href="#script-reference">Script Reference</a></p>
+<p>14. <a href="#safety-rules">Safety Rules</a></p>
+<p>15. <a href="#recovery-and-troubleshooting">Recovery and Troubleshooting</a></p>
+<p>16. <a href="#recommended-team-practices">Recommended Team Practices</a></p>
 <h2 id="what-canvasdaemon-can-do">What CanvasDaemon Can Do</h2>
 <p>CanvasDaemon supports a local-first workflow for Canvas course production. It can:</p>
 <ul>
@@ -80,6 +91,7 @@
 <li>Inventory which pages are used in modules and which ones appear unused.</li>
 <li>Diff local edits against Canvas before writing.</li>
 <li>Push page updates back to Canvas with backups and explicit confirmation.</li>
+<li>Create new Canvas modules.</li>
 <li>Create new Canvas pages from local HTML.</li>
 <li>Add existing pages to Canvas modules.</li>
 <li>Set up and use a dedicated Canvas preview page.</li>
@@ -128,30 +140,31 @@
 <tr><td><code>.venv/</code></td><td>You</td><td>Local Python environment. Never commit.</td></tr>
 </tbody></table>
 <h2 id="first-time-setup">First-Time Setup</h2>
+<p>For a standalone onboarding page, use the <a href="SETUP.md">CanvasDaemon Setup Guide</a>. The shorter setup path is below.</p>
 <p>Clone the repository:</p>
-<pre><code class="language-bash">git clone https://github.com/march-M-R/CanvasDaemon.git
+<pre><code>git clone https://github.com/march-M-R/CanvasDaemon.git
 cd CanvasDaemon</code></pre>
 <p>Create and activate a virtual environment:</p>
-<pre><code class="language-bash">python3 -m venv .venv
+<pre><code>python3 -m venv .venv
 source .venv/bin/activate</code></pre>
 <p>On Windows PowerShell:</p>
-<pre><code class="language-powershell">py -m venv .venv
+<pre><code>py -m venv .venv
 .venv\Scripts\Activate.ps1</code></pre>
 <p>Install dependencies:</p>
-<pre><code class="language-bash">python -m pip install -r requirements.txt</code></pre>
+<pre><code>python -m pip install -r requirements.txt</code></pre>
 <p>Create your local <code>.env</code>:</p>
-<pre><code class="language-bash">cp .env.example .env</code></pre>
+<pre><code>cp .env.example .env</code></pre>
 <p>Edit <code>.env</code>:</p>
-<pre><code class="language-bash">CANVAS_BASE_URL=https://your-institution.instructure.com
+<pre><code>CANVAS_BASE_URL=https://your-institution.instructure.com
 CANVAS_TOKEN=your-local-token
 COURSE_ID=12345</code></pre>
 <p>Use the Canvas course ID from the course URL. For example, if the course URL contains <code>/courses/12345</code>, your <code>COURSE_ID</code> is <code>12345</code>.</p>
 <p>Run the read-only connection check:</p>
-<pre><code class="language-bash">python scripts/test_canvas.py</code></pre>
+<pre><code>python scripts/test_canvas.py</code></pre>
 <p>Before doing any writes, confirm the printed course name and course ID are the course you intend to edit.</p>
 <h2 id="the-daily-workflow">The Daily Workflow</h2>
 <p>Most page work follows this sequence:</p>
-<pre><code class="language-bash">python scripts/test_canvas.py
+<pre><code>python scripts/test_canvas.py
 python scripts/pull_pages.py
 python scripts/course_inventory.py
 python scripts/find_page.py &quot;overview&quot;
@@ -160,16 +173,14 @@ python scripts/push_module_page.py &quot;filename.html&quot;
 python scripts/push_module_page.py &quot;filename.html&quot; --apply --confirm-course 12345</code></pre>
 <p>The first push command is a dry run. It shows what would change. The second one writes to Canvas.</p>
 <p>If you are creating new course content from a template:</p>
-<ol>
-<li>Pick the closest example from <code>examples/templates/pages/</code>.</li>
-<li>Copy it into your local <code>pages/</code> folder after you have pulled the target course.</li>
-<li>Rename it clearly.</li>
-<li>Replace course-specific text, links, video embeds, images, activity assets, and completion language.</li>
-<li>Create or update the Canvas page using the guarded scripts.</li>
-<li>Preview in Canvas.</li>
-<li>Add to the correct module.</li>
-<li>Push only after the dry run looks right.</li>
-</ol>
+<p>1. Pick the closest example from <code>examples/templates/pages/</code>.</p>
+<p>2. Copy it into your local <code>pages/</code> folder after you have pulled the target course.</p>
+<p>3. Rename it clearly.</p>
+<p>4. Replace course-specific text, links, video embeds, images, activity assets, and completion language.</p>
+<p>5. Create or update the Canvas page using the guarded scripts.</p>
+<p>6. Preview in Canvas.</p>
+<p>7. Add to the correct module.</p>
+<p>8. Push only after the dry run looks right.</p>
 <h2 id="using-the-template-reference-library">Using the Template Reference Library</h2>
 <p>The approved examples live in <code>examples/templates/</code>.</p>
 <table><thead><tr><th>Template Type</th><th>File</th></tr></thead><tbody>
@@ -198,100 +209,110 @@ python scripts/push_module_page.py &quot;filename.html&quot; --apply --confirm-c
 <li>Images that do not fit the new course.</li>
 </ul>
 <p>The image style reference is:</p>
-<pre><code class="language-text">examples/templates/assets/m2_1_1_examples_patterns.png</code></pre>
+<pre><code>examples/templates/assets/m2_1_1_examples_patterns.png</code></pre>
 <p>Use it as the guide for new course illustrations: high-school setting, student-facing, warm, concrete, story-based, and tied to the learning concept. Avoid abstract futuristic dashboard imagery unless the page truly needs that mood.</p>
+<h2 id="module-workflows">Module Workflows</h2>
+<p>Create a module when you are building a new course shell or adding a new unit:</p>
+<pre><code>python scripts/create_module.py &quot;Module 3: Building AI Systems&quot;</code></pre>
+<p>The default command is a dry run. To write to Canvas, confirm the course explicitly:</p>
+<pre><code>python scripts/create_module.py &quot;Module 3: Building AI Systems&quot; --position 3 --apply --confirm-course 12345</code></pre>
+<p>Useful options:</p>
+<pre><code>python scripts/create_module.py &quot;Module 4: Responsible AI&quot; --published --apply --confirm-course 12345
+python scripts/create_module.py &quot;Module 5: Model Evaluation&quot; --prerequisite-module-id 123 --apply --confirm-course 12345
+python scripts/create_module.py &quot;Module 6: Final Project&quot; --unlock-at 2026-10-01T09:00:00-04:00 --apply --confirm-course 12345</code></pre>
+<p>The script checks for an exact existing module name before creating a new one. After the module exists, create or pull pages and attach them with <code>add_page_to_module.py</code>.</p>
 <h2 id="page-workflows">Page Workflows</h2>
 <h3 id="pull-pages">Pull Pages</h3>
 <p>Pulling downloads Canvas page bodies into <code>pages/</code> and updates <code>manifest.json</code>.</p>
-<pre><code class="language-bash">python scripts/pull_pages.py</code></pre>
+<pre><code>python scripts/pull_pages.py</code></pre>
 <p>If you have local edits, the pull will stop rather than overwrite them. Use this as a signal to save or merge your work. Only use overwrite when you deliberately want the live Canvas copy to replace local edits:</p>
-<pre><code class="language-bash">python scripts/pull_pages.py --overwrite-local</code></pre>
+<pre><code>python scripts/pull_pages.py --overwrite-local</code></pre>
 <h3 id="inventory-the-course">Inventory the Course</h3>
 <p>After pulling, run:</p>
-<pre><code class="language-bash">python scripts/course_inventory.py</code></pre>
+<pre><code>python scripts/course_inventory.py</code></pre>
 <p>This builds reports that help distinguish active module pages from unused pages. That matters because Canvas courses often contain duplicate old pages with similar titles.</p>
 <h3 id="find-a-page">Find a Page</h3>
 <p>Search active module pages:</p>
-<pre><code class="language-bash">python scripts/find_page.py &quot;data&quot;</code></pre>
+<pre><code>python scripts/find_page.py &quot;data&quot;</code></pre>
 <p>Search all pulled pages:</p>
-<pre><code class="language-bash">python scripts/find_any_page.py &quot;data&quot;</code></pre>
+<pre><code>python scripts/find_any_page.py &quot;data&quot;</code></pre>
 <p>Prefer <code>find_page.py</code> for production edits because it focuses on pages currently used in modules.</p>
 <h3 id="edit-a-page">Edit a Page</h3>
 <p>Open the local HTML file from <code>pages/</code> in your editor. Keep edits scoped to the intended page.</p>
 <h3 id="preview-a-page-in-canvas">Preview a Page in Canvas</h3>
 <p>Set up the preview environment once:</p>
-<pre><code class="language-bash">python scripts/setup_preview_environment.py --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/setup_preview_environment.py --apply --confirm-course 12345</code></pre>
 <p>Preview a local page:</p>
-<pre><code class="language-bash">python scripts/preview_page_in_canvas.py &quot;filename.html&quot; --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/preview_page_in_canvas.py &quot;filename.html&quot; --apply --confirm-course 12345</code></pre>
 <p>Use <code>--no-open</code> if you do not want the script to open a browser:</p>
-<pre><code class="language-bash">python scripts/preview_page_in_canvas.py &quot;filename.html&quot; --apply --confirm-course 12345 --no-open</code></pre>
+<pre><code>python scripts/preview_page_in_canvas.py &quot;filename.html&quot; --apply --confirm-course 12345 --no-open</code></pre>
 <h3 id="push-a-page">Push a Page</h3>
 <p>Dry run first:</p>
-<pre><code class="language-bash">python scripts/push_page.py &quot;filename.html&quot;</code></pre>
+<pre><code>python scripts/push_page.py &quot;filename.html&quot;</code></pre>
 <p>Apply only after the diff is correct:</p>
-<pre><code class="language-bash">python scripts/push_page.py &quot;filename.html&quot; --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/push_page.py &quot;filename.html&quot; --apply --confirm-course 12345</code></pre>
 <p>For active module pages, prefer:</p>
-<pre><code class="language-bash">python scripts/push_module_page.py &quot;filename.html&quot;
+<pre><code>python scripts/push_module_page.py &quot;filename.html&quot;
 python scripts/push_module_page.py &quot;filename.html&quot; --apply --confirm-course 12345</code></pre>
 <p><code>push_module_page.py</code> verifies that the page is in the module inventory before delegating to the page push workflow.</p>
 <h3 id="create-a-new-page">Create a New Page</h3>
 <p>Create a dry-run plan:</p>
-<pre><code class="language-bash">python scripts/create_page.py &quot;New Lesson Title&quot; --body-file local-page.html</code></pre>
+<pre><code>python scripts/create_page.py &quot;New Lesson Title&quot; --body-file local-page.html</code></pre>
 <p>Create the page:</p>
-<pre><code class="language-bash">python scripts/create_page.py &quot;New Lesson Title&quot; --body-file local-page.html --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/create_page.py &quot;New Lesson Title&quot; --body-file local-page.html --apply --confirm-course 12345</code></pre>
 <p>Use <code>--published</code> only when the page should be published immediately:</p>
-<pre><code class="language-bash">python scripts/create_page.py &quot;New Lesson Title&quot; --body-file local-page.html --published --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/create_page.py &quot;New Lesson Title&quot; --body-file local-page.html --published --apply --confirm-course 12345</code></pre>
 <h3 id="add-a-page-to-a-module">Add a Page to a Module</h3>
 <p>Dry run:</p>
-<pre><code class="language-bash">python scripts/add_page_to_module.py &quot;new-lesson-title.html&quot; &quot;Module 2&quot;</code></pre>
+<pre><code>python scripts/add_page_to_module.py &quot;new-lesson-title.html&quot; &quot;Module 2&quot;</code></pre>
 <p>Apply:</p>
-<pre><code class="language-bash">python scripts/add_page_to_module.py &quot;new-lesson-title.html&quot; &quot;Module 2&quot; --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/add_page_to_module.py &quot;new-lesson-title.html&quot; &quot;Module 2&quot; --apply --confirm-course 12345</code></pre>
 <p>You can indent the module item:</p>
-<pre><code class="language-bash">python scripts/add_page_to_module.py &quot;new-lesson-title.html&quot; &quot;Module 2&quot; --indent 1 --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/add_page_to_module.py &quot;new-lesson-title.html&quot; &quot;Module 2&quot; --indent 1 --apply --confirm-course 12345</code></pre>
 <h2 id="canvas-file-and-image-workflows">Canvas File and Image Workflows</h2>
 <h3 id="pull-file-metadata">Pull File Metadata</h3>
-<pre><code class="language-bash">python scripts/pull_files_metadata.py</code></pre>
+<pre><code>python scripts/pull_files_metadata.py</code></pre>
 <p>This creates <code>asset_manifest.json</code> and file reports. It does not download every file body.</p>
 <h3 id="find-assets">Find Assets</h3>
-<pre><code class="language-bash">python scripts/find_asset.py &quot;checklist&quot;</code></pre>
+<pre><code>python scripts/find_asset.py &quot;checklist&quot;</code></pre>
 <p>Use this to locate Canvas file IDs and generate snippets for embedding assets.</p>
 <h3 id="upload-a-file">Upload a File</h3>
 <p>Dry run:</p>
-<pre><code class="language-bash">python scripts/upload_canvas_file.py assets/image.png</code></pre>
+<pre><code>python scripts/upload_canvas_file.py assets/image.png</code></pre>
 <p>Apply:</p>
-<pre><code class="language-bash">python scripts/upload_canvas_file.py assets/image.png --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/upload_canvas_file.py assets/image.png --apply --confirm-course 12345</code></pre>
 <p>Upload into a folder:</p>
-<pre><code class="language-bash">python scripts/upload_canvas_file.py assets/image.png --folder &quot;CanvasDaemon/images&quot; --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/upload_canvas_file.py assets/image.png --folder &quot;CanvasDaemon/images&quot; --apply --confirm-course 12345</code></pre>
 <p>Rename if a matching filename already exists instead of overwriting:</p>
-<pre><code class="language-bash">python scripts/upload_canvas_file.py assets/image.png --rename --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/upload_canvas_file.py assets/image.png --rename --apply --confirm-course 12345</code></pre>
 <p>Use a Canvas-side filename:</p>
-<pre><code class="language-bash">python scripts/upload_canvas_file.py assets/image.png --canvas-name &quot;module-2-hero.png&quot; --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/upload_canvas_file.py assets/image.png --canvas-name &quot;module-2-hero.png&quot; --apply --confirm-course 12345</code></pre>
 <h3 id="download-editable-files">Download Editable Files</h3>
 <p>Download editable Canvas files:</p>
-<pre><code class="language-bash">python scripts/download_editable_files.py</code></pre>
+<pre><code>python scripts/download_editable_files.py</code></pre>
 <p>Download files referenced by pulled pages:</p>
-<pre><code class="language-bash">python scripts/download_referenced_editable_files.py</code></pre>
+<pre><code>python scripts/download_referenced_editable_files.py</code></pre>
 <p>These are useful for embedded HTML activities, JS/CSS files, and other editable Canvas-hosted assets.</p>
 <h2 id="preview-workflows">Preview Workflows</h2>
 <p>Canvas may sanitize HTML, change iframe behavior, or require file permissions. Preview in Canvas when visual or embedded behavior matters.</p>
 <p>Set up preview:</p>
-<pre><code class="language-bash">python scripts/setup_preview_environment.py --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/setup_preview_environment.py --apply --confirm-course 12345</code></pre>
 <p>Preview a page:</p>
-<pre><code class="language-bash">python scripts/preview_page_in_canvas.py &quot;filename.html&quot; --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/preview_page_in_canvas.py &quot;filename.html&quot; --apply --confirm-course 12345</code></pre>
 <p>Preview a standalone asset, such as an HTML activity:</p>
-<pre><code class="language-bash">python scripts/preview_asset_in_canvas.py &quot;assets/activities/activity.html&quot; --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/preview_asset_in_canvas.py &quot;assets/activities/activity.html&quot; --apply --confirm-course 12345</code></pre>
 <p>If the preview page has been published, the script protects it from overwrite. Inspect Canvas and unpublish or recreate the preview setup before continuing.</p>
 <h2 id="discussion-workflows">Discussion Workflows</h2>
 <p>Create a discussion from inline HTML:</p>
-<pre><code class="language-bash">python scripts/create_discussion.py &quot;Opening Discussion&quot; --message &quot;&lt;p&gt;Prompt goes here.&lt;/p&gt;&quot;</code></pre>
+<pre><code>python scripts/create_discussion.py &quot;Opening Discussion&quot; --message &quot;&lt;p&gt;Prompt goes here.&lt;/p&gt;&quot;</code></pre>
 <p>Create from an HTML file:</p>
-<pre><code class="language-bash">python scripts/create_discussion.py &quot;Opening Discussion&quot; --message-file discussion.html</code></pre>
+<pre><code>python scripts/create_discussion.py &quot;Opening Discussion&quot; --message-file discussion.html</code></pre>
 <p>Create and add to a module:</p>
-<pre><code class="language-bash">python scripts/create_discussion.py &quot;Opening Discussion&quot; --message-file discussion.html --module &quot;Module 2&quot;</code></pre>
+<pre><code>python scripts/create_discussion.py &quot;Opening Discussion&quot; --message-file discussion.html --module &quot;Module 2&quot;</code></pre>
 <p>Apply:</p>
-<pre><code class="language-bash">python scripts/create_discussion.py &quot;Opening Discussion&quot; --message-file discussion.html --module &quot;Module 2&quot; --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/create_discussion.py &quot;Opening Discussion&quot; --message-file discussion.html --module &quot;Module 2&quot; --apply --confirm-course 12345</code></pre>
 <p>Optional flags:</p>
-<pre><code class="language-bash">--published
+<pre><code>--published
 --discussion-type threaded
 --discussion-type side_comment
 --require-initial-post
@@ -302,25 +323,25 @@ python scripts/push_module_page.py &quot;filename.html&quot; --apply --confirm-c
 <h3 id="create-a-quiz">Create a Quiz</h3>
 <p>Put quiz JSON in <code>quiz_banks/</code>.</p>
 <p>Validate JSON:</p>
-<pre><code class="language-bash">python -m json.tool quiz_banks/my_quiz.json</code></pre>
+<pre><code>python -m json.tool quiz_banks/my_quiz.json</code></pre>
 <p>Dry run:</p>
-<pre><code class="language-bash">python scripts/create_classic_quiz.py quiz_banks/my_quiz.json</code></pre>
+<pre><code>python scripts/create_classic_quiz.py quiz_banks/my_quiz.json</code></pre>
 <p>Create the quiz:</p>
-<pre><code class="language-bash">python scripts/create_classic_quiz.py quiz_banks/my_quiz.json --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/create_classic_quiz.py quiz_banks/my_quiz.json --apply --confirm-course 12345</code></pre>
 <p>New quizzes are created unpublished.</p>
 <h3 id="inventory-quizzes">Inventory Quizzes</h3>
-<pre><code class="language-bash">python scripts/pull_classic_quizzes.py</code></pre>
+<pre><code>python scripts/pull_classic_quizzes.py</code></pre>
 <h3 id="find-a-quiz">Find a Quiz</h3>
-<pre><code class="language-bash">python scripts/find_quiz.py &quot;module 2&quot;</code></pre>
+<pre><code>python scripts/find_quiz.py &quot;module 2&quot;</code></pre>
 <h3 id="sync-quiz-settings">Sync Quiz Settings</h3>
 <p>Dry run:</p>
-<pre><code class="language-bash">python scripts/sync_classic_quiz.py quiz_banks/my_quiz.json</code></pre>
+<pre><code>python scripts/sync_classic_quiz.py quiz_banks/my_quiz.json</code></pre>
 <p>Apply:</p>
-<pre><code class="language-bash">python scripts/sync_classic_quiz.py quiz_banks/my_quiz.json --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/sync_classic_quiz.py quiz_banks/my_quiz.json --apply --confirm-course 12345</code></pre>
 <p><code>sync_classic_quiz.py</code> syncs quiz shell/settings only. It does not replace quiz questions.</p>
 <h2 id="panopto-and-video-inventory">Panopto and Video Inventory</h2>
 <p>Scan local pulled pages for Panopto embeds:</p>
-<pre><code class="language-bash">python scripts/discover_panopto.py</code></pre>
+<pre><code>python scripts/discover_panopto.py</code></pre>
 <p>This writes <code>panopto_manifest.json</code> and a report. It does not create, upload, or edit videos.</p>
 <p>When adapting templates for another course, replace Panopto links and iframes with the new course videos.</p>
 <h2 id="script-reference">Script Reference</h2>
@@ -334,6 +355,7 @@ python scripts/push_module_page.py &quot;filename.html&quot; --apply --confirm-c
 <tr><td><code>find_any_page.py</code></td><td>Searches all pulled pages.</td><td>No</td></tr>
 <tr><td><code>push_page.py</code></td><td>Diffs and updates a Canvas page.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
 <tr><td><code>push_module_page.py</code></td><td>Pushes a page verified as module-active.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
+<tr><td><code>create_module.py</code></td><td>Creates a new Canvas module.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
 <tr><td><code>create_page.py</code></td><td>Creates a new Canvas page.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
 <tr><td><code>add_page_to_module.py</code></td><td>Adds an existing page to a Canvas module.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
 <tr><td><code>setup_preview_environment.py</code></td><td>Creates/reuses a dedicated Canvas preview page.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
@@ -353,24 +375,22 @@ python scripts/push_module_page.py &quot;filename.html&quot; --apply --confirm-c
 </tbody></table>
 <h2 id="safety-rules">Safety Rules</h2>
 <p>CanvasDaemon is designed around explicit writes.</p>
-<ol>
-<li>Run a dry run before applying.</li>
-<li>Use <code>--apply --confirm-course COURSE_ID</code> only when you are ready to write.</li>
-<li>Read the printed course name and ID before writing.</li>
-<li>Pull before editing a course you have not touched recently.</li>
-<li>Use <code>find_page.py</code> or <code>course_inventory.py</code> before editing module pages.</li>
-<li>Prefer <code>push_module_page.py</code> for active course pages.</li>
-<li>Preview pages that include iframes, scripts, video embeds, or complex layout.</li>
-<li>Keep <code>.env</code> local.</li>
-<li>Never commit <code>pages/</code>, <code>backups/</code>, <code>canvas_files/</code>, <code>reports/</code>, <code>manifest.json</code>, <code>asset_manifest.json</code>, <code>preview_config.json</code>, <code>.env</code>, or <code>.venv</code>.</li>
-<li>Do not rerun create commands after a timeout until you inspect Canvas.</li>
-<li>Coordinate with teammates so two people do not push the same page at the same time.</li>
-<li>Published Canvas pages update immediately for students.</li>
-</ol>
+<p>1. Run a dry run before applying.</p>
+<p>2. Use <code>--apply --confirm-course COURSE_ID</code> only when you are ready to write.</p>
+<p>3. Read the printed course name and ID before writing.</p>
+<p>4. Pull before editing a course you have not touched recently.</p>
+<p>5. Use <code>find_page.py</code> or <code>course_inventory.py</code> before editing module pages.</p>
+<p>6. Prefer <code>push_module_page.py</code> for active course pages.</p>
+<p>7. Preview pages that include iframes, scripts, video embeds, or complex layout.</p>
+<p>8. Keep <code>.env</code> local.</p>
+<p>9. Never commit <code>pages/</code>, <code>backups/</code>, <code>canvas_files/</code>, <code>reports/</code>, <code>manifest.json</code>, <code>asset_manifest.json</code>, <code>preview_config.json</code>, <code>.env</code>, or <code>.venv</code>.</p>
+<p>10. Do not rerun create commands after a timeout until you inspect Canvas.</p>
+<p>11. Coordinate with teammates so two people do not push the same page at the same time.</p>
+<p>12. Published Canvas pages update immediately for students.</p>
 <h2 id="recovery-and-troubleshooting">Recovery and Troubleshooting</h2>
 <h3 id="my-pull-stopped-because-of-local-edits">“My pull stopped because of local edits”</h3>
 <p>The script is protecting your work. Copy your changes somewhere safe, compare with Canvas, then decide whether to merge or use:</p>
-<pre><code class="language-bash">python scripts/pull_pages.py --overwrite-local</code></pre>
+<pre><code>python scripts/pull_pages.py --overwrite-local</code></pre>
 <p>The overwrite path backs up previous local content first.</p>
 <h3 id="canvas-changed-since-my-last-pull">“Canvas changed since my last pull”</h3>
 <p>The push script detected a stale local baseline. Pull again, compare the live content with your local edit, merge deliberately, then rerun the push.</p>
@@ -382,27 +402,25 @@ python scripts/push_module_page.py &quot;filename.html&quot; --apply --confirm-c
 <p>CanvasDaemon protects a published preview page from overwrite. In Canvas, inspect the preview page and unpublish it, or create a fresh preview setup if needed.</p>
 <h3 id="the-asset-previewupload-changed-an-existing-file">“The asset preview/upload changed an existing file”</h3>
 <p>By default, Canvas file uploads overwrite matching names. Use <code>--rename</code> to avoid overwriting:</p>
-<pre><code class="language-bash">python scripts/upload_canvas_file.py assets/image.png --rename --apply --confirm-course 12345</code></pre>
+<pre><code>python scripts/upload_canvas_file.py assets/image.png --rename --apply --confirm-course 12345</code></pre>
 <h3 id="a-page-looks-different-in-canvas-than-locally">“A page looks different in Canvas than locally”</h3>
 <p>Canvas sanitizes and renders HTML differently than a browser opening a local file. Use <code>preview_page_in_canvas.py</code> for Canvas-rendered QA.</p>
 <h3 id="the-repo-does-not-contain-pages-anymore">“The repo does not contain pages anymore”</h3>
 <p>Correct. The shared repo is a toolkit. Each teammate pulls their own course to generate their own local <code>pages/</code> and <code>manifest.json</code>.</p>
 <h2 id="recommended-team-practices">Recommended Team Practices</h2>
 <p>Use one folder per course:</p>
-<pre><code class="language-text">CanvasDaemon-course-a/
+<pre><code>CanvasDaemon-course-a/
 CanvasDaemon-course-b/</code></pre>
 <p>Do not share <code>.env</code> files. Each person should create their own token and configure their own course ID.</p>
 <p>Use branches for reusable script or documentation changes. Do not commit local generated course exports.</p>
 <p>Before a teammate starts a new course, they should:</p>
-<ol>
-<li>Clone the repo.</li>
-<li>Read this handbook.</li>
-<li>Create <code>.env</code>.</li>
-<li>Run <code>test_canvas.py</code>.</li>
-<li>Pull their course.</li>
-<li>Review <code>examples/templates/</code>.</li>
-<li>Start with dry runs and previews.</li>
-</ol>
+<p>1. Clone the repo.</p>
+<p>2. Read this handbook.</p>
+<p>3. Create <code>.env</code>.</p>
+<p>4. Run <code>test_canvas.py</code>.</p>
+<p>5. Pull their course.</p>
+<p>6. Review <code>examples/templates/</code>.</p>
+<p>7. Start with dry runs and previews.</p>
 <p>When creating a new course from the reference library, agree on these details first:</p>
 <ul>
 <li>Course structure and module names.</li>
@@ -414,7 +432,7 @@ CanvasDaemon-course-b/</code></pre>
 <li>When a module is ready for Canvas publish review.</li>
 </ul>
 <h2 id="quick-start-checklist">Quick Start Checklist</h2>
-<pre><code class="language-bash">git clone https://github.com/march-M-R/CanvasDaemon.git
+<pre><code>git clone https://github.com/march-M-R/CanvasDaemon.git
 cd CanvasDaemon
 python3 -m venv .venv
 source .venv/bin/activate
@@ -424,10 +442,11 @@ python scripts/test_canvas.py
 python scripts/pull_pages.py
 python scripts/course_inventory.py</code></pre>
 <p>Then open:</p>
-<pre><code class="language-text">examples/templates/README.md
+<pre><code>examples/templates/README.md
 examples/templates/pages/</code></pre>
 <p>Pick a reference, adapt it, preview it, and push only with:</p>
-<pre><code class="language-bash">--apply --confirm-course YOUR_COURSE_ID</code></pre>
-</article></main>
+<pre><code>--apply --confirm-course YOUR_COURSE_ID</code></pre>
+</main>
+</div>
 </body>
 </html>

@@ -1,0 +1,226 @@
+{
+  "purpose": "Approved reusable reference templates for teammates building new courses with CanvasDaemon.",
+  "approved_count": 12,
+  "image_style_reference": {
+    "source": "assets/images/m1_m4_witty_concepts/m2_1_1_examples_patterns.png",
+    "reference_copy": "assets/m2_1_1_examples_patterns.png",
+    "description": "High-school illustrated course style: student-facing, classroom/story setting, concrete learning metaphor, warm visual tone."
+  },
+  "templates": [
+    {
+      "key": "course-welcome",
+      "type": "Course welcome",
+      "title": "Intro to Applied AI",
+      "reference_page": "pages/course-welcome.html",
+      "source": "pages/welcome-to-the-course__welcome-to-the-course.html",
+      "reason": "Sets the promise, scope, learner expectations, and first action in a compact landing page.",
+      "adaptation": "Replace course promises, counts, welcome videos, and hero artwork.",
+      "dependencies": [
+        {
+          "source": "assets/images/welcome/ai-evolution-timeline.png",
+          "review_copy": "assets/b74bd95e7924.png",
+          "alt": "Futuristic timeline showing AI evolving from a 1951 checkers program to modern recommendation, chatbot, image generation, and AI assistant systems"
+        }
+      ],
+      "external_embeds": 2,
+      "image_count": 1
+    },
+    {
+      "key": "course-roadmap",
+      "type": "Course roadmap",
+      "title": "Four phases. One complete picture of AI.",
+      "reference_page": "pages/course-roadmap.html",
+      "source": "pages/course-roadmap__course-roadmap.html",
+      "reason": "Strong visual progression from phase cards to expandable details; useful for any multi-part course.",
+      "adaptation": "Replace phases, sequencing, illustrations, and phase links.",
+      "dependencies": [
+        {
+          "source": "assets/images/roadmap/ai-course-roadmap-hero.png",
+          "review_copy": "assets/324a715edce9.png",
+          "alt": "Futuristic four-phase AI course roadmap with glowing path from foundations to code lab, modern AI, and final app launch"
+        },
+        {
+          "source": "assets/images/roadmap/phase-tiles/phase-1-ai-foundations-fun.png",
+          "review_copy": "assets/03517d41ffe5.png",
+          "alt": "Playful robot detective investigating everyday examples to decide what counts as AI"
+        },
+        {
+          "source": "assets/images/roadmap/phase-tiles/phase-2-code-lab-fun.png",
+          "review_copy": "assets/126fb0bdf724.png",
+          "alt": "Playful robot debugging Python code while data blocks feed into a machine learning model"
+        },
+        {
+          "source": "assets/images/roadmap/phase-tiles/phase-3-modern-ai-fun.png",
+          "review_copy": "assets/f0e033a71b28.png",
+          "alt": "Futuristic prompt machine turning one prompt into chat, image, code, and tool outputs"
+        },
+        {
+          "source": "assets/images/roadmap/phase-tiles/phase-4-launch-pad-fun.png",
+          "review_copy": "assets/f7199098a170.png",
+          "alt": "AI web app launching like a rocket from a laptop with testing and portfolio panels around it"
+        }
+      ],
+      "external_embeds": 0,
+      "image_count": 5
+    },
+    {
+      "key": "course-guide",
+      "type": "Orientation / resource hub",
+      "title": "Start with the essentials. Return when you need help.",
+      "reference_page": "pages/course-guide.html",
+      "source": "pages/course-guide__course-guide.html",
+      "reason": "Clear start-here path with separate portfolio and help resources; avoids an overloaded welcome page.",
+      "adaptation": "Replace guide destinations and the three supporting illustrations.",
+      "dependencies": [
+        {
+          "source": "assets/images/course_guide/course-guide-learning-rhythm.png",
+          "review_copy": "assets/dee3378a8cbd.png",
+          "alt": "Students and a friendly robot moving through watching, practice, checking, discussion, and portfolio stations"
+        },
+        {
+          "source": "assets/images/course_guide/course-guide-portfolio-growth.png",
+          "review_copy": "assets/864b025197d5.png",
+          "alt": "Students and a friendly robot arranging work from an early idea through a finished AI application"
+        },
+        {
+          "source": "assets/images/course_guide/course-guide-help-desk.png",
+          "review_copy": "assets/f21433fbea21.png",
+          "alt": "Students asking a friendly robot guide about coding, time, and course tools"
+        }
+      ],
+      "external_embeds": 0,
+      "image_count": 3
+    },
+    {
+      "key": "quick-concept",
+      "type": "Quick concept / microlearning",
+      "title": "The Three Forms of Intelligence",
+      "reference_page": "pages/quick-concept.html",
+      "source": "pages/1-1-the-three-forms-of-intelligence__1-dot-1-the-three-forms-of-intelligence.html",
+      "reason": "Shows the established illustration-and-meme style with a short explanation, video, comparison, and practice.",
+      "adaptation": "Replace concept content, illustration, reaction GIF, video, and interactive activity.",
+      "dependencies": [
+        {
+          "source": "assets/images/m1_m4_witty_concepts/m1_1_1_three_forms_of_intelligence.png",
+          "review_copy": "assets/95ae4a94ea92.png",
+          "alt": "Different types of intelligence shown as three school problem-solving stations with a mildly judgmental checklist."
+        },
+        {
+          "source": "assets/images/external_memes/m1_m14_concepts/m01-1-1-v2.gif",
+          "review_copy": "assets/e8b1f6442338.gif",
+          "alt": "Relatable reaction GIF illustrating Intelligence can come from a person, a pattern-learning machine, or a group combining knowledge and coordination."
+        }
+      ],
+      "external_embeds": 2,
+      "image_count": 2
+    },
+    {
+      "key": "tool-setup",
+      "type": "Tool setup / recovery guide",
+      "title": "Google Colab, Drive, Gemini, and Recovery",
+      "reference_page": "pages/tool-setup.html",
+      "source": "pages/phase-2-tool-setup-google-colab-drive-gemini-and-recovery__phase-2-tool-setup-google-colab-drive-gemini-and-recovery.html",
+      "reason": "Practical setup, reliable work habits, recovery steps, and clear tool-use expectations in one reusable guide.",
+      "adaptation": "Replace tools, access requirements, setup steps, and recovery instructions.",
+      "dependencies": [],
+      "external_embeds": 0,
+      "image_count": 0
+    },
+    {
+      "key": "opening-discussion",
+      "type": "Opening discussion",
+      "title": "Should This Be an Agent?",
+      "reference_page": "pages/opening-discussion.html",
+      "source": "reports/m14_discussion_meme_20260928/after.json",
+      "reason": "The newer discussion design uses a memorable scenario, focused question, response scaffold, and peer-reply expectations.",
+      "adaptation": "Replace the scenario, reaction GIF, prompt, reply rules, and attribution.",
+      "dependencies": [
+        {
+          "source": "reports/m14_discussion_meme_20260928/replacement.gif",
+          "review_copy": "assets/22d6e65b9ca6.gif",
+          "alt": "Kermit typing furiously, illustrating an agent rushing to send a message before review."
+        }
+      ],
+      "external_embeds": 0,
+      "image_count": 1
+    },
+    {
+      "key": "answer-review",
+      "type": "Quiz answer review",
+      "title": "Review the answers after demonstrating mastery.",
+      "reference_page": "pages/answer-review.html",
+      "source": "pages/module-12-quiz-answer-review__module-12-quiz-answer-review.html",
+      "reason": "Consistent question cards explain the correct answers and reasons, making the review format easy to reuse.",
+      "adaptation": "Replace all questions/answers and configure real access restrictions in Canvas. Page text alone does not enforce the mastery gate.",
+      "dependencies": [],
+      "external_embeds": 0,
+      "image_count": 0
+    },
+    {
+      "key": "module-overview",
+      "type": "Module 2 overview",
+      "title": "How AI Learns from Data",
+      "reference_page": "pages/module-overview.html",
+      "source": "outputs/template-approval-20260929-round2/sources/m2-overview-2.html",
+      "reason": "Your requested Module 2 overview: a motivating question, outcomes, module journey, and completion expectations.",
+      "adaptation": "Replace module metadata, outcomes, visual, completion rules, and links.",
+      "dependencies": [
+        {
+          "source": "assets/images/m1_m4_witty_concepts/m2_1_1_examples_patterns.png",
+          "review_copy": "assets/m2_1_1_examples_patterns.png",
+          "alt": "High-school students sorting everyday examples into patterns for machine learning practice"
+        }
+      ],
+      "external_embeds": 0,
+      "image_count": 1
+    },
+    {
+      "key": "main-lesson",
+      "type": "Module 2 main lesson",
+      "title": "Data Is the Starting Point",
+      "reference_page": "pages/main-lesson.html",
+      "source": "outputs/template-approval-20260929-round2/sources/m2-1-what-is-data-really.html",
+      "reason": "Module 2 Lesson 1, \u201cData Is the Starting Point\u201d: a clear video \u2192 concept blocks \u2192 synthesis sequence with the existing course artwork.",
+      "adaptation": "Replace the big question, video, concept blocks, and synthesis prompts.",
+      "dependencies": [],
+      "external_embeds": 1,
+      "image_count": 0
+    },
+    {
+      "key": "guided-activity",
+      "type": "Embedded micro-learning mini activity",
+      "title": "Quick, Draw! Pattern Detective",
+      "reference_page": "pages/guided-activity.html",
+      "source": "assets/activities/module2/m2_quickdraw_pattern_detective.html",
+      "reason": "The actual Quick, Draw! Pattern Detective mini activity embedded inside a Module 2 micro-learning concept page. Includes observation fields, progress, and feedback.",
+      "adaptation": "Replace case evidence, review steps, output, and success criteria.",
+      "dependencies": [],
+      "external_embeds": 0,
+      "image_count": 0
+    },
+    {
+      "key": "module-summary",
+      "type": "Summary with video",
+      "title": "Autonomy Needs Boundaries.",
+      "reference_page": "pages/module-summary.html",
+      "source": "outputs/template-approval-20260929-round2/sources/m14-summary-11.html",
+      "reason": "The current Module 14 summary, including its wrap-up video, connecting story, and takeaways.",
+      "adaptation": "Replace the story, key ideas, map, and next-step link.",
+      "dependencies": [],
+      "external_embeds": 1,
+      "image_count": 0
+    },
+    {
+      "key": "progress-checklist",
+      "type": "Phase 3 interactive checklist",
+      "title": "Module 14 Progress Checklist",
+      "reference_page": "pages/progress-checklist.html",
+      "source": "outputs/template-approval-20260929-round2/sources/m14-progress-tracker-14.html",
+      "reason": "The Module 14 (Phase 3) checklist with its actual interactive tracker, browser-saved checkmarks, progress count, and reset control.",
+      "adaptation": "Regenerate every item and link from the new course; do not retain old completion claims.",
+      "dependencies": [],
+      "external_embeds": 1,
+      "image_count": 0
+    }
+  ]
+}

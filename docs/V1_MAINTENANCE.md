@@ -2,7 +2,7 @@
 
 ## Scope
 
-This release polishes the 25 scripts already tracked in V1 and incorporates the current working improvements to page creation, page pushes/pulls, quiz content construction, and upload naming/folders. It adds one shared runtime, tests, setup documentation, and CI. It does not migrate the repository, replace its visual style, ship the separate V2 experiment, or import the many course-specific repair scripts.
+This release polishes the 25 scripts already tracked in V1 and incorporates the current working improvements to page creation, page pushes/pulls, quiz content construction, and upload naming/folders. It adds one shared runtime, tests, setup documentation, CI, and a small approved template reference library. It does not ship the separate V2 experiment or import the many course-specific repair scripts.
 
 ## Interrupted writes
 
@@ -12,7 +12,7 @@ No write is automatically retried. A timeout can mean the server completed a req
 
 Keep a copy of your edited HTML. Pull into a separate course working folder, compare the current live content, merge deliberately, and work from the refreshed manifest. Do not edit baseline hashes to suppress a conflict. `--overwrite-local` is only for intentionally replacing local content with a backed-up copy of live content.
 
-Backups are in `backups/`. Before-push backups contain the live HTML and page metadata. Before-pull backups contain the previous local files and manifest. Restore an HTML body by copying it into the currently mapped file, review the diff, then push using the normal guarded workflow. Backups do not restore modules, student submissions, permissions, or an entire course.
+Local backups are written to `backups/`. Before-push backups contain the live HTML and page metadata. Before-pull backups contain the previous local files and manifest. Restore an HTML body by copying it into the currently mapped file, review the diff, then push using the normal guarded workflow. Backups do not restore modules, student submissions, permissions, or an entire course. Generated backups are ignored by Git.
 
 ## Preview and uploads
 
@@ -34,4 +34,4 @@ The shared runtime intentionally bounds requests with timeouts and does not auto
 
 ## Credentials
 
-The old Git history includes a tracked `.env`. Removing it in this release prevents future checkout exposure at the branch tip but cannot revoke old credentials. Rotate the affected token through the institution's Canvas process. History rewriting is a separate coordinated task and was not performed.
+The old Git history previously included a tracked `.env`. The public branch history has been rewritten to remove it, and `.env` remains ignored. History cleanup cannot revoke a token that may already have been exposed, so rotate affected Canvas credentials through the institution's Canvas process.

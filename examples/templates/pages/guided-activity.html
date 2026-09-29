@@ -1,0 +1,94 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; frame-src file: https://stevens.hosted.panopto.com; img-src 'self' data: file:; style-src 'unsafe-inline';"><title>Embedded micro-learning mini activity</title><style>body{margin:0;background:#eee}img{max-width:100%}</style></head><body><!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Quick, Draw! Pattern Detective</title>
+<style>
+    :root{--ink:#0b0d10;--red:#a32638;--paper:#f7f3ea;--line:#ddd8cf;--muted:#5a626b;--green:#18794e}
+    *{box-sizing:border-box} body{margin:0;background:#f2f2f2;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+    .app{max-width:920px;margin:0 auto;background:#fff;min-height:100vh}
+    header{padding:42px 38px 34px;background:linear-gradient(135deg,#0b0d10 0%,#16191e 67%,#a32638 100%);color:#fff}
+    .eyebrow{margin:0 0 8px;color:#f0c8ce;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13px}
+    h1{margin:0;font:700 42px/1.08 Georgia,serif}.sub{max-width:700px;margin:14px 0 0;color:#e2e4e7;font-size:17px}
+    main{padding:32px 38px 44px}.mission{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--red);padding:22px 24px;margin-bottom:24px}
+    .mission strong{font-family:Georgia,serif;font-size:23px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}
+    .step{border:1px solid #e1e3e5;border-radius:14px;padding:18px;background:#fff}.num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;font-weight:700;margin-bottom:10px}
+    .step h2{font:700 21px/1.2 Georgia,serif;margin:0 0 8px}.step p{font-size:14px;color:var(--muted);margin:0}
+    .launch{display:block;text-align:center;background:var(--red);color:#fff;text-decoration:none;font-weight:700;font-size:18px;padding:16px 20px;border-radius:999px;margin:22px auto 30px;max-width:410px;box-shadow:0 7px 0 #711a28}
+    .launch:hover,.launch:focus{background:#8f2031;transform:translateY(2px);box-shadow:0 5px 0 #711a28}
+    .case{border:1px solid #dfe1e4;border-radius:16px;overflow:hidden;margin-top:20px}.case-title{background:var(--ink);color:#fff;padding:18px 22px;font:700 24px Georgia,serif}.case-body{padding:22px}
+    .progress{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;margin:0 0 18px;font-weight:700}.track{height:11px;background:#e1e3e5;border-radius:99px;overflow:hidden}.fill{height:100%;width:0;background:var(--red);transition:width .25s}
+    label{display:block;font-weight:700;margin:0 0 7px}input,textarea,select{width:100%;border:1px solid #bbc0c5;border-radius:9px;padding:11px 12px;font:inherit;margin-bottom:18px;background:#fff}textarea{min-height:88px;resize:vertical}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.clue{background:#f5f6f7;border-radius:10px;padding:14px 16px;color:#343b42;font-size:14px;margin:0 0 18px}
+    button{border:0;border-radius:999px;background:var(--ink);color:#fff;padding:12px 20px;font-weight:700;font-size:15px;cursor:pointer}button:focus-visible,.launch:focus-visible{outline:4px solid #f2c14e;outline-offset:3px}.retry{background:var(--red);margin-left:8px}
+    #verdict{display:none;margin-top:18px;padding:18px;border:1px solid #b7dfcb;border-left:5px solid var(--green);background:#effaf4;border-radius:8px}
+    #verdict h3{margin:0 0 8px;font:700 22px Georgia,serif;color:#105b3b}#verdict p{margin:0;color:#31433a}
+    footer{padding:18px 30px;text-align:center;background:#f6f6f6;color:#697079;font-size:13px;border-top:1px solid #e3e3e3}
+    @media(max-width:700px){header,main{padding-left:22px;padding-right:22px}h1{font-size:34px}.steps,.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="app">
+<header>
+<p class="eyebrow">Examples + Patterns Field Test</p>
+<h1>Quick, Draw! Pattern Detective</h1>
+<p class="sub">You have 20 seconds. The neural network has learned from mountains of doodles. Now your drawing becomes one more example.</p>
+</header>
+<main>
+<div class="mission"><strong>Your mission:</strong> play one six-drawing round, then investigate one hit and one spectacular miss. Find the patterns the model may have learned from earlier examples - your artistic dignity is not being graded.</div>
+<div class="steps">
+<div class="step"><span class="num">1</span><h2>Draw</h2><p>Open Quick, Draw! and complete one round. Keep this Canvas tab open.</p></div>
+<div class="step"><span class="num">2</span><h2>Notice</h2><p>Watch what it guesses before the timer ends. Look for shapes or lines that changed its mind.</p></div>
+<div class="step"><span class="num">3</span><h2>Investigate</h2><p>Return here and explain one recognition success and one mistake.</p></div>
+</div>
+<a class="launch" href="https://quickdraw.withgoogle.com/" rel="noopener" target="_blank">Launch Quick, Draw! ↗</a>
+<section class="case">
+<div class="case-title">Case File: What Did the Model See?</div>
+<div class="case-body">
+<div aria-label="Case progress" class="progress"><span>Clues logged</span><div class="track"><div class="fill" id="progress"></div></div><span id="count">0/5</span></div>
+<div class="grid">
+<div><label for="hit">A drawing it recognised</label><input id="hit" placeholder="Example: bicycle"/></div>
+<div><label for="miss">A drawing it missed</label><input id="miss" placeholder="Example: kangaroo-ish blob"/></div>
+</div>
+<label for="clues">Which visible features probably helped the successful prediction?</label>
+<textarea id="clues" placeholder="Think about edges, shapes, repeated parts, position, or outline..."></textarea>
+<label for="failure">Why might the other drawing have confused the model?</label>
+<textarea id="failure" placeholder="Was it incomplete, unusual, messy, viewed differently, or similar to another object?"></textarea>
+<label for="lesson">Complete the claim</label>
+<select id="lesson">
+<option value="">Choose the strongest conclusion...</option>
+<option value="patterns">The model compares my drawing with visual patterns learned from many examples; it does not understand the object like a person.</option>
+<option value="artist">The model accurately measures who is good at drawing.</option>
+<option value="always">If it recognised one sketch, it will recognise every version of that object.</option>
+</select>
+<p class="clue"><strong>Detective rule:</strong> “It was wrong” is an observation. “It may have learned a narrower pattern than my drawing showed” is an explanation. Your final transfer challenge is to explain why the model succeeded and repair your claim if the evidence does not support it.</p>
+<button onclick="checkCase()" type="button">Close the case</button>
+<button class="retry" onclick="resetCase()" type="button">Reset and replay</button>
+<div aria-live="polite" id="verdict" role="status"></div>
+</div>
+</section>
+</main>
+<footer>Quick, Draw! is an external Google experiment. Do not enter names or personal information.</footer>
+</div>
+<script>
+function checkCase(){
+  const hit=document.getElementById('hit').value.trim();
+  const miss=document.getElementById('miss').value.trim();
+  const clues=document.getElementById('clues').value.trim();
+  const failure=document.getElementById('failure').value.trim();
+  const lesson=document.getElementById('lesson').value;
+  const box=document.getElementById('verdict');
+  box.style.display='block';
+  if(!hit||!miss||!clues||!failure||!lesson){box.innerHTML='<h3>One clue is still missing.</h3><p>Safe failure: complete every part, then try again. Your entered evidence stays in place.</p>';return;}
+  if(lesson!=='patterns'){box.innerHTML='<h3>Reopen the case.</h3><p>The game tests pattern matching, not artistic talent or guaranteed understanding. Change your answer, then retry the verdict.</p>';return;}
+  box.innerHTML='<h3>Case closed - transfer proved.</h3><p>You found the key idea: each recorded doodle is an example, and the model learns recurring visual patterns across many examples. A new drawing can confuse it when those patterns appear differently. Save this takeaway: predictions depend on patterns in prior examples.</p>';
+}
+function updateProgress(){const ids=['hit','miss','clues','failure','lesson'];const done=ids.filter(id=>document.getElementById(id).value.trim()).length;document.getElementById('count').textContent=done+'/5';document.getElementById('progress').style.width=(done*20)+'%'}
+function resetCase(){['hit','miss','clues','failure','lesson'].forEach(id=>document.getElementById(id).value='');document.getElementById('verdict').style.display='none';updateProgress();document.getElementById('hit').focus()}
+['hit','miss','clues','failure','lesson'].forEach(id=>{document.getElementById(id).addEventListener('input',updateProgress);document.getElementById(id).addEventListener('change',updateProgress)});
+</script>
+</body>
+</html>
+</body></html>

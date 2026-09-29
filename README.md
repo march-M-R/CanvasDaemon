@@ -82,9 +82,11 @@ Omit the two apply flags to inspect without writing. Preview configuration is bo
 
 ## Working on another course
 
-The repository still contains the original course's content and mappings. For another course, create a separate working folder and copy **only** `scripts/`, `requirements.txt`, `.env.example`, and this README into it. Create your own `.env` there, run the connection check, then pull your course. Do not copy `manifest.json`, `asset_manifest.json`, `preview_config.json`, tokens, or the original course assets. Keep one folder per course and coordinate module ownership with teammates.
+This repository is now set up as a reusable toolkit. The old live course page exports, downloaded Canvas files, backups, and course manifests are not tracked at the branch tip. For another course, create your own `.env`, run the read-only connection check, then pull that course to generate a fresh local `pages/` folder and `manifest.json`.
 
-Existing image assets and visual-production references remain the style source for this course. This maintenance release does not generate or replace illustrations. Use approved source artwork and the appropriate brand guidance when producing new content.
+The approved reference patterns live in [`examples/templates/`](examples/templates/README.md). Use one example of each kind as a starting point: course welcome, roadmap, resource hub, module overview, main lesson, microlearning page, embedded mini activity, tool setup, opening discussion, module summary, progress checklist, and quiz answer review.
+
+Use `examples/templates/assets/m2_1_1_examples_patterns.png` as the image-style reference for new high-school course illustrations. The intended style is student-facing, classroom/story based, concrete, warm, and concept-driven. Replace videos, Canvas links, activity assets, and completion claims before publishing to a different course.
 
 ## Tests and maintenance
 
@@ -98,4 +100,4 @@ See [CHANGELOG.md](CHANGELOG.md) for migration details and [docs/V1_MAINTENANCE.
 
 ## Credential history
 
-The real `.env` was tracked in earlier commits. This update removes it from the current tree and supplies `.env.example`; it does **not** erase earlier history. The repository owner must revoke/rotate any token that reached GitHub. No token values are printed or redistributed by this maintenance update.
+The real `.env` is not tracked at the current branch tip, and the public branch history was rewritten to remove it from earlier commits. Keep `.env` local only, and rotate any credential that may have been exposed before the cleanup.

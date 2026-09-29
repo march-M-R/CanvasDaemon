@@ -76,7 +76,6 @@ The shared GitHub repo is now a toolkit, not a full exported course. Generated c
 | `tests/` | Offline regression tests. These do not contact Canvas. |
 | `.env.example` | Template for local Canvas configuration. |
 | `.gitignore` | Ignores local secrets, generated pages, backups, reports, Canvas downloads, preview config, and virtualenvs. |
-| `CanvasDaemon_Runbook.html` | Older visual runbook. Useful background, but this handbook and README are the current source of truth. |
 
 These folders are generated locally and should not be committed:
 

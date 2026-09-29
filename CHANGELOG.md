@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.1 — Single handbook source
+
+- Removed the old `CanvasDaemon_Runbook.html` so the current handbook lives only in `docs/HANDBOOK.md` and `docs/HANDBOOK.html`.
+- Updated README and handbook references to make the current handbook the source of truth.
+
 ## 0.3.0 — Course-building accelerator scripts
 
 - Added plan, scaffolding, bulk page/module, placeholder, checklist, assignment, live audit, and export helper scripts.
@@ -73,4 +78,4 @@
 
 ### Migration
 
-Add `--confirm-course ID` to existing `--apply` commands. Commands that previously wrote immediately now require both flags. Read the README before rerunning an older runbook command. Old page manifests remain usable when they include a last-update timestamp; fresh pulls add stronger body hashes. Course-specific untracked scripts are outside this maintenance release and may still use earlier conventions.
+Add `--confirm-course ID` to existing `--apply` commands. Commands that previously wrote immediately now require both flags. Read the README before rerunning older command examples. Old page manifests remain usable when they include a last-update timestamp; fresh pulls add stronger body hashes. Course-specific untracked scripts are outside this maintenance release and may still use earlier conventions.

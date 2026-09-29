@@ -145,7 +145,7 @@ python -m unittest discover -s tests -v
 
 Tests use temporary files and mocked HTTP responses. They do not contact Canvas. CI runs the same checks. This release has not been validated by writing to a live course.
 
-See [CHANGELOG.md](CHANGELOG.md) for migration details, [docs/HANDBOOK.md](docs/HANDBOOK.md) for the full teammate guide, and [docs/V1_MAINTENANCE.md](docs/V1_MAINTENANCE.md) for limitations and recovery. The older [HTML runbook](CanvasDaemon_Runbook.html) remains useful background; the handbook and README take precedence for command flags.
+See [CHANGELOG.md](CHANGELOG.md) for migration details, [docs/HANDBOOK.md](docs/HANDBOOK.md) for the full teammate guide, and [docs/V1_MAINTENANCE.md](docs/V1_MAINTENANCE.md) for limitations and recovery. The handbook and README are the current source of truth for command flags and workflows.
 
 ## Credential history
 

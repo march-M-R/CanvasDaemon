@@ -137,6 +137,23 @@ python scripts/prepare_page_assets.py pages/example.html --folder "CanvasDaemon/
 
 Then preview the rewritten HTML. Use `--rename` when you do not want to overwrite a matching Canvas filename.
 
+## Course Planning Workflow
+
+Use these scripts before Canvas writes:
+
+```bash
+python scripts/validate_course_plan.py course_plan.json
+python scripts/build_module_from_template.py module_03_plan.json
+python scripts/generate_module_checklist.py module_03_plan.json
+python scripts/scaffold_course.py course_plan.json
+```
+
+Only scaffold for real after human approval:
+
+```bash
+python scripts/scaffold_course.py course_plan.json --apply --confirm-course 12345
+```
+
 ## Module Workflow
 
 Create missing modules before adding pages:
@@ -187,3 +204,11 @@ A helper should:
 - Preview in Canvas before pushing production pages.
 - Preserve the explicit write-confirmation guardrails.
 - Explain exactly which files changed and which tests were run.
+
+## Sample Prompts for Coding Helpers
+
+- “Read AGENTS.md and docs/AI_HELPER_GUIDE.md, then validate course_plan.json and explain what would be created. Do not write to Canvas.”
+- “Generate Module 4 draft pages from the approved templates for [audience] and [topic], then run the content review.”
+- “Prepare assets for pages/module-04-overview.html, dry-run first, then wait for my approval before uploading.”
+- “Run the course content review with `--audience-level` set to [audience], fix automated issues, and leave content-accuracy items for human approval.”
+- “Run the final toolkit review and summarize any failures or warnings before I share the repo.”

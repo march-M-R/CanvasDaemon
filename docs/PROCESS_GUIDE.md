@@ -161,7 +161,27 @@ Use this image as the style reference for new high-school illustrations:
 examples/templates/assets/m2_1_1_examples_patterns.png
 ```
 
-## Process 5: Create a Module
+## Process 5: Build from Plans and Templates
+
+Use these scripts when starting from a structured course or module plan:
+
+```bash
+python scripts/validate_course_plan.py course_plan.json
+python scripts/build_module_from_template.py module_03_plan.json
+python scripts/replace_course_placeholders.py draft.html values.json --output rendered.html
+python scripts/generate_module_checklist.py module_03_plan.json
+python scripts/scaffold_course.py course_plan.json
+```
+
+Write to Canvas only after dry-run review:
+
+```bash
+python scripts/scaffold_course.py course_plan.json --apply --confirm-course 12345
+python scripts/bulk_create_pages.py pages_to_create.json --apply --confirm-course 12345
+python scripts/bulk_add_pages_to_module.py module_sequence.json --apply --confirm-course 12345
+```
+
+## Process 6: Create a Module
 
 Dry run first:
 
@@ -185,7 +205,7 @@ python scripts/create_module.py "Module 6: Final Project" --unlock-at 2026-10-01
 
 The script checks for an exact existing module name before creating a new one.
 
-## Process 6: Create or Update a Page
+## Process 7: Create or Update a Page
 
 Pull Canvas pages first:
 
@@ -220,7 +240,7 @@ python scripts/course_inventory.py
 python scripts/push_module_page.py "lesson-filename.html" --apply --confirm-course 12345
 ```
 
-## Process 7: Upload Assets and Link Them Correctly
+## Process 8: Upload Assets and Link Them Correctly
 
 Canvas pages should not depend on local file paths like `../assets/image.png` after publishing. Upload assets to Canvas Files and use Canvas URLs.
 
@@ -250,7 +270,7 @@ Preview the rewritten page before pushing it. If the rewritten page looks right,
 
 Use `--rename` if you do not want to overwrite a same-named Canvas file.
 
-## Process 8: Preview Before Production Pushes
+## Process 9: Preview Before Production Pushes
 
 Set up the preview page once per course:
 
@@ -278,7 +298,7 @@ python scripts/preview_asset_in_canvas.py assets/image.png --apply --confirm-cou
 
 Check layout, links, images, activity embeds, mobile behavior, and student readability in Canvas.
 
-## Process 9: Create Discussions
+## Process 10: Create Discussions and Assignments
 
 Create a discussion from text or HTML:
 
@@ -289,7 +309,7 @@ python scripts/create_discussion.py "Opening Discussion" --message-file discussi
 
 Options include publishing, discussion type, require-initial-post, module placement, and module item indent.
 
-## Process 10: Create and Sync Classic Quizzes
+## Process 11: Create and Sync Classic Quizzes
 
 Create an unpublished Classic Quiz from JSON:
 
@@ -314,7 +334,7 @@ python scripts/sync_classic_quiz.py quiz_banks/example.json --apply --confirm-co
 
 `sync_classic_quiz.py` synchronizes settings only, not questions. New quizzes are created unpublished.
 
-## Process 11: Document the Toolkit
+## Process 12: Document the Toolkit
 
 Primary documentation files:
 
@@ -327,7 +347,7 @@ Primary documentation files:
 
 When changing a Markdown guide, update its HTML counterpart too.
 
-## Process 12: Guide AI Coding Helpers
+## Process 13: Guide AI Coding Helpers
 
 AI helpers should read:
 
@@ -347,7 +367,7 @@ These files tell helpers to:
 - preserve `--apply --confirm-course COURSE_ID`
 - run tests before committing script changes
 
-## Process 13: Keep Every Canvas Write Guarded
+## Process 14: Keep Every Canvas Write Guarded
 
 Every script that writes to Canvas must use the shared safety helpers:
 
@@ -376,7 +396,7 @@ This means a script only writes when the command includes both:
 
 If someone forgets the flags, the command stays a dry run or refuses to write. If the course ID is wrong, the command refuses to write.
 
-## Process 14: Run Student-Facing Course Content Review
+## Process 15: Run Student-Facing Course Content Review
 
 Run this after pulling pages, after broad course edits, and before a major preview/push pass:
 
@@ -392,7 +412,7 @@ reports/course_review/
 
 Use `--fail-on-warning` when warnings should block the handoff.
 
-## Process 15: Run a Detailed Readiness Audit
+## Process 16: Run a Detailed Readiness Audit
 
 Run the local audit before a major Canvas push, before handing a course workspace to another teammate, or after a coding helper makes broad edits:
 
@@ -412,7 +432,7 @@ Use this stricter mode if warnings should fail the command:
 python scripts/audit_course_readiness.py --fail-on-warning
 ```
 
-## Process 16: Run the Consolidated Review Checklist
+## Process 17: Run the Consolidated Review Checklist
 
 Run one command to consolidate the manual review checks from the toolkit cleanup process:
 
@@ -428,7 +448,7 @@ reports/review/
 
 Use `--fail-on-warning` for stricter handoff reviews.
 
-## Process 17: Run Tests Before Sharing
+## Process 18: Run Tests Before Sharing
 
 Run:
 
@@ -448,7 +468,7 @@ The test suite is offline and uses mocked Canvas responses. It verifies core saf
 - upload callback scoping
 - quiz validation
 
-## Process 18: Commit and Push a Toolkit Change
+## Process 19: Commit and Push a Toolkit Change
 
 Review changes:
 

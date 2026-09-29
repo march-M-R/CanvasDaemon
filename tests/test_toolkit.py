@@ -22,6 +22,10 @@ import prepare_page_assets as page_assets
 import audit_course_readiness as readiness
 import review_course_toolkit as toolkit_review
 import review_course_content as content_review
+import validate_course_plan
+import replace_course_placeholders
+import generate_module_checklist
+import create_assignment
 
 
 class RuntimeTests(unittest.TestCase):
@@ -287,6 +291,31 @@ class ContentTests(unittest.TestCase):
             self.assertIn('AI concept language',focus)
             self.assertTrue(all(row['status']=='needs human review' for row in rows))
             self.assertTrue(all(row['audience_level']=='undergraduate beginners' for row in rows))
+
+    def test_validate_course_plan_catches_missing_files(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            plan={'modules':[{'title':'Module 1','pages':[{'title':'Lesson','body_file':'missing.html','assets':['missing.png']}]}]}
+            findings=validate_course_plan.validate_plan(plan,root)
+            self.assertTrue(any(sev=='error' and 'Body file not found' in msg for sev,where,msg in findings))
+            self.assertTrue(any(sev=='error' and 'Asset not found' in msg for sev,where,msg in findings))
+
+    def test_replace_course_placeholders(self):
+        text='Welcome to {{course_title}} for [[audience]].'
+        self.assertEqual(replace_course_placeholders.apply_values(text,{'course_title':'AI','audience':'beginners'}),'Welcome to AI for beginners.')
+
+    def test_generate_module_checklist_writes_html(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            plan=root/'plan.json'; out=root/'checklist.html'
+            plan.write_text(json.dumps({'title':'Module 1 Checklist','pages':[{'title':'Overview','url':'https://example.test'}]}))
+            with patch.object(sys,'argv',['generate_module_checklist',str(plan),'--output',str(out)]):generate_module_checklist.main()
+            self.assertIn('Module 1 Checklist',out.read_text())
+
+    @patch.object(create_assignment.requests,'post')
+    def test_create_assignment_dry_run_never_writes(self,post):
+        with patch.object(sys,'argv',['create_assignment','Project']):create_assignment.main()
+        post.assert_not_called()
 
 
 class AdditionalRegressionTests(unittest.TestCase):

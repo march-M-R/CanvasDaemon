@@ -83,15 +83,31 @@ Omit the two apply flags to inspect without writing. Preview configuration is bo
 
 | Workflow | Scripts |
 |---|---|
-| Read, find, audit, and review | `pull_pages.py`, `list_pages.py`, `list_module_pages.py`, `course_inventory.py`, `audit_course_readiness.py`, `review_course_content.py`, `review_course_toolkit.py`, `find_page.py`, `find_any_page.py` |
-| Create/update pages and modules | `create_module.py`, `create_page.py`, `push_page.py`, `push_module_page.py`, `add_page_to_module.py` |
+| Read, find, audit, and review | `pull_pages.py`, `list_pages.py`, `list_module_pages.py`, `course_inventory.py`, `audit_course_readiness.py`, `audit_canvas_live_course.py`, `review_course_content.py`, `review_course_toolkit.py`, `find_page.py`, `find_any_page.py` |
+| Create/update pages, modules, assignments | `create_module.py`, `create_page.py`, `create_assignment.py`, `push_page.py`, `push_module_page.py`, `add_page_to_module.py` |
 | Files and images | `pull_files_metadata.py`, `find_asset.py`, `upload_canvas_file.py`, `prepare_page_assets.py`, `download_editable_files.py`, `download_referenced_editable_files.py` |
 | Classic Quizzes | `create_classic_quiz.py`, `pull_classic_quizzes.py`, `find_quiz.py`, `sync_classic_quiz.py` |
 | Discussions | `create_discussion.py` |
 | Video inventory | `discover_panopto.py` extracts Panopto references from local pages; it does not create videos |
+| Plan/scaffold/export | `validate_course_plan.py`, `scaffold_course.py`, `build_module_from_template.py`, `bulk_create_pages.py`, `bulk_add_pages_to_module.py`, `replace_course_placeholders.py`, `generate_module_checklist.py`, `export_course_package.py` |
 | Previews | `setup_preview_environment.py`, `preview_page_in_canvas.py`, `preview_asset_in_canvas.py` |
 
 `sync_classic_quiz.py` synchronizes **settings only**, not questions. It preserves publication status when `published` is omitted; an explicitly supplied value changes it. New quizzes are always created unpublished. Creation supports multiple choice, true/false, multiple answer, short answer, essay, and zero-point five-option survey items using the existing JSON format. New Quizzes are not supported. Review keys, points, feedback, and student-facing rendering before publication.
+
+
+## Course-building accelerator scripts
+
+Use these when building a new course or module from plans instead of running one command at a time:
+
+```bash
+python scripts/validate_course_plan.py course_plan.json
+python scripts/build_module_from_template.py module_03_plan.json
+python scripts/generate_module_checklist.py module_03_plan.json
+python scripts/scaffold_course.py course_plan.json
+python scripts/scaffold_course.py course_plan.json --apply --confirm-course 12345
+```
+
+Bulk write scripts stay dry-run by default and require `--apply --confirm-course COURSE_ID`.
 
 ## Working on another course
 

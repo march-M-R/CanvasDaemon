@@ -4,6 +4,14 @@
 <li class="toc-2"><a href="#first-time-setup">First-Time Setup</a></li>
 <li class="toc-2"><a href="#the-daily-workflow">The Daily Workflow</a></li>
 <li class="toc-2"><a href="#using-the-template-reference-library">Using the Template Reference Library</a></li>
+<li class="toc-2"><a href="#coding-assistant-prompts">Coding Assistant Prompts</a></li>
+<li class="toc-3"><a href="#set-up-a-course-workspace">Set up a course workspace</a></li>
+<li class="toc-3"><a href="#build-a-module-from-templates">Build a module from templates</a></li>
+<li class="toc-3"><a href="#prepare-assets-for-canvas">Prepare assets for Canvas</a></li>
+<li class="toc-3"><a href="#create-canvas-structure-safely">Create Canvas structure safely</a></li>
+<li class="toc-3"><a href="#review-course-content">Review course content</a></li>
+<li class="toc-3"><a href="#final-handoff-review">Final handoff review</a></li>
+<li class="toc-2"><a href="#course-planning-and-scaffolding">Course Planning and Scaffolding</a></li>
 <li class="toc-2"><a href="#module-workflows">Module Workflows</a></li>
 <li class="toc-2"><a href="#page-workflows">Page Workflows</a></li>
 <li class="toc-3"><a href="#pull-pages">Pull Pages</a></li>
@@ -51,20 +59,22 @@
 <p>3. <a href="#first-time-setup">First-Time Setup</a></p>
 <p>4. <a href="#the-daily-workflow">The Daily Workflow</a></p>
 <p>5. <a href="#using-the-template-reference-library">Using the Template Reference Library</a></p>
-<p>6. <a href="#module-workflows">Module Workflows</a></p>
-<p>7. <a href="#page-workflows">Page Workflows</a></p>
-<p>8. <a href="#canvas-file-and-image-workflows">Canvas File and Image Workflows</a></p>
-<p>9. <a href="#preview-workflows">Preview Workflows</a></p>
-<p>10. <a href="#discussion-workflows">Discussion Workflows</a></p>
-<p>11. <a href="#classic-quiz-workflows">Classic Quiz Workflows</a></p>
-<p>12. <a href="#panopto-and-video-inventory">Panopto and Video Inventory</a></p>
-<p>13. <a href="#student-facing-course-content-review">Student-Facing Course Content Review</a></p>
-<p>14. <a href="#detailed-readiness-audit">Detailed Readiness Audit</a></p>
-<p>15. <a href="#consolidated-review-checklist">Consolidated Review Checklist</a></p>
-<p>16. <a href="#script-reference">Script Reference</a></p>
-<p>17. <a href="#safety-rules">Safety Rules</a></p>
-<p>18. <a href="#recovery-and-troubleshooting">Recovery and Troubleshooting</a></p>
-<p>19. <a href="#recommended-team-practices">Recommended Team Practices</a></p>
+<p>6. <a href="#coding-assistant-prompts">Coding Assistant Prompts</a></p>
+<p>7. <a href="#course-planning-and-scaffolding">Course Planning and Scaffolding</a></p>
+<p>8. <a href="#module-workflows">Module Workflows</a></p>
+<p>9. <a href="#page-workflows">Page Workflows</a></p>
+<p>10. <a href="#canvas-file-and-image-workflows">Canvas File and Image Workflows</a></p>
+<p>11. <a href="#preview-workflows">Preview Workflows</a></p>
+<p>12. <a href="#discussion-workflows">Discussion Workflows</a></p>
+<p>13. <a href="#classic-quiz-workflows">Classic Quiz Workflows</a></p>
+<p>14. <a href="#panopto-and-video-inventory">Panopto and Video Inventory</a></p>
+<p>15. <a href="#student-facing-course-content-review">Student-Facing Course Content Review</a></p>
+<p>16. <a href="#detailed-readiness-audit">Detailed Readiness Audit</a></p>
+<p>17. <a href="#consolidated-review-checklist">Consolidated Review Checklist</a></p>
+<p>18. <a href="#script-reference">Script Reference</a></p>
+<p>19. <a href="#safety-rules">Safety Rules</a></p>
+<p>20. <a href="#recovery-and-troubleshooting">Recovery and Troubleshooting</a></p>
+<p>21. <a href="#recommended-team-practices">Recommended Team Practices</a></p>
 <h2 id="what-canvasdaemon-can-do">What CanvasDaemon Can Do</h2>
 <p>CanvasDaemon supports a local-first workflow for Canvas course production. It can:</p>
 <ul>
@@ -195,6 +205,54 @@ python scripts/push_module_page.py &quot;filename.html&quot; --apply --confirm-c
 <pre><code>examples/templates/assets/m2_1_1_examples_patterns.png</code></pre>
 <p>Use it as the guide for new course illustrations: high-school setting, student-facing, warm, concrete, story-based, and tied to the learning concept. Avoid abstract futuristic dashboard imagery unless the page truly needs that mood.</p>
 <p>For coding assistants, use <a href="AI_HELPER_GUIDE.md">AI Helper Guide</a> as the repo-specific instruction source.</p>
+<h2 id="coding-assistant-prompts">Coding Assistant Prompts</h2>
+<p>Use prompts like these with Codex, Copilot, Cursor, Claude Code, or another coding helper. Ask the helper to read <code>AGENTS.md</code> and <code>docs/AI_HELPER_GUIDE.md</code> first.</p>
+<h3 id="set-up-a-course-workspace">Set up a course workspace</h3>
+<pre><code>Read AGENTS.md, docs/SETUP.md, docs/HANDBOOK.md, and docs/AI_HELPER_GUIDE.md. Help me configure this checkout for COURSE_ID 12345. Do not commit .env or generated Canvas files. Run the read-only checks and tell me what I should verify before any Canvas write.</code></pre>
+<h3 id="build-a-module-from-templates">Build a module from templates</h3>
+<pre><code>Use examples/templates as the design reference. Create a module plan for Module 3 for [audience level] on [topic]. Generate local draft pages with build_module_from_template.py, replace placeholders, and run review_course_content.py with --audience-level. Do not push to Canvas.</code></pre>
+<h3 id="prepare-assets-for-canvas">Prepare assets for Canvas</h3>
+<pre><code>Review pages/module-03-overview.html for local images, iframes, activities, PDFs, or scripts. Use prepare_page_assets.py in dry-run mode first. If paths are valid, upload assets with --apply --confirm-course 12345 and preview the rewritten page.</code></pre>
+<h3 id="create-canvas-structure-safely">Create Canvas structure safely</h3>
+<pre><code>Validate course_plan.json. If valid, dry-run scaffold_course.py and explain the modules/pages it will create. Only run with --apply --confirm-course 12345 after I approve.</code></pre>
+<h3 id="review-course-content">Review course content</h3>
+<pre><code>Run review_course_content.py --audience-level &quot;[audience]&quot;. Fix or report automated issues. Use the content accuracy checklist to organize human review, but do not mark accuracy complete without my approval.</code></pre>
+<h3 id="final-handoff-review">Final handoff review</h3>
+<pre><code>Run review_course_toolkit.py --check-history --include-tests. Resolve failures, explain warnings, and confirm whether the repo is ready to share.</code></pre>
+<h2 id="course-planning-and-scaffolding">Course Planning and Scaffolding</h2>
+<p>Use a course plan JSON to validate, scaffold, and bulk-create course pieces. A minimal plan looks like this:</p>
+<pre><code>{
+  &quot;course_title&quot;: &quot;Introduction to Applied AI&quot;,
+  &quot;modules&quot;: [
+    {
+      &quot;title&quot;: &quot;Module 1: AI Foundations&quot;,
+      &quot;position&quot;: 1,
+      &quot;pages&quot;: [
+        {&quot;title&quot;: &quot;Module 1 Overview&quot;, &quot;body_file&quot;: &quot;drafts/module-1/overview.html&quot;},
+        {&quot;title&quot;: &quot;What Counts as AI?&quot;, &quot;body_file&quot;: &quot;drafts/module-1/main-lesson.html&quot;}
+      ]
+    }
+  ]
+}</code></pre>
+<p>Validate before creating anything:</p>
+<pre><code>python scripts/validate_course_plan.py course_plan.json</code></pre>
+<p>Create draft module pages from approved templates:</p>
+<pre><code>python scripts/build_module_from_template.py module_03_plan.json</code></pre>
+<p>Replace placeholders in a copied template:</p>
+<pre><code>python scripts/replace_course_placeholders.py drafts/module-03/overview.html module_03_values.json --output drafts/module-03/overview-rendered.html</code></pre>
+<p>Generate a progress checklist page:</p>
+<pre><code>python scripts/generate_module_checklist.py module_03_plan.json --output drafts/module-03/progress-checklist.html</code></pre>
+<p>Scaffold Canvas modules and pages from a plan. Dry-run first:</p>
+<pre><code>python scripts/scaffold_course.py course_plan.json</code></pre>
+<p>Write only with explicit confirmation:</p>
+<pre><code>python scripts/scaffold_course.py course_plan.json --apply --confirm-course 12345</code></pre>
+<p>For already prepared page manifests, use bulk helpers:</p>
+<pre><code>python scripts/bulk_create_pages.py pages_to_create.json --apply --confirm-course 12345
+python scripts/bulk_add_pages_to_module.py module_sequence.json --apply --confirm-course 12345</code></pre>
+<p>Export a clean handoff zip when you need to share the toolkit outside GitHub:</p>
+<pre><code>python scripts/export_course_package.py</code></pre>
+<p>Run a live read-only Canvas audit when you want Canvas state rather than local state:</p>
+<pre><code>python scripts/audit_canvas_live_course.py</code></pre>
 <h2 id="module-workflows">Module Workflows</h2>
 <p>Create a module when you are building a new course shell or adding a new unit:</p>
 <pre><code>python scripts/create_module.py &quot;Module 3: Building AI Systems&quot;</code></pre>
@@ -369,10 +427,19 @@ reports/review/course_readiness/</code></pre>
 <tr><td><code>audit_course_readiness.py</code></td><td>Runs a local readiness audit and writes detailed reports.</td><td>No</td></tr>
 <tr><td><code>review_course_content.py</code></td><td>Runs student-facing course page content review checks.</td><td>No</td></tr>
 <tr><td><code>review_course_toolkit.py</code></td><td>Runs the consolidated share-readiness review checklist.</td><td>No</td></tr>
+<tr><td><code>audit_canvas_live_course.py</code></td><td>Runs a read-only live Canvas audit.</td><td>No</td></tr>
+<tr><td><code>export_course_package.py</code></td><td>Exports a clean handoff zip of toolkit files.</td><td>No</td></tr>
 <tr><td><code>find_page.py</code></td><td>Searches active module pages.</td><td>No</td></tr>
 <tr><td><code>find_any_page.py</code></td><td>Searches all pulled pages.</td><td>No</td></tr>
 <tr><td><code>push_page.py</code></td><td>Diffs and updates a Canvas page.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
 <tr><td><code>push_module_page.py</code></td><td>Pushes a page verified as module-active.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
+<tr><td><code>validate_course_plan.py</code></td><td>Validates a course plan JSON before generation or Canvas writes.</td><td>No</td></tr>
+<tr><td><code>build_module_from_template.py</code></td><td>Creates local module draft pages from approved templates.</td><td>No</td></tr>
+<tr><td><code>replace_course_placeholders.py</code></td><td>Replaces template placeholders from JSON values.</td><td>No</td></tr>
+<tr><td><code>generate_module_checklist.py</code></td><td>Generates a local progress checklist HTML page.</td><td>No</td></tr>
+<tr><td><code>scaffold_course.py</code></td><td>Creates modules and pages from a course plan.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
+<tr><td><code>bulk_create_pages.py</code></td><td>Creates multiple Canvas pages from JSON.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
+<tr><td><code>bulk_add_pages_to_module.py</code></td><td>Adds multiple existing pages to modules from JSON.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
 <tr><td><code>create_module.py</code></td><td>Creates a new Canvas module.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
 <tr><td><code>create_page.py</code></td><td>Creates a new Canvas page.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
 <tr><td><code>add_page_to_module.py</code></td><td>Adds an existing page to a Canvas module.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
@@ -386,6 +453,7 @@ reports/review/course_readiness/</code></pre>
 <tr><td><code>download_editable_files.py</code></td><td>Downloads editable Canvas files.</td><td>No</td></tr>
 <tr><td><code>download_referenced_editable_files.py</code></td><td>Downloads editable files referenced by pages.</td><td>No</td></tr>
 <tr><td><code>create_discussion.py</code></td><td>Creates a discussion and optionally places it in a module.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
+<tr><td><code>create_assignment.py</code></td><td>Creates a Canvas assignment.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
 <tr><td><code>create_classic_quiz.py</code></td><td>Creates an unpublished Classic Quiz from JSON.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
 <tr><td><code>pull_classic_quizzes.py</code></td><td>Pulls Classic Quiz inventory.</td><td>No</td></tr>
 <tr><td><code>find_quiz.py</code></td><td>Searches local quiz inventory.</td><td>No</td></tr>

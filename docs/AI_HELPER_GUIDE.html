@@ -4,10 +4,12 @@
 <li class="toc-2"><a href="#required-canvas-write-pattern">Required Canvas Write Pattern</a></li>
 <li class="toc-2"><a href="#page-workflow">Page Workflow</a></li>
 <li class="toc-2"><a href="#asset-workflow">Asset Workflow</a></li>
+<li class="toc-2"><a href="#course-planning-workflow">Course Planning Workflow</a></li>
 <li class="toc-2"><a href="#module-workflow">Module Workflow</a></li>
 <li class="toc-2"><a href="#template-workflow">Template Workflow</a></li>
 <li class="toc-2"><a href="#testing-before-sharing-changes">Testing Before Sharing Changes</a></li>
-<li class="toc-2"><a href="#good-helper-behavior">Good Helper Behavior</a></li></ul></nav><main>
+<li class="toc-2"><a href="#good-helper-behavior">Good Helper Behavior</a></li>
+<li class="toc-2"><a href="#sample-prompts-for-coding-helpers">Sample Prompts for Coding Helpers</a></li></ul></nav><main>
 <h1 id="ai-helper-guide-for-canvasdaemon">AI Helper Guide for CanvasDaemon</h1>
 <p>This file tells coding assistants such as Codex, GitHub Copilot, Cursor, Claude Code, and similar tools how to work in this repository safely.</p>
 <h2 id="start-every-work-session-by-getting-changes-first">Start Every Work Session by Getting Changes First</h2>
@@ -97,6 +99,14 @@ python scripts/find_asset.py &quot;image.png&quot;</code></pre>
 <pre><code>python scripts/prepare_page_assets.py pages/example.html
 python scripts/prepare_page_assets.py pages/example.html --folder &quot;CanvasDaemon/module-03&quot; --apply --confirm-course 12345</code></pre>
 <p>Then preview the rewritten HTML. Use <code>--rename</code> when you do not want to overwrite a matching Canvas filename.</p>
+<h2 id="course-planning-workflow">Course Planning Workflow</h2>
+<p>Use these scripts before Canvas writes:</p>
+<pre><code>python scripts/validate_course_plan.py course_plan.json
+python scripts/build_module_from_template.py module_03_plan.json
+python scripts/generate_module_checklist.py module_03_plan.json
+python scripts/scaffold_course.py course_plan.json</code></pre>
+<p>Only scaffold for real after human approval:</p>
+<pre><code>python scripts/scaffold_course.py course_plan.json --apply --confirm-course 12345</code></pre>
 <h2 id="module-workflow">Module Workflow</h2>
 <p>Create missing modules before adding pages:</p>
 <pre><code>python scripts/create_module.py &quot;Module 3: Building AI Systems&quot;
@@ -129,5 +139,13 @@ python scripts/create_module.py &quot;Module 3: Building AI Systems&quot; --posi
 <li>Preview in Canvas before pushing production pages.</li>
 <li>Preserve the explicit write-confirmation guardrails.</li>
 <li>Explain exactly which files changed and which tests were run.</li>
+</ul>
+<h2 id="sample-prompts-for-coding-helpers">Sample Prompts for Coding Helpers</h2>
+<ul>
+<li>“Read AGENTS.md and docs/AI_HELPER_GUIDE.md, then validate course_plan.json and explain what would be created. Do not write to Canvas.”</li>
+<li>“Generate Module 4 draft pages from the approved templates for [audience] and [topic], then run the content review.”</li>
+<li>“Prepare assets for pages/module-04-overview.html, dry-run first, then wait for my approval before uploading.”</li>
+<li>“Run the course content review with <code>--audience-level</code> set to [audience], fix automated issues, and leave content-accuracy items for human approval.”</li>
+<li>“Run the final toolkit review and summarize any failures or warnings before I share the repo.”</li>
 </ul>
 </main></div></body></html>

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0 — Course-building accelerator scripts
+
+- Added plan, scaffolding, bulk page/module, placeholder, checklist, assignment, live audit, and export helper scripts.
+- Updated handbook, README, AI-helper guide, and process guide with how-to workflows and sample coding-assistant prompts.
+- Added regression tests for plan validation, placeholder replacement, checklist generation, and assignment dry-run behavior.
+
 ## 0.2.9 — Audience-level review option
 
 - Updated `scripts/review_course_content.py` so the content-accuracy checklist uses a configurable `--audience-level` instead of hard-coding high-school learner level.

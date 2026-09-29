@@ -3,20 +3,21 @@
 <li class="toc-2"><a href="#process-2-onboard-a-teammate">Process 2: Onboard a Teammate</a></li>
 <li class="toc-2"><a href="#process-3-get-someone-elses-changes-first">Process 3: Get Someone Else&#x27;s Changes First</a></li>
 <li class="toc-2"><a href="#process-4-use-the-template-library">Process 4: Use the Template Library</a></li>
-<li class="toc-2"><a href="#process-5-create-a-module">Process 5: Create a Module</a></li>
-<li class="toc-2"><a href="#process-6-create-or-update-a-page">Process 6: Create or Update a Page</a></li>
-<li class="toc-2"><a href="#process-7-upload-assets-and-link-them-correctly">Process 7: Upload Assets and Link Them Correctly</a></li>
-<li class="toc-2"><a href="#process-8-preview-before-production-pushes">Process 8: Preview Before Production Pushes</a></li>
-<li class="toc-2"><a href="#process-9-create-discussions">Process 9: Create Discussions</a></li>
-<li class="toc-2"><a href="#process-10-create-and-sync-classic-quizzes">Process 10: Create and Sync Classic Quizzes</a></li>
-<li class="toc-2"><a href="#process-11-document-the-toolkit">Process 11: Document the Toolkit</a></li>
-<li class="toc-2"><a href="#process-12-guide-ai-coding-helpers">Process 12: Guide AI Coding Helpers</a></li>
-<li class="toc-2"><a href="#process-13-keep-every-canvas-write-guarded">Process 13: Keep Every Canvas Write Guarded</a></li>
-<li class="toc-2"><a href="#process-14-run-student-facing-course-content-review">Process 14: Run Student-Facing Course Content Review</a></li>
-<li class="toc-2"><a href="#process-15-run-a-detailed-readiness-audit">Process 15: Run a Detailed Readiness Audit</a></li>
-<li class="toc-2"><a href="#process-16-run-the-consolidated-review-checklist">Process 16: Run the Consolidated Review Checklist</a></li>
-<li class="toc-2"><a href="#process-17-run-tests-before-sharing">Process 17: Run Tests Before Sharing</a></li>
-<li class="toc-2"><a href="#process-18-commit-and-push-a-toolkit-change">Process 18: Commit and Push a Toolkit Change</a></li>
+<li class="toc-2"><a href="#process-5-build-from-plans-and-templates">Process 5: Build from Plans and Templates</a></li>
+<li class="toc-2"><a href="#process-6-create-a-module">Process 6: Create a Module</a></li>
+<li class="toc-2"><a href="#process-7-create-or-update-a-page">Process 7: Create or Update a Page</a></li>
+<li class="toc-2"><a href="#process-8-upload-assets-and-link-them-correctly">Process 8: Upload Assets and Link Them Correctly</a></li>
+<li class="toc-2"><a href="#process-9-preview-before-production-pushes">Process 9: Preview Before Production Pushes</a></li>
+<li class="toc-2"><a href="#process-10-create-discussions-and-assignments">Process 10: Create Discussions and Assignments</a></li>
+<li class="toc-2"><a href="#process-11-create-and-sync-classic-quizzes">Process 11: Create and Sync Classic Quizzes</a></li>
+<li class="toc-2"><a href="#process-12-document-the-toolkit">Process 12: Document the Toolkit</a></li>
+<li class="toc-2"><a href="#process-13-guide-ai-coding-helpers">Process 13: Guide AI Coding Helpers</a></li>
+<li class="toc-2"><a href="#process-14-keep-every-canvas-write-guarded">Process 14: Keep Every Canvas Write Guarded</a></li>
+<li class="toc-2"><a href="#process-15-run-student-facing-course-content-review">Process 15: Run Student-Facing Course Content Review</a></li>
+<li class="toc-2"><a href="#process-16-run-a-detailed-readiness-audit">Process 16: Run a Detailed Readiness Audit</a></li>
+<li class="toc-2"><a href="#process-17-run-the-consolidated-review-checklist">Process 17: Run the Consolidated Review Checklist</a></li>
+<li class="toc-2"><a href="#process-18-run-tests-before-sharing">Process 18: Run Tests Before Sharing</a></li>
+<li class="toc-2"><a href="#process-19-commit-and-push-a-toolkit-change">Process 19: Commit and Push a Toolkit Change</a></li>
 <li class="toc-2"><a href="#current-share-ready-state">Current Share-Ready State</a></li></ul></nav><main>
 <h1 id="canvasdaemon-process-guide">CanvasDaemon Process Guide</h1>
 <p>This guide documents the decisions and workflows that turned CanvasDaemon from a course-specific working repo into a reusable toolkit teammates can use with Codex, Copilot, Cursor, Claude Code, or another coding helper.</p>
@@ -123,7 +124,18 @@ python scripts/course_inventory.py</code></pre>
 </ul>
 <p>Use this image as the style reference for new high-school illustrations:</p>
 <pre><code>examples/templates/assets/m2_1_1_examples_patterns.png</code></pre>
-<h2 id="process-5-create-a-module">Process 5: Create a Module</h2>
+<h2 id="process-5-build-from-plans-and-templates">Process 5: Build from Plans and Templates</h2>
+<p>Use these scripts when starting from a structured course or module plan:</p>
+<pre><code>python scripts/validate_course_plan.py course_plan.json
+python scripts/build_module_from_template.py module_03_plan.json
+python scripts/replace_course_placeholders.py draft.html values.json --output rendered.html
+python scripts/generate_module_checklist.py module_03_plan.json
+python scripts/scaffold_course.py course_plan.json</code></pre>
+<p>Write to Canvas only after dry-run review:</p>
+<pre><code>python scripts/scaffold_course.py course_plan.json --apply --confirm-course 12345
+python scripts/bulk_create_pages.py pages_to_create.json --apply --confirm-course 12345
+python scripts/bulk_add_pages_to_module.py module_sequence.json --apply --confirm-course 12345</code></pre>
+<h2 id="process-6-create-a-module">Process 6: Create a Module</h2>
 <p>Dry run first:</p>
 <pre><code>python scripts/create_module.py &quot;Module 3: Building AI Systems&quot;</code></pre>
 <p>Create it for real:</p>
@@ -133,7 +145,7 @@ python scripts/course_inventory.py</code></pre>
 python scripts/create_module.py &quot;Module 5: Model Evaluation&quot; --prerequisite-module-id 123 --apply --confirm-course 12345
 python scripts/create_module.py &quot;Module 6: Final Project&quot; --unlock-at 2026-10-01T09:00:00-04:00 --apply --confirm-course 12345</code></pre>
 <p>The script checks for an exact existing module name before creating a new one.</p>
-<h2 id="process-6-create-or-update-a-page">Process 6: Create or Update a Page</h2>
+<h2 id="process-7-create-or-update-a-page">Process 7: Create or Update a Page</h2>
 <p>Pull Canvas pages first:</p>
 <pre><code>python scripts/pull_pages.py</code></pre>
 <p>Create a new page from a local HTML file:</p>
@@ -147,7 +159,7 @@ python scripts/push_page.py &quot;lesson-filename.html&quot; --apply --confirm-c
 <p>For pages already known to be module-active:</p>
 <pre><code>python scripts/course_inventory.py
 python scripts/push_module_page.py &quot;lesson-filename.html&quot; --apply --confirm-course 12345</code></pre>
-<h2 id="process-7-upload-assets-and-link-them-correctly">Process 7: Upload Assets and Link Them Correctly</h2>
+<h2 id="process-8-upload-assets-and-link-them-correctly">Process 8: Upload Assets and Link Them Correctly</h2>
 <p>Canvas pages should not depend on local file paths like <code>../assets/image.png</code> after publishing. Upload assets to Canvas Files and use Canvas URLs.</p>
 <p>For one file:</p>
 <pre><code>python scripts/upload_canvas_file.py assets/image.png --folder &quot;CanvasDaemon/module-03&quot;
@@ -161,7 +173,7 @@ python scripts/prepare_page_assets.py pages/example.html --folder &quot;CanvasDa
 <pre><code>reports/prepared_pages/</code></pre>
 <p>Preview the rewritten page before pushing it. If the rewritten page looks right, copy the reviewed HTML back into the matching <code>pages/</code> file deliberately, then run <code>push_page.py</code>.</p>
 <p>Use <code>--rename</code> if you do not want to overwrite a same-named Canvas file.</p>
-<h2 id="process-8-preview-before-production-pushes">Process 8: Preview Before Production Pushes</h2>
+<h2 id="process-9-preview-before-production-pushes">Process 9: Preview Before Production Pushes</h2>
 <p>Set up the preview page once per course:</p>
 <pre><code>python scripts/setup_preview_environment.py --apply --confirm-course 12345</code></pre>
 <p>Preview a page:</p>
@@ -171,12 +183,12 @@ python scripts/prepare_page_assets.py pages/example.html --folder &quot;CanvasDa
 <p>Preview an asset:</p>
 <pre><code>python scripts/preview_asset_in_canvas.py assets/image.png --apply --confirm-course 12345</code></pre>
 <p>Check layout, links, images, activity embeds, mobile behavior, and student readability in Canvas.</p>
-<h2 id="process-9-create-discussions">Process 9: Create Discussions</h2>
+<h2 id="process-10-create-discussions-and-assignments">Process 10: Create Discussions and Assignments</h2>
 <p>Create a discussion from text or HTML:</p>
 <pre><code>python scripts/create_discussion.py &quot;Opening Discussion&quot; --message-file discussion.html
 python scripts/create_discussion.py &quot;Opening Discussion&quot; --message-file discussion.html --module &quot;Module 2&quot; --apply --confirm-course 12345</code></pre>
 <p>Options include publishing, discussion type, require-initial-post, module placement, and module item indent.</p>
-<h2 id="process-10-create-and-sync-classic-quizzes">Process 10: Create and Sync Classic Quizzes</h2>
+<h2 id="process-11-create-and-sync-classic-quizzes">Process 11: Create and Sync Classic Quizzes</h2>
 <p>Create an unpublished Classic Quiz from JSON:</p>
 <pre><code>python scripts/create_classic_quiz.py quiz_banks/example.json
 python scripts/create_classic_quiz.py quiz_banks/example.json --apply --confirm-course 12345</code></pre>
@@ -187,7 +199,7 @@ python scripts/find_quiz.py &quot;quiz title&quot;</code></pre>
 <pre><code>python scripts/sync_classic_quiz.py quiz_banks/example.json
 python scripts/sync_classic_quiz.py quiz_banks/example.json --apply --confirm-course 12345</code></pre>
 <p><code>sync_classic_quiz.py</code> synchronizes settings only, not questions. New quizzes are created unpublished.</p>
-<h2 id="process-11-document-the-toolkit">Process 11: Document the Toolkit</h2>
+<h2 id="process-12-document-the-toolkit">Process 12: Document the Toolkit</h2>
 <p>Primary documentation files:</p>
 <ul>
 <li><code>README.md</code> for the quick overview</li>
@@ -198,7 +210,7 @@ python scripts/sync_classic_quiz.py quiz_banks/example.json --apply --confirm-co
 <li><code>docs/V1_MAINTENANCE.md</code> for maintenance limitations and recovery notes</li>
 </ul>
 <p>When changing a Markdown guide, update its HTML counterpart too.</p>
-<h2 id="process-12-guide-ai-coding-helpers">Process 12: Guide AI Coding Helpers</h2>
+<h2 id="process-13-guide-ai-coding-helpers">Process 13: Guide AI Coding Helpers</h2>
 <p>AI helpers should read:</p>
 <ul>
 <li><code>AGENTS.md</code></li>
@@ -217,7 +229,7 @@ python scripts/sync_classic_quiz.py quiz_banks/example.json --apply --confirm-co
 <li>preserve <code>--apply --confirm-course COURSE_ID</code></li>
 <li>run tests before committing script changes</li>
 </ul>
-<h2 id="process-13-keep-every-canvas-write-guarded">Process 13: Keep Every Canvas Write Guarded</h2>
+<h2 id="process-14-keep-every-canvas-write-guarded">Process 14: Keep Every Canvas Write Guarded</h2>
 <p>Every script that writes to Canvas must use the shared safety helpers:</p>
 <pre><code>from canvas_runtime import add_write_flags, authorize</code></pre>
 <p>Add flags:</p>
@@ -228,26 +240,26 @@ python scripts/sync_classic_quiz.py quiz_banks/example.json --apply --confirm-co
 <p>This means a script only writes when the command includes both:</p>
 <pre><code>--apply --confirm-course 12345</code></pre>
 <p>If someone forgets the flags, the command stays a dry run or refuses to write. If the course ID is wrong, the command refuses to write.</p>
-<h2 id="process-14-run-student-facing-course-content-review">Process 14: Run Student-Facing Course Content Review</h2>
+<h2 id="process-15-run-student-facing-course-content-review">Process 15: Run Student-Facing Course Content Review</h2>
 <p>Run this after pulling pages, after broad course edits, and before a major preview/push pass:</p>
 <pre><code>python scripts/review_course_content.py --audience-level &quot;high school beginners&quot;</code></pre>
 <p>This consolidates the manual course review checks: internal notes, placeholders, TODO/FIXME/DRAFT text, encoding artifacts, placeholder or empty links, missing alt text, missing iframe titles, local assets that still need Canvas upload, missing local assets, mobile layout risks, Panopto/student-access review markers, and course-specific terms to verify when adapting a page. It also creates a human content-accuracy checklist for objectives, technical explanations, AI/tool claims, activity instructions, answer keys, links/videos, audience level, course sequence, access/policy language, and final Canvas approval. Coding helpers should fix or report automated findings and leave checklist completion to human approval. Reports are written under:</p>
 <pre><code>reports/course_review/</code></pre>
 <p>Use <code>--fail-on-warning</code> when warnings should block the handoff.</p>
-<h2 id="process-15-run-a-detailed-readiness-audit">Process 15: Run a Detailed Readiness Audit</h2>
+<h2 id="process-16-run-a-detailed-readiness-audit">Process 16: Run a Detailed Readiness Audit</h2>
 <p>Run the local audit before a major Canvas push, before handing a course workspace to another teammate, or after a coding helper makes broad edits:</p>
 <pre><code>python scripts/audit_course_readiness.py</code></pre>
 <p>The audit is read-only. It checks local repo state, manifests, pulled pages, missing local assets, image alt text, placeholder links, template library files, and script write-safety gates. It writes detailed reports under:</p>
 <pre><code>reports/audit/</code></pre>
 <p>Use this stricter mode if warnings should fail the command:</p>
 <pre><code>python scripts/audit_course_readiness.py --fail-on-warning</code></pre>
-<h2 id="process-16-run-the-consolidated-review-checklist">Process 16: Run the Consolidated Review Checklist</h2>
+<h2 id="process-17-run-the-consolidated-review-checklist">Process 17: Run the Consolidated Review Checklist</h2>
 <p>Run one command to consolidate the manual review checks from the toolkit cleanup process:</p>
 <pre><code>python scripts/review_course_toolkit.py --check-history --include-tests</code></pre>
 <p>This checks Git cleanliness, forbidden tracked files, optional <code>.env</code> history, required documentation, AI-helper files, required scripts, README links, template library completeness, image-style reference, write-safety gates, the detailed readiness audit, and offline tests. Reports are written under:</p>
 <pre><code>reports/review/</code></pre>
 <p>Use <code>--fail-on-warning</code> for stricter handoff reviews.</p>
-<h2 id="process-17-run-tests-before-sharing">Process 17: Run Tests Before Sharing</h2>
+<h2 id="process-18-run-tests-before-sharing">Process 18: Run Tests Before Sharing</h2>
 <p>Run:</p>
 <pre><code>python -m unittest discover -s tests -v</code></pre>
 <p>The test suite is offline and uses mocked Canvas responses. It verifies core safety behavior such as:</p>
@@ -262,7 +274,7 @@ python scripts/sync_classic_quiz.py quiz_banks/example.json --apply --confirm-co
 <li>upload callback scoping</li>
 <li>quiz validation</li>
 </ul>
-<h2 id="process-18-commit-and-push-a-toolkit-change">Process 18: Commit and Push a Toolkit Change</h2>
+<h2 id="process-19-commit-and-push-a-toolkit-change">Process 19: Commit and Push a Toolkit Change</h2>
 <p>Review changes:</p>
 <pre><code>git status --short --branch
 git diff --stat

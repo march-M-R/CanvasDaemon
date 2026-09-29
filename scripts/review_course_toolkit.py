@@ -47,8 +47,18 @@ REQUIRED_SCRIPTS = [
     "scripts/course_inventory.py",
     "scripts/audit_course_readiness.py",
     "scripts/create_discussion.py",
+    "scripts/create_assignment.py",
     "scripts/create_classic_quiz.py",
     "scripts/sync_classic_quiz.py",
+    "scripts/validate_course_plan.py",
+    "scripts/scaffold_course.py",
+    "scripts/build_module_from_template.py",
+    "scripts/bulk_create_pages.py",
+    "scripts/bulk_add_pages_to_module.py",
+    "scripts/replace_course_placeholders.py",
+    "scripts/generate_module_checklist.py",
+    "scripts/audit_canvas_live_course.py",
+    "scripts/export_course_package.py",
 ]
 
 FORBIDDEN_TRACKED_PATHS = {

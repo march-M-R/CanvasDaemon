@@ -1,4 +1,4 @@
-from canvas_runtime import authorize
+from canvas_runtime import add_write_flags, authorize
 import os
 import json
 import argparse
@@ -91,8 +91,7 @@ def main():
     from canvas_runtime import bound, body_hash, save_json
     parser = argparse.ArgumentParser(description="Diff and safely update a Canvas page.")
     parser.add_argument("filename", help="HTML filename from pages/")
-    parser.add_argument("--apply", action="store_true")
-    parser.add_argument("--confirm-course", help="Required with --apply")
+    add_write_flags(parser)
     parser.add_argument("--no-diff", action="store_true")
     args = parser.parse_args()
     check_env()

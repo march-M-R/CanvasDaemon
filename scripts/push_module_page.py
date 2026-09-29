@@ -6,6 +6,8 @@ import argparse
 import subprocess
 from pathlib import Path
 
+from canvas_runtime import add_write_flags
+
 ROOT_DIR = Path(__file__).resolve().parents[1]
 
 USED_PAGES_CSV = (
@@ -39,13 +41,7 @@ def main():
         help="Filename from pages/ directory"
     )
 
-    parser.add_argument(
-        "--apply",
-        action="store_true",
-        help="Actually push to Canvas"
-    )
-
-    parser.add_argument("--confirm-course", help="Required with --apply")
+    add_write_flags(parser)
     args = parser.parse_args()
 
     if not USED_PAGES_CSV.exists():

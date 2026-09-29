@@ -1,4 +1,4 @@
-from canvas_runtime import authorize
+from canvas_runtime import add_write_flags, authorize
 import os
 import csv
 import argparse
@@ -211,13 +211,7 @@ def main():
         default=0,
         help="Module item indent level"
     )
-    parser.add_argument(
-        "--apply",
-        action="store_true",
-        help="Actually create the discussion in Canvas. Without this, dry-run only."
-    )
-
-    parser.add_argument("--confirm-course", help="Required with --apply; must equal COURSE_ID")
+    add_write_flags(parser)
     args = parser.parse_args()
     check_env()
     if args.apply:

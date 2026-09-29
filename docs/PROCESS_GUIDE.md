@@ -376,7 +376,27 @@ This means a script only writes when the command includes both:
 
 If someone forgets the flags, the command stays a dry run or refuses to write. If the course ID is wrong, the command refuses to write.
 
-## Process 14: Run Tests Before Sharing
+## Process 14: Run a Detailed Readiness Audit
+
+Run the local audit before a major Canvas push, before handing a course workspace to another teammate, or after a coding helper makes broad edits:
+
+```bash
+python scripts/audit_course_readiness.py
+```
+
+The audit is read-only. It checks local repo state, manifests, pulled pages, missing local assets, image alt text, placeholder links, template library files, and script write-safety gates. It writes detailed reports under:
+
+```text
+reports/audit/
+```
+
+Use this stricter mode if warnings should fail the command:
+
+```bash
+python scripts/audit_course_readiness.py --fail-on-warning
+```
+
+## Process 15: Run Tests Before Sharing
 
 Run:
 
@@ -396,7 +416,7 @@ The test suite is offline and uses mocked Canvas responses. It verifies core saf
 - upload callback scoping
 - quiz validation
 
-## Process 15: Commit and Push a Toolkit Change
+## Process 16: Commit and Push a Toolkit Change
 
 Review changes:
 
@@ -444,6 +464,7 @@ The repo is now designed to be shared as a reusable course-building toolkit. It 
 - page creation and push workflows
 - Canvas preview workflows
 - asset upload and page asset preparation workflows
+- detailed local readiness audit reports
 - Classic Quiz and discussion workflows
 - offline regression tests
 

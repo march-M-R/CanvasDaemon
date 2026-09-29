@@ -24,6 +24,7 @@ python scripts/test_canvas.py
 python scripts/pull_pages.py
 python scripts/pull_files_metadata.py
 python scripts/course_inventory.py
+python scripts/audit_course_readiness.py
 ```
 
 `push_page.py` also checks whether Canvas changed since the last pull and refuses to overwrite stale content. If it refuses, pull fresh content, merge carefully, preview again, and only then push.

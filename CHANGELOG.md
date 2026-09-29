@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.5 — Readiness audit
+
+- Added `scripts/audit_course_readiness.py`, a read-only local audit for repo state, manifests, pages, local assets, placeholder links, image alt text, template files, and script safety gates.
+- Added audit regression tests and documented the audit in README, handbook, AI-helper guide, and process guide.
+
 ## 0.2.4 — Process guide
 
 - Added `docs/PROCESS_GUIDE.md` and `docs/PROCESS_GUIDE.html` documenting the full repo cleanup and toolkit preparation process.

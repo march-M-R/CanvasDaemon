@@ -19,6 +19,7 @@ import preview_page_in_canvas as preview
 import add_page_to_module as placement
 import create_module as modules
 import prepare_page_assets as page_assets
+import audit_course_readiness as readiness
 
 
 class RuntimeTests(unittest.TestCase):
@@ -205,6 +206,26 @@ class ContentTests(unittest.TestCase):
             html=page_assets.rewrite_html(page,replacements)
             self.assertIn('https://canvas.example.test/files/1/download',html)
             self.assertIn('https://canvas.example.test/files/2/download?x=1#part',html)
+
+    def test_readiness_audit_detects_missing_local_asset(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            pages=root/'pages'; pages.mkdir()
+            page=pages/'lesson.html'
+            page.write_text('<h1>Lesson</h1><img src="missing.png" alt="Missing">')
+            with patch.object(readiness,'ROOT_DIR',root):
+                findings, refs=readiness.audit_pages([page])
+            self.assertEqual(len(refs),1)
+            self.assertTrue(any(f['severity']=='error' and 'Missing local asset' in f['message'] for f in findings))
+
+    def test_readiness_audit_detects_unguarded_write_script(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            scripts=root/'scripts'; scripts.mkdir()
+            (scripts/'unsafe.py').write_text('from canvas_runtime import requests\nrequests.post("https://example.test")')
+            with patch.object(readiness,'ROOT_DIR',root):
+                findings=readiness.audit_script_safety()
+            self.assertTrue(any(f['category']=='script_safety' and f['severity']=='error' for f in findings))
 
 
 class AdditionalRegressionTests(unittest.TestCase):

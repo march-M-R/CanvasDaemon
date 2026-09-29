@@ -1,26 +1,7 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CanvasDaemon Handbook</title>
-<style>
-:root{--ink:#172033;--muted:#5b667a;--line:#d9e0ea;--bg:#f7f9fc;--card:#fff;--accent:#9d1535;--accent2:#004b7a;}
-*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif} a{color:var(--accent2)}
-.layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:28px;max-width:1240px;margin:0 auto;padding:28px}
-nav{position:sticky;top:20px;align-self:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 8px 24px rgba(23,32,51,.06);max-height:calc(100vh - 40px);overflow:auto}
-nav h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px} nav ul{list-style:none;margin:0;padding:0} nav li{margin:7px 0} nav .toc-3{margin-left:12px;font-size:14px}
-main{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:38px;box-shadow:0 12px 30px rgba(23,32,51,.07)}
-h1{font-size:38px;line-height:1.15;margin-top:0;color:var(--accent)} h2{margin-top:34px;border-top:1px solid var(--line);padding-top:24px} h3{margin-top:24px}
-code{background:#eef3f8;border:1px solid #d9e3ee;border-radius:5px;padding:.1em .35em} pre{background:#101828;color:#eef4ff;border-radius:12px;padding:16px;overflow:auto} pre code{background:transparent;border:0;padding:0;color:inherit}
-table{border-collapse:collapse;width:100%;margin:18px 0;display:block;overflow:auto} th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top} th{background:#f0f4f8}
-li{margin:5px 0} p{margin:12px 0}
-@media(max-width:850px){.layout{display:block;padding:14px} nav{position:static;margin-bottom:16px;max-height:none} main{padding:24px} h1{font-size:30px}}
-</style>
-</head>
-<body>
-<div class="layout">
-<nav><h2>Handbook</h2><ul><li class="toc-2"><a href="#table-of-contents">Table of Contents</a></li>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CanvasDaemon Handbook</title><style>
+:root{--ink:#172033;--muted:#5b667a;--line:#d9e0ea;--bg:#f7f9fc;--card:#fff;--accent:#9d1535;--accent2:#004b7a;}*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif} a{color:var(--accent2)}.layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:28px;max-width:1240px;margin:0 auto;padding:28px}nav{position:sticky;top:20px;align-self:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 8px 24px rgba(23,32,51,.06);max-height:calc(100vh - 40px);overflow:auto}nav h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px} nav ul{list-style:none;margin:0;padding:0} nav li{margin:7px 0} nav .toc-3{margin-left:12px;font-size:14px}main{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:38px;box-shadow:0 12px 30px rgba(23,32,51,.07)}h1{font-size:38px;line-height:1.15;margin-top:0;color:var(--accent)} h2{margin-top:34px;border-top:1px solid var(--line);padding-top:24px} h3{margin-top:24px}code{background:#eef3f8;border:1px solid #d9e3ee;border-radius:5px;padding:.1em .35em} pre{background:#101828;color:#eef4ff;border-radius:12px;padding:16px;overflow:auto} pre code{background:transparent;border:0;padding:0;color:inherit}table{border-collapse:collapse;width:100%;margin:18px 0;display:block;overflow:auto} th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top} th{background:#f0f4f8}li{margin:5px 0} p{margin:12px 0}@media(max-width:850px){.layout{display:block;padding:14px} nav{position:static;margin-bottom:16px;max-height:none} main{padding:24px} h1{font-size:30px}}
+</style></head><body><div class="layout"><nav><h2>Handbook</h2><ul><li class="toc-2"><a href="#table-of-contents">Table of Contents</a></li>
 <li class="toc-2"><a href="#what-canvasdaemon-can-do">What CanvasDaemon Can Do</a></li>
 <li class="toc-2"><a href="#how-the-repository-is-organized">How the Repository Is Organized</a></li>
 <li class="toc-2"><a href="#first-time-setup">First-Time Setup</a></li>
@@ -49,6 +30,7 @@ li{margin:5px 0} p{margin:12px 0}
 <li class="toc-3"><a href="#find-a-quiz">Find a Quiz</a></li>
 <li class="toc-3"><a href="#sync-quiz-settings">Sync Quiz Settings</a></li>
 <li class="toc-2"><a href="#panopto-and-video-inventory">Panopto and Video Inventory</a></li>
+<li class="toc-2"><a href="#detailed-readiness-audit">Detailed Readiness Audit</a></li>
 <li class="toc-2"><a href="#script-reference">Script Reference</a></li>
 <li class="toc-2"><a href="#safety-rules">Safety Rules</a></li>
 <li class="toc-2"><a href="#recovery-and-troubleshooting">Recovery and Troubleshooting</a></li>
@@ -60,8 +42,7 @@ li{margin:5px 0} p{margin:12px 0}
 <li class="toc-3"><a href="#a-page-looks-different-in-canvas-than-locally">“A page looks different in Canvas than locally”</a></li>
 <li class="toc-3"><a href="#the-repo-does-not-contain-pages-anymore">“The repo does not contain pages anymore”</a></li>
 <li class="toc-2"><a href="#recommended-team-practices">Recommended Team Practices</a></li>
-<li class="toc-2"><a href="#quick-start-checklist">Quick Start Checklist</a></li></ul></nav>
-<main>
+<li class="toc-2"><a href="#quick-start-checklist">Quick Start Checklist</a></li></ul></nav><main>
 <h1 id="canvasdaemon-handbook">CanvasDaemon Handbook</h1>
 <p>This handbook explains how to use CanvasDaemon as a reusable course-building toolkit. It is written for teammates who want to build or maintain their own Canvas courses using the same workflow, scripts, and approved reference templates.</p>
 <p>CanvasDaemon lets you work locally, preview deliberately, and write to Canvas only when you are ready. The safest habit is simple: pull the course into a local workspace, edit files locally, preview in Canvas, then push with explicit confirmation.</p>
@@ -78,10 +59,11 @@ li{margin:5px 0} p{margin:12px 0}
 <p>10. <a href="#discussion-workflows">Discussion Workflows</a></p>
 <p>11. <a href="#classic-quiz-workflows">Classic Quiz Workflows</a></p>
 <p>12. <a href="#panopto-and-video-inventory">Panopto and Video Inventory</a></p>
-<p>13. <a href="#script-reference">Script Reference</a></p>
-<p>14. <a href="#safety-rules">Safety Rules</a></p>
-<p>15. <a href="#recovery-and-troubleshooting">Recovery and Troubleshooting</a></p>
-<p>16. <a href="#recommended-team-practices">Recommended Team Practices</a></p>
+<p>13. <a href="#detailed-readiness-audit">Detailed Readiness Audit</a></p>
+<p>14. <a href="#script-reference">Script Reference</a></p>
+<p>15. <a href="#safety-rules">Safety Rules</a></p>
+<p>16. <a href="#recovery-and-troubleshooting">Recovery and Troubleshooting</a></p>
+<p>17. <a href="#recommended-team-practices">Recommended Team Practices</a></p>
 <h2 id="what-canvasdaemon-can-do">What CanvasDaemon Can Do</h2>
 <p>CanvasDaemon supports a local-first workflow for Canvas course production. It can:</p>
 <ul>
@@ -345,6 +327,15 @@ python scripts/push_module_page.py &quot;filename.html&quot; --apply --confirm-c
 <pre><code>python scripts/discover_panopto.py</code></pre>
 <p>This writes <code>panopto_manifest.json</code> and a report. It does not create, upload, or edit videos.</p>
 <p>When adapting templates for another course, replace Panopto links and iframes with the new course videos.</p>
+<h2 id="detailed-readiness-audit">Detailed Readiness Audit</h2>
+<p>Run the read-only audit before sharing a course workspace, before major Canvas pushes, or when a coding helper has made many changes:</p>
+<pre><code>python scripts/audit_course_readiness.py</code></pre>
+<p>The audit checks local-only repo state, manifests, pulled pages, missing local assets, image alt text, placeholder links, template library files, and whether Canvas-writing scripts use the shared safety gate. It writes:</p>
+<pre><code>reports/audit/course_readiness_summary.txt
+reports/audit/course_readiness_findings.csv
+reports/audit/course_readiness_audit.json
+reports/audit/local_asset_references.csv</code></pre>
+<p>Use <code>--fail-on-warning</code> if you want the command to exit nonzero on warnings in CI or a stricter review pass. The audit is local and read-only; it does not contact Canvas.</p>
 <h2 id="script-reference">Script Reference</h2>
 <table><thead><tr><th>Script</th><th>What It Does</th><th>Writes to Canvas?</th></tr></thead><tbody>
 <tr><td><code>test_canvas.py</code></td><td>Checks Canvas connection and configured course.</td><td>No</td></tr>
@@ -352,6 +343,7 @@ python scripts/push_module_page.py &quot;filename.html&quot; --apply --confirm-c
 <tr><td><code>list_pages.py</code></td><td>Lists Canvas pages.</td><td>No</td></tr>
 <tr><td><code>list_module_pages.py</code></td><td>Lists pages attached to modules.</td><td>No</td></tr>
 <tr><td><code>course_inventory.py</code></td><td>Builds active/unused page reports.</td><td>No</td></tr>
+<tr><td><code>audit_course_readiness.py</code></td><td>Runs a local readiness audit and writes detailed reports.</td><td>No</td></tr>
 <tr><td><code>find_page.py</code></td><td>Searches active module pages.</td><td>No</td></tr>
 <tr><td><code>find_any_page.py</code></td><td>Searches all pulled pages.</td><td>No</td></tr>
 <tr><td><code>push_page.py</code></td><td>Diffs and updates a Canvas page.</td><td>Yes, only with <code>--apply --confirm-course</code></td></tr>
@@ -448,7 +440,4 @@ python scripts/course_inventory.py</code></pre>
 examples/templates/pages/</code></pre>
 <p>Pick a reference, adapt it, preview it, and push only with:</p>
 <pre><code>--apply --confirm-course YOUR_COURSE_ID</code></pre>
-</main>
-</div>
-</body>
-</html>
+</main></div></body></html>

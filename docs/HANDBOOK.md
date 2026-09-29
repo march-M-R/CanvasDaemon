@@ -18,10 +18,11 @@ CanvasDaemon lets you work locally, preview deliberately, and write to Canvas on
 10. [Discussion Workflows](#discussion-workflows)
 11. [Classic Quiz Workflows](#classic-quiz-workflows)
 12. [Panopto and Video Inventory](#panopto-and-video-inventory)
-13. [Script Reference](#script-reference)
-14. [Safety Rules](#safety-rules)
-15. [Recovery and Troubleshooting](#recovery-and-troubleshooting)
-16. [Recommended Team Practices](#recommended-team-practices)
+13. [Detailed Readiness Audit](#detailed-readiness-audit)
+14. [Script Reference](#script-reference)
+15. [Safety Rules](#safety-rules)
+16. [Recovery and Troubleshooting](#recovery-and-troubleshooting)
+17. [Recommended Team Practices](#recommended-team-practices)
 
 ## What CanvasDaemon Can Do
 
@@ -558,6 +559,25 @@ This writes `panopto_manifest.json` and a report. It does not create, upload, or
 
 When adapting templates for another course, replace Panopto links and iframes with the new course videos.
 
+## Detailed Readiness Audit
+
+Run the read-only audit before sharing a course workspace, before major Canvas pushes, or when a coding helper has made many changes:
+
+```bash
+python scripts/audit_course_readiness.py
+```
+
+The audit checks local-only repo state, manifests, pulled pages, missing local assets, image alt text, placeholder links, template library files, and whether Canvas-writing scripts use the shared safety gate. It writes:
+
+```text
+reports/audit/course_readiness_summary.txt
+reports/audit/course_readiness_findings.csv
+reports/audit/course_readiness_audit.json
+reports/audit/local_asset_references.csv
+```
+
+Use `--fail-on-warning` if you want the command to exit nonzero on warnings in CI or a stricter review pass. The audit is local and read-only; it does not contact Canvas.
+
 ## Script Reference
 
 | Script | What It Does | Writes to Canvas? |
@@ -567,6 +587,7 @@ When adapting templates for another course, replace Panopto links and iframes wi
 | `list_pages.py` | Lists Canvas pages. | No |
 | `list_module_pages.py` | Lists pages attached to modules. | No |
 | `course_inventory.py` | Builds active/unused page reports. | No |
+| `audit_course_readiness.py` | Runs a local readiness audit and writes detailed reports. | No |
 | `find_page.py` | Searches active module pages. | No |
 | `find_any_page.py` | Searches all pulled pages. | No |
 | `push_page.py` | Diffs and updates a Canvas page. | Yes, only with `--apply --confirm-course` |

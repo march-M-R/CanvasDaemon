@@ -566,12 +566,12 @@ When adapting templates for another course, replace Panopto links and iframes wi
 Run this after pulling pages, after broad edits, or before a Canvas preview/push pass:
 
 ```bash
-python scripts/review_course_content.py
+python scripts/review_course_content.py --audience-level "high school beginners"
 ```
 
 This is the consolidated version of the course review checks used while building the course. It looks for internal notes, placeholders, TODO/FIXME/DRAFT text, mojibake, placeholder links, empty links, insecure links, missing image alt text, missing iframe titles, local images/activities/files that still need Canvas upload, missing local assets, fixed-width mobile layout risks, Panopto/video embeds that need student-access checks, and course-specific terms that should be verified when adapting a page.
 
-It also generates a human content-accuracy checklist for objectives, technical explanations, AI/tool claims, activity instructions, answer keys, linked resources, student level, course sequence, access/policy language, and final Canvas approval. If a coding helper runs the script, it should fix or report the automated findings and use the checklist to organize human review. It should not mark content-accuracy items complete unless a human reviewer has approved them.
+It also generates a human content-accuracy checklist for objectives, technical explanations, AI/tool claims, activity instructions, answer keys, linked resources, audience level, course sequence, access/policy language, and final Canvas approval. If a coding helper runs the script, it should fix or report the automated findings and use the checklist to organize human review. It should not mark content-accuracy items complete unless a human reviewer has approved them.
 
 It writes:
 

@@ -381,10 +381,10 @@ If someone forgets the flags, the command stays a dry run or refuses to write. I
 Run this after pulling pages, after broad course edits, and before a major preview/push pass:
 
 ```bash
-python scripts/review_course_content.py
+python scripts/review_course_content.py --audience-level "high school beginners"
 ```
 
-This consolidates the manual course review checks: internal notes, placeholders, TODO/FIXME/DRAFT text, encoding artifacts, placeholder or empty links, missing alt text, missing iframe titles, local assets that still need Canvas upload, missing local assets, mobile layout risks, Panopto/student-access review markers, and course-specific terms to verify when adapting a page. It also creates a human content-accuracy checklist for objectives, technical explanations, AI/tool claims, activity instructions, answer keys, links/videos, student level, course sequence, access/policy language, and final Canvas approval. Coding helpers should fix or report automated findings and leave checklist completion to human approval. Reports are written under:
+This consolidates the manual course review checks: internal notes, placeholders, TODO/FIXME/DRAFT text, encoding artifacts, placeholder or empty links, missing alt text, missing iframe titles, local assets that still need Canvas upload, missing local assets, mobile layout risks, Panopto/student-access review markers, and course-specific terms to verify when adapting a page. It also creates a human content-accuracy checklist for objectives, technical explanations, AI/tool claims, activity instructions, answer keys, links/videos, audience level, course sequence, access/policy language, and final Canvas approval. Coding helpers should fix or report automated findings and leave checklist completion to human approval. Reports are written under:
 
 ```text
 reports/course_review/

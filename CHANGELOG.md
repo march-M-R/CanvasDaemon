@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.9 — Audience-level review option
+
+- Updated `scripts/review_course_content.py` so the content-accuracy checklist uses a configurable `--audience-level` instead of hard-coding high-school learner level.
+- Updated docs and tests for audience-level review language.
+
 ## 0.2.8 — Content accuracy checklist
 
 - Extended `scripts/review_course_content.py` to generate `content_accuracy_checklist.csv` and `.md` for human review of learning objectives, technical accuracy, AI/tool claims, activities, answer keys, linked resources, student level, course sequence, policy/access language, and final Canvas approval.

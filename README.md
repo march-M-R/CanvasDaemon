@@ -103,10 +103,10 @@ Use `examples/templates/assets/m2_1_1_examples_patterns.png` as the image-style 
 
 ## Tests and maintenance
 
-Run the student-facing course content review after pulling or editing course pages. It produces automated findings and a human content-accuracy checklist:
+Run the student-facing course content review after pulling or editing course pages. It produces automated findings and a human content-accuracy checklist. Set the intended audience level for the review:
 
 ```bash
-python scripts/review_course_content.py
+python scripts/review_course_content.py --audience-level "high school beginners"
 ```
 
 Run the consolidated review checklist before sharing the toolkit or after broad helper edits:

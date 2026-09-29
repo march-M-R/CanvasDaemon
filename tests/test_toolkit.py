@@ -280,12 +280,13 @@ class ContentTests(unittest.TestCase):
             page=root/'lesson.html'
             page.write_text('<title>Quiz Review</title><h1>Quiz Review</h1><p>The correct answer explains how an AI model can hallucinate when training data and prompts are incomplete. Students must submit the Canvas quiz after watching the Panopto video.</p>')
             with patch.object(content_review,'ROOT_DIR',root):
-                rows=content_review.accuracy_review_rows([page.resolve()],root)
+                rows=content_review.accuracy_review_rows([page.resolve()],root,'undergraduate beginners')
             self.assertEqual(len(rows),len(content_review.ACCURACY_REVIEW_ITEMS))
             focus=' '.join(row['suggested_focus'] for row in rows)
             self.assertIn('assessment or answer language',focus)
             self.assertIn('AI concept language',focus)
             self.assertTrue(all(row['status']=='needs human review' for row in rows))
+            self.assertTrue(all(row['audience_level']=='undergraduate beginners' for row in rows))
 
 
 class AdditionalRegressionTests(unittest.TestCase):

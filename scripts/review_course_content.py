@@ -57,7 +57,7 @@ ACCURACY_REVIEW_ITEMS = [
     ("instructions_match_activity", "Student instructions match the embedded activity, notebook, quiz, discussion, or assignment students actually see."),
     ("answers_and_feedback", "Quiz answers, feedback, scoring language, and review explanations are correct."),
     ("links_and_videos_content", "Linked videos, Panopto embeds, external resources, and downloadable files match the lesson content."),
-    ("student_level", "Language, examples, and cognitive load fit high-school learners."),
+    ("audience_level", "Language, examples, and cognitive load fit the target audience level."),
     ("course_sequence", "Prerequisites, module numbers, next steps, and completion claims match the actual course sequence."),
     ("access_and_policy", "Access requirements, tool policies, academic integrity guidance, and privacy notes are accurate for the target course."),
     ("human_final_review", "A human reviewer has previewed this page in Canvas and approved it for students."),
@@ -208,7 +208,7 @@ def audit_page(path, root):
     return findings
 
 
-def accuracy_review_rows(paths, root):
+def accuracy_review_rows(paths, root, audience_level="target audience"):
     rows = []
     for path in paths:
         rel = str(path.relative_to(root)) if path.is_relative_to(root) else str(path)
@@ -232,6 +232,7 @@ def accuracy_review_rows(paths, root):
                 "review_item": key,
                 "review_prompt": prompt,
                 "suggested_focus": "; ".join(triggers),
+                "audience_level": audience_level,
                 "status": "needs human review",
                 "reviewer": "",
                 "notes": "",
@@ -278,7 +279,7 @@ def write_reports(findings, pages_inspected, accuracy_rows=None):
     findings_json.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
     with accuracy_csv.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["file", "page_title", "review_item", "review_prompt", "suggested_focus", "status", "reviewer", "notes"])
+        writer = csv.DictWriter(f, fieldnames=["file", "page_title", "review_item", "review_prompt", "suggested_focus", "audience_level", "status", "reviewer", "notes"])
         writer.writeheader()
         writer.writerows(accuracy_rows)
 
@@ -289,11 +290,11 @@ def write_reports(findings, pages_inspected, accuracy_rows=None):
         "",
         "This checklist is intentionally human-reviewed. The script can flag likely review areas, but it cannot prove technical correctness, course alignment, policy accuracy, or whether an answer key is right.",
         "",
-        "| File | Page Title | Review Item | Prompt | Suggested Focus | Status | Reviewer | Notes |",
-        "|---|---|---|---|---|---|---|---|",
+        "| File | Page Title | Review Item | Prompt | Suggested Focus | Audience Level | Status | Reviewer | Notes |",
+        "|---|---|---|---|---|---|---|---|---|",
     ]
     for row in accuracy_rows:
-        accuracy_lines.append("| " + " | ".join(str(row.get(col, "")).replace("|", "/") for col in ["file", "page_title", "review_item", "review_prompt", "suggested_focus", "status", "reviewer", "notes"]) + " |")
+        accuracy_lines.append("| " + " | ".join(str(row.get(col, "")).replace("|", "/") for col in ["file", "page_title", "review_item", "review_prompt", "suggested_focus", "audience_level", "status", "reviewer", "notes"]) + " |")
     accuracy_md.write_text("\n".join(accuracy_lines) + "\n", encoding="utf-8")
 
     page_rows = summarize_by_page(findings)
@@ -353,6 +354,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run a student-facing course content review over pulled Canvas page HTML.")
     parser.add_argument("--pages-dir", default=str(PAGES_DIR), help="Directory containing pulled Canvas page HTML files")
     parser.add_argument("--fail-on-warning", action="store_true", help="Exit nonzero when warnings are present")
+    parser.add_argument("--audience-level", default="target audience", help="Audience level to include in the human content-accuracy checklist, such as high school, undergraduate, professional, or beginner adult learners")
     args = parser.parse_args()
 
     pages_dir = Path(args.pages_dir)
@@ -361,7 +363,7 @@ def main():
     for page in pages:
         findings.extend(audit_page(page.resolve(), ROOT_DIR))
 
-    accuracy_rows = accuracy_review_rows([page.resolve() for page in pages], ROOT_DIR)
+    accuracy_rows = accuracy_review_rows([page.resolve() for page in pages], ROOT_DIR, args.audience_level)
     reports = write_reports(findings, len(pages), accuracy_rows)
     summary = reports[-1]
     print("Course content review complete.")

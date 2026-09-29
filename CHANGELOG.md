@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.3 — Handbook reorganization
+
+- Reorganized `docs/HANDBOOK.md` and `.html` into clearer operating sections by workflow.
+- Added all current course-building accelerator scripts to the handbook script catalog and workflow instructions.
+
 ## 0.3.2 — Coding assistant ground rules
 
 - Added shared ground rules for coding assistants to `AGENTS.md`, `CLAUDE.md`, Copilot/Cursor instructions, the AI-helper guide, handbook, and process guide.

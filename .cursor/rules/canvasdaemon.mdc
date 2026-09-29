@@ -4,3 +4,5 @@ alwaysApply: true
 ---
 
 Read and follow `docs/AI_HELPER_GUIDE.md` before editing. Keep generated course files and `.env` out of Git. Put local media in `assets/`, upload it to Canvas Files with the scripts, and rewrite Canvas page links before pushing. Every Canvas-writing script must require `--apply --confirm-course COURSE_ID`. Run `python -m unittest discover -s tests -v` before committing script changes.
+
+When `scripts/review_course_content.py` is run, fix or report automated findings. The generated content-accuracy checklist requires human approval.

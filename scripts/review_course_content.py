@@ -285,6 +285,8 @@ def write_reports(findings, pages_inspected, accuracy_rows=None):
     accuracy_lines = [
         "# Content Accuracy Checklist",
         "",
+        "Coding helper instruction: use this checklist to identify what needs human review. You may gather evidence, point to pages, and suggest edits, but leave `status` as `needs human review` unless a human reviewer approves the item.",
+        "",
         "This checklist is intentionally human-reviewed. The script can flag likely review areas, but it cannot prove technical correctness, course alignment, policy accuracy, or whether an answer key is right.",
         "",
         "| File | Page Title | Review Item | Prompt | Suggested Focus | Status | Reviewer | Notes |",
@@ -302,6 +304,8 @@ def write_reports(findings, pages_inspected, accuracy_rows=None):
 
     lines = [
         "# Course Content Review",
+        "",
+        "Coding helper instruction: fix or report automated findings from this review. Do not mark content-accuracy checklist items complete unless a human reviewer has actually approved them.",
         "",
         f"Pages inspected: {pages_inspected}",
         f"Errors: {counts['error']}",
@@ -365,6 +369,7 @@ def main():
     print(f"Errors: {summary['errors']}")
     print(f"Warnings: {summary['warnings']}")
     print(f"Info: {summary['info']}")
+    print("Coding helper instruction: fix or report automated findings; leave content-accuracy checklist items for human approval unless a human reviewer has approved them.")
     print("Reports:")
     for path in reports[:-1]:
         print(f"- {path}")

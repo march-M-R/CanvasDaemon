@@ -9,3 +9,5 @@ Follow `docs/AI_HELPER_GUIDE.md` before editing this repository. In particular:
 - Upload local page assets to Canvas Files and rewrite links before production pushes.
 - Preserve the `--apply --confirm-course COURSE_ID` safety gate on every Canvas-writing script.
 - Run `python -m unittest discover -s tests -v` before committing script changes.
+
+- When running `scripts/review_course_content.py`, fix or report automated findings. Use the generated content-accuracy checklist to organize human review, but do not mark checklist items complete without human approval.
